@@ -2,29 +2,62 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class Event {
+    private String eventName;
     private String speaker;  //placeholder. replace with User class
     private String organizer; //placeholder. replace with User class
     private List<String> guests; //placeholder. replace with User class
     private String room;
-    private String eventName;
     private LocalDateTime startTime;
 
-    //to avoid long parameter lists, used List (containing speaker, organizer, guests, room, eventName)
-    // as parameter for this constructor. will need to create this list in the UI class.
+    //to avoid long parameter lists, used Builder method to instantiate this class.
+    //Will need to call the builder method in the UI class instead of the Event constructor.
 
     /**
-     * The constructor takes in a List of Objects containing the information regarding this Event. It assigns
-     * variable speaker, organizer, guests, room, eventName, startTime.
+     * Private constructor will be used in EventBuilder to instantiate this class.
      *
-     * @param eventInfo list of Objects containing the information regarding this Message
      */
-    public Event(List<Object> eventInfo){
-        eventName = (String) eventInfo.get(0);
-        organizer = (String) eventInfo.get(1); //replace String with User class
-        speaker = (String) eventInfo.get(2); //replace String with User class
-        room = (String) eventInfo.get(3);
-        guests = (List<String>) eventInfo.get(4); // still figuring out how to get this cast right.
-        startTime = (LocalDateTime) eventInfo.get(5);
+    private Event(){}
+
+    public static class EventBuilder {
+        private String eventName;
+        private String speaker;
+        private String organizer;
+        private List<String> guests;
+        private String room;
+        private LocalDateTime startTime;
+
+        public EventBuilder setEventNameRoomTime(String eventName, String room, LocalDateTime startTime) {
+            this.eventName = eventName;
+            this.room = room;
+            this.startTime = startTime;
+            return this;
+        }
+
+        public EventBuilder setSpeaker(String speaker) {
+            this.speaker = speaker;
+            return this;
+        }
+
+        public EventBuilder setOrganizer(String organizer) {
+            this.organizer = organizer;
+            return this;
+        }
+
+        public EventBuilder setGuests(List<String> guests) {
+            this.guests = guests;
+            return this;
+        }
+
+        public Event build() {
+            Event event = new Event();
+            event.eventName = this.eventName;
+            event.speaker = this.speaker;
+            event.organizer = this.organizer;
+            event.guests = this.guests;
+            event.room = this.room;
+            event.startTime = this.startTime;
+            return event;
+        }
     }
 
     /**
