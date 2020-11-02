@@ -1,11 +1,12 @@
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Event {
     private String eventName;
     private User speaker;
     private User organizer;
-    private List<User> guests;
+    private List<User> attendees;
     private String room;
     private LocalDateTime startTime;
 
@@ -25,6 +26,7 @@ public class Event {
         this.organizer = organizer;
         this.room = room;
         this.startTime = startTime;
+        attendees = new ArrayList<>();
     }
 
     /**
@@ -63,12 +65,12 @@ public class Event {
     }
 
     /**
-     * Implements Getter, getGuests, for guests.
+     * Implements Getter, getAttendees, for attendees.
      *
-     * @return guests of this event
+     * @return attendees of this event
      */
-    public List<User> getGuests(){
-        return guests;
+    public List<User> getAttendees(){
+        return attendees;
     }
 
     /**
@@ -78,6 +80,15 @@ public class Event {
      */
     public LocalDateTime getStartTime(){
         return startTime;
+    }
+
+    /**
+     * Adds new guest to guests.
+     *
+     * @param attendee new attendee of event
+     */
+    public void addAttendee(User attendee){
+        attendees.add(attendee);
     }
 
 }
