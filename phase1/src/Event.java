@@ -10,11 +10,11 @@ public class Event {
     private LocalDateTime startTime;
 
     //to avoid long parameter lists, used Builder method to instantiate this class.
-    //Will need to call the builder method in the UI class instead of the Event constructor.
+    //Will need to call the Builder methods in the UI class instead of the Event constructor.
 
     private Event(){}
 
-    public static class EventBuilder {
+    public static class Builder {
         private String eventName;
         private User speaker;
         private User organizer;
@@ -22,24 +22,26 @@ public class Event {
         private String room;
         private LocalDateTime startTime;
 
-        public EventBuilder setEventNameRoomTime(String eventName, String room, LocalDateTime startTime) {
+        public Builder(){}
+
+        public Builder setEventNameRoomTime(String eventName, String room, LocalDateTime startTime) {
             this.eventName = eventName;
             this.room = room;
             this.startTime = startTime;
             return this;
         }
 
-        public EventBuilder setSpeaker(User speaker) {
+        public Builder setSpeaker(User speaker) {
             this.speaker = speaker;
             return this;
         }
 
-        public EventBuilder setOrganizer(User organizer) {
+        public Builder setOrganizer(User organizer) {
             this.organizer = organizer;
             return this;
         }
 
-        public EventBuilder setGuests(List<User> guests) {
+        public Builder setGuests(List<User> guests) {
             this.guests = guests;
             return this;
         }
