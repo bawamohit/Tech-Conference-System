@@ -3,26 +3,22 @@ import java.util.List;
 
 public class Event {
     private String eventName;
-    private String speaker;  //placeholder. replace with User class
-    private String organizer; //placeholder. replace with User class
-    private List<String> guests; //placeholder. replace with User class
+    private User speaker;
+    private User organizer;
+    private List<User> guests;
     private String room;
     private LocalDateTime startTime;
 
     //to avoid long parameter lists, used Builder method to instantiate this class.
     //Will need to call the builder method in the UI class instead of the Event constructor.
 
-    /**
-     * Private constructor will be used in EventBuilder to instantiate this class.
-     *
-     */
     private Event(){}
 
     public static class EventBuilder {
         private String eventName;
-        private String speaker;
-        private String organizer;
-        private List<String> guests;
+        private User speaker;
+        private User organizer;
+        private List<User> guests;
         private String room;
         private LocalDateTime startTime;
 
@@ -33,17 +29,17 @@ public class Event {
             return this;
         }
 
-        public EventBuilder setSpeaker(String speaker) {
+        public EventBuilder setSpeaker(User speaker) {
             this.speaker = speaker;
             return this;
         }
 
-        public EventBuilder setOrganizer(String organizer) {
+        public EventBuilder setOrganizer(User organizer) {
             this.organizer = organizer;
             return this;
         }
 
-        public EventBuilder setGuests(List<String> guests) {
+        public EventBuilder setGuests(List<User> guests) {
             this.guests = guests;
             return this;
         }
@@ -73,7 +69,7 @@ public class Event {
      *
      * @return organizer for event
      */
-    public String getOrganizer(){ //replace String with User class
+    public User getOrganizer(){
         return organizer;
     }
 
@@ -82,7 +78,7 @@ public class Event {
      *
      * @return speaker of event
      */
-    public String getSpeaker(){ //replace String with User class
+    public User getSpeaker(){
         return speaker;
     }
 
@@ -91,7 +87,7 @@ public class Event {
      *
      * @return room for event
      */
-    public String getRoom(){ //replace String with User class
+    public String getRoom(){
         return room;
     }
 
@@ -100,7 +96,7 @@ public class Event {
      *
      * @return guests of this event
      */
-    public List<String> getGuests(){ //replace String with User class
+    public List<User> getGuests(){
         return guests;
     }
 
