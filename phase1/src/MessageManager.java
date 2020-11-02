@@ -23,9 +23,9 @@ public class MessageManager {
         if (!messageList.get(sender).containsKey(receiver)) {
             ArrayList<Message> conversation = new ArrayList<>();
             messageList.get(sender).put(receiver, conversation);
-        } else{
-            messageList.get(sender).get(receiver).add(message);
         }
+
+        messageList.get(sender).get(receiver).add(message);
     }
 
     protected List<Message> getMessageHistory(User firstUser, User secondUser) {
