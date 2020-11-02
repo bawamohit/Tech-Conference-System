@@ -9,53 +9,22 @@ public class Event {
     private String room;
     private LocalDateTime startTime;
 
-    //to avoid long parameter lists, used Builder method to instantiate this class.
-    //Will need to call the Builder methods in the UI class instead of the Event constructor.
+    /**
+     * The constructor takes eventName, speaker, organizer, room, startTime of event and assigns each variable.
+     *
+     * @param eventName name of event
+     * @param speaker speaker of event
+     * @param organizer organizer of event
+     * @param room room for event
+     * @param startTime date and time of event
+     */
 
-    private Event(){}
-
-    public static class Builder {
-        private String eventName;
-        private User speaker;
-        private User organizer;
-        private List<User> guests;
-        private String room;
-        private LocalDateTime startTime;
-
-        public Builder(){}
-
-        public Builder setEventNameRoomTime(String eventName, String room, LocalDateTime startTime) {
-            this.eventName = eventName;
-            this.room = room;
-            this.startTime = startTime;
-            return this;
-        }
-
-        public Builder setSpeaker(User speaker) {
-            this.speaker = speaker;
-            return this;
-        }
-
-        public Builder setOrganizer(User organizer) {
-            this.organizer = organizer;
-            return this;
-        }
-
-        public Builder setGuests(List<User> guests) {
-            this.guests = guests;
-            return this;
-        }
-
-        public Event build() {
-            Event event = new Event();
-            event.eventName = this.eventName;
-            event.speaker = this.speaker;
-            event.organizer = this.organizer;
-            event.guests = this.guests;
-            event.room = this.room;
-            event.startTime = this.startTime;
-            return event;
-        }
+    public Event(String eventName, User speaker, User organizer, String room, LocalDateTime startTime){
+        this.eventName = eventName;
+        this.speaker = speaker;
+        this.organizer = organizer;
+        this.room = room;
+        this.startTime = startTime;
     }
 
     /**
