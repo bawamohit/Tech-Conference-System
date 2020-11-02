@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -6,7 +7,7 @@ public class User {
     private String username;
     private String password;
     private UserType userType;
-    private List<Event> eventsAttending;
+    private List<String> eventsAttending;
     private List<User> friends;
 
     public User(UserType userType, String name, String username, String password) {
@@ -14,6 +15,8 @@ public class User {
         this.name = name;
         this.username = username;
         this.password = password;
+        this.eventsAttending = new ArrayList<>();
+        this.friends = new ArrayList<>();
     }
 
     public void setName(String name) {
@@ -26,6 +29,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setEventsAttending(List<String> eventsAttending) {
+        this.eventsAttending = eventsAttending;
+    }
+
+    public void setFriends(List<User> friends) {
+        this.friends = friends;
     }
 
     public String getName() {
@@ -42,6 +53,14 @@ public class User {
 
     public UserType getUserType() {
         return userType;
+    }
+
+    public List<String> getEventsAttending() {
+        return eventsAttending;
+    }
+
+    public List<User> getFriends() {
+        return friends;
     }
 }
 
