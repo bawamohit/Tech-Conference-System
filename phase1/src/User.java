@@ -2,7 +2,6 @@ import java.util.List;
 
 public class User {
 
-    private int id;
     private String name;
     private String username;
     private String password;
@@ -10,9 +9,8 @@ public class User {
     private List<Event> eventsAttending;
     private List<User> friends;
 
-    public User(UserType userType, int id, String name, String username, String password) {
+    public User(UserType userType, String name, String username, String password) {
         this.userType = userType;
-        this.id = id;
         this.name = name;
         this.username = username;
         this.password = password;
@@ -40,6 +38,10 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public UserType getUserType() {
+        return userType;
     }
 }
 
