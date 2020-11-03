@@ -8,8 +8,15 @@ public class User {
     private String password;
     private UserType userType;
     private List<String> eventsAttending;
-    private List<User> friends;
+    private List<String> friends;
 
+    /** Creates an instance of User
+     *
+     * @param userType Attendee, Organizer, or Speaker
+     * @param name Name of the User
+     * @param username Login username of the User
+     * @param password Login Password of the User
+     */
     public User(UserType userType, String name, String username, String password) {
         this.userType = userType;
         this.name = name;
@@ -19,47 +26,91 @@ public class User {
         this.friends = new ArrayList<>();
     }
 
+    /** Setter for name of User
+     *
+     * @param name Name of user
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /** Setter for login username of User
+     *
+     * @param username Username of User
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /** Setter for login password User
+     *
+     * @param password Password of User
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /** Setter for List of event names
+     *
+     * @param eventsAttending List of event names
+     */
     public void setEventsAttending(List<String> eventsAttending) {
         this.eventsAttending = eventsAttending;
     }
 
-    public void setFriends(List<User> friends) {
+    /** Setter for List of friend names
+     *
+     * @param friends List of friend names
+     */
+    public void setFriends(List<String> friends) {
         this.friends = friends;
     }
 
+    /** Returns the name of the User
+     *
+     * @return Name of User
+     */
     public String getName() {
         return name;
     }
 
+    /** Returns the login username of the User
+     *
+     * @return username of User
+     */
     public String getUsername() {
         return username;
     }
 
+    /** Returns the login password of the User
+     *
+     * @return password of the User
+     */
     public String getPassword() {
         return password;
     }
 
+    /** Returns the type of User - Attendee, Organizer, or Speaker
+     *
+     * @return Type of User
+     */
     public UserType getUserType() {
         return userType;
     }
 
+    /** Returns the list of event names that the User is attending, organizing, or speaking at.
+     *
+     * @return User's list of event names
+     */
     public List<String> getEventsAttending() {
         return eventsAttending;
     }
 
-    public List<User> getFriends() {
+    /** Returns the list of friends that the user can message
+     *
+     * @return List of User's friends
+     */
+    public List<String> getFriends() {
         return friends;
     }
 }
