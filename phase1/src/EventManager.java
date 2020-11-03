@@ -7,9 +7,7 @@ public class EventManager {
      * @param events list of scheduled events
      */
 
-    public EventManager(){
-        this.events = new List<Event>;
-    }
+    public EventManager(){ this.events = new ArrayList<>(); }
 
     /**
      * Implements Getter, getEvents, for events.
@@ -66,7 +64,7 @@ public class EventManager {
             }
         }
         event.add(user); // add user to event's guest list
-        user.addAttend(event); //add event to user's list of attending events
+        user.addAttend(event); //add event to user's list of attending events **need usermanager
         return true;
     }
 
@@ -80,7 +78,7 @@ public class EventManager {
             return false;
         }
         event.remove(user); // remove user from event's guest list
-        user.removeAttend(event); //remove event from user's list of attending events
+        user.removeAttend(event); //remove event from user's list of attending events **need usermanager
         return true;
     }
 
