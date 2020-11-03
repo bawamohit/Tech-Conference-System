@@ -83,7 +83,7 @@ public class Event {
     }
 
     /**
-     * Adds new guest to guests.
+     * Adds new user to attendees.
      *
      * @param attendee new attendee of event
      */
@@ -91,4 +91,12 @@ public class Event {
         attendees.add(attendee);
     }
 
+    /**
+     * Removes user from attendees.
+     *
+     * @param attendee attendee that is getting removed from event
+     */
+    public void removeAttendee(User attendee){
+        attendees.remove(attendee);
+    }
 }
