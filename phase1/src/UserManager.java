@@ -6,6 +6,6 @@ public class UserManager {
     private List<User> users;
 
     public UserManager () {
-        this.users = new ArrayList<>()
+        this.users = new ArrayList<>();
     }
 }
