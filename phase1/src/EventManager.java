@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ public class EventManager {
     /**
      * The constructor takes events and assigns the variable an appropriate value.
      *
-     * @param events list of scheduled events
+     *
      */
 
     public EventManager(){ this.events = new ArrayList<>(); }
@@ -17,9 +18,7 @@ public class EventManager {
      *
      * @return list of all scheduled events
      */
-    public List<Event> getEvents(){
-        return events;
-    }
+    public List<Event> getEvents(){ return events; }
 
     /**
      * Implements modifier, addEvent, for events.
@@ -27,14 +26,14 @@ public class EventManager {
      * @return a boolean indicating if event was successfully added
      */
     public boolean addEvent(Event event){
-        start = event.getStartTime();
+        LocalDateTime start = event.getStartTime();
         for(Event e : events){
             if (e.getStartTime() == start){
                 return false;
             }
         }
         if (start.getHour() >= 9 && start.getHour() <= 17){
-            events.add(Event e);
+            events.add(event);
             return true;
         }else{
             return false;
@@ -46,8 +45,24 @@ public class EventManager {
      *
      * @return a boolean indicating if event was successfully removed
      */
-    public boolean removeEvent(Event event){
+    // public boolean removeEvent(Event event){
 
+    // }
+
+    /**
+     * Implements helper method, findEvent, to find event object when given its name.
+     *
+     * @return an Event object in list of events associated with the given String eventName.
+     */
+    public Event findEvent(String eventName){
+        for (Event e: events){
+            if (e.getEventName().equals(eventName)){
+                return e;
+            }else{
+                return null; // can we make return type optional?
+            }
+        }
+        return null;
     }
 
     /**
@@ -56,18 +71,18 @@ public class EventManager {
      * @return a boolean indicating if user was successfully added
      */
     public boolean addAttendee(User user, Event event){
-        s_event = event.getStartTime();
-        if (event.getGuests().contains(user)){
+        LocalDateTime s_event = event.getStartTime();
+        if (event.getAttendees().contains(user.getName())){
             return false;
         }
-        for(Event e : user.getEventsAttending()){
-            s_user = e.getStartTime();
-            if(start.getHour() == s_event.getHour()){
+        for(String name : user.getEventsAttending()){
+            Event users_event = findEvent(name);
+            LocalDateTime s_user = users_event.getStartTime();
+            if (s_user.getHour() == s_event.getHour()){
                 return false;
             }
         }
-        event.add(user); // add user to event's guest list
-        user.addAttend(event); //add event to user's list of attending events **need usermanager
+        event.addAttendee(user); // add user to event's guest list
         return true;
     }
 
@@ -77,11 +92,11 @@ public class EventManager {
      * @return a boolean indicating if user was successfully removed
      */
     public boolean removeAttendee(User user, Event event){
-        if (!(event.getGuests().contains(user)) || !(user.getEventsAttending().contains(event))){
+        if (!(event.getAttendees().contains(user.getName())) ||
+                !(user.getEventsAttending().contains(event.getEventName()))){
             return false;
         }
-        event.remove(user); // remove user from event's guest list
-        user.removeAttend(event); //remove event from user's list of attending events **need usermanager
+        event.removeAttendee(user); // remove user from event's guest list
         return true;
     }
 
