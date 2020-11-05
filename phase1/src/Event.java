@@ -4,9 +4,9 @@ import java.util.List;
 
 public class Event {
     private String eventName;
-    private User speaker;
-    private User organizer;
-    private List<User> attendees;
+    private String speaker;
+    private String organizer;
+    private List<String> attendees;
     private String room;
     private LocalDateTime startTime;
 
@@ -22,8 +22,8 @@ public class Event {
 
     public Event(String eventName, User speaker, User organizer, String room, LocalDateTime startTime){
         this.eventName = eventName;
-        this.speaker = speaker;
-        this.organizer = organizer;
+        this.speaker = speaker.getUsername();
+        this.organizer = organizer.getUsername();
         this.room = room;
         this.startTime = startTime;
         attendees = new ArrayList<>();
@@ -40,18 +40,18 @@ public class Event {
     /**
      * Implements Getter, getOrganizer, for organizer.
      *
-     * @return organizer for event
+     * @return username of event's organizer
      */
-    public User getOrganizer(){
+    public String getOrganizer(){
         return organizer;
     }
 
     /**
      * Implements Getter, getSender, for sender.
      *
-     * @return speaker of event
+     * @return username of speaker of event
      */
-    public User getSpeaker(){
+    public String getSpeaker(){
         return speaker;
     }
 
@@ -69,7 +69,7 @@ public class Event {
      *
      * @return attendees of this event
      */
-    public List<User> getAttendees(){
+    public List<String> getAttendees(){
         return attendees;
     }
 
@@ -83,20 +83,20 @@ public class Event {
     }
 
     /**
-     * Adds new user to attendees.
+     * Adds username of new attendee to list of attendees.
      *
      * @param attendee new attendee of event
      */
     public void addAttendee(User attendee){
-        attendees.add(attendee);
+        attendees.add(attendee.getUsername());
     }
 
     /**
-     * Removes user from attendees.
+     * Removes username of old attendee from list of attendees.
      *
      * @param attendee attendee that is getting removed from event
      */
     public void removeAttendee(User attendee){
-        attendees.remove(attendee);
+        attendees.remove(attendee.getUsername());
     }
 }
