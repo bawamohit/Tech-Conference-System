@@ -18,7 +18,7 @@ public class MessageManager {
         }
     }
 
-    // GROUP CHAT MOTHERCUKERS ?????????????
+    // GROUP CHAT MOTHERCUCKERS ?????????????
     protected void sendMessage(String sender, String receiver, LocalDateTime time, String content) {
         addMessage(sender, receiver, time, content);
         addMessage(receiver, sender, time, content);
@@ -36,7 +36,6 @@ public class MessageManager {
     protected ArrayList<Message> getConversation(String firstUser, String secondUser) {
         return conversations.get(firstUser).get(secondUser);
     }
-
 
     protected void messageEvent(String sender, List<String> userList, LocalDateTime time, String content) {
         for (String receiver : userList) {
