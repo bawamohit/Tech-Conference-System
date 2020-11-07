@@ -1,6 +1,7 @@
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class Event {
     private String eventName;
@@ -9,9 +10,11 @@ public class Event {
     private List<String> attendees;
     private String room;
     private LocalDateTime startTime;
+    private UUID id;
 
     /**
      * The constructor takes eventName, speaker, organizer, room, startTime of event and assigns each variable.
+     * It also instantiates the list of attendees, attendees, and sets an unique id for the event.
      *
      * @param eventName name of event
      * @param speaker speaker of event
@@ -27,6 +30,7 @@ public class Event {
         this.room = room;
         this.startTime = startTime;
         attendees = new ArrayList<>();
+        id = UUID.randomUUID();
     }
 
     /**
@@ -83,20 +87,20 @@ public class Event {
     }
 
     /**
-     * Adds username of new attendee to list of attendees.
+     * Implements Setter, setAttendees, for attendees.
      *
-     * @param attendee new attendee of event
+     * @param attendees new attendees of event
      */
-    public void addAttendee(User attendee){
-        attendees.add(attendee.getUsername());
+    public void setAttendees(List<String> attendees){
+        this.attendees = attendees;
     }
 
     /**
-     * Removes username of old attendee from list of attendees.
+     * Implements Getter, getId, for id.
      *
-     * @param attendee attendee that is getting removed from event
+     * @return id of event.
      */
-    public void removeAttendee(User attendee){
-        attendees.remove(attendee.getUsername());
+    public UUID getId() {
+        return id;
     }
 }
