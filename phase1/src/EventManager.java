@@ -1,9 +1,11 @@
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
+import java.util.Set; // do we need this (used for keyset())
 
 public class EventManager {
-    private List<Event> events;
+    private HashMap<UUID, Event> events;
 
     /**
      * The constructor takes events and assigns the variable an appropriate value.
@@ -11,14 +13,14 @@ public class EventManager {
      *
      */
 
-    public EventManager(){ this.events = new ArrayList<>(); }
+    public EventManager(){ this.events = new HashMap<>(); }
 
     /**
      * Implements Getter, getEvents, for events.
      *
      * @return list of all scheduled events
      */
-    public List<Event> getEvents(){ return events; }
+    public HashMap<UUID, Event> getEvents(){ return events; }
 
     /**
      * Implements modifier, addEvent, for events.
@@ -27,13 +29,14 @@ public class EventManager {
      */
     public boolean addEvent(Event event){
         LocalDateTime start = event.getStartTime();
-        for(Event e : events){
+        for(UUID id : events.keySet()){
+            Event e = events.get(id);
             if (e.getStartTime() == start){
                 return false;
             }
         }
         if (start.getHour() >= 9 && start.getHour() <= 17){
-            events.add(event);
+            events.put(event.getId(), event);
             return true;
         }else{
             return false;
@@ -55,7 +58,8 @@ public class EventManager {
      * @return an Event object in list of events associated with the given String eventName.
      */
     public Event findEvent(String eventName){
-        for (Event e: events){
+        for (UUID id: events.keySet()){
+            Event e = events.get(id);
             if (e.getEventName().equals(eventName)){
                 return e;
             }else{
@@ -82,7 +86,9 @@ public class EventManager {
                 return false;
             }
         }
-        event.addAttendee(user); // add user to event's guest list
+        List<String> updated_event = event.getAttendees();
+        updated_event.add(user.getName());
+        event.setAttendees(updated_event);
         return true;
     }
 
@@ -96,8 +102,12 @@ public class EventManager {
                 !(user.getEventsAttending().contains(event.getEventName()))){
             return false;
         }
-        event.removeAttendee(user); // remove user from event's guest list
-        return true;
+        List<String> updated_event = event.getAttendees();
+        if (updated_event.remove(user.getName())){
+            event.setAttendees(updated_event);
+            return true;
+        }
+        return false;
     }
 
 }
