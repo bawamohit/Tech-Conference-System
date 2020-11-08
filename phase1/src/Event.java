@@ -8,26 +8,22 @@ public class Event {
     private String speaker;
     private String organizer;
     private List<String> attendees;
-    private String room;
     private LocalDateTime startTime;
     private UUID id;
 
     /**
-     * The constructor takes eventName, speaker, organizer, room, startTime of event and assigns each variable.
+     * The constructor takes eventName, speaker, organizer, startTime of event and assigns each variable.
      * It also instantiates the list of attendees, attendees, and sets an unique id for the event.
      *
      * @param eventName name of event
      * @param speaker speaker of event
      * @param organizer organizer of event
-     * @param room room for event
      * @param startTime date and time of event
      */
-
-    public Event(String eventName, User speaker, User organizer, String room, LocalDateTime startTime){
+    public Event(String eventName, User speaker, User organizer, LocalDateTime startTime){
         this.eventName = eventName;
         this.speaker = speaker.getUsername();
         this.organizer = organizer.getUsername();
-        this.room = room;
         this.startTime = startTime;
         attendees = new ArrayList<>();
         id = UUID.randomUUID();
@@ -41,6 +37,7 @@ public class Event {
     public String getEventName(){
         return eventName;
     }
+
     /**
      * Implements Getter, getOrganizer, for organizer.
      *
@@ -60,18 +57,9 @@ public class Event {
     }
 
     /**
-     * Implements Getter, getRoom, for room.
-     *
-     * @return room for event
-     */
-    public String getRoom(){
-        return room;
-    }
-
-    /**
      * Implements Getter, getAttendees, for attendees.
      *
-     * @return attendees of this event
+     * @return attendees of event
      */
     public List<String> getAttendees(){
         return attendees;
