@@ -1,36 +1,60 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class UserManager {
 
-    private List<User> users;
+    private HashMap<String, User> usernamesToUsers;
 
     public UserManager () {
-        this.users = new ArrayList<>();
+        usernamesToUsers = new HashMap<>();
     }
 
-    public List<User> getUsers() {
-        return users;
+    public List<User> getUserList() {
+        return (List<User>) usernamesToUsers.values();
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public List<String> getUsernameList() {
+        return (List<String>) usernamesToUsers.keySet();
     }
 
-    public User verifyLogin(String username, String password) { //ask about returning null
-        for (User u : users) {
-            if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
-                return u;
+    public void setUsernamesToUsers(HashMap<String, User> newMap) {
+        usernamesToUsers = newMap;
+    }
+
+    private boolean isRegistered(String username) {
+        return usernamesToUsers.containsKey(username);
+    }
+
+    public boolean registerUser(User user) {
+        if (isRegistered(user.getUsername())){
+            return false;
+        }
+        usernamesToUsers.put(user.getUsername(), user);
+        return true;
+    }
+
+    public boolean verifyLogin(String username, String password) { //ask about returning null
+        if (isRegistered(username)) {
+            if (usernamesToUsers.get(username).getPassword().equals(password)) {
+                return true;
             }
         }
-        return null;
+        return false;
     }
 
-    public void updatePassword(User user, String newPassword) {
-        user.setPassword(newPassword);
+    public boolean updatePassword(String username, String newPassword) {
+        if (isRegistered(username)) {
+            usernamesToUsers.get(username).setPassword(newPassword);
+            return true;
+        }
+        return false;
     }
 
-    public UserType getUserType(User user){
-        return user.getUserType();
+    public UserType getUserType(String username){
+        return usernamesToUsers.get(username).getUserType();
     }
+
+
+
 }
