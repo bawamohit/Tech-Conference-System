@@ -20,10 +20,10 @@ public class Event {
      * @param organizer organizer of event
      * @param startTime date and time of event
      */
-    public Event(String eventName, User speaker, User organizer, LocalDateTime startTime){
+    public Event(String eventName, String speaker, String organizer, LocalDateTime startTime){
         this.eventName = eventName;
-        this.speaker = speaker.getUsername();
-        this.organizer = organizer.getUsername();
+        this.speaker = speaker;
+        this.organizer = organizer;
         this.startTime = startTime;
         attendees = new ArrayList<>();
         id = UUID.randomUUID();
