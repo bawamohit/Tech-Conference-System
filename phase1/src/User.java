@@ -51,9 +51,9 @@ public class User {
         this.eventsAttending = eventsAttending;
     }
 
-    /** Setter for List of friend names
+    /** Setter for List of friend usernames
      *
-     * @param friends List of friend names
+     * @param friends List of friend usernames
      */
     public void setFriends(List<String> friends) {
         this.friends = friends;
