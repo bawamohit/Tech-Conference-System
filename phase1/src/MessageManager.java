@@ -41,16 +41,16 @@ public class MessageManager {
         }
     }
 
-    protected void addMessage(User firstUser, User secondUser, String content) {
-        String firstUsername = firstUser.getUsername();
-        String secondUsername = secondUser.getUsername();
+    protected void addMessage(User sender, User receiver, String content) {
+        String firstUsername = sender.getUsername();
+        String secondUsername = receiver.getUsername();
         Message message = new Message(firstUsername, secondUsername, content);
-        addSenderChat(firstUser, secondUser);
-        addReceiverChat(firstUser, secondUser);
+        addSenderChat(sender);
+        addReceiverChat(sender, receiver);
         chats.get(firstUsername).get(secondUsername).add(message);
     }
 
-    private void addSenderChat(User sender, User receiver) {
+    private void addSenderChat(User sender) {
         String senderUsername = sender.getUsername();
         if (!chats.containsKey(senderUsername)) {
             HashMap<String, List<Message>> receivers = new HashMap<>();
@@ -72,15 +72,15 @@ public class MessageManager {
         return binarySearchMessage(chat, 0, chat.size(), time);
     }
 
-    private int binarySearchMessage(List<Message> conversation, int startIndex, int endIndex, LocalDateTime time){
+    private int binarySearchMessage(List<Message> chat, int startIndex, int endIndex, LocalDateTime time){
         int midIndex = (startIndex + endIndex) / 2;
-        LocalDateTime midMessageTime = (conversation.get(midIndex)).getTime();
+        LocalDateTime midMessageTime = (chat.get(midIndex)).getTime();
         if(midMessageTime.isEqual(time)){
             return midIndex;
         } else if(midMessageTime.isBefore(time)){
-            return binarySearchMessage(conversation, startIndex, midIndex, time);
+            return binarySearchMessage(chat, startIndex, midIndex, time);
         } else {
-            return binarySearchMessage(conversation, midIndex + 1, endIndex, time);
+            return binarySearchMessage(chat, midIndex + 1, endIndex, time);
         }
     }
 }
