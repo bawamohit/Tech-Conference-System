@@ -13,4 +13,13 @@ public class TechConferenceSystem {
     public void loginUser (String username, String password) {
 
     }
+
+    public void eventSignUp(User user, Event event){
+        em.addAttendee(user, event);
+    }
+
+    public void eventCancelAttendee(User user, Event event){
+        em.removeAttendee(user, event);
+    }
+
 }
