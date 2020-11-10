@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class User {
 
@@ -7,7 +8,7 @@ public class User {
     private String username;
     private String password;
     private UserType userType;
-    private List<String> eventsAttending;
+    private List<UUID> eventsAttending;
     private List<String> friends;
 
     /** Creates an instance of User
@@ -46,13 +47,13 @@ public class User {
      *
      * @param eventsAttending List of event names
      */
-    public void setEventsAttending(List<String> eventsAttending) {
+    public void setEventsAttending(List<UUID> eventsAttending) {
         this.eventsAttending = eventsAttending;
     }
 
-    /** Setter for List of friend names
+    /** Setter for List of friend usernames
      *
-     * @param friends List of friend names
+     * @param friends List of friend usernames
      */
     public void setFriends(List<String> friends) {
         this.friends = friends;
@@ -94,7 +95,7 @@ public class User {
      *
      * @return User's list of event names
      */
-    public List<String> getEventsAttending() {
+    public List<UUID> getEventsAttending() {
         return eventsAttending;
     }
 

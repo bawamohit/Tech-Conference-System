@@ -21,6 +21,7 @@ public class MessageManager {
         addMessage(receiver, sender, content);
     }
 
+    // Precondition: message is in chat
     protected void deleteMessage(Message message){
         String sender = message.getSender();
         String receiver = message.getReceiver();
