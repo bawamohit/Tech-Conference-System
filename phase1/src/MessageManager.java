@@ -2,16 +2,17 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 public class MessageManager {
-    private HashMap<String, HashMap<String, List<Message>>> conversations;
+    private HashMap<String, HashMap<UUID, Chat>> chats;
 
     public MessageManager(List<User> userList) {
-        this.conversations = new HashMap<>();
+        this.chats = new HashMap<>();
         for (User user : userList) {
             String username = user.getUsername();
-            HashMap<String, List<Message>> receivers = new HashMap<>();
-            conversations.put(username, receivers);
+            HashMap<UUID, Chat> chatIDs = new HashMap<>();
+            chats.put(username, chatIDs);
         }
     }
 
@@ -20,6 +21,13 @@ public class MessageManager {
         addMessage(sender, receiver, content);
         addMessage(receiver, sender, content);
     }
+    //groupchat
+    protected void sendMessage(String sender, UUID groupChat, String content) {
+        for(String member: members){
+            addMessage(member, groupChat, content);
+        }
+    }
+    //HashMap<String, object<conversation>>;
 
     // Precondition: message is in chat
     protected void deleteMessage(Message message){
@@ -41,24 +49,29 @@ public class MessageManager {
         }
     }
 
-    protected void addMessage(String firstUser, String secondUser, String content) {
-        Message message = new Message(firstUser, secondUser, content);
+    protected void addMessage(User sender, List<User> members, String content) {
+        Message message = new Message(sender.getUsername(), content);
         addSenderConversations(firstUser, secondUser);
         addReceiverConversation(firstUser, secondUser);
         conversations.get(firstUser).get(secondUser).add(message);
     }
 
-    private void addSenderConversations(String sender, String receiver) {
-        if (!conversations.containsKey(sender)) {
-            HashMap<String, List<Message>> receivers = new HashMap<>();
-            conversations.put(sender, receivers);
+    private void checkUserExists(User sender) {
+        String senderName = sender.getUsername();
+        if (!chats.containsKey(senderName)) {
+            HashMap<UUID, Chat> chatIDs = new HashMap<>();
+            chats.put(senderName, chatIDs);
         }
     }
 
-    private void addReceiverConversation(String sender, String receiver){
-        if (!conversations.get(sender).containsKey(receiver)) {
+    private void checkChatExists(List<User> members){
+        if (!conversations.get(sender).containsKey(chatID)) {
             List<Message> conversation = new ArrayList<>();
             conversations.get(sender).put(receiver, conversation);
+        }
+
+        for (member: members) {
+            if()
         }
     }
 
