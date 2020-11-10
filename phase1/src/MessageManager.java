@@ -2,40 +2,31 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 
 public class MessageManager {
-    private HashMap<String, HashMap<UUID, Chat>> chats;
+    private HashMap<String, HashMap<String, List<Message>>> chats;
 
+    // controller does everything ??????
     public MessageManager(List<User> userList) {
         this.chats = new HashMap<>();
         for (User user : userList) {
             String username = user.getUsername();
-            HashMap<UUID, Chat> chatIDs = new HashMap<>();
-            chats.put(username, chatIDs);
+            HashMap<String, List<Message>> receivers = new HashMap<>();
+            chats.put(username, receivers);
         }
     }
 
-    // GROUP CHAT MOTHERCUCKERS ?????????????
-    protected void sendMessage(String sender, String receiver, String content) {
+    protected void sendMessage(User sender, User receiver, String content) {
         addMessage(sender, receiver, content);
         addMessage(receiver, sender, content);
     }
-    //groupchat
-    protected void sendMessage(String sender, UUID groupChat, String content) {
-        for(String member: members){
-            addMessage(member, groupChat, content);
-        }
-    }
-    //HashMap<String, object<conversation>>;
 
-    // Precondition: message is in chat
-    protected void deleteMessage(Message message){
+    protected void deleteMessage(Message message) {
         String sender = message.getSender();
         String receiver = message.getReceiver();
-        List<Message> conversation = conversations.get(sender).get(receiver);
-        int messageIndex = binarySearchMessage(conversation, message);
-        conversation.remove(messageIndex); //store edit history?
+        List<Message> chat = chats.get(sender).get(receiver);
+        int messageIndex = binarySearchMessage(chat, message);
+        chat.remove(messageIndex); //store edit history?
     }
 
     protected List<Message> getConversation(User firstUser, User secondUser) {
@@ -44,7 +35,7 @@ public class MessageManager {
         return chats.get(firstUsername).get(secondUsername);
     }
 
-    protected void messageEvent(String sender, List<User> userList, String content) {
+    protected void messageEvent(User sender, List<User> userList, String content) {
         for (User user : userList) {
             sendMessage(sender, user, content);
         }
@@ -67,28 +58,13 @@ public class MessageManager {
         }
     }
 
-    private void checkUserExists(User sender) {
-        String senderName = sender.getUsername();
-        if (!chats.containsKey(senderName)) {
-            HashMap<UUID, Chat> chatIDs = new HashMap<>();
-            chats.put(senderName, chatIDs);
+    private void addReceiverChat(User sender, User receiver){
+        String senderUsername = sender.getUsername();
+        String receiverUsername = receiver.getUsername();
+        if (!chats.get(senderUsername).containsKey(receiverUsername)) {
+            ArrayList<Message> chat = new ArrayList<>();
+            chats.get(senderUsername).put(receiverUsername, chat);
         }
-    }
-
-    private void checkChatExists(List<User> members){
-        if (!conversations.get(sender).containsKey(chatID)) {
-            List<Message> conversation = new ArrayList<>();
-            conversations.get(sender).put(receiver, conversation);
-        }
-
-        for (member: members) {
-            if()
-        }
-    }
-
-    private int binarySearchMessage(List<Message> conversation, Message message){
-        LocalDateTime time = message.getTime();
-        return binarySearchMessage(conversation, 0, conversation.size(), time);
     }
 
     private int binarySearchMessage(List<Message> chat, Message message) {
