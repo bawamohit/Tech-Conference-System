@@ -27,9 +27,10 @@ public class MessageManager {
         List<Message> chat = chats.get(sender).get(receiver);
         int messageIndex = binarySearchMessage(chat, message);
         if(chat.get(messageIndex).getSender().equals(message.getSender())){
-            chat.remove(message);
+            chat.remove(messageIndex);
+        }else{
+            chat.remove(message);//store edit history?
         }
-        chat.remove(messageIndex); //store edit history?
     }
 
     protected List<Message> getConversation(User firstUser, User secondUser) {
