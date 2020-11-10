@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 public class UserManager {
 
@@ -43,6 +44,22 @@ public class UserManager {
         return false;
     }
 
+    public boolean updateUsername(String oldUsername, String newUsername) {
+        if (isRegistered(oldUsername)) {
+            usernamesToUsers.get(oldUsername).setUsername(newUsername);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean updateName(String username, String newName) {
+        if (isRegistered(username)) {
+            usernamesToUsers.get(username).setName(newName);
+            return true;
+        }
+        return false;
+    }
+
     public boolean updatePassword(String username, String newPassword) {
         if (isRegistered(username)) {
             usernamesToUsers.get(username).setPassword(newPassword);
@@ -54,7 +71,5 @@ public class UserManager {
     public UserType getUserType(String username){
         return usernamesToUsers.get(username).getUserType();
     }
-
-
 
 }

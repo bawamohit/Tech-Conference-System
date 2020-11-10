@@ -34,14 +34,6 @@ public class User {
         this.name = name;
     }
 
-    /** Setter for login username of User
-     *
-     * @param username Username of User
-     */
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     /** Setter for login password User
      *
      * @param password Password of User
