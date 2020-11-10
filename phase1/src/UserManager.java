@@ -44,14 +44,6 @@ public class UserManager {
         return false;
     }
 
-    public boolean updateUsername(String oldUsername, String newUsername) {
-        if (isRegistered(oldUsername)) {
-            usernamesToUsers.get(oldUsername).setUsername(newUsername);
-            return true;
-        }
-        return false;
-    }
-
     public boolean updateName(String username, String newName) {
         if (isRegistered(username)) {
             usernamesToUsers.get(username).setName(newName);
