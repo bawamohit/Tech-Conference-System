@@ -38,22 +38,33 @@ public class MessageManager {
         conversation.remove(messageIndex); //store edit history?
     }
 
-    protected List<Message> getConversation(String firstUser, String secondUser) {
-        return conversations.get(firstUser).get(secondUser);
+    protected List<Message> getConversation(User firstUser, User secondUser) {
+        String firstUsername = firstUser.getUsername();
+        String secondUsername = secondUser.getUsername();
+        return chats.get(firstUsername).get(secondUsername);
     }
 
     protected void messageEvent(String sender, List<User> userList, String content) {
         for (User user : userList) {
-            String receiver = user.getUsername();
-            sendMessage(sender, receiver, content);
+            sendMessage(sender, user, content);
         }
     }
 
-    protected void addMessage(User sender, List<User> members, String content) {
-        Message message = new Message(sender.getUsername(), content);
-        addSenderConversations(firstUser, secondUser);
-        addReceiverConversation(firstUser, secondUser);
-        conversations.get(firstUser).get(secondUser).add(message);
+    protected void addMessage(User firstUser, User secondUser, String content) {
+        String firstUsername = firstUser.getUsername();
+        String secondUsername = secondUser.getUsername();
+        Message message = new Message(firstUsername, secondUsername, content);
+        addSenderChat(firstUser, secondUser);
+        addReceiverChat(firstUser, secondUser);
+        chats.get(firstUsername).get(secondUsername).add(message);
+    }
+
+    private void addSenderChat(User sender, User receiver) {
+        String senderUsername = sender.getUsername();
+        if (!chats.containsKey(senderUsername)) {
+            HashMap<String, List<Message>> receivers = new HashMap<>();
+            chats.put(senderUsername, receivers);
+        }
     }
 
     private void checkUserExists(User sender) {
@@ -78,6 +89,11 @@ public class MessageManager {
     private int binarySearchMessage(List<Message> conversation, Message message){
         LocalDateTime time = message.getTime();
         return binarySearchMessage(conversation, 0, conversation.size(), time);
+    }
+
+    private int binarySearchMessage(List<Message> chat, Message message) {
+        LocalDateTime time = message.getTime();
+        return binarySearchMessage(chat, 0, chat.size(), time);
     }
 
     private int binarySearchMessage(List<Message> conversation, int startIndex, int endIndex, LocalDateTime time){
