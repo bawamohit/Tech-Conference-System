@@ -84,4 +84,27 @@ public class RoomManager {
         }
         return false;
     }
+
+    /**
+     * Implements modifier, addEventToRoom, for event in a room.
+     *
+     * @return a boolean indicating if event was successfully added
+     */
+    public boolean addEventToRoom(HashMap<UUID, Event> events, UUID eventId, String roomName){
+        Room room = findRoom(roomName);
+        Event event = events.get(eventId);
+        LocalDateTime start = event.getStartTime();
+        if (room.getSchedule().containsValue(eventId)){
+            return false;
+        }
+        for (LocalDateTime time: room.getSchedule().keySet()){
+            if (time.isAfter(start.minusHours(1)) && time.isBefore(start.plusHours(1))){
+                return false;
+            }
+        }
+        HashMap<LocalDateTime, UUID> updated_room = room.getSchedule();
+        updated_room.put(start, eventId);
+        room.setRoomSchedule(updated_room);
+        return true;
+    }
 }
