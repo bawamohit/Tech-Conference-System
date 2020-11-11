@@ -6,10 +6,10 @@ public class TechConferenceSystem {
     protected EventManager em;
     protected MessageManager mm;
 
-    public TechConferenceSystem (UserManager um, EventManager em, MessageManager mm) {
-        this.um = um;
-        this.em = em;
-        this.mm = mm;
+    public TechConferenceSystem () {
+        um = new UserManager();
+        em = new EventManager();
+        //Need to instantiate messagemanager but idk how to put the parameter
     }
 
     public void loginUser (String username, String password) {
