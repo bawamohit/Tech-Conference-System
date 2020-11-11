@@ -18,7 +18,7 @@ public class EventManager {
     /**
      * Implements Getter, getEvents, for events.
      *
-     * @return list of all scheduled events
+     * @return hashmap of all scheduled events
      */
     public HashMap<UUID, Event> getEvents(){ return events; }
 
@@ -30,6 +30,7 @@ public class EventManager {
     public Event createEvent(String eventName, String speaker, String organizer, LocalDateTime startTime){
         return new Event(eventName, speaker, organizer, startTime);
     }
+
     /**
      * Implements modifier, addEvent, for events.
      *
@@ -69,7 +70,7 @@ public class EventManager {
     /**
      * Implements helper method, findEvent, to find event object when given its name.
      *
-     * @return an Event object in list of events associated with the given String eventName.
+     * @return an Event object in hashmap of events associated with the given String eventName.
      */
     public Event findEvent(UUID eventID){
         for (UUID id: events.keySet()){
