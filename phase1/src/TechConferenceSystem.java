@@ -1,3 +1,5 @@
+import java.util.UUID;
+
 public class TechConferenceSystem {
 
     protected UserManager um;
@@ -14,12 +16,12 @@ public class TechConferenceSystem {
 
     }
 
-    public void eventSignUp(User user, Event event){
-        em.addAttendee(user, event);
+    public void eventSignUp(String username, UUID eventId){
+        em.addAttendee(username, eventId);
     }
 
-    public void eventCancelAttendee(User user, Event event){
-        em.removeAttendee(user, event);
+    public void eventCancelAttendee(String username, UUID eventId){
+        em.removeAttendee(username, eventId);
     }
 
 }
