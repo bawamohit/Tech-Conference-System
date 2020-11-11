@@ -2,7 +2,7 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
-import java.util.Set; // do we need this (used for keyset())
+import java.util.Set;
 
 public class EventManager {
     private HashMap<UUID, Event> events;
@@ -23,12 +23,21 @@ public class EventManager {
     public HashMap<UUID, Event> getEvents(){ return events; }
 
     /**
+     * Implements creator, createEvent, to instantiate an Event object.
+     *
+     * @return an Event object with assigned attributes as specified by the parameters.
+     */
+    public Event createEvent(String eventName, String speaker, String organizer, LocalDateTime startTime){
+        return new Event(eventName, speaker, organizer, startTime);
+    }
+    /**
      * Implements modifier, addEvent, for events.
      *
      * @return a boolean indicating if event was successfully added
      */
-    public boolean addEvent(Event event){
-        LocalDateTime start = event.getStartTime();
+    public boolean addEvent(String eventName, String speaker, String organizer, LocalDateTime startTime){
+        Event new_event = createEvent(eventName, speaker, organizer, startTime);
+        LocalDateTime start = new_event.getStartTime();
         for(UUID id : events.keySet()){
             Event e = events.get(id);
             if (e.getStartTime() == start){
@@ -36,11 +45,12 @@ public class EventManager {
             }
         }
         if (start.getHour() >= 9 && start.getHour() <= 17){
-            events.put(event.getId(), event);
+            events.put(new_event.getId(), new_event);
             return true;
         }else{
             return false;
         }
+        // assign to room specified -> need room manager for that :') not my responsibility
     }
 
     /**
@@ -48,22 +58,24 @@ public class EventManager {
      *
      * @return a boolean indicating if event was successfully removed
      */
-    // public boolean removeEvent(Event event){
-
-    // }
+//    public boolean removeEvent(Event event){
+//        if (events.containsKey(event.getId())){
+//            events.remove(event.getId());
+//            return true;
+//        }
+//        return false;
+//    } // for phase 2
 
     /**
      * Implements helper method, findEvent, to find event object when given its name.
      *
      * @return an Event object in list of events associated with the given String eventName.
      */
-    public Event findEvent(String eventName){
+    public Event findEvent(UUID eventID){
         for (UUID id: events.keySet()){
             Event e = events.get(id);
-            if (e.getEventName().equals(eventName)){
+            if (e.getId().equals(eventID)){
                 return e;
-            }else{
-                return null; // can we make return type optional?
             }
         }
         return null;
@@ -74,20 +86,22 @@ public class EventManager {
      *
      * @return a boolean indicating if user was successfully added
      */
-    public boolean addAttendee(User user, Event event){
+    public boolean addAttendee(String username, UUID eventID){
+        Event event = events.get(eventID);
         LocalDateTime s_event = event.getStartTime();
-        if (event.getAttendees().contains(user.getName())){
+        if (event.getAttendees().contains(username)){
             return false;
         }
-        for(String name : user.getEventsAttending()){
-            Event users_event = findEvent(name);
-            LocalDateTime s_user = users_event.getStartTime();
-            if (s_user.getHour() == s_event.getHour()){
-                return false;
-            }
-        }
+        // if room is full -> return false -> do in room manager?
+//        for(UUID id : user.getEventsAttending()){
+//            Event users_event = findEvent(id);
+//            LocalDateTime s_user = users_event.getStartTime();
+//            if (s_user.getHour() == s_event.getHour()){
+//                return false;
+//            }
+//        } //assume conditions related to user are satisfied
         List<String> updated_event = event.getAttendees();
-        updated_event.add(user.getName());
+        updated_event.add(username);
         event.setAttendees(updated_event);
         return true;
     }
@@ -97,17 +111,19 @@ public class EventManager {
      *
      * @return a boolean indicating if user was successfully removed
      */
-    public boolean removeAttendee(User user, Event event){
-        if (!(event.getAttendees().contains(user.getName())) ||
-                !(user.getEventsAttending().contains(event.getEventName()))){
+    public boolean removeAttendee(String username, UUID eventID){
+        Event event = events.get(eventID);
+        if (!(event.getAttendees().contains(username))){
             return false;
         }
         List<String> updated_event = event.getAttendees();
-        if (updated_event.remove(user.getName())){
+        if (updated_event.remove(username)){
             event.setAttendees(updated_event);
+            // update room capacity?
             return true;
         }
         return false;
+
     }
 
 }
