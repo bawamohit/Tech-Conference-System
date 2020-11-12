@@ -7,7 +7,7 @@ public class EventGateway implements Serializable {
     public EventManager readFromFile(String path) throws ClassNotFoundException {
 
         try {
-            InputStream file = new FileInputStream(path);
+            InputStream file = new FileInputStream(path); //the path needs to be a .ser so eventData.ser in parameter
             InputStream buffer = new BufferedInputStream(file);
             ObjectInput input = new ObjectInputStream(buffer);
 
@@ -23,7 +23,7 @@ public class EventGateway implements Serializable {
 
     public void saveToFile(String filePath, EventManager eventManager) throws IOException {
 
-        OutputStream file = new FileOutputStream(filePath);
+        OutputStream file = new FileOutputStream(filePath); //the path needs to be a .ser so eventData.ser in parameter
         OutputStream buffer = new BufferedOutputStream(file);
         ObjectOutputStream output = new ObjectOutputStream(buffer);
 
