@@ -54,5 +54,4 @@ public class TechConferenceSystem {
 //    public void eventCancelAttendee(String username, UUID eventId){
 //        em.removeAttendee(username, eventId);
 //    }
-
 }
