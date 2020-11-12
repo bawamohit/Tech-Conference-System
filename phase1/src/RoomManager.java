@@ -27,7 +27,7 @@ public class RoomManager {
     /**
      * Implements creator, createRoom, to instantiate a Room object.
      *
-     * @return a Room object with assigned attributes as specified by the parameters.
+     * @return a Room object with assigned attributes as specified by the parameters
      */
     public Room createRoom(String roomName, int capacity){
         return new Room(roomName, capacity);
@@ -36,7 +36,7 @@ public class RoomManager {
     /**
      * Implements modifier, addRoom, for rooms.
      *
-     * @return a boolean indicating if room was successfully added.
+     * @return a boolean indicating if room was successfully added
      */
     public boolean addRoom(String roomName, int capacity) {
         if (rooms.containsKey(roomName)){
@@ -51,7 +51,7 @@ public class RoomManager {
     /**
      * Implements helper method, findRoom, to find Room object when given its name.
      *
-     * @return a Room object in hashmap of rooms associated with the given String roomName.
+     * @return a Room object in hashmap of rooms associated with the given String roomName
      */
     public Room findRoom(String roomName){
         for (String name: rooms.keySet()){
@@ -64,23 +64,21 @@ public class RoomManager {
     }
 
     /**
-     * Implements modifier, removeEventFromRoom, for event in a room.
+     * Implements modifier, removeEventFromSchedule, for a scheduled event.
      *
      * @return a boolean indicating if event was successfully removed
      */
-    public boolean removeEventFromRoom(UUID eventID, String roomName){
-        // should we specify room or let caller remove event directly without knowing which room?
-        Room room = findRoom(roomName);
-        if (!(room.getSchedule().containsValue(eventID))){
-            return false;
-        }
-        LocalDateTime = time; // can we assume there's a one-to-one relationship between event and time? (i.e.,
-        // can events occur at multiple time of the day in the same room or na)
-        HashMap<LocalDateTime, UUID> updated_room = room.getSchedule();
-        if (updated_room.remove(time, eventID)){
-            room.setRoomSchedule(updated_room);
-            // update room capacity?
-            return true;
+    public boolean removeEventFromSchedule(UUID eventID){
+        for (String name: rooms.keySet()){
+            Room r = rooms.get(name);
+            HashMap<LocalDateTime, UUID> schedule = r.getSchedule();
+            for (LocalDateTime time: schedule.keySet()){
+                if (schedule.get(time).equals(eventID)){
+                    schedule.remove(time);
+                    r.setRoomSchedule(schedule);
+                    return true; // since same event with diff time will have different ids, we don't need to worry about it
+                }
+            }
         }
         return false;
     }

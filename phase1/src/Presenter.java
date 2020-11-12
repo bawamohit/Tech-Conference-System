@@ -37,11 +37,12 @@ public class Presenter {
 
     public void printOrganizerMenu(){
         printAttendeeMenu();
-        System.out.println("7. Reschedule Event\n" +
-                "8. Remove Event\n" +
-                "9. Create Speaker Account\n" +
-                "10. Create Room\n" +
-                "11. Message All");
+        System.out.println("7. Create Event\n" +
+                "8. Reschedule Event\n" +
+                "9. Remove Event\n" +
+                "10. Create Speaker Account\n" +
+                "11. Create Room\n" +
+                "12. Message All");
     }
 
     public void printSpeakerMenu(){
