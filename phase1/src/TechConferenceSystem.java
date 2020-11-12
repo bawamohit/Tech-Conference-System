@@ -95,7 +95,6 @@ public class TechConferenceSystem {
                 System.out.println("Error that is not a valid choice.\n\n");
             }
         }
-
         System.out.println("Hello " + um.getName(username) + "! You are logged in as a(n) " + um.getUserType(username));
     }
 }
