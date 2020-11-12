@@ -1,5 +1,6 @@
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 public class Room {
@@ -46,6 +47,15 @@ public class Room {
      */
     public HashMap<LocalDateTime, UUID> getSchedule(){
         return schedule;
+    }
+
+    /**
+     * Implements Setter, setRoomSchedule, for this room.
+     *
+     * @param schedule updated schedule of room
+     */
+    public void setRoomSchedule(HashMap<LocalDateTime, UUID> schedule){
+        this.schedule = schedule;
     }
 
 }

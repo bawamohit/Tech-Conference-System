@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -11,10 +10,11 @@ public class UserManager {
         usernamesToUsers = new HashMap<>();
     }
 
-    public List<User> getUserList() {
-        return (List<User>) usernamesToUsers.values();
-    }
+//    public List<User> getUserList() {
+//        return (List<User>) usernamesToUsers.values();
+//    }
 
+    @SuppressWarnings("unchecked")
     public List<String> getUsernameList() {
         return (List<String>) usernamesToUsers.keySet();
     }
@@ -27,19 +27,21 @@ public class UserManager {
         return usernamesToUsers.containsKey(username);
     }
 
-    public boolean registerUser(User user) {
-        if (isRegistered(user.getUsername())){
+    public boolean registerUser(UserType userType, String name, String username, String password) {
+        if (isRegistered(username)){
             return false;
         }
-        usernamesToUsers.put(user.getUsername(), user);
+        usernamesToUsers.put(username, createUser(userType, name, username, password));
         return true;
+    }
+
+    private User createUser(UserType userType, String name, String username, String password) {
+        return new User(userType, name, username, password);
     }
 
     public boolean verifyLogin(String username, String password) { //ask about returning null
         if (isRegistered(username)) {
-            if (usernamesToUsers.get(username).getPassword().equals(password)) {
-                return true;
-            }
+            return usernamesToUsers.get(username).getPassword().equals(password);
         }
         return false;
     }
@@ -58,6 +60,40 @@ public class UserManager {
             return true;
         }
         return false;
+    }
+
+    public boolean addEventAttending(String username, UUID eventId) {
+        List<UUID> eventsAttending = usernamesToUsers.get(username).getEventsAttending();
+        if (eventsAttending.contains(eventId)) {
+            return false;
+        }
+        eventsAttending.add(eventId);
+        usernamesToUsers.get(username).setEventsAttending(eventsAttending);
+        return true;
+    }
+
+    public void removeEventAttending(String username, UUID eventId) {
+        List<UUID> eventsAttending = usernamesToUsers.get(username).getEventsAttending();
+        eventsAttending.remove(eventId);
+        usernamesToUsers.get(username).setEventsAttending(eventsAttending);
+    }
+
+    public void addFriend(String username, String friendUsername) {
+        List<String> friends = usernamesToUsers.get(username).getFriends();
+        friends.add(friendUsername);
+        usernamesToUsers.get(username).setFriends(friends);
+    }
+
+    public String getName(String username) {
+        return usernamesToUsers.get(username).getName();
+    }
+
+    public List<UUID> getEventsAttending(String username) {
+        return usernamesToUsers.get(username).getEventsAttending();
+    }
+
+    public List<String> getFriends(String username) {
+        return usernamesToUsers.get(username).getFriends();
     }
 
     public UserType getUserType(String username){
