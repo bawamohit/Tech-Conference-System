@@ -13,8 +13,8 @@ public class EventManager {
      *
      */
 
-    public EventManager(HashMap<UUID, Event> events){
-        this.events = events;
+    public EventManager(){
+        this.events = new HashMap<>();
     }
 
     /**

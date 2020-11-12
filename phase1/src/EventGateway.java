@@ -17,7 +17,7 @@ public class EventGateway implements Serializable {
             return em;
         } catch (IOException ex) {
             System.out.println("Cannot read from input file, returning a new EventManager.");
-            return new EventManager(new HashMap<>());
+            return new EventManager();
         }
     }
 
