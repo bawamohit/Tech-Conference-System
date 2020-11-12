@@ -1,11 +1,12 @@
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
 public class Room {
     private String roomName;
-    private int capacity;
+    private int capacity; //do we need curr_capacity and max_capacity
     private HashMap<LocalDateTime, UUID> schedule;
 
     /**
@@ -48,6 +49,13 @@ public class Room {
     public HashMap<LocalDateTime, UUID> getSchedule(){
         return schedule;
     }
+
+//    /**
+//     * Implements Getter, getRoomEvents, for events in this room's schedule.
+//     *
+//     * @return list of all the events occurring in this room
+//     */
+//    public List<UUID> getRoomEvents(){ return new ArrayList(schedule.values()); } //constructor with param collection
 
     /**
      * Implements Setter, setRoomSchedule, for this room.
