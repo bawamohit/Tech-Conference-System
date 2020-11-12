@@ -3,6 +3,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 import java.util.UUID;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TechConferenceSystem {
 
@@ -36,65 +38,100 @@ public class TechConferenceSystem {
 
     public void run() {
         Scanner in = new Scanner(System.in);
-        String username;
 
         while (true) {
             presenter.printWelcome();
             String loginOrSignUp = in.nextLine();
 
             if (loginOrSignUp.equals("1")) {
-                presenter.printAskID();
-                username = in.nextLine();
-                presenter.printAskPassword();
-                String password = in.nextLine();
+                String[] info = askInfo(in);
+                UserType accountType = askAccountType(in);
 
-                if (um.verifyLogin(username, password)) {
+                if (um.verifyLogin(info[0], info[1])) {
+                    menu(accountType);
+                    String option = in.nextLine();
+                    if (option.equals("1")) {
+                        message(accountType);
+                        presenter.printBack();
+                    }
                     break;
+                } else {
+                    presenter.printWrongAccountInfo();
                 }
-                else {
-                    System.out.println("presenter.promptLoginFailed\n\n");
-                }
-            }
-            else if (loginOrSignUp.equals("2")) {
-                System.out.println("What is your name bro?");
+            } else if (loginOrSignUp.equals("2")) {
+                presenter.printAsk("name");
                 String name = in.nextLine();
 
-                System.out.println("How bout a username fam?");
-                username = in.nextLine();
+                String[] info = askInfo(in);
+                UserType accountType = askAccountType(in);
 
-                System.out.println("Ya need a password dawg?");
-                String password = in.nextLine();
-
-                System.out.println("What type of account?");
-                String accountOption = in.nextLine();
-
-                UserType accountType = null;
-
-                if (accountOption.equals("1")){
-                    accountType = UserType.ATTENDEE;
-                }
-                else if (accountOption.equals("2")){
-                    accountType = UserType.ORGANIZER;
-                }
-                else if (accountOption.equals("3")){
-                    accountType = UserType.SPEAKER;
-                }
-
-                if (accountType == null){
-                    System.out.println("ERROR that is not a valid choice.\n\n");
-                }
-                else {
-                    if (um.registerUser(accountType, name, username, password)) {
-                        break;
-                    } else {
-                        System.out.println("ERROR Username already exists.\n\n");
+                if (um.registerUser(accountType, name, info[0], info[1])) {
+                    menu(accountType);
+                    String option = in.nextLine();
+                    if (option.equals("1")) {
+                        message(accountType);
+                        presenter.printBack();
                     }
+                    break;
+                } else {
+                    presenter.printUsernameExists();
                 }
-            }
-            else {
-                System.out.println("Error that is not a valid choice.\n\n");
+            } else {
+                presenter.printInvalidInput();
             }
         }
-        System.out.println("Hello " + um.getName(username) + "! You are logged in as a(n) " + um.getUserType(username));
+    }
+
+    public UserType askAccountType(Scanner in) {
+        UserType accountType = null;
+        while (true) {
+            presenter.printAskUserType();
+            String accountOption = in.nextLine();
+
+            if (accountOption.equals("0")){
+                accountType = UserType.ATTENDEE;
+                break;
+            } else if (accountOption.equals("1")){
+                accountType = UserType.ORGANIZER;
+                break;
+            } else if (accountOption.equals("2")){
+                accountType = UserType.SPEAKER;
+                break;
+            } else {
+                presenter.printInvalidInput();
+            }
+        }
+        return accountType;
+    }
+
+    public void menu(UserType accountType) {
+        if (accountType == UserType.ATTENDEE) {
+            presenter.printAttendeeMenu();
+        } else if (accountType == UserType.ORGANIZER) {
+            presenter.printOrganizerMenu();
+        } else {
+            presenter.printSpeakerMenu();
+        }
+    }
+
+    public void message(UserType accountType) {
+        if (accountType == UserType.ATTENDEE) {
+            presenter.printAttendeeMessageMenu();
+        } else if (accountType == UserType.ORGANIZER) {
+            presenter.printOrganizerMessageMenu();
+        } else {
+            presenter.printSpeakerMessageMenu();
+        }
+    }
+
+    public String[] askInfo(Scanner in) {
+        presenter.printAsk("user ID");
+        String username = in.nextLine();
+        presenter.printAsk("password");
+        String password = in.nextLine();
+        String[] info = new String[2];
+        info[0] = username;
+        info[1] = password;
+        return info;
     }
 }
