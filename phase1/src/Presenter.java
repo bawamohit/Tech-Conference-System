@@ -42,13 +42,13 @@ public class Presenter {
                 "2. View All Events\n" +
                 "3. View My Events\n" +
                 "4. Sign-up Event\n" +
-                "5. Cancel Event");
+                "5. Cancel Event\n");
     }
 
     public void printOrganizerMenu(){
-        printAttendeeMenu();
-        System.out.println("6. Create Event\n" +
-                "7. Reschedule Event\n" +
+        printPrompt();
+        System.out.println("\n0. Create Event\n" +
+                "1. Reschedule Event\n" +
                 "8. Remove Event\n" +
                 "9. Create Speaker Account\n" +
                 "10. Create Room\n");
@@ -56,7 +56,7 @@ public class Presenter {
 
     public void printSpeakerMenu(){
         printAttendeeMenu();
-        System.out.println("6. View My Talks\n");
+        System.out.println("\n0. View My Talks\n");
     }
 
     public void printAttendeeMessageMenu() {
