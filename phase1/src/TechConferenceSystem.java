@@ -2,56 +2,100 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class TechConferenceSystem {
 
-    protected Presenter presenter;
-    protected UserManager um;
-//    protected EventManager em;
-//    protected MessageManager mm;
+    private Presenter presenter;
+    private UserManager um;
+    private EventManager em;
+    private MessageManager mm;
 
     public TechConferenceSystem () {
         presenter = new Presenter();
         um = new UserManager();
-        //em = new EventManager(eventData);
-        //mm = new MessageManager(messageData);
+        em = new EventManager();
+        mm = new MessageManager();
+    }
+
+    public UserManager getUm() {
+        return um;
+    }
+
+    public EventManager getEm() {
+        return em;
+    }
+
+    public MessageManager getMm() {
+        return mm;
+    }
+
+    public Presenter getPresenter() {
+        return presenter;
     }
 
     public void run() {
-        Scanner sc = new Scanner(System.in);
-        presenter.printWelcome();
-        String option = sc.nextLine();
-        if(option.equals("1")) {
-            while (true) {
+        Scanner in = new Scanner(System.in);
+        String username;
+
+        while (true) {
+            presenter.printWelcome();
+            String loginOrSignUp = in.nextLine();
+
+            if (loginOrSignUp.equals("1")) {
                 presenter.printAskID();
-                String username = sc.nextLine();
-                if(username.equals("sign up")){
-                    presenter.printUnderConstruction();
+                username = in.nextLine();
+                presenter.printAskPassword();
+                String password = in.nextLine();
+
+                if (um.verifyLogin(username, password)) {
                     break;
                 }
-                presenter.printAskPassword();
-                String password = sc.nextLine();
-                if (um.verifyLogin(username, password)) {
-                    presenter.printAttendeeMenu();//implement corresponding stuff
-                    break;
-                } else {
-                    presenter.printWrongAccountInfo();
+                else {
+                    System.out.println("presenter.promptLoginFailed\n\n");
                 }
             }
-        } else{
-            presenter.printUnderConstruction();
-        }
-    }
+            else if (loginOrSignUp.equals("2")) {
+                System.out.println("What is your name bro?");
+                String name = in.nextLine();
 
-//    public void loginUser (String username, String password) {
-//
-//    }
-//
-//    public void eventSignUp(String username, UUID eventId){
-//        em.addAttendee(username, eventId);
-//    }
-//
-//    public void eventCancelAttendee(String username, UUID eventId){
-//        em.removeAttendee(username, eventId);
-//    }
+                System.out.println("How bout a username fam?");
+                username = in.nextLine();
+
+                System.out.println("Ya need a password dawg?");
+                String password = in.nextLine();
+
+                System.out.println("What type of account?");
+                String accountOption = in.nextLine();
+
+                UserType accountType = null;
+
+                if (accountOption.equals("1")){
+                    accountType = UserType.ATTENDEE;
+                }
+                else if (accountOption.equals("2")){
+                    accountType = UserType.ORGANIZER;
+                }
+                else if (accountOption.equals("3")){
+                    accountType = UserType.SPEAKER;
+                }
+
+                if (accountType.equals(null)){
+                    System.out.println("ERROR that is not a valid choice.\n\n");
+                }
+                else {
+                    if (um.registerUser(accountType, name, username, password)) {
+                        break;
+                    } else {
+                        System.out.println("ERROR Username already exists.\n\n");
+                    }
+                }
+            }
+            else {
+                System.out.println("Error that is not a valid choice.\n\n");
+            }
+        }
+
+        System.out.println("Hello " + um.getName(username) + "! You are logged in as a(n) " + um.getUserType(username));
+    }
 }
