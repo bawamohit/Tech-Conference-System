@@ -1,14 +1,17 @@
-public class Prensenter {
+public class Presenter {
+    public void printWelcome(){
+        System.out.println("Welcome to the lamest Technology conference ever!!!");
+    }
+
     public void printAskID(){
-        System.out.println("Welcome to the lamest Technology conference ever!!!\n " +
-                "To proceed, Please enter your user ID");
+        System.out.println("\nPlease enter your user ID");
     }
     public void printAskPassword(){
         System.out.println("Please enter your password");
     }
 
     public void printWrongAccountInfo(){
-        System.out.println("OOPS looks like you entered the wrong login information," +
+        System.out.println("\nOOPS looks like you entered the wrong login information," +
                 "Please enter your user ID again.\n" +
                 "If you get it wong again FBI WILL BE KNOCKING ON YOUR DOOR IN 10 MINUTES");
     }
@@ -46,5 +49,8 @@ public class Prensenter {
 
     public void printBack(){
         System.out.println("Enter 'b' to go back to previous menu");
+    }
+    public void printIOException(){
+        System.out.println("IOException");
     }
 }
