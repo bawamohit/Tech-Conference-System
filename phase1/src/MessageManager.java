@@ -6,12 +6,8 @@ import java.util.List;
 public class MessageManager {
     private HashMap<String, HashMap<String, List<Message>>> chats;
 
-    public MessageManager(List<String> userList) {
+    public MessageManager() {
         this.chats = new HashMap<>();
-        for (String user : userList) {
-            HashMap<String, List<Message>> receivers = new HashMap<>();
-            chats.put(user, receivers);
-        }
     }
 
     protected void sendMessage(String sender, String receiver, String content) {
@@ -31,7 +27,13 @@ public class MessageManager {
         }
     }
 
-    protected List<Message> getConversation(String firstUser, String secondUser) {
+    protected List<String> getChats(String user) {
+        addSenderChat(user);
+        List<String> keys = new ArrayList<>(chats.get(user).keySet());
+        return keys;
+    }
+
+    protected List<Message> getChat(String firstUser, String secondUser) {
         return chats.get(firstUser).get(secondUser);
     }
 
