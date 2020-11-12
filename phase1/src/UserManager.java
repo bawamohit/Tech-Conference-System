@@ -1,3 +1,5 @@
+import com.sun.corba.se.impl.orb.ParserTable;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -63,9 +65,19 @@ public class UserManager {
         return false;
     }
 
-    public void addEventAttending(String username, UUID eventId) {
+    public boolean addEventAttending(String username, UUID eventId) {
         List<UUID> eventsAttending = usernamesToUsers.get(username).getEventsAttending();
+        if (eventsAttending.contains(eventId)) {
+            return false;
+        }
         eventsAttending.add(eventId);
+        usernamesToUsers.get(username).setEventsAttending(eventsAttending);
+        return true;
+    }
+
+    public void removeEventAttending(String username, UUID eventId) {
+        List<UUID> eventsAttending = usernamesToUsers.get(username).getEventsAttending();
+        eventsAttending.remove(eventId);
         usernamesToUsers.get(username).setEventsAttending(eventsAttending);
     }
 
