@@ -24,15 +24,21 @@ public class Presenter {
                 "or don't, I'm not yo dad\n\n ");
     }
 
+    public void printUserType() {
+        printPrompt();
+        System.out.println("0. Attendee\n" +
+                "1. Organizer\n" +
+                "2. Speaker");
+    }
+
     public void printAttendeeMenu(){
         printPrompt();
         System.out.println("0. Logout\n" +
-                "1. Check Message History\n" +
-                "2. Slide in that DM\n" +
-                "3. View All Events\n" +
-                "4. View My Events\n" +
-                "5. Sign-up Event\n" +
-                "6. Cancel Event");
+                "1. Messaging\n" +
+                "2. View All Events\n" +
+                "3. View My Events\n" +
+                "4. Sign-up Event\n" +
+                "5. Cancel Event");
     }
 
     public void printOrganizerMenu(){
@@ -41,14 +47,30 @@ public class Presenter {
                 "8. Reschedule Event\n" +
                 "9. Remove Event\n" +
                 "10. Create Speaker Account\n" +
-                "11. Create Room\n" +
-                "12. Message All");
+                "11. Create Room");
     }
 
     public void printSpeakerMenu(){
         printAttendeeMenu();
-        System.out.println("7. View My Talks\n" +
-                "8. Message My Talk Attendees");
+        System.out.println("7. View My Talks");
+    }
+
+    public void printAttendeeMessageMenu() {
+        printPrompt();
+        System.out.println("0. Message\n" +
+                "1. Edit a message\n" +
+                "2. Delete a message");
+    }
+
+    public void printOrganizerMessageMenu() {
+        printAttendeeMessageMenu();
+        System.out.println("3. Message all speakers\n" +
+                "4. Message all attendees");
+    }
+
+    public void printSpeakerMessageMenu() {
+        printAttendeeMessageMenu();
+        System.out.println("3. Message all Attendees of your talk(s).");
     }
 
     public void printBack(){

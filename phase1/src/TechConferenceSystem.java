@@ -8,13 +8,13 @@ public class TechConferenceSystem {
     protected Presenter presenter;
     protected UserManager um;
 //    protected EventManager em;
-//    protected MessageManager mm;
+    protected MessageManager mm;
 
     public TechConferenceSystem () {
         presenter = new Presenter();
         um = new UserManager();
         //em = new EventManager(eventData);
-        //mm = new MessageManager(messageData);
+        mm = new MessageManager();
     }
 
     public void run() {
@@ -38,7 +38,7 @@ public class TechConferenceSystem {
                     presenter.printWrongAccountInfo();
                 }
             }
-        } else{
+        } else {
             presenter.printUnderConstruction();
         }
     }

@@ -29,8 +29,7 @@ public class MessageManager {
 
     protected List<String> getChats(String user) {
         addSenderChat(user);
-        List<String> keys = new ArrayList<>(chats.get(user).keySet());
-        return keys;
+        return new ArrayList<>(chats.get(user).keySet());
     }
 
     protected List<Message> getChat(String firstUser, String secondUser) {
