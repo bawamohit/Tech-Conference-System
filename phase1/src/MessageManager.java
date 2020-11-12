@@ -6,17 +6,15 @@ import java.util.List;
 public class MessageManager {
     private HashMap<String, HashMap<String, List<Message>>> chats;
 
-    // controller does everything ??????
-    public MessageManager(List<User> userList) {
+    public MessageManager(List<String> userList) {
         this.chats = new HashMap<>();
-        for (User user : userList) {
-            String username = user.getUsername();
+        for (String user : userList) {
             HashMap<String, List<Message>> receivers = new HashMap<>();
-            chats.put(username, receivers);
+            chats.put(user, receivers);
         }
     }
 
-    protected void sendMessage(User sender, User receiver, String content) {
+    protected void sendMessage(String sender, String receiver, String content) {
         addMessage(sender, receiver, content);
         addMessage(receiver, sender, content);
     }
@@ -29,41 +27,34 @@ public class MessageManager {
         chat.remove(messageIndex); //store edit history?
     }
 
-    protected List<Message> getConversation(User firstUser, User secondUser) {
-        String firstUsername = firstUser.getUsername();
-        String secondUsername = secondUser.getUsername();
-        return chats.get(firstUsername).get(secondUsername);
+    protected List<Message> getConversation(String firstUser, String secondUser) {
+        return chats.get(firstUser).get(secondUser);
     }
 
-    protected void messageEvent(User sender, List<User> userList, String content) {
-        for (User user : userList) {
+    protected void messageEvent(String sender, List<String> userList, String content) {
+        for (String user : userList) {
             sendMessage(sender, user, content);
         }
     }
 
-    protected void addMessage(User sender, User receiver, String content) {
-        String firstUsername = sender.getUsername();
-        String secondUsername = receiver.getUsername();
-        Message message = new Message(firstUsername, secondUsername, content);
+    protected void addMessage(String sender, String receiver, String content) {
+        Message message = new Message(sender, receiver, content);
         addSenderChat(sender);
         addReceiverChat(sender, receiver);
-        chats.get(firstUsername).get(secondUsername).add(message);
+        chats.get(sender).get(receiver).add(message);
     }
 
-    private void addSenderChat(User sender) {
-        String senderUsername = sender.getUsername();
-        if (!chats.containsKey(senderUsername)) {
+    private void addSenderChat(String sender) {
+        if (!chats.containsKey(sender)) {
             HashMap<String, List<Message>> receivers = new HashMap<>();
-            chats.put(senderUsername, receivers);
+            chats.put(sender, receivers);
         }
     }
 
-    private void addReceiverChat(User sender, User receiver){
-        String senderUsername = sender.getUsername();
-        String receiverUsername = receiver.getUsername();
-        if (!chats.get(senderUsername).containsKey(receiverUsername)) {
+    private void addReceiverChat(String sender, String receiver){
+        if (!chats.get(sender).containsKey(receiver)) {
             ArrayList<Message> chat = new ArrayList<>();
-            chats.get(senderUsername).put(receiverUsername, chat);
+            chats.get(sender).put(receiver, chat);
         }
     }
 
