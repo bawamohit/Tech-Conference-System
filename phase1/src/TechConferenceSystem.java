@@ -20,19 +20,26 @@ public class TechConferenceSystem {
     public void run() {
         Scanner sc = new Scanner(System.in);
         presenter.printWelcome();
-
-        while (true) {
-            presenter.printAskID();
-            String username = sc.nextLine();
-            presenter.printAskPassword();
-            String password = sc.nextLine();
-            if (um.verifyLogin(username, password)) {
-                presenter.printAttendeeMenu();//implement corresponding stuff
-                break;
+        String option = sc.nextLine();
+        if(option.equals("1")) {
+            while (true) {
+                presenter.printAskID();
+                String username = sc.nextLine();
+                if(username.equals("sign up")){
+                    presenter.printUnderConstruction();
+                    break;
+                }
+                presenter.printAskPassword();
+                String password = sc.nextLine();
+                if (um.verifyLogin(username, password)) {
+                    presenter.printAttendeeMenu();//implement corresponding stuff
+                    break;
+                } else {
+                    presenter.printWrongAccountInfo();
+                }
             }
-            else {
-                presenter.printWrongAccountInfo();
-            }
+        } else{
+            presenter.printUnderConstruction();
         }
     }
 

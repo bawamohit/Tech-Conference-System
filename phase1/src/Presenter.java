@@ -1,6 +1,8 @@
 public class Presenter {
     public void printWelcome(){
-        System.out.println("Welcome to the lamest Technology conference ever!!!");
+        System.out.println("Welcome to the lamest Technology conference ever!!!\n" +
+                "Press 1 to login to your account\n" +
+                "Press 2 to sign up for an account");
     }
 
     public void printAskID(){
@@ -13,7 +15,8 @@ public class Presenter {
     public void printWrongAccountInfo(){
         System.out.println("\nOOPS looks like you entered the wrong login information," +
                 "Please enter your user ID again.\n" +
-                "If you get it wong again FBI WILL BE KNOCKING ON YOUR DOOR IN 10 MINUTES");
+                "If you get it wong again FBI WILL BE KNOCKING ON YOUR DOOR IN 10 MINUTES\n" +
+                "Or enter 'sign up' to sign up for an account.");
     }
 
     public void printPrompt(){
@@ -52,5 +55,9 @@ public class Presenter {
     }
     public void printIOException(){
         System.out.println("IOException");
+    }
+
+    public void printUnderConstruction(){
+        System.out.println("Sorry! This feature is currently under construction.");
     }
 }
