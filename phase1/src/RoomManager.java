@@ -90,10 +90,8 @@ public class RoomManager {
      *
      * @return a boolean indicating if event was successfully added
      */
-    public boolean addEventToRoom(HashMap<UUID, Event> events, UUID eventId, String roomName){
+    public boolean addEventToRoom(UUID eventId, String roomName, LocalDateTime start){
         Room room = findRoom(roomName);
-        Event event = events.get(eventId);
-        LocalDateTime start = event.getStartTime();
         if (room.getSchedule().containsValue(eventId)){
             return false;
         }
@@ -105,6 +103,14 @@ public class RoomManager {
         HashMap<LocalDateTime, UUID> updated_room = room.getSchedule();
         updated_room.put(start, eventId);
         room.setRoomSchedule(updated_room);
+        return true;
+    }
+
+    public boolean hasSpace(String roomName, int numOfAttendees){
+        Room room = findRoom(roomName);
+        if (room.getCapacity() > (numOfAttendees)){
+            return false;
+        }
         return true;
     }
 }
