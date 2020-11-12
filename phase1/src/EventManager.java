@@ -13,7 +13,9 @@ public class EventManager {
      *
      */
 
-    public EventManager(){ this.events = new HashMap<>(); }
+    public EventManager(HashMap<UUID, Event> events){
+        this.events = events;
+    }
 
     /**
      * Implements Getter, getEvents, for events.
@@ -54,11 +56,11 @@ public class EventManager {
         // assign to room specified -> need room manager for that :') not my responsibility
     }
 
-    /**
-     * Implements modifier, removeEvent, for events.
-     *
-     * @return a boolean indicating if event was successfully removed
-     */
+    ///**
+     //* Implements modifier, removeEvent, for events.
+    // *
+   //  * @return a boolean indicating if event was successfully removed
+  //   */
 //    public boolean removeEvent(Event event){
 //        if (events.containsKey(event.getId())){
 //            events.remove(event.getId());
