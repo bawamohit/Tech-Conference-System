@@ -80,7 +80,7 @@ public class TechConferenceSystem {
                     accountType = UserType.SPEAKER;
                 }
 
-                if (accountType.equals(null)){
+                if (accountType == null){
                     System.out.println("ERROR that is not a valid choice.\n\n");
                 }
                 else {
