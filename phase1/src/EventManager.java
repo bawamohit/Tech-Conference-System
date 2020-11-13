@@ -75,10 +75,9 @@ public class EventManager {
      *
      * @return an Event object in hashmap of events associated with the given String eventName.
      */
-    private Event findEvent(UUID eventID){
-        for (UUID id: events.keySet()){
-            Event e = events.get(id);
-            if (e.getId().equals(eventID)){
+    private Event findEvent(String eventName){
+        for (Event e: events.values()){
+            if (e.getEventName().equals(eventName)){
                 return e;
             }
         }
