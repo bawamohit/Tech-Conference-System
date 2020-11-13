@@ -16,11 +16,14 @@ public class TechConferenceSystem {
     private AttendeeSystem as;
     private OrganizerSystem os;
     private SpeakerSystem ss;
+    String userManagerInfo;
+    String eventManagerInfo;
+    String messageManagerInfo;
 
-    public TechConferenceSystem () {
-        String userManagerInfo = "phase1/src/userManager.ser";
-        String eventManagerInfo = "phase1/src/eventManager.ser";
-        String messageManagerInfo = "phase1/src/messageManager.ser";
+    public TechConferenceSystem (String userManagerInfo, String eventManagerInfo, String messageManagerInfo) {
+        this.userManagerInfo = userManagerInfo;
+        this.eventManagerInfo = eventManagerInfo;
+        this.messageManagerInfo = messageManagerInfo;
         try {
             UserGateway userGateway = new UserGateway();
             um = userGateway.readFromFile(userManagerInfo);
@@ -86,6 +89,16 @@ public class TechConferenceSystem {
                 ss.run(loggedInUsername);
             }
             //THIS IS WHERE WE CAN SAVE INFO (WRITE TO FILES)
+            try {
+                UserGateway userGateway = new UserGateway();
+                userGateway.saveToFile(userManagerInfo, um);
+                EventGateway eventGateway = new EventGateway();
+                eventGateway.saveToFile(eventManagerInfo, em);
+                MessageGateway messageGateway = new MessageGateway();
+                messageGateway.saveToFile(messageManagerInfo, mm);
+            } catch (IOException e){
+                e.printStackTrace();
+            }
         }
     }
 
