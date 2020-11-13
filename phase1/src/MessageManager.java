@@ -32,7 +32,18 @@ public class MessageManager {
         return new ArrayList<>(chats.get(user).keySet());
     }
 
-    protected List<Message> getChat(String firstUser, String secondUser) {
+    protected  List<String> getInbox(String firstUser, String secondUser){
+        List<Message> messages = chats.get(firstUser).get(secondUser);
+        List<String> inbox = new ArrayList<>();
+        for(Message message : messages){
+            inbox.add(message.getContent());
+        }
+
+        return inbox;
+    }
+
+    //might not need
+    private List<Message> getChat(String firstUser, String secondUser) {
         return chats.get(firstUser).get(secondUser);
     }
 
@@ -42,7 +53,7 @@ public class MessageManager {
         }
     }
 
-    protected void addMessage(String sender, String receiver, String content) {
+    private void addMessage(String sender, String receiver, String content) {
         Message message = new Message(sender, receiver, content);
         addSenderChat(sender);
         addReceiverChat(sender, receiver);
