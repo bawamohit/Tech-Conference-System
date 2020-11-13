@@ -32,7 +32,7 @@ public class MessageManager {
         return new ArrayList<>(chats.get(user).keySet());
     }
 
-    protected  List<String> getInbox(String firstUser, String secondUser){
+    protected List<String> getInbox(String firstUser, String secondUser){
         List<Message> messages = chats.get(firstUser).get(secondUser);
         List<String> inbox = new ArrayList<>();
         for(Message message : messages){
