@@ -104,4 +104,20 @@ public class Presenter {
     public void printUCReturns(Object obj){
         System.out.println(obj);
     }
+
+    public void printAskMsgReciever(){
+        System.out.println("Enter username you would like to message");
+    }
+
+    public void printMessageSent(){
+        System.out.println("Message sent");
+    }
+
+    public void printAskWhichInbox(){
+        System.out.println("Which contact inbox do you want to see? Type the username");
+    }
+
+    public void printLoggedOut(){
+        System.out.println("You have now logged out.");
+    }
 }

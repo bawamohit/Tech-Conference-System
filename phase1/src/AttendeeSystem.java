@@ -14,7 +14,7 @@ public class AttendeeSystem extends UserSystem{
             String attendeeChoice = scanner.nextLine();
 
             if (attendeeChoice.equals("0")) {
-                System.out.println("You have now logged out.");
+                getPresenter().printLoggedOut();
                 break;
             } else if (attendeeChoice.equals("1")) {
                 getPresenter().printAttendeeMessageMenu();
@@ -57,12 +57,12 @@ public class AttendeeSystem extends UserSystem{
 
     private void helperMessageSystem(String username, String choice, Scanner scanner){
         if (choice.equals("0")){
-            System.out.println("Enter username you would like to message");
-            String reciever = scanner.nextLine();
-            System.out.println("Enter your message");
+            getPresenter().printAskMsgReciever();
+            String receiver = scanner.nextLine();
+            getPresenter().printAsk("message");
             String message = scanner.nextLine();
-            getMm().sendMessage(username, reciever, message);
-            System.out.println("Message sent");
+            getMm().sendMessage(username, receiver, message);
+            getPresenter().printMessageSent();
         }
         else if (choice.equals("1")){
             //edit Message
@@ -74,7 +74,7 @@ public class AttendeeSystem extends UserSystem{
         }
         else if (choice.equals("3")){
             // view inbox
-            System.out.println("Which contact inbox do you want to see? Type the username");
+            getPresenter().printAskWhichInbox();
             getPresenter().printUCReturns(getMm().getChats(username));
             String contact = scanner.nextLine();
             for (String message :getMm().getInbox(username, contact)){
