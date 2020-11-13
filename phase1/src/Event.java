@@ -10,6 +10,8 @@ public class Event {
     private List<String> attendees;
     private LocalDateTime startTime;
     private UUID id;
+    private String roomName;
+    private boolean canSignUp;
 
     /**
      * The constructor takes eventName, speaker, organizer, startTime of event and assigns each variable.
@@ -20,12 +22,14 @@ public class Event {
      * @param organizer organizer of event
      * @param startTime date and time of event
      */
-    public Event(String eventName, String speaker, String organizer, LocalDateTime startTime){
+    public Event(String eventName, String speaker, String organizer, LocalDateTime startTime, String roomName){
         this.eventName = eventName;
         this.speaker = speaker;
         this.organizer = organizer;
         this.startTime = startTime;
+        this.roomName = roomName;
         attendees = new ArrayList<>();
+        canSignUp = true;
         id = UUID.randomUUID();
     }
 
@@ -72,6 +76,15 @@ public class Event {
      */
     public LocalDateTime getStartTime(){
         return startTime;
+    }
+
+    /**
+     * Implements Getter, getEventRoomName, for roomName.
+     *
+     * @return name of event's room
+     */
+    public String getEventRoomName(){
+        return roomName;
     }
 
     /**
