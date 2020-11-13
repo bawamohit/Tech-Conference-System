@@ -77,9 +77,9 @@ public class AttendeeSystem extends UserSystem{
             System.out.println("Which contact inbox do you want to see? Type the username");
             getPresenter().printUCReturns(getMm().getChats(username));
             String contact = scanner.nextLine();
-//            for (String message :getMm().getInbox(username, contact)){ //waiting for max to create the getinbox
-//                System.out.println(message.getInbox());
-//            };
+            for (String message :getMm().getInbox(username, contact)){
+                System.out.println(message);
+            }
         }
         else if (choice.equals("b")){
              run(username);
