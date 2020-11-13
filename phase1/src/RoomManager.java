@@ -18,11 +18,12 @@ public class RoomManager {
     public RoomManager(){ this.rooms = new HashMap<>(); }
 
     /**
-     * Implements Getter, getRooms, for rooms.
+     * Implements Getter, getRooms, for room names.
      *
-     * @return hashmap of all created rooms
+     * @return List of all room names
      */
-    public HashMap<String, Room> getRooms(){ return rooms; }
+    @SuppressWarnings("unchecked")
+    public List<String> getRooms(){ return (List<String>) rooms.keySet(); }
 
     /**
      * Implements creator, createRoom, to instantiate a Room object.
