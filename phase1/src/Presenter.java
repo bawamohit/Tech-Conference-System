@@ -63,7 +63,8 @@ public class Presenter {
         printPrompt();
         System.out.println("\n0. Message\n" +
                 "1. Edit a message\n" +
-                "2. Delete a message");
+                "2. Delete a message\n" +
+                "3. View Recieved messages");
     }
 
     public void printOrganizerMessageMenu() {
