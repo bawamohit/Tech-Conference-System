@@ -10,7 +10,6 @@ public class AttendeeSystem extends UserSystem{
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            getPresenter().printPrompt();
             getPresenter().printAttendeeMenu();
             String attendeeChoice = scanner.nextLine();
 
@@ -23,39 +22,41 @@ public class AttendeeSystem extends UserSystem{
                 helperMessageSystem(username, messageChoice, scanner);
             }
 
-            //4. Sign-up Event\n" +
-            //                "5. Cancel Event\n");
             else if (attendeeChoice.equals("2")) {
                 getPresenter().printUCReturns(getEm().getEvents());
             }
-//            else if (attendeeChoice.equals("3")) {//we need to make list of event names.
+            else if (attendeeChoice.equals("3")) {//we need to make list of event names.
 //                getPresenter().printUCReturns(getUm().getEventsAttending(username));
-//            }
-//            else if (attendeeChoice.equals("4")) {
-//                makeOrderedPromptLists(getEm().getEvents())
-//            }
-//            else if (attendeeChoice.equals("5")){
+                getPresenter().printUnderConstruction();
+            }
+            else if (attendeeChoice.equals("4")) { //signup event
+//                System.out.println(makeOrderedPromptLists(getEm().getEvents()));
+                getPresenter().printUnderConstruction();
+            }
+            else if (attendeeChoice.equals("5")){ //cancel event
 //                getPresenter().printUCReturns(getUm().getEventsAttending(username));
 //                System.out.println("Type the name of event you would like to remove");
-//                String eventChoice = scanner.nextLine();}
+//                String eventChoice = scanner.nextLine();
+                getPresenter().printUnderConstruction();
+            }
+            else {
+                getPresenter().printInvalidInput();
+            }
         }
     }
 
-    private String makeOrderedPromptLists(List list){
-        String numberedPrompt = new String();
-        int i = 0;
-        for (Object T: list){
-            String num = Integer.toString(i);
-            numberedPrompt += "\n" + num + ". " + T.toString();
-        }
-        return numberedPrompt;
-    }
+//    private String makeOrderedPromptLists(List list){
+//        String numberedPrompt = new String();
+//        int i = 0;
+//        for (Object T: list){
+//            String num = Integer.toString(i);
+//            numberedPrompt += "\n" + num + ". " + T.toString();
+//        }
+//        return numberedPrompt;
+//    }
 
     private void helperMessageSystem(String username, String choice, Scanner scanner){
         if (choice.equals("0")){
-            //Message
-            //input username
-            //show list of contacts
             System.out.println("Enter username you would like to message");
             String reciever = scanner.nextLine();
             System.out.println("Enter your message");
@@ -72,13 +73,16 @@ public class AttendeeSystem extends UserSystem{
             getPresenter().printUnderConstruction();
         }
         else if (choice.equals("3")){
-            // delete Message
-            System.out.println("Which contact inbox do you want to see?");
+            // view inbox
+            System.out.println("Which contact inbox do you want to see? Type the username");
             getPresenter().printUCReturns(getMm().getChats(username));
             String contact = scanner.nextLine();
-            for (Message message :getMm().getChat(username, contact)){
-                System.out.println(message.getContent());
-            };
+//            for (String message :getMm().getInbox(username, contact)){ //waiting for max to create the getinbox
+//                System.out.println(message.getInbox());
+//            };
+        }
+        else if (choice.equals("b")){
+             run(username);
         }
         else{
             getPresenter().printInvalidInput();
