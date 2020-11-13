@@ -15,7 +15,7 @@ public class AttendeeSystem extends UserSystem{
 
             if (attendeeChoice.equals("0")){
                 System.out.println("You have now logged out.");
-                getPresenter().printWelcome();
+                return;
             }
 
             else if (attendeeChoice.equals("1")){

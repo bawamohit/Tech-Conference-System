@@ -3,6 +3,6 @@ public class OrganizerSystem extends UserSystem{
         super(p, uMan, eMan, mMan);
     }
     public void run(String username){
-        System.out.printf("testing");
+        System.out.println("testing");
     }
 }
