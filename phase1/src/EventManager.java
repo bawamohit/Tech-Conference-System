@@ -12,17 +12,19 @@ public class EventManager {
      *
      *
      */
-
     public EventManager(){
         this.events = new HashMap<>();
     }
 
     /**
-     * Implements Getter, getEvents, for events.
+     * Implements Getter, getEvents, for event IDs.
      *
-     * @return hashmap of all scheduled events
+     * @return event IDs for all scheduled events
      */
-    public HashMap<UUID, Event> getEvents(){ return events; }
+    @SuppressWarnings("unchecked")
+    public List<UUID> getEvents() {
+        return (List<UUID>) events.keySet();
+    }
 
     /**
      * Implements creator, createEvent, to instantiate an Event object.
