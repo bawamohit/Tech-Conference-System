@@ -1,7 +1,5 @@
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class RoomManager {
     private HashMap<String, Room> rooms;
@@ -18,11 +16,16 @@ public class RoomManager {
     public RoomManager(){ this.rooms = new HashMap<>(); }
 
     /**
-     * Implements Getter, getRooms, for rooms.
+     * Implements Getter, getRooms, for room names.
      *
-     * @return hashmap of all created rooms
+     * @return List of all room names
      */
-    public HashMap<String, Room> getRooms(){ return rooms; }
+
+    public List<String> getRooms(){
+        Collection<String> roomc = rooms.keySet();
+        ArrayList<String> roomlist = new ArrayList<String>(roomc);
+        return roomlist;
+    }
 
     /**
      * Implements creator, createRoom, to instantiate a Room object.
@@ -53,7 +56,7 @@ public class RoomManager {
      *
      * @return a Room object in hashmap of rooms associated with the given String roomName
      */
-    public Room findRoom(String roomName){
+    private Room findRoom(String roomName){
         for (String name: rooms.keySet()){
             Room r = rooms.get(name);
             if (r.getRoomName().equals(roomName)){

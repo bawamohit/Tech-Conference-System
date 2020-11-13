@@ -1,8 +1,5 @@
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
-import java.util.Set;
+import java.util.*;
 
 public class EventManager {
     private HashMap<UUID, Event> events;
@@ -12,17 +9,21 @@ public class EventManager {
      *
      *
      */
-
     public EventManager(){
         this.events = new HashMap<>();
     }
 
     /**
-     * Implements Getter, getEvents, for events.
+     * Implements Getter, getEvents, for event IDs.
      *
-     * @return hashmap of all scheduled events
+     * @return event IDs for all scheduled events
      */
-    public HashMap<UUID, Event> getEvents(){ return events; }
+
+    public List<UUID> getEvents() {
+        Collection<UUID> eventc = events.keySet();
+        ArrayList<UUID> eventlist = new ArrayList<UUID>(eventc);
+        return eventlist;
+    }
 
     /**
      * Implements creator, createEvent, to instantiate an Event object.
@@ -53,7 +54,6 @@ public class EventManager {
         }else{
             return false;
         }
-        // assign to room specified -> need room manager for that :') not my responsibility
     }
 
     ///**
@@ -74,10 +74,9 @@ public class EventManager {
      *
      * @return an Event object in hashmap of events associated with the given String eventName.
      */
-    public Event findEvent(UUID eventID){
-        for (UUID id: events.keySet()){
-            Event e = events.get(id);
-            if (e.getId().equals(eventID)){
+    private Event findEvent(String eventName){
+        for (Event e: events.values()){
+            if (e.getEventName().equals(eventName)){
                 return e;
             }
         }
