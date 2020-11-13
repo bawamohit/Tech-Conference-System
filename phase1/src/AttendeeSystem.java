@@ -18,10 +18,9 @@ public class AttendeeSystem extends UserSystem{
                 System.out.println("You have now logged out.");
                 break;
             } else if (attendeeChoice.equals("1")) {
-                getPresenter().printPrompt();
                 getPresenter().printAttendeeMessageMenu();
                 String messageChoice = scanner.nextLine();
-                helperMessageSystem(messageChoice);
+                helperMessageSystem(username, messageChoice, scanner);
             }
 
             //4. Sign-up Event\n" +
@@ -42,20 +41,27 @@ public class AttendeeSystem extends UserSystem{
         }
     }
 
-//    private String makeOrderedPromptLists(List list){
-//        String numberedPrompt = new String();
-//        int i = 0;
-//        for (T :list){
-//            numberedPrompt += "\n" + i + ". " + T.toString();
-//            i += 1;
-//        }
-//        return numberedPrompt;
-//    }
+    private String makeOrderedPromptLists(List list){
+        String numberedPrompt = new String();
+        int i = 0;
+        for (Object T: list){
+            String num = Integer.toString(i);
+            numberedPrompt += "\n" + num + ". " + T.toString();
+        }
+        return numberedPrompt;
+    }
 
-    private void helperMessageSystem(String choice){
+    private void helperMessageSystem(String username, String choice, Scanner scanner){
         if (choice.equals("0")){
             //Message
-            getPresenter().printUnderConstruction();
+            //input username
+            //show list of contacts
+            System.out.println("Enter username you would like to message");
+            String reciever = scanner.nextLine();
+            System.out.println("Enter your message");
+            String message = scanner.nextLine();
+            getMm().sendMessage(username, reciever, message);
+            System.out.println("Message sent");
         }
         else if (choice.equals("1")){
             //edit Message
@@ -64,6 +70,15 @@ public class AttendeeSystem extends UserSystem{
         else if (choice.equals("2")){
             // delete Message
             getPresenter().printUnderConstruction();
+        }
+        else if (choice.equals("3")){
+            // delete Message
+            System.out.println("Which contact inbox do you want to see?");
+            getPresenter().printUCReturns(getMm().getChats(username));
+            String contact = scanner.nextLine();
+            for (Message message :getMm().getChat(username, contact)){
+                System.out.println(message.getContent());
+            };
         }
         else{
             getPresenter().printInvalidInput();

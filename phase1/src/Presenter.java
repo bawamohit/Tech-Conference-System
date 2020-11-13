@@ -63,7 +63,8 @@ public class Presenter {
         printPrompt();
         System.out.println("\n0. Message\n" +
                 "1. Edit a message\n" +
-                "2. Delete a message");
+                "2. Delete a message\n" +
+                "3. View Recieved messages");
     }
 
     public void printOrganizerMessageMenu() {
@@ -76,6 +77,12 @@ public class Presenter {
         printAttendeeMessageMenu();
         System.out.println("3. Message all Attendees of your talk(s).\n");
     }
+
+//    public void printEventList(){
+//        for (String name: )
+//        System.out.println("All of the events occurring today are:\n" +
+//                "");
+//    }
 
     public void printSuccess(){
         System.out.println("\nYou crazy son of a female dog, you did it.");
