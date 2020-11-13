@@ -17,10 +17,22 @@ public class TechConferenceSystem {
     private SpeakerSystem ss;
 
     public TechConferenceSystem () {
+        String userManagerInfo = "phase1/src/userManager.ser";
+        String eventManagerInfo = "phase1/src/eventManager.ser";
+        String messageManagerInfo = "phase1/src/messageManager.ser";
+        try {
+            UserGateway userGateway = new UserGateway();
+            um = userGateway.readFromFile(userManagerInfo);
+            EventGateway eventGateway = new EventGateway();
+            em = eventGateway.readFromFile(eventManagerInfo);
+            MessageGateway messageGateway = new MessageGateway();
+            mm = messageGateway.readFromFile(messageManagerInfo);
+        } catch (ClassNotFoundException e){
+            e.printStackTrace();
+        }
+
         presenter = new Presenter();
-        um = new UserManager();
-        em = new EventManager();
-        mm = new MessageManager();
+
         as = new AttendeeSystem(presenter, um, em, mm);
         os = new OrganizerSystem(presenter, um, em, mm);
         ss = new SpeakerSystem(presenter, um, em, mm);
