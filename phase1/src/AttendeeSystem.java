@@ -41,15 +41,15 @@ public class AttendeeSystem extends UserSystem{
         }
     }
 
-//    private String makeOrderedPromptLists(List list){
-//        String numberedPrompt = new String();
-//        int i = 0;
-//        for (T :list){
-//            numberedPrompt += "\n" + i + ". " + T.toString();
-//            i += 1;
-//        }
-//        return numberedPrompt;
-//    }
+    private String makeOrderedPromptLists(List list){
+        String numberedPrompt = new String();
+        int i = 0;
+        for (Object T: list){
+            String num = Integer.toString(i);
+            numberedPrompt += "\n" + num + ". " + T.toString();
+        }
+        return numberedPrompt;
+    }
 
     private void helperMessageSystem(String username, String choice, Scanner scanner){
         if (choice.equals("0")){

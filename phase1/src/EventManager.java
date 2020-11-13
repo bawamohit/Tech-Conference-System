@@ -30,8 +30,9 @@ public class EventManager {
      *
      * @return an Event object with assigned attributes as specified by the parameters.
      */
-    public Event createEvent(String eventName, String speaker, String organizer, LocalDateTime startTime){
-        return new Event(eventName, speaker, organizer, startTime);
+    public Event createEvent(String eventName, String speaker, String organizer, LocalDateTime startTime,
+                             String roomName){
+        return new Event(eventName, speaker, organizer, startTime, roomName);
     }
 
     /**
@@ -39,8 +40,9 @@ public class EventManager {
      *
      * @return a boolean indicating if event was successfully added
      */
-    public boolean addEvent(String eventName, String speaker, String organizer, LocalDateTime startTime){
-        Event new_event = createEvent(eventName, speaker, organizer, startTime);
+    public boolean addEvent(String eventName, String speaker, String organizer, LocalDateTime startTime,
+                            String roomName){
+        Event new_event = createEvent(eventName, speaker, organizer, startTime, roomName);
         LocalDateTime start = new_event.getStartTime();
         for(UUID id : events.keySet()){
             Event e = events.get(id);
@@ -48,7 +50,7 @@ public class EventManager {
                 return false;
             }
         }
-        if (start.getHour() >= 9 && start.getHour() <= 17){
+        if (start.getHour() >= 9 && start.getHour() <= 16){
             events.put(new_event.getId(), new_event);
             return true;
         }else{
@@ -74,14 +76,14 @@ public class EventManager {
      *
      * @return an Event object in hashmap of events associated with the given String eventName.
      */
-    private Event findEvent(String eventName){
-        for (Event e: events.values()){
-            if (e.getEventName().equals(eventName)){
-                return e;
-            }
-        }
-        return null;
-    }
+//    private Event findEvent(String eventName){
+//        for (Event e: events.values()){
+//            if (e.getEventName().equals(eventName)){
+//                return e;
+//            }
+//        }
+//        return null;
+//    }
 
     /**
      * Implements modifier, addAttendee, for event in events.
@@ -90,7 +92,7 @@ public class EventManager {
      */
     public boolean addAttendee(String username, UUID eventID){
         Event event = events.get(eventID);
-        LocalDateTime s_event = event.getStartTime();
+//        LocalDateTime s_event = event.getStartTime();
         if (event.getAttendees().contains(username)){
             return false;
         }
