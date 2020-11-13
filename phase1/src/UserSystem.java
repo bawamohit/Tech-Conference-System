@@ -28,24 +28,4 @@ public abstract class UserSystem {
     }
 
     abstract void run(String username);
-
-    public void menu(UserType accountType) {
-        if (accountType == UserType.ATTENDEE) {
-            presenter.printAttendeeMenu();
-        } else if (accountType == UserType.ORGANIZER) {
-            presenter.printOrganizerMenu();
-        } else {
-            presenter.printSpeakerMenu();
-        }
-    }
-
-    public void message(UserType accountType) {
-        if (accountType == UserType.ATTENDEE) {
-            presenter.printAttendeeMessageMenu();
-        } else if (accountType == UserType.ORGANIZER) {
-            presenter.printOrganizerMessageMenu();
-        } else {
-            presenter.printSpeakerMessageMenu();
-        }
-    }
 }

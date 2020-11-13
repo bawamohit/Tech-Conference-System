@@ -85,6 +85,7 @@ public class TechConferenceSystem {
             } else {
                 ss.run(loggedInUsername);
             }
+            //THIS IS WHERE WE CAN SAVE INFO (WRITE TO FILES)
         }
     }
 
