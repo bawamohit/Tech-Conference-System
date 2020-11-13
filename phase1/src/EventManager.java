@@ -53,7 +53,6 @@ public class EventManager {
         }else{
             return false;
         }
-        // assign to room specified -> need room manager for that :') not my responsibility
     }
 
     ///**
@@ -74,7 +73,7 @@ public class EventManager {
      *
      * @return an Event object in hashmap of events associated with the given String eventName.
      */
-    public Event findEvent(UUID eventID){
+    private Event findEvent(UUID eventID){
         for (UUID id: events.keySet()){
             Event e = events.get(id);
             if (e.getId().equals(eventID)){

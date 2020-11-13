@@ -12,6 +12,7 @@ public class TechConferenceSystem {
     private UserManager um;
     private EventManager em;
     private MessageManager mm;
+    private RoomManager rm;
     private AttendeeSystem as;
     private OrganizerSystem os;
     private SpeakerSystem ss;
@@ -34,7 +35,7 @@ public class TechConferenceSystem {
         presenter = new Presenter();
 
         as = new AttendeeSystem(presenter, um, em, mm);
-        os = new OrganizerSystem(presenter, um, em, mm);
+        os = new OrganizerSystem(presenter, um, em, mm, rm);
         ss = new SpeakerSystem(presenter, um, em, mm);
     }
 

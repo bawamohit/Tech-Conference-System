@@ -53,7 +53,7 @@ public class RoomManager {
      *
      * @return a Room object in hashmap of rooms associated with the given String roomName
      */
-    public Room findRoom(String roomName){
+    private Room findRoom(String roomName){
         for (String name: rooms.keySet()){
             Room r = rooms.get(name);
             if (r.getRoomName().equals(roomName)){

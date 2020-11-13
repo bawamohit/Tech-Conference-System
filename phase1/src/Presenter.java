@@ -77,6 +77,14 @@ public class Presenter {
         System.out.println("3. Message all Attendees of your talk(s).\n");
     }
 
+    public void printSuccess(){
+        System.out.println("\nYou crazy son of a female dog, you did it.");
+    }
+
+    public void printFail(){
+        System.out.println("\nAction failed. Dishonor on you, dishonor on your cow.");
+    }
+
     public void printBack(){
         System.out.println("Enter 'b' to go back to previous menu");
     }
