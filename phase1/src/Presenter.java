@@ -92,4 +92,8 @@ public class Presenter {
     public void printIOException(){
         System.out.println("IOException");
     }
+
+    public void printUCReturns(Object obj){
+        System.out.println(obj);
+    }
 }

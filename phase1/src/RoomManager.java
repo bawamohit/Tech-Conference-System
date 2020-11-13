@@ -1,7 +1,5 @@
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class RoomManager {
     private HashMap<String, Room> rooms;
@@ -22,8 +20,12 @@ public class RoomManager {
      *
      * @return List of all room names
      */
-    @SuppressWarnings("unchecked")
-    public List<String> getRooms(){ return (List<String>) rooms.keySet(); }
+
+    public List<String> getRooms(){
+        Collection<String> roomc = rooms.keySet();
+        ArrayList<String> roomlist = new ArrayList<String>(roomc);
+        return roomlist;
+    }
 
     /**
      * Implements creator, createRoom, to instantiate a Room object.

@@ -1,8 +1,5 @@
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
-import java.util.Set;
+import java.util.*;
 
 public class EventManager {
     private HashMap<UUID, Event> events;
@@ -21,9 +18,11 @@ public class EventManager {
      *
      * @return event IDs for all scheduled events
      */
-    @SuppressWarnings("unchecked")
+
     public List<UUID> getEvents() {
-        return (List<UUID>) events.keySet();
+        Collection<UUID> eventc = events.keySet();
+        ArrayList<UUID> eventlist = new ArrayList<UUID>(eventc);
+        return eventlist;
     }
 
     /**
