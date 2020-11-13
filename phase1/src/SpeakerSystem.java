@@ -1,20 +1,12 @@
 import java.util.Scanner;
 
 
-//public class SpeakerSystem extends TechConferenceSystem{
-//    private Presenter presenter;
-//    private UserManager um;
-//    private EventManager em;
-//    private MessageManager mm;
-//
-//    public SpeakerSystem () {
-//        presenter = new Presenter();
-//        um = new UserManager();
-//        em = new EventManager();
-//        mm = new MessageManager();
-//    }
-//
-//    public void run(){
+public class SpeakerSystem extends UserSystem{
+    public SpeakerSystem (Presenter p, UserManager uMan, EventManager eMan, MessageManager mMan) {
+        super(p, uMan, eMan, mMan);
+    }
+
+    public void run(String Username){
 //        Scanner scan = new Scanner(System.in);
 //
 //        //message all attendee in a talk
@@ -27,5 +19,5 @@ import java.util.Scanner;
 //
 //            }
 //        }
-//    }
-//}
+    }
+}

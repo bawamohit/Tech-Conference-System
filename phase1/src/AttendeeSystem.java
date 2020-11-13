@@ -1,37 +1,29 @@
 import java.util.Scanner;
 
-public class AttendeeSystem extends TechConferenceSystem {
-    private Presenter presenter;
-    private UserManager um;
-    private EventManager em;
-    private MessageManager mm;
-
-    public AttendeeSystem () {
-        presenter = new Presenter();
-        um = new UserManager();
-        em = new EventManager();
-        mm = new MessageManager();
+public class AttendeeSystem extends UserSystem{
+    public AttendeeSystem (Presenter p, UserManager uMan, EventManager eMan, MessageManager mMan) {
+        super(p, uMan, eMan, mMan);
     }
 
-    public void run(){
+    public void run(String username){
         Scanner scanner = new Scanner(System.in);
 
         while(true){
-            presenter.printAttendeeMenu();
-            presenter.printPrompt();
+            getPresenter().printAttendeeMenu();
+            getPresenter().printPrompt();
             String attendeeChoice = scanner.nextLine();
 
             if (attendeeChoice.equals("0")){
                 System.out.println("You have now logged out.");
-                presenter.printWelcome();
+                return;
             }
 
             else if (attendeeChoice.equals("1")){
-                presenter.printAttendeeMessageMenu();
+                getPresenter().printAttendeeMessageMenu();
             }
 
             else if (attendeeChoice.equals("2")){
-                em.getEvents();
+                getEm().getEvents();
             }
             //need to figure out how to access entity
             //else if (attendeeChoice.equals("3")){
