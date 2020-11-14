@@ -13,7 +13,6 @@ public class UserGateway {
             input.close();
             return userManager;
         } catch (IOException ex) {
-            System.out.println("Cannot read from input file, returning a new UserManager.");
             return new UserManager();
         }
     }
