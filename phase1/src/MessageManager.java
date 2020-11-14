@@ -44,7 +44,7 @@ public class MessageManager implements Serializable {
     }
 
     //might not need
-    private List<Message> getChat(String firstUser, String secondUser) {
+    protected List<Message> getChat(String firstUser, String secondUser) {
         return chats.get(firstUser).get(secondUser);
     }
 
