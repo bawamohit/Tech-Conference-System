@@ -115,7 +115,7 @@ public class RoomManager {
     public boolean hasSpace(String roomName, int numOfAttendees){
         Room room = findRoom(roomName);
         if (room.getCapacity() > (numOfAttendees)){
-            return true;
+            return true; //think we need to put this in controller bc no way to get num of attendees without clean architecture violation
         }
         return false;
     }

@@ -88,6 +88,15 @@ public class Event {
     }
 
     /**
+     * Implements Getter, getCanSignUp, for canSignUp.
+     *
+     * @return whether event is still available for signup
+     */
+    public boolean getCanSignUp(){
+        return canSignUp;
+    }
+
+    /**
      * Implements Setter, setAttendees, for attendees.
      *
      * @param attendees new attendees of event

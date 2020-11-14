@@ -26,6 +26,40 @@ public class EventManager {
     }
 
     /**
+     * Implements Getter, getEventsInfo, for a list of events.
+     *
+     * @return a Map of Event Name to its time and location
+     */
+
+    public HashMap<String, HashMap<LocalDateTime, String>> getEventsInfo(List<UUID> event_ids){
+        HashMap<String, HashMap<LocalDateTime, String>> events_info = new HashMap<>();
+        for (UUID id: event_ids){
+            Event e = events.get(id);
+            HashMap<LocalDateTime, String> time_to_place = new HashMap<>();
+            time_to_place.put(e.getStartTime(), e.getEventRoomName());
+            events_info.put(e.getEventName(), time_to_place);
+        }
+        return events_info;
+    }
+
+    /**
+     * Implements Getter, getAvailableEvents, for IDs of available events.
+     *
+     * @return event IDs for all events still open for signup
+     */
+
+    public List<UUID> getAvailableEvents() {
+        ArrayList<UUID> available_events = new ArrayList<>();
+        for (UUID id: events.keySet()){
+            Event e = events.get(id);
+            if (e.getCanSignUp()){
+                available_events.add(id);
+            }
+        }
+        return available_events;
+    }
+
+    /**
      * Implements creator, createEvent, to instantiate an Event object.
      *
      * @return an Event object with assigned attributes as specified by the parameters.
@@ -107,12 +141,15 @@ public class EventManager {
 //        } //assume conditions related to user are satisfied
         RoomManager rm = new RoomManager();
         if (!rm.hasSpace(event.getEventRoomName(), (event.getAttendees().size()))){
-            event.setCanSignUp(false);
+            event.setCanSignUp(false); //not supposed to call rm in em?
+            return false;
+        }else{
+            event.setCanSignUp(true);
+            List<String> updated_event = event.getAttendees();
+            updated_event.add(username);
+            event.setAttendees(updated_event);
+            return true;
         }
-        List<String> updated_event = event.getAttendees();
-        updated_event.add(username);
-        event.setAttendees(updated_event);
-        return true;
     }
 
     /**
@@ -128,7 +165,7 @@ public class EventManager {
         List<String> updated_event = event.getAttendees();
         if (updated_event.remove(username)){
             event.setAttendees(updated_event);
-            // update room capacity?
+            event.setCanSignUp(true);
             return true;
         }
         return false;

@@ -39,7 +39,7 @@ public class Presenter {
         printPrompt();
         System.out.println("\n0. Logout\n" +
                 "1. Messaging\n" +
-                "2. View All Events\n" +
+                "2. View All Available Events\n" +
                 "3. View My Events\n" +
                 "4. Sign-up Event\n" +
                 "5. Cancel Event\n");
@@ -79,11 +79,9 @@ public class Presenter {
         System.out.println("3. Message all Attendees of your talk(s).\n");
     }
 
-//    public void printEventList(){
-//        for (String name: )
-//        System.out.println("All of the events occurring today are:\n" +
-//                "");
-//    }
+    public void printAvailableEvents(String compiled){
+        System.out.println("The events available for sign-up are: \n" + compiled);
+    }
 
     public void printSuccess(){
         System.out.println("\nYou crazy son of a female dog, you did it.");
