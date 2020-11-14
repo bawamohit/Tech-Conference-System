@@ -1,9 +1,10 @@
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class Event {
+public class Event implements Serializable {
     private String eventName;
     private String speaker;
     private String organizer;

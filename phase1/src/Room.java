@@ -1,10 +1,11 @@
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-public class Room {
+public class Room implements Serializable {
     private String roomName;
     private int capacity; //do we need curr_capacity and max_capacity
     private HashMap<LocalDateTime, UUID> schedule;

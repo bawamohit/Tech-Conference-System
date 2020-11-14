@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.*;
 
-public class RoomManager {
+public class RoomManager implements Serializable {
     private HashMap<String, Room> rooms;
     // what we need:
     // attributes: all the room name and their Room object,
