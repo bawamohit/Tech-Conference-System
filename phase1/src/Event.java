@@ -97,6 +97,13 @@ public class Event {
     }
 
     /**
+     * Implements Setter, setCanSignUp, for canSignUp.
+     *
+     * @param canSignUp whether this event is still open for signup
+     */
+    public void setCanSignUp(boolean canSignUp){ this.canSignUp = canSignUp; }
+
+    /**
      * Implements Getter, getId, for id.
      *
      * @return id of event.

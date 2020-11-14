@@ -66,6 +66,7 @@ public class EventManager {
 //    public boolean removeEvent(Event event){
 //        if (events.containsKey(event.getId())){
 //            events.remove(event.getId());
+//            update canSignUp as necessary
 //            return true;
 //        }
 //        return false;
@@ -104,6 +105,10 @@ public class EventManager {
 //                return false;
 //            }
 //        } //assume conditions related to user are satisfied
+        RoomManager rm = new RoomManager();
+        if (!rm.hasSpace(event.getEventRoomName(), (event.getAttendees().size()))){
+            event.setCanSignUp(false);
+        }
         List<String> updated_event = event.getAttendees();
         updated_event.add(username);
         event.setAttendees(updated_event);

@@ -107,11 +107,16 @@ public class RoomManager {
         return true;
     }
 
+    /**
+     * Implements checker, hasSpace, for event in a room.
+     *
+     * @return a boolean indicating if room still has Space
+     */
     public boolean hasSpace(String roomName, int numOfAttendees){
         Room room = findRoom(roomName);
         if (room.getCapacity() > (numOfAttendees)){
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 }
