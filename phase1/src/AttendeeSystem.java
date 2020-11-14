@@ -56,17 +56,6 @@ public class AttendeeSystem extends UserSystem{
         return info;
     }
 
-//    private String makeOrderedPromptLists(List list){
-//        String numberedPrompt = new String();
-//        int i = 0;
-//        for (Object T: list){
-//            String num = Integer.toString(i);
-//            numberedPrompt += "\n" + num + ". " + T.toString();
-//            i++;
-//        }
-//        return numberedPrompt;
-//    }
-
     private void helperMessageSystem(String username, String choice, Scanner scanner){
         if (choice.equals("0")){
             getPresenter().printAskMsgReceiver();
@@ -80,8 +69,8 @@ public class AttendeeSystem extends UserSystem{
             getPresenter().printUnderConstruction();
         } else if (choice.equals("2")){
             // delete Message
-            System.out.println(getMm().getChats(username));
             getPresenter().printAskWhichInbox();
+            getPresenter().printUCReturns(getMm().getChats(username));
             String inboxChoice = scanner.nextLine();
             List<String> inbox = getMm().getInbox(username, inboxChoice);
             int n = 0;
@@ -90,8 +79,8 @@ public class AttendeeSystem extends UserSystem{
                 n += 1;
             }
             getPresenter().printAskWhichMessage();
-            String content = scanner.nextLine();
-            getMm().deleteMessage(getMm().getChat(username, inboxChoice).get(n));
+            int content = scanner.nextInt();
+            getMm().deleteMessage(getMm().getChat(username, inboxChoice).get(content));
         } else if (choice.equals("3")){
             // view inbox
             getPresenter().printAskWhichInbox();

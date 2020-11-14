@@ -35,10 +35,15 @@ public class Presenter {
                 "2. Speaker\n");
     }
 
-    public void printAttendeeMenu(){
+    public void printCommonMenu() {
         printPrompt();
         System.out.println("\n0. Logout\n" +
-                "1. Messaging\n" +
+                "1. Messaging");
+    }
+
+    public void printAttendeeMenu(){
+        printCommonMenu();
+        System.out.println(
                 "2. View All Available Events\n" +
                 "3. View My Events\n" +
                 "4. Sign-up Event\n" +
@@ -46,37 +51,38 @@ public class Presenter {
     }
 
     public void printOrganizerMenu(){
-        printPrompt();
-        System.out.println("\n0. Create Event\n" +
-                "1. Reschedule Event\n" +
-                "8. Remove Event\n" +
-                "9. Create Speaker Account\n" +
-                "10. Create Room\n");
+        printCommonMenu();
+        System.out.println(
+                "2. Create Event\n" +
+                "3. Reschedule Event\n" +
+                "4. Remove Event\n" +
+                "5. Create Speaker Account\n" +
+                "6. Create Room\n");
     }
 
     public void printSpeakerMenu(){
-        printAttendeeMenu();
-        System.out.println("\n0. View My Talks\n");
+        printCommonMenu();
+        System.out.println("2. View My Talks\n");
     }
 
     public void printAttendeeMessageMenu() {
+        printBack();
         printPrompt();
         System.out.println("\n0. Message\n" +
                 "1. Edit a message\n" +
                 "2. Delete a message\n" +
-                "3. View message chats\n"+
-                "Press b to go back to Main Menu");
+                "3. View message chats\n");
     }
 
     public void printOrganizerMessageMenu() {
         printAttendeeMessageMenu();
-        System.out.println("3. Message all speakers\n" +
-                "4. Message all attendees\n");
+        System.out.println("4. Message all speakers\n" +
+                "5. Message all attendees\n");
     }
 
     public void printSpeakerMessageMenu() {
         printAttendeeMessageMenu();
-        System.out.println("3. Message all Attendees of your talk(s).\n");
+        System.out.println("4. Message all Attendees of your talk(s).\n");
     }
 
     public void printAvailableEvents(String compiled){
