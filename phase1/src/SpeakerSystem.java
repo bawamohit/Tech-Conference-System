@@ -7,7 +7,16 @@ public class SpeakerSystem extends UserSystem{
     }
 
     public void run(String Username){
-//        Scanner scan = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
+        getPresenter().printSpeakerMenu();
+        String speakerChoice = scan.nextLine();
+
+        switch (speakerChoice){
+            case "0":
+
+            default:
+
+        }
 //
 //        //message all attendee in a talk
 //        //view all talk
