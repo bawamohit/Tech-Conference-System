@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -11,21 +12,21 @@ public class TechConferenceSystem {
     private AttendeeSystem as;
     private OrganizerSystem os;
     private SpeakerSystem ss;
-    String userManagerInfo;
-    String eventManagerInfo;
-    String messageManagerInfo;
+    File eventManagerInfo = new File("./phase1/src/eventManager.ser");
+    File messageManagerInfo = new File("./phase1/src/messageManager.ser");
+    File userManagerInfo = new File("./phase1/src/userManager.ser");
+    File roomManagerInfo = new File("./phase1/src/roomManager.ser");
 
-    public TechConferenceSystem (String userManagerInfo, String eventManagerInfo, String messageManagerInfo) {
-        this.userManagerInfo = userManagerInfo;
-        this.eventManagerInfo = eventManagerInfo;
-        this.messageManagerInfo = messageManagerInfo;
+    public TechConferenceSystem () {
         try {
             UserGateway userGateway = new UserGateway();
-            um = userGateway.readFromFile(userManagerInfo);
+            um = userGateway.readFromFile(userManagerInfo.getPath());
             EventGateway eventGateway = new EventGateway();
-            em = eventGateway.readFromFile(eventManagerInfo);
+            em = eventGateway.readFromFile(eventManagerInfo.getPath());
             MessageGateway messageGateway = new MessageGateway();
-            mm = messageGateway.readFromFile(messageManagerInfo);
+            mm = messageGateway.readFromFile(messageManagerInfo.getPath());
+            RoomGateway roomGateway = new RoomGateway();
+            rm = roomGateway.readFromFile(roomManagerInfo.getPath());
         } catch (ClassNotFoundException e){
             e.printStackTrace();
         }
@@ -53,11 +54,13 @@ public class TechConferenceSystem {
             //THIS IS WHERE WE CAN SAVE INFO (WRITE TO FILES)
             try {
                 UserGateway userGateway = new UserGateway();
-                userGateway.saveToFile(userManagerInfo, um);
+                userGateway.saveToFile(userManagerInfo.getPath(), um);
                 EventGateway eventGateway = new EventGateway();
-                eventGateway.saveToFile(eventManagerInfo, em);
+                eventGateway.saveToFile(eventManagerInfo.getPath(), em);
                 MessageGateway messageGateway = new MessageGateway();
-                messageGateway.saveToFile(messageManagerInfo, mm);
+                messageGateway.saveToFile(messageManagerInfo.getPath(), mm);
+                RoomGateway roomGateway = new RoomGateway();
+                roomGateway.saveToFile(roomManagerInfo.getPath(), rm);
             } catch (IOException e){
                 e.printStackTrace();
             }

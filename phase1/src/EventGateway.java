@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.HashMap;
 
 
-public class EventGateway implements Serializable {
+public class EventGateway {
 
     public EventManager readFromFile(String path) throws ClassNotFoundException {
 
@@ -16,7 +16,6 @@ public class EventGateway implements Serializable {
             input.close();
             return em;
         } catch (IOException ex) {
-            System.out.println("Cannot read from input file, returning a new EventManager.");
             return new EventManager();
         }
     }

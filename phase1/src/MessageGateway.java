@@ -13,7 +13,6 @@ public class MessageGateway {
             input.close();
             return messageManager;
         } catch (IOException ex) {
-            System.out.println("Cannot read from input file, returning a new MessageManager.");
             return new MessageManager();
         }
     }

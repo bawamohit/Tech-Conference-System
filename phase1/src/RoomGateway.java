@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.HashMap;
 
 
-public class RoomGateway implements Serializable {
+public class RoomGateway {
 
     public RoomManager readFromFile(String path) throws ClassNotFoundException {
 
@@ -16,7 +16,6 @@ public class RoomGateway implements Serializable {
             input.close();
             return rm;
         } catch (IOException ex) {
-            System.out.println("Cannot read from input file, returning a new RoomManager.");
             return new RoomManager();
         }
     }
