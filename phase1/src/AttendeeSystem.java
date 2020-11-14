@@ -21,36 +21,30 @@ public class AttendeeSystem extends UserSystem{
                 getPresenter().printAttendeeMessageMenu();
                 String messageChoice = scanner.nextLine();
                 helperMessageSystem(username, messageChoice, scanner);
-            }
-
-            else if (attendeeChoice.equals("2")) {
+            } else if (attendeeChoice.equals("2")) {
                 List<UUID> available = em.getAvailableEvents();
                 getPresenter().printAvailableEvents(formatEventsInfo(em.getEventsInfo(available)));
-            }
-            else if (attendeeChoice.equals("3")) {//we need to make list of event names.
+            } else if (attendeeChoice.equals("3")) {//we need to make list of event names.
 //                getPresenter().printUCReturns(getUm().getEventsAttending(username));
                 getPresenter().printUnderConstruction();
-            }
-            else if (attendeeChoice.equals("4")) { //signup event
+            } else if (attendeeChoice.equals("4")) { //signup event
 //                System.out.println(makeOrderedPromptLists(getEm().getEvents()));
                 getPresenter().printUnderConstruction();
-            }
-            else if (attendeeChoice.equals("5")){ //cancel event
+            } else if (attendeeChoice.equals("5")){ //cancel event
 //                getPresenter().printUCReturns(getUm().getEventsAttending(username));
 //                System.out.println("Type the name of event you would like to remove");
 //                String eventChoice = scanner.nextLine();
                 getPresenter().printUnderConstruction();
-            }
-            else {
+            } else {
                 getPresenter().printInvalidInput();
             }
         }
     }
 
     private String formatEventsInfo(HashMap<String, HashMap<LocalDateTime, String>> events_info) {
-        String info = new String();
-        for(int i = 0; i < events_info.size(); i++) {
-            for(String name: events_info.keySet()){
+        String info = null;
+        for (int i = 0; i < events_info.size(); i++) {
+            for (String name: events_info.keySet()){
                 HashMap<LocalDateTime, String> map = events_info.get(name);
                 for (LocalDateTime time: map.keySet()){
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H");
@@ -79,23 +73,26 @@ public class AttendeeSystem extends UserSystem{
             String receiver = scanner.nextLine();
             getPresenter().printAsk("message");
             String message = scanner.nextLine();
-            if(getUm().isRegistered(receiver)){
-                getMm().sendMessage(username, receiver, message);
-                getPresenter().printMessageSent();
-            }
-            else{
-                getPresenter().printUserDoesntExist();
-            }
-        }
-        else if (choice.equals("1")){
+            getMm().sendMessage(username, receiver, message);
+            getPresenter().printMessageSent();
+        } else if (choice.equals("1")){
             //edit Message
             getPresenter().printUnderConstruction();
-        }
-        else if (choice.equals("2")){
+        } else if (choice.equals("2")){
             // delete Message
-            getPresenter().printUnderConstruction();
-        }
-        else if (choice.equals("3")){
+            System.out.println(getMm().getChats(username));
+            getPresenter().printAskWhichInbox();
+            String inboxChoice = scanner.nextLine();
+            List<String> inbox = getMm().getInbox(username, inboxChoice);
+            int n = 0;
+            for (String message : inbox) {
+                System.out.println(n + ": " + message);
+                n += 1;
+            }
+            getPresenter().printAskWhichMessage();
+            String content = scanner.nextLine();
+            getMm().deleteMessage(getMm().getChat(username, inboxChoice).get(n));
+        } else if (choice.equals("3")){
             // view inbox
             getPresenter().printAskWhichInbox();
             getPresenter().printUCReturns(getMm().getChats(username));
@@ -103,15 +100,11 @@ public class AttendeeSystem extends UserSystem{
             for (String message :getMm().getInbox(username, contact)){
                 System.out.println(message);
             }
-        }
-        else if (choice.equals("b")){
+        } else if (choice.equals("b")){
              run(username);
-        }
-        else{
+        } else {
             getPresenter().printInvalidInput();
             getPresenter().printAttendeeMessageMenu();
         }
-
     }
-
 }

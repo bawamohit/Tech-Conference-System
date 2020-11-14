@@ -115,6 +115,8 @@ public class Presenter {
         System.out.println("Which contact inbox do you want to see? Type the username");
     }
 
+    public void printAskWhichMessage() { System.out.println("Which message? (Enter a number)"); }
+
     public void printLoggedOut(){
         System.out.println("You have now logged out.");
     }
