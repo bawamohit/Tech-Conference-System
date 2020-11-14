@@ -79,8 +79,13 @@ public class AttendeeSystem extends UserSystem{
             String receiver = scanner.nextLine();
             getPresenter().printAsk("message");
             String message = scanner.nextLine();
-            getMm().sendMessage(username, receiver, message);
-            getPresenter().printMessageSent();
+            if(getUm().isRegistered(receiver)){
+                getMm().sendMessage(username, receiver, message);
+                getPresenter().printMessageSent();
+            }
+            else{
+                getPresenter().printUserDoesntExist();
+            }
         }
         else if (choice.equals("1")){
             //edit Message

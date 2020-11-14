@@ -24,7 +24,7 @@ public class UserManager implements Serializable {
         usernamesToUsers = newMap;
     }
 
-    private boolean isRegistered(String username) {
+    public boolean isRegistered(String username) {
         return usernamesToUsers.containsKey(username);
     }
 
