@@ -1,10 +1,5 @@
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Scanner;
-import java.util.UUID;
-import java.util.ArrayList;
-import java.util.List;
 
 public class TechConferenceSystem {
 
@@ -44,42 +39,9 @@ public class TechConferenceSystem {
 
     public void run() {
         Scanner in = new Scanner(System.in);
-        String loggedInUsername;
+        String loggedInUsername = null;
         while (true) {
-            while (true) {
-                presenter.printWelcome();
-                String loginOrSignUp = in.nextLine();
-
-                if (loginOrSignUp.equals("1")) {
-                    String[] info = askInfo(in);
-
-                    if (um.verifyLogin(info[0], info[1])) {
-                        loggedInUsername = info[0];
-                        break;
-                    }
-                    else {
-                        presenter.printWrongAccountInfo();
-                    }
-                }
-                else if (loginOrSignUp.equals("2")) {
-                    presenter.printAsk("name");
-                    String name = in.nextLine();
-
-                    String[] info = askInfo(in);
-                    UserType accountType = askAccountType(in);
-
-                    if (um.registerUser(accountType, name, info[0], info[1])) {
-                        loggedInUsername = info[0];
-                        break;
-                    }
-                    else {
-                        presenter.printUsernameExists();
-                    }
-                }
-                else {
-                    presenter.printInvalidInput();
-                }
-            }
+            loggedInUsername = startUp(in);
 
             if (um.getUserType(loggedInUsername) == UserType.ATTENDEE) {
                 as.run(loggedInUsername);
@@ -102,36 +64,86 @@ public class TechConferenceSystem {
         }
     }
 
-    public UserType askAccountType(Scanner in) {
+    private UserType askAccountType(Scanner in) {
         UserType accountType = null;
-        while (true) {
+        while (accountType == null) {
             presenter.printAskUserType();
             String accountOption = in.nextLine();
 
-            if (accountOption.equals("0")){
-                accountType = UserType.ATTENDEE;
-                break;
-            } else if (accountOption.equals("1")){
-                accountType = UserType.ORGANIZER;
-                break;
-            } else if (accountOption.equals("2")){
-                accountType = UserType.SPEAKER;
-                break;
-            } else {
-                presenter.printInvalidInput();
+            switch (accountOption) {
+                case "0":
+                    accountType = UserType.ATTENDEE;
+                    break;
+                case "1":
+                    accountType = UserType.ORGANIZER;
+                    break;
+                case "2":
+                    accountType = UserType.SPEAKER;
+                    break;
+                default:
+                    presenter.printInvalidInput();
+                    break;
             }
         }
         return accountType;
     }
 
-    public String[] askInfo(Scanner in) {
-        presenter.printAsk("user ID");
+    private String[] askInfo(Scanner in) {
+        presenter.printAsk("Username");
         String username = in.nextLine();
-        presenter.printAsk("password");
+        presenter.printAsk("Password");
         String password = in.nextLine();
         String[] info = new String[2];
         info[0] = username;
         info[1] = password;
         return info;
+    }
+
+    private String login(Scanner in) {
+        String[] info = askInfo(in);
+
+        if (um.verifyLogin(info[0], info[1])) {
+            return info[0];
+        }
+        else {
+            presenter.printWrongAccountInfo();
+            return null;
+        }
+    }
+
+    private String signUp(Scanner in) {
+        presenter.printAsk("Name");
+        String name = in.nextLine();
+
+        String[] info = askInfo(in);
+        UserType accountType = askAccountType(in);
+
+        if (um.registerUser(accountType, name, info[0], info[1])) {
+            return info[0];
+        }
+        else {
+            presenter.printUsernameExists();
+            return null;
+        }
+    }
+
+    private String startUp(Scanner in) {
+        String username = null;
+        while (username == null) {
+            presenter.printWelcome();
+            String loginOrSignUp = in.nextLine();
+
+            switch (loginOrSignUp) {
+                case "1":
+                    username = login(in);
+                    break;
+                case "2":
+                    username = signUp(in);
+                    break;
+                default:
+                    presenter.printInvalidInput();
+            }
+        }
+        return username;
     }
 }
