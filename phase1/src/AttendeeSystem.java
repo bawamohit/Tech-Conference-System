@@ -1,4 +1,3 @@
-import java.util.List;
 import java.util.Scanner;
 
 public class AttendeeSystem extends UserSystem{
@@ -57,7 +56,7 @@ public class AttendeeSystem extends UserSystem{
 
     private void helperMessageSystem(String username, String choice, Scanner scanner){
         if (choice.equals("0")){
-            getPresenter().printAskMsgReciever();
+            getPresenter().printAskMsgReceiver();
             String receiver = scanner.nextLine();
             getPresenter().printAsk("message");
             String message = scanner.nextLine();

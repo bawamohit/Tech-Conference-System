@@ -6,7 +6,7 @@ public class Presenter {
                 "\nPress 2 to sign up for an account\n");
     }
 
-    public void printAsk(String ask) { System.out.println("\nPlease enter your " + ask); }
+    public void printAsk(String ask) { System.out.println("\nPlease enter your " + ask + ": "); }
 
     public void printInvalidInput() { System.out.println("\nInvalid input.\n");}
 
@@ -14,7 +14,7 @@ public class Presenter {
 
     public void printWrongAccountInfo(){
         System.out.println("\nOOPS looks like you entered the wrong login information," +
-                "Please enter your user ID again.\n" +
+                "Please enter your username again.\n" +
                 "If you get it wong again FBI WILL BE KNOCKING ON YOUR DOOR IN 10 MINUTES\n" +
                 "Or enter 'sign up' to sign up for an account.");
     }
@@ -105,7 +105,7 @@ public class Presenter {
         System.out.println(obj);
     }
 
-    public void printAskMsgReciever(){
+    public void printAskMsgReceiver(){
         System.out.println("Enter username you would like to message");
     }
 
