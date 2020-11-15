@@ -20,7 +20,7 @@ public class AttendeeSystem extends UserSystem{
             } else if (attendeeChoice.equals("1")) {
                 getPresenter().printAttendeeMessageMenu();
                 String messageChoice = scanner.nextLine();
-                helperMessageSystem(username, messageChoice, scanner);
+                super.helperMessageSystem(username, messageChoice, scanner);
             } else if (attendeeChoice.equals("2")) {
                 List<UUID> available = em.getAvailableEvents();
                 getPresenter().printAvailableEvents(formatEventsInfo(em.getEventsInfo(available)));
@@ -54,46 +54,5 @@ public class AttendeeSystem extends UserSystem{
             }
         }
         return info;
-    }
-
-    private void helperMessageSystem(String username, String choice, Scanner scanner){
-        if (choice.equals("0")){
-            getPresenter().printAskMsgReceiver();
-            String receiver = scanner.nextLine();
-            getPresenter().printAsk("message");
-            String message = scanner.nextLine();
-            getMm().sendMessage(username, receiver, message);
-            getPresenter().printMessageSent();
-        } else if (choice.equals("1")){
-            //edit Message
-            getPresenter().printUnderConstruction();
-        } else if (choice.equals("2")){
-            // delete Message
-            getPresenter().printAskWhichInbox();
-            getPresenter().printUCReturns(getMm().getChats(username));
-            String inboxChoice = scanner.nextLine();
-            List<String> inbox = getMm().getInbox(username, inboxChoice);
-            int n = 0;
-            for (String message : inbox) {
-                System.out.println(n + ": " + message);
-                n += 1;
-            }
-            getPresenter().printAskWhichMessage();
-            int content = scanner.nextInt();
-            getMm().deleteMessage(getMm().getChat(username, inboxChoice).get(content));
-        } else if (choice.equals("3")){
-            // view inbox
-            getPresenter().printAskWhichInbox();
-            getPresenter().printUCReturns(getMm().getChats(username));
-            String contact = scanner.nextLine();
-            for (String message :getMm().getInbox(username, contact)){
-                System.out.println(message);
-            }
-        } else if (choice.equals("b")){
-             run(username);
-        } else {
-            getPresenter().printInvalidInput();
-            getPresenter().printAttendeeMessageMenu();
-        }
     }
 }
