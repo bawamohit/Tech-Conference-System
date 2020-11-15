@@ -41,7 +41,7 @@ public class TechConferenceSystem {
     public void run() {
         Scanner in = new Scanner(System.in);
         String loggedInUsername = null;
-        while (true) {
+        while (true) {//TODO need exit option
             loggedInUsername = startUp(in);
 
             if (um.getUserType(loggedInUsername) == UserType.ATTENDEE) {
@@ -92,9 +92,9 @@ public class TechConferenceSystem {
     }
 
     private String[] askInfo(Scanner in) {
-        presenter.printAsk("Username");
+        presenter.printAsk("Username");//TODO lowercase username
         String username = in.nextLine();
-        presenter.printAsk("Password");
+        presenter.printAsk("Password");//TODO lowercase password
         String password = in.nextLine();
         String[] info = new String[2];
         info[0] = username;
@@ -114,11 +114,11 @@ public class TechConferenceSystem {
         }
     }
 
-    private String signUp(Scanner in) {
-        presenter.printAsk("Name");
+    private String signUp(Scanner in) {//TODO sign-up successful prompt
+        presenter.printAsk("Name");//TODO lowercase name
         String name = in.nextLine();
-
-        String[] info = askInfo(in);
+        //TODO need restriction on input, currently accepts empty string
+        String[] info = askInfo(in);//TODO move isRegistered() here so user don't have to waste time inputting password?
         UserType accountType = askAccountType(in);
 
         if (um.registerUser(accountType, name, info[0], info[1])) {
@@ -130,10 +130,10 @@ public class TechConferenceSystem {
         }
     }
 
-    private String startUp(Scanner in) {
+    private String startUp(Scanner in) {//TODO add exit option, start from 0
         String username = null;
         while (username == null) {
-            presenter.printWelcome();
+            presenter.printWelcome(); //TODO move outside of while-loop?
             String loginOrSignUp = in.nextLine();
 
             switch (loginOrSignUp) {
@@ -145,6 +145,7 @@ public class TechConferenceSystem {
                     break;
                 default:
                     presenter.printInvalidInput();
+                    break; //TODO added this line
             }
         }
         return username;
