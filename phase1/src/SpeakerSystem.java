@@ -8,14 +8,22 @@ public class SpeakerSystem extends UserSystem{
 
     public void run(String Username){
         Scanner scan = new Scanner(System.in);
-        getPresenter().printSpeakerMenu();
-        String speakerChoice = scan.nextLine();
 
-        switch (speakerChoice){
-            case "0":
+        while(true){
+            getPresenter().printSpeakerMenu();
+            String speakerChoice = scan.nextLine();
 
-            default:
+            switch (speakerChoice){
+                case "0":
+                    getPresenter().printLoggedOut();
+                    break;
+                case "1":
 
+
+                case "2":
+
+                default:
+            }
         }
 //
 //        //message all attendee in a talk
