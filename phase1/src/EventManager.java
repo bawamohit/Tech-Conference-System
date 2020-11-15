@@ -167,6 +167,7 @@ public class EventManager implements Serializable {
         }
         return false;
     }
+
     public boolean ifTimeOverlap(UUID existingEvent, UUID newEvent){
         LocalDateTime existingTime = this.events.get(existingEvent).getStartTime();
         LocalDateTime newTime = this.events.get(newEvent).getStartTime();
