@@ -18,9 +18,16 @@ public class AttendeeSystem extends UserSystem{
                 getPresenter().printLoggedOut();
                 break;
             } else if (attendeeChoice.equals("1")) {
-                getPresenter().printAttendeeMessageMenu();
-                String messageChoice = scanner.nextLine();
-                super.helperMessageSystem(username, messageChoice, scanner);
+                while (true) {
+                    getPresenter().printAttendeeMessageMenu();
+                    String messageChoice = scanner.nextLine();
+                    super.helperMessageSystem(username, messageChoice, scanner);
+                    if(!messageChoice.equals("b")) {
+                        getPresenter().printInvalidInput();
+                    } else {
+                        break;
+                    }
+                }
             } else if (attendeeChoice.equals("2")) {
                 List<UUID> available = em.getAvailableEvents();
                 getPresenter().printAvailableEvents(formatEventsInfo(em.getEventsInfo(available)));

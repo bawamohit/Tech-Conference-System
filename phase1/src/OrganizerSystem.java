@@ -17,66 +17,82 @@ public class OrganizerSystem extends UserSystem {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H"); //determines pattern we want to string to be
         Presenter p = getPresenter();
         EventManager em = getEm();
-        getPresenter().printOrganizerMenu();
-        String option = sc.nextLine();
-        if (option.equals("0")) {
-            while (true) {
-                p.printAsk("event's name");
-                String eventName = sc.nextLine();
-                p.printAsk("event speaker's name");
-                String speaker = sc.nextLine();
-                p.printAsk("event's start time (enter a number from 9-17)");
-                String time = sc.nextLine();
-                p.printAsk("event's room name (enter room name)");
-                String roomName = sc.nextLine();
-                LocalDateTime startTime = LocalDateTime.parse(time, formatter);
-                if (em.addEvent(eventName, speaker, username, startTime, roomName)) {
-                    p.printSuccess();
-                    //return to menu
-                    break;
-                } else {
-                    p.printFail();
-                    //prompt again
+        while (true) {
+            getPresenter().printOrganizerMenu();
+            String option = sc.nextLine();
+            
+            if (option.equals("0")) {
+                getPresenter().printLoggedOut();
+            } else if (option.equals("1")) {
+                while (true) {
+                    getPresenter().printOrganizerMessageMenu();
+                    String messageChoice = sc.nextLine();
+                    organizerHelperMessageSystem(username, messageChoice, sc);
+                    if(!messageChoice.equals("b")) {
+                        getPresenter().printInvalidInput();
+                    } else {
+                        break;
+                    }
                 }
-            }
-        } else if (option.equals("1")) {
-            getPresenter().printOrganizerMessageMenu();
-            String messageChoice = sc.nextLine();
-            organizerHelperMessageSystem(username, option, sc);
-        } else if (option.equals("8")) {
-            p.printUnderConstruction();
-            // ask for event id
-            // remove event
-            // print action successful or unsuccessful
-        } else if (option.equals("9")) {
-            while (true) {
-                // create speaker account stuff
-            }
-        } else if (option.equals("10")) {
-            while (true) {
-                p.printAsk("new room's name");
-                String roomName = sc.nextLine();
+            } else if (option.equals("2")) {
+                while (true) {
+                    p.printAsk("event's name");
+                    String eventName = sc.nextLine();
+                    p.printAsk("event speaker's name");
+                    String speaker = sc.nextLine();
+                    p.printAsk("event's start time (enter a number from 9-17)");
+                    String time = sc.nextLine();
+                    p.printAsk("event's room name (enter room name)");
+                    String roomName = sc.nextLine();
+                    LocalDateTime startTime = LocalDateTime.parse(time, formatter);
+                    if (em.addEvent(eventName, speaker, username, startTime, roomName)) {
+                        p.printSuccess();
+                        //return to menu
+                        break;
+                    } else {
+                        p.printFail();
+                        //prompt again
+                    }
+                }
+            } else if (option.equals("8")) {
+                p.printUnderConstruction();
+                // ask for event id
+                // remove event
+                // print action successful or unsuccessful
+            } else if (option.equals("9")) {
+                while (true) {
+                    // create speaker account stuff
+                }
+            } else if (option.equals("10")) {
+                while (true) {
+                    p.printAsk("new room's name");
+                    String roomName = sc.nextLine();
 //                p.printAsk("new room's maximum capacity");
 //                String capacity = sc.nextLine();
-                if (rm.addRoom(roomName, 2)) {
-                    p.printSuccess();
-                    //return to menu
-                    break;
-                } else {
-                    p.printFail();
+                    if (rm.addRoom(roomName, 2)) {
+                        p.printSuccess();
+                        //return to menu
+                        break;
+                    } else {
+                        p.printFail();
+                    }
                 }
             }
         }
     }
 
-    private void organizerHelperMessageSystem(String username, String option, Scanner sc) {
-        super.helperMessageSystem(username, option, sc);
-        if (option.equals("4") || option.equals("5")) {
+    private void organizerHelperMessageSystem(String username, String choice, Scanner sc) {
+        super.helperMessageSystem(username, choice, sc);
+        messageAll(username, choice, sc);
+    }
+
+    private void messageAll(String username, String choice, Scanner sc) {
+        if (choice.equals("4") || choice.equals("5")) {
             getPresenter().printAsk("message");
             String content = sc.nextLine();
             List<String> userList = getUm().getUsernameList();
             for (String user : userList) {
-                if (option.equals("4") && getUm().getUserType(user) == UserType.SPEAKER) {
+                if (choice.equals("4") && getUm().getUserType(user) == UserType.SPEAKER) {
                     getMm().sendMessage(username, user, content);
                 } else if (getUm().getUserType(user) == UserType.ORGANIZER) {
                     getMm().sendMessage(username, user, content);

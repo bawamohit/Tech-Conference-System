@@ -71,7 +71,7 @@ public class Presenter {
         System.out.println("\n0. Message\n" +
                 "1. Edit a message\n" +
                 "2. Delete a message\n" +
-                "3. View message chats\n");
+                "3. View message chats");
     }
 
     public void printOrganizerMessageMenu() {

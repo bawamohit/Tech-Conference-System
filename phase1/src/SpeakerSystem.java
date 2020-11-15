@@ -6,7 +6,7 @@ public class SpeakerSystem extends UserSystem{
         super(p, uMan, eMan, mMan);
     }
 
-    public void run(String Username){
+    public void run(String username){
         Scanner scan = new Scanner(System.in);
 
         while(true){
@@ -18,23 +18,27 @@ public class SpeakerSystem extends UserSystem{
                     getPresenter().printLoggedOut();
                     break;
                 case "1":
-
-
+                    while (true) {
+                        getPresenter().printSpeakerMessageMenu();
+                        String messageChoice = scan.nextLine();
+                        speakerHelperMessageSystem(username, messageChoice, scan);
+                        if(!messageChoice.equals("b")) {
+                            getPresenter().printInvalidInput();
+                        } else {
+                            break;
+                        }
+                    }
                 case "2":
 
                 default:
             }
         }
-//
-//        //message all attendee in a talk
-//        //view all talk
-//
-//        while(true){
-//            presenter.printSpeakerMenu();
-//            String speakerChoice = scan.nextLine();
-//            if (speakerChoice.equals("7")){
-//
-//            }
-//        }
+    }
+
+    public void speakerHelperMessageSystem(String username, String choice, Scanner scan) {
+        super.helperMessageSystem(username, choice, scan);
+        if (choice.equals("4")) {
+
+        }
     }
 }
