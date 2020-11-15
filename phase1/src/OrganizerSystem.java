@@ -45,7 +45,8 @@ public class OrganizerSystem extends UserSystem {
                     p.printAsk("event's room name (enter room name)");
                     String roomName = sc.nextLine();
                     LocalDateTime startTime = LocalDateTime.parse(time, formatter);
-                    if (em.addEvent(eventName, speaker, username, startTime, roomName)) {
+                    int capacity = rm.getRoomCapacity(roomName);
+                    if (em.addEvent(eventName, speaker, username, startTime, roomName, capacity)) {
                         p.printSuccess();
                         //return to menu
                         break;
