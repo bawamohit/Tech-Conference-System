@@ -1,5 +1,3 @@
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class AttendeeSystem extends UserSystem{
@@ -71,7 +69,7 @@ public class AttendeeSystem extends UserSystem{
         List<UUID> availEvents = getEm().getAvailableEvents();
         List<String> eventInfo = getEm().getEventsStrings(availEvents);
         getPresenter().printAskSignUp();
-        getPresenter().printAvailableEvents(formatInfo(em.getEventsStrings(availEvents)));
+        getPresenter().printAvailableEvents(formatInfo(eventInfo));
         String choice = scanner.nextLine();
         if (choice.matches("^[0-9]*$")) {
             int eventChoice = Integer.parseInt(choice);
