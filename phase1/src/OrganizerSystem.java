@@ -13,7 +13,7 @@ public class OrganizerSystem extends UserSystem {
 
     public void run(String username) {
         Scanner sc = new Scanner(System.in);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H"); //determines pattern we want to string to be
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         Presenter p = getPresenter();
         EventManager em = getEm();
         while (true) {
@@ -40,10 +40,10 @@ public class OrganizerSystem extends UserSystem {
                     p.printAsk("event speaker's name");
                     String speaker = sc.nextLine();
                     p.printAsk("event's start time (enter a number from 9-17)");
-                    String time = sc.nextLine();
+                    Integer time = sc.nextInt();
                     p.printAsk("event's room name (enter room name)");
                     String roomName = sc.nextLine();
-                    LocalDateTime startTime = LocalDateTime.parse(time, formatter);
+                    LocalDateTime startTime = LocalDateTime.of(2020, 06, 9, time, 00, 00);
                     int capacity = rm.getRoomCapacity(roomName);
                     if (em.addEvent(eventName, speaker, username, startTime, roomName, capacity)) {
                         p.printSuccess();
