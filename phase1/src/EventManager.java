@@ -149,19 +149,7 @@ public class EventManager implements Serializable {
         if (event.getAttendees().contains(username)){
             return false;
         }
-        //check availability of event somehow
-//        RoomManager rm = new RoomManager();
-//        if (!rm.hasSpace(event.getEventRoomName(), (event.getAttendees().size()))){
-//            event.setCanSignUp(false); //not supposed to call rm in em?
-//            return false;
-//        }else{
-//            event.setCanSignUp(true);
-//            List<String> updated_event = event.getAttendees();
-//            updated_event.add(username);
-//            event.setAttendees(updated_event);
-//            return true;
-//        }
-    return true;
+        return true;
     }
 
     /**
@@ -179,6 +167,10 @@ public class EventManager implements Serializable {
         }
         return false;
     }
-
+    public boolean ifTimeOverlap(UUID existingEvent, UUID newEvent){
+        LocalDateTime existingTime = this.events.get(existingEvent).getStartTime();
+        LocalDateTime newTime = this.events.get(newEvent).getStartTime();
+        return !newTime.isAfter(existingTime.minusHours(1)) || !newTime.isBefore(existingTime.plusHours(1));
+    }
 
 }
