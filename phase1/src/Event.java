@@ -13,6 +13,7 @@ public class Event implements Serializable {
     private UUID id;
     private String roomName;
     private boolean canSignUp;
+    private int max_capacity;
 
     /**
      * The constructor takes eventName, speaker, organizer, startTime of event and assigns each variable.
@@ -23,12 +24,14 @@ public class Event implements Serializable {
      * @param organizer organizer of event
      * @param startTime date and time of event
      */
-    public Event(String eventName, String speaker, String organizer, LocalDateTime startTime, String roomName){
+    public Event(String eventName, String speaker, String organizer, LocalDateTime startTime, String roomName,
+                 int max_capacity){
         this.eventName = eventName;
         this.speaker = speaker;
         this.organizer = organizer;
         this.startTime = startTime;
         this.roomName = roomName;
+        this.max_capacity = max_capacity;
         attendees = new ArrayList<>();
         canSignUp = true;
         id = UUID.randomUUID();
@@ -120,5 +123,14 @@ public class Event implements Serializable {
      */
     public UUID getId() {
         return id;
+    }
+
+    /**
+     * Implements Getter, getId, for id.
+     *
+     * @return id of event.
+     */
+    public boolean isFull() {
+        return (attendees.size() >= max_capacity);
     }
 }
