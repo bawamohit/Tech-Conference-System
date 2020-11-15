@@ -1,5 +1,6 @@
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -35,6 +36,19 @@ public class Event implements Serializable {
         attendees = new ArrayList<>();
         canSignUp = true;
         id = UUID.randomUUID();
+    }
+
+    /**
+     * Implements the default toString method and return a String with the following format:
+     * "The event <eventName> will occur at <startTime> in <roomName>.
+     *
+     * @return A string representation of the event.
+     */
+    @Override
+    public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedTime = startTime.format(formatter);
+        return "The event " + eventName + " will occur at " + formattedTime + " in " + roomName + ".";
     }
 
     /**

@@ -28,14 +28,25 @@ public class AttendeeSystem extends UserSystem{
                         break;
                     }
                 }
-            } else if (attendeeChoice.equals("2")) {
+            } else if (attendeeChoice.equals("2")) { //view available events
                 List<UUID> available = em.getAvailableEvents();
-                getPresenter().printAvailableEvents(formatEventsInfo(em.getEventsInfo(available)));
+                getPresenter().printAvailableEvents(formatInfo(em.getEventsStrings(available)));
             } else if (attendeeChoice.equals("3")) {//we need to make list of event names.
                 getPresenter().printUnderConstruction();
             } else if (attendeeChoice.equals("4")) { //signup event
-//                System.out.println(makeOrderedPromptLists(getEm().getEvents()));
-                getPresenter().printUnderConstruction();
+                List<UUID> available = em.getAvailableEvents();
+                getPresenter().printAvailableEvents(formatInfo(em.getEventsStrings(available)));
+                getPresenter().printAskSignUp();
+                Integer i = Integer.parseInt(scanner.nextLine());
+                if (i >= 0 && i <= available.size()){
+                    //split based on colon
+                    //find in ID to string
+                    //get room capacity (RM), get attendee list (EM), compare the two to see if can sign up
+                    //add dude to attendee list; add event to user's attending
+                }else{
+                    getPresenter().printInvalidInput();
+                    //prompt again
+                }
             } else if (attendeeChoice.equals("5")) { //cancel event
 //                getPresenter().printUCReturns(getUm().getEventsAttending(username));
 //                System.out.println("Type the name of event you would like to remove");
@@ -47,17 +58,11 @@ public class AttendeeSystem extends UserSystem{
         }
     }
 
-    private String formatEventsInfo(HashMap<String, HashMap<LocalDateTime, String>> events_info) {
+    private String formatInfo(List<String> eventStrings){
         String info = null;
-        for (int i = 0; i < events_info.size(); i++) {
-            for (String name : events_info.keySet()) {
-                HashMap<LocalDateTime, String> map = events_info.get(name);
-                for (LocalDateTime time : map.keySet()) {
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H");
-                    String formattedTime = time.format(formatter);
-                    info += "\n" + i + ". " + name + "@ " + formattedTime + "in " + map.get(time);
-                }
-            }
+        int i = 0;
+        for (String event: eventStrings){
+            info += "\n" + i + ": " + event;
         }
         return info;
     }

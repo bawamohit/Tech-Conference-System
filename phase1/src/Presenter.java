@@ -136,4 +136,8 @@ public class Presenter {
                 "\n Username: "+ username +
                 "\n Password: " + pw);
     }
+
+    public void printAskSignUp(){
+        System.out.println("Enter the number of the event you would like to register for");
+    }
 }

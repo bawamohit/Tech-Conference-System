@@ -27,6 +27,34 @@ public class EventManager implements Serializable {
     }
 
     /**
+     * Implements Getter, getEventsStrings, for event strings.
+     *
+     * @return event strings for all scheduled events
+     */
+
+    public List<String> getEventsStrings(List<UUID> IDs) {
+        ArrayList<String> eventString = new ArrayList<>();
+        for (UUID id: IDs){
+            eventString.add(events.get(id).toString());
+        }
+        return eventString;
+    }
+
+    /**
+     * Implements Getter, getStringToID, for events' IDs and string representation.
+     *
+     * @return a Map of Event string representation to its ID.
+     */
+
+    public HashMap<String, UUID> getStringToID(List<UUID> IDs){
+        HashMap<String, UUID> eventStringToID = new HashMap<>();
+        for (UUID id: IDs){
+            eventStringToID.put(events.get(id).toString(), id);
+        }
+        return eventStringToID;
+    }
+
+    /**
      * Implements Getter, getEventsInfo, for a list of events.
      *
      * @return a Map of Event Name to its time and location
@@ -58,18 +86,6 @@ public class EventManager implements Serializable {
             }
         }
         return availableEvents;
-    }
-
-    /**
-     * Implements helper method, findEvent, to find event object when given its name.
-     *
-     * @return an Event object in hashmap of events associated with the given String eventName.
-     */
-    private boolean canAddAttendee(UUID eventID){
-        if (events.get(eventID).isFull()){
-            return false;
-        }
-        return true;
     }
 
     /**

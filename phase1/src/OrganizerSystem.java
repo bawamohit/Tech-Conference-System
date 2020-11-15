@@ -12,7 +12,6 @@ public class OrganizerSystem extends UserSystem {
     }
 
     public void run(String username) {
-        System.out.println("testing");
         Scanner sc = new Scanner(System.in);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H"); //determines pattern we want to string to be
         Presenter p = getPresenter();
@@ -20,9 +19,9 @@ public class OrganizerSystem extends UserSystem {
         while (true) {
             getPresenter().printOrganizerMenu();
             String option = sc.nextLine();
-            
             if (option.equals("0")) {
                 getPresenter().printLoggedOut();
+                break;
             } else if (option.equals("1")) {
                 while (true) {
                     getPresenter().printOrganizerMessageMenu();
