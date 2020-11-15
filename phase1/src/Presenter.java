@@ -140,4 +140,10 @@ public class Presenter {
     public void printAskSignUp(){
         System.out.println("Enter the number of the event you would like to register for");
     }
+    public void printAlreadyBookedTime(){
+        System.out.println("You have another event already book during the time of this event.");
+    }
+    public void printEventSignUpSuccess(){
+        System.out.println("You have now sign up to this event.");
+    }
 }
