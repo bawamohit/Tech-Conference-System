@@ -96,7 +96,7 @@ public class RoomManager implements Serializable {
             return false;
         }
         for (LocalDateTime time : room.getSchedule().keySet()) {
-            if (time.isAfter(start.minusHours(1)) && time.isBefore(start.plusHours(1))) {
+            if (start.isAfter(time.minusHours(1)) && start.isBefore(time.plusHours(1))) {
                 return false;
             }
         }
