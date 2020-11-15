@@ -105,4 +105,8 @@ public class RoomManager implements Serializable {
         room.setRoomSchedule(updated_room);
         return true;
     }
+
+    public int getRoomCapacity(String roomName) {
+        return rooms.get(roomName).getCapacity();
+    }
 }
