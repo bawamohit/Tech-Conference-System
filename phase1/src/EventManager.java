@@ -179,6 +179,10 @@ public class EventManager implements Serializable {
         }
         return false;
     }
-
+    public boolean ifSameTime(UUID eventFirst, UUID eventSecond){
+        LocalDateTime firstTime = this.events.get(eventFirst).getStartTime();
+        LocalDateTime secondTime = this.events.get(eventSecond).getStartTime();
+        return firstTime.isEqual(secondTime);
+    }
 
 }
