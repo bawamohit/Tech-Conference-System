@@ -20,10 +20,13 @@ public class AttendeeSystem extends UserSystem{
             } else if (attendeeChoice.equals("1")) {
                 getPresenter().printAttendeeMessageMenu();
                 String messageChoice = scanner.nextLine();
-                super.helperMessageSystem(username, messageChoice, scanner);
+                helperMessageSystem(username, messageChoice, scanner);
             } else if (attendeeChoice.equals("2")) {
                 List<UUID> available = em.getAvailableEvents();
                 getPresenter().printAvailableEvents(formatEventsInfo(em.getEventsInfo(available)));
+                getPresenter().printAsk("desired event's number");
+                int index = Integer.parseInt(scanner.nextLine());
+                //addattendee
             } else if (attendeeChoice.equals("3")) {//we need to make list of event names.
 //                getPresenter().printUCReturns(getUm().getEventsAttending(username));
                 getPresenter().printUnderConstruction();
@@ -41,18 +44,74 @@ public class AttendeeSystem extends UserSystem{
         }
     }
 
-    private String formatEventsInfo(HashMap<String, HashMap<LocalDateTime, String>> events_info) {
+    private String formatEventsInfo(LinkedHashMap<String, HashMap<LocalDateTime, String>> eventsInfo) {
         String info = null;
-        for (int i = 0; i < events_info.size(); i++) {
-            for (String name: events_info.keySet()){
-                HashMap<LocalDateTime, String> map = events_info.get(name);
-                for (LocalDateTime time: map.keySet()){
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H");
-                    String formattedTime = time.format(formatter);
-                    info += "\n" + i + ". " + name + "@ " + formattedTime + "in " + map.get(time);
-                }
+        int i = 0;
+        for (String name: eventsInfo.keySet()){
+            HashMap<LocalDateTime, String> map = eventsInfo.get(name);
+            for (LocalDateTime time: map.keySet()){
+                String hour = Integer.toString(time.getHour());
+                info += "\n" + i + ". " + name + "@ " + hour + "in " + map.get(time);
+                i++;
             }
         }
         return info;
+    }
+
+//    private UUID getIDFromIndex(int i, LinkedHashMap<String, HashMap<LocalDateTime, String>> eventsInfo){
+//        Set<String> keys = eventsInfo.keySet();
+//        List<String> listKeys = new ArrayList<Integer>(keys);
+//    }
+
+//    private String makeOrderedPromptLists(List list){
+//        String numberedPrompt = new String();
+//        int i = 0;
+//        for (Object T: list){
+//            String num = Integer.toString(i);
+//            numberedPrompt += "\n" + num + ". " + T.toString();
+//            i++;
+//        }
+//        return numberedPrompt;
+//    }
+
+    private void helperMessageSystem(String username, String choice, Scanner scanner){
+        if (choice.equals("0")){
+            getPresenter().printAskMsgReceiver();
+            String receiver = scanner.nextLine();
+            getPresenter().printAsk("message");
+            String message = scanner.nextLine();
+            getMm().sendMessage(username, receiver, message);
+            getPresenter().printMessageSent();
+        } else if (choice.equals("1")){
+            //edit Message
+            getPresenter().printUnderConstruction();
+        } else if (choice.equals("2")){
+            // delete Message
+            System.out.println(getMm().getChats(username));
+            getPresenter().printAskWhichInbox();
+            String inboxChoice = scanner.nextLine();
+            List<String> inbox = getMm().getInbox(username, inboxChoice);
+            int n = 0;
+            for (String message : inbox) {
+                System.out.println(n + ": " + message);
+                n += 1;
+            }
+            getPresenter().printAskWhichMessage();
+            String content = scanner.nextLine();
+            getMm().deleteMessage(getMm().getChat(username, inboxChoice).get(n));
+        } else if (choice.equals("3")){
+            // view inbox
+            getPresenter().printAskWhichInbox();
+            getPresenter().printUCReturns(getMm().getChats(username));
+            String contact = scanner.nextLine();
+            for (String message :getMm().getInbox(username, contact)){
+                System.out.println(message);
+            }
+        } else if (choice.equals("b")){
+             run(username);
+        } else {
+            getPresenter().printInvalidInput();
+            getPresenter().printAttendeeMessageMenu();
+        }
     }
 }

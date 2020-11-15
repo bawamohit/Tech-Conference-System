@@ -130,4 +130,10 @@ public class Presenter {
     public void printUserDoesntExist(){
         System.out.println("The user you are trying to message does not exist");
     }
+
+    public void printUserInfo(UserType usertype, String username, String pw){
+        System.out.println("\n The information for the " + usertype + " account you just created is: " +
+                "\n Username: "+ username +
+                "\n Password: " + pw);
+    }
 }

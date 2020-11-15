@@ -14,12 +14,11 @@ public class OrganizerSystem extends UserSystem {
     public void run(String username) {
         System.out.println("testing");
         Scanner sc = new Scanner(System.in);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("H"); //determines pattern we want to string to be
         Presenter p = getPresenter();
         EventManager em = getEm();
         getPresenter().printOrganizerMenu();
         String option = sc.nextLine();
-        if (option.equals("0")) {
+        if (option.equals("2")) { //create event
             while (true) {
                 p.printAsk("event's name");
                 String eventName = sc.nextLine();
@@ -27,32 +26,49 @@ public class OrganizerSystem extends UserSystem {
                 String speaker = sc.nextLine();
                 p.printAsk("event's start time (enter a number from 9-17)");
                 String time = sc.nextLine();
-                p.printAsk("event's room name (enter room name)");
+                Integer hour = Integer.parseInt(time);
+                p.printAsk("event's room name");
                 String roomName = sc.nextLine();
-                LocalDateTime startTime = LocalDateTime.parse(time, formatter);
-                if (em.addEvent(eventName, speaker, username, startTime, roomName)) {
+                p.printAsk("event's maximum capacity");
+                int max = Integer.parseInt(sc.nextLine());
+                LocalDateTime startTime = LocalDateTime.of(2020, 6, 9, hour, 00);
+                if (em.addEvent(eventName, speaker, username, startTime, roomName, max)) {
                     p.printSuccess();
-                    //return to menu
-                    break;
+                    p.printBack();
+                    if (sc.nextLine().equals('b')){
+                        run(username);
+                    } else {
+                        getPresenter().printInvalidInput();
+                    }//is this how you return
                 } else {
                     p.printFail();
                     //prompt again
                 }
             }
-        } else if (option.equals("1")) {
-            getPresenter().printOrganizerMessageMenu();
+        } else if (option.equals("1")) { // message
+            p.printOrganizerMessageMenu();
             String messageChoice = sc.nextLine();
             organizerHelperMessageSystem(username, option, sc);
-        } else if (option.equals("8")) {
+        } else if (option.equals("4")) { //remove event
             p.printUnderConstruction();
             // ask for event id
             // remove event
             // print action successful or unsuccessful
-        } else if (option.equals("9")) {
-            while (true) {
-                // create speaker account stuff
-            }
-        } else if (option.equals("10")) {
+        } else if (option.equals("5")) { //create speaker
+            p.printAsk("speaker's name");
+            String speakerName = sc.nextLine();
+            p.printAsk("speaker's username");
+            String speakerUsername = sc.nextLine();
+            p.printAsk("speaker's account password");
+            String speakerPW = sc.nextLine();
+            if (um.registerUser(UserType.SPEAKER, speakerName, speakerUsername, speakerPW)) {
+                p.printSuccess();
+                p.printUserInfo(UserType.SPEAKER, speakerUsername, speakerPW);
+            } else {
+                p.printUsernameExists();
+                p.printFail();
+                }
+        } else if (option.equals("6")) { //create room
             while (true) {
                 p.printAsk("new room's name");
                 String roomName = sc.nextLine();

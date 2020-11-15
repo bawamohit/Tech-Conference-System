@@ -8,13 +8,14 @@ public class RoomManager implements Serializable {
     // attributes: all the room name and their Room object,
     // methods: add room, remove room?, add event to room schedule, remove event from room schedule, create room,
     // check room capacity(or does this go in Room?),
+
     /**
      * The constructor takes rooms and assigns the variable an appropriate value.
-     *
-     *
      */
 
-    public RoomManager(){ this.rooms = new HashMap<>(); }
+    public RoomManager() {
+        this.rooms = new HashMap<>();
+    }
 
     /**
      * Implements Getter, getRooms, for room names.
@@ -22,7 +23,7 @@ public class RoomManager implements Serializable {
      * @return List of all room names
      */
 
-    public List<String> getRooms(){
+    public List<String> getRooms() {
         Collection<String> roomc = rooms.keySet();
         ArrayList<String> roomlist = new ArrayList<String>(roomc);
         return roomlist;
@@ -33,7 +34,7 @@ public class RoomManager implements Serializable {
      *
      * @return a Room object with assigned attributes as specified by the parameters
      */
-    public Room createRoom(String roomName, int capacity){
+    public Room createRoom(String roomName, int capacity) {
         return new Room(roomName, capacity);
     }
 
@@ -43,9 +44,9 @@ public class RoomManager implements Serializable {
      * @return a boolean indicating if room was successfully added
      */
     public boolean addRoom(String roomName, int capacity) {
-        if (rooms.containsKey(roomName)){
+        if (rooms.containsKey(roomName)) {
             return false;
-        }else{
+        } else {
             Room new_room = createRoom(roomName, capacity);
             rooms.put(roomName, new_room);
             return true;
@@ -57,12 +58,9 @@ public class RoomManager implements Serializable {
      *
      * @return a Room object in hashmap of rooms associated with the given String roomName
      */
-    private Room findRoom(String roomName){
-        for (String name: rooms.keySet()){
-            Room r = rooms.get(name);
-            if (r.getRoomName().equals(roomName)){
-                return r;
-            }
+    private Room findRoom(String roomName) {
+        if (rooms.containsKey(roomName)) {
+            return rooms.get(roomName);
         }
         return null;
     }
@@ -72,12 +70,12 @@ public class RoomManager implements Serializable {
      *
      * @return a boolean indicating if event was successfully removed
      */
-    public boolean removeEventFromSchedule(UUID eventID){
-        for (String name: rooms.keySet()){
+    public boolean removeEventFromSchedule(UUID eventID) {
+        for (String name : rooms.keySet()) {
             Room r = rooms.get(name);
             HashMap<LocalDateTime, UUID> schedule = r.getSchedule();
-            for (LocalDateTime time: schedule.keySet()){
-                if (schedule.get(time).equals(eventID)){
+            for (LocalDateTime time : schedule.keySet()) {
+                if (schedule.get(time).equals(eventID)) {
                     schedule.remove(time);
                     r.setRoomSchedule(schedule);
                     return true; // since same event with diff time will have different ids, we don't need to worry about it
@@ -88,17 +86,17 @@ public class RoomManager implements Serializable {
     }
 
     /**
-     * Implements modifier, addEventToRoom, for event in a room.
+     * Implements modifier, addEventToSchedule, for event in a room.
      *
      * @return a boolean indicating if event was successfully added
      */
-    public boolean addEventToRoom(UUID eventId, String roomName, LocalDateTime start){
+    public boolean addEventToSchedule(UUID eventId, String roomName, LocalDateTime start) {
         Room room = findRoom(roomName);
-        if (room.getSchedule().containsValue(eventId)){
+        if (room.getSchedule().containsValue(eventId)) {
             return false;
         }
-        for (LocalDateTime time: room.getSchedule().keySet()){
-            if (time.isAfter(start.minusHours(1)) && time.isBefore(start.plusHours(1))){
+        for (LocalDateTime time : room.getSchedule().keySet()) {
+            if (time.isAfter(start.minusHours(1)) && time.isBefore(start.plusHours(1))) {
                 return false;
             }
         }
@@ -106,18 +104,5 @@ public class RoomManager implements Serializable {
         updated_room.put(start, eventId);
         room.setRoomSchedule(updated_room);
         return true;
-    }
-
-    /**
-     * Implements checker, hasSpace, for event in a room.
-     *
-     * @return a boolean indicating if room still has Space
-     */
-    public boolean hasSpace(String roomName, int numOfAttendees){
-        Room room = findRoom(roomName);
-        if (room.getCapacity() > (numOfAttendees)){
-            return true; //think we need to put this in controller bc no way to get num of attendees without clean architecture violation
-        }
-        return false;
     }
 }
