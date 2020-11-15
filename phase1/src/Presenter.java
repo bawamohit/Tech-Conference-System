@@ -140,4 +140,8 @@ public class Presenter {
     public void printAskSignUp(){
         System.out.println("Enter the number of the event you would like to register for");
     }
+
+    public void printDNE(String obj){
+        System.out.println("The " + obj + " does not exist in the system.");
+    }
 }

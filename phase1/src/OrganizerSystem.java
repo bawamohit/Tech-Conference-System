@@ -43,27 +43,48 @@ public class OrganizerSystem extends UserSystem {
                     Integer time = sc.nextInt();
                     p.printAsk("event's room name (enter room name)");
                     String roomName = sc.nextLine();
-                    LocalDateTime startTime = LocalDateTime.of(2020, 06, 9, time, 00, 00);
-                    int capacity = rm.getRoomCapacity(roomName);
-                    if (em.addEvent(eventName, speaker, username, startTime, roomName, capacity)) {
-                        p.printSuccess();
-                        //return to menu
-                        break;
-                    } else {
-                        p.printFail();
-                        //prompt again
+                    if (!rm.getRooms().contains(roomName)){
+                        p.printDNE(roomName);
+                    }else {
+                        LocalDateTime startTime = LocalDateTime.of(2020, 6, 9, time, 0, 0);
+                        int capacity = rm.getRoomCapacity(roomName);
+                        if (em.addEvent(eventName, speaker, username, startTime, roomName, capacity)) {
+                            p.printSuccess();
+                            p.printBack();
+                            if (!sc.nextLine().equals('b')) {
+                                p.printInvalidInput();
+                            } else {
+                                break;
+                            }
+                        } else {
+                            p.printFail(); //does this automatically prompt again?
+                        }
                     }
                 }
-            } else if (option.equals("8")) {
+            } else if (option.equals("3")){
                 p.printUnderConstruction();
+            } else if (option.equals("4")) { //remove Event
                 // ask for event id
                 // remove event
                 // print action successful or unsuccessful
-            } else if (option.equals("9")) {
+            } else if (option.equals("5")) { //create speaker
                 while (true) {
-                    // create speaker account stuff
+                    p.printAsk("speaker's name");
+                    String speakerName = sc.nextLine();
+                    p.printAsk("speaker's username");
+                    String speakerUsername = sc.nextLine();
+                    p.printAsk("speaker's account password");
+                    String speakerPW = sc.nextLine();
+                    if (um.registerUser(UserType.SPEAKER, speakerName, speakerUsername, speakerPW)) {
+                        p.printSuccess();
+                        p.printUserInfo(UserType.SPEAKER, speakerUsername, speakerPW);
+                        break;
+                    } else {
+                        p.printUsernameExists(); //or invalid input?
+                        p.printFail();
+                    }
                 }
-            } else if (option.equals("10")) {
+            } else if (option.equals("6")) { //create new room
                 while (true) {
                     p.printAsk("new room's name");
                     String roomName = sc.nextLine();
