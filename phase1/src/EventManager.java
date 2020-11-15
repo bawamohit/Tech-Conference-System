@@ -174,4 +174,12 @@ public class EventManager implements Serializable {
         return !newTime.isAfter(existingTime.minusHours(1)) || !newTime.isBefore(existingTime.plusHours(1));
     }
 
+    public List<String> convertIDtoName(List<UUID> uuidList){
+        List<String> namelist = new ArrayList<>();
+        for (UUID id :uuidList){
+            Event event = events.get(id);
+            namelist.add(event.getEventName());
+        }
+        return namelist;
+    }
 }

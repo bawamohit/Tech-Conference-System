@@ -140,13 +140,16 @@ public class Presenter {
     public void printAskSignUp(){
         System.out.println("Enter the number of the event you would like to register for");
     }
+    public void printAskWhichEventCancel(){System.out.println("Type the name of event you would like to remove");}
     public void printAlreadyBookedTime(){
         System.out.println("You have another event already book during the time of this event.");
     }
     public void printEventSignUpSuccess(){
         System.out.println("You have now sign up to this event.");
     }
-
+    public void printEventCancelSuccess(){
+        System.out.println("You have now removed from this event.");
+    }
     public void printDNE(String obj){
         System.out.println("The " + obj + " does not exist in the system.");
     }
