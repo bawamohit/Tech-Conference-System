@@ -2,11 +2,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public abstract class UserSystem {
-    private Presenter presenter;
-    private UserManager um;
-    private EventManager em;
-    private MessageManager mm;
-
+    protected Presenter presenter;
+    protected UserManager um;
+    protected EventManager em;
+    protected MessageManager mm;
+    //TODO If these variables were set to protected, then don't need to initiate new variables in subclasses, or getters in this class
+    // and can we please name the variables to more readable stuff this takes me two minutes to translate every time I see it out of context
     public UserSystem (Presenter p, UserManager uMan, EventManager eMan, MessageManager mMan) {
         presenter = p;
         um = uMan;
