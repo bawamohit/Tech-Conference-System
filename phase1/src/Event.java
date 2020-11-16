@@ -34,7 +34,6 @@ public class Event implements Serializable {
         this.roomName = roomName;
         this.max_capacity = max_capacity;
         attendees = new ArrayList<>();
-        canSignUp = true;
         id = UUID.randomUUID();
     }
 
@@ -48,7 +47,7 @@ public class Event implements Serializable {
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String formattedTime = startTime.format(formatter);
-        return "The event " + eventName + " will occur at " + formattedTime + " in " + roomName + ".";
+        return eventName + ", " + formattedTime + ", " + roomName;
     }
 
     /**
@@ -106,12 +105,12 @@ public class Event implements Serializable {
     }
 
     /**
-     * Implements Getter, getCanSignUp, for canSignUp.
+     * Implements Getter, getMaxCapacity, for max_capacity.
      *
-     * @return whether event is still available for signup
+     * @return the event's maximum capacity
      */
-    public boolean getCanSignUp(){
-        return canSignUp;
+    public int getMaxCapacity(){
+        return max_capacity;
     }
 
     /**
@@ -124,13 +123,6 @@ public class Event implements Serializable {
     }
 
     /**
-     * Implements Setter, setCanSignUp, for canSignUp.
-     *
-     * @param canSignUp whether this event is still open for signup
-     */
-    public void setCanSignUp(boolean canSignUp){ this.canSignUp = canSignUp; }
-
-    /**
      * Implements Getter, getId, for id.
      *
      * @return id of event.
@@ -139,12 +131,4 @@ public class Event implements Serializable {
         return id;
     }
 
-    /**
-     * Implements Getter, getId, for id.
-     *
-     * @return id of event.
-     */
-    public boolean isFull() {
-        return (attendees.size() >= max_capacity);
-    }
 }

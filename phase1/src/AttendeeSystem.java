@@ -7,7 +7,6 @@ public class AttendeeSystem extends UserSystem{
 
     public void run(String username) {
         Scanner scanner = new Scanner(System.in);
-        EventManager em = getEventManager();
         label:
         while (true) {
             getPresenter().printAttendeeMenu();
@@ -35,7 +34,7 @@ public class AttendeeSystem extends UserSystem{
                     break;
                 case "3":
                     List<UUID> eventlist = getUserManager().getEventsAttending(username);
-                    getPresenter().printUCReturns(getEventManager().convertIDtoName(eventlist));
+                    getPresenter().printUCReturns(em.convertIDtoName(eventlist));
                     break;
                 case "4":  //signup event
                     signupAttendeeHelper(username, scanner);
@@ -66,8 +65,9 @@ public class AttendeeSystem extends UserSystem{
     }
 
     private void signupAttendeeHelper(String username, Scanner scanner) {
-        List<UUID> availEvents = getEventManager().getAvailableEvents();
-        List<String> eventInfo = getEventManager().getEventsStrings(availEvents);
+        List<UUID> availEvents = em.getAvailableEvents();
+        List<String> eventInfo = em.getEventsStrings(availEvents);
+        HashMap<String, UUID> stringToID = em.getStringToID(availEvents);
         getPresenter().printAskSignUp();
         getPresenter().printAvailableEvents(formatInfo(eventInfo));
         String choice = scanner.nextLine();
@@ -77,14 +77,21 @@ public class AttendeeSystem extends UserSystem{
                 getPresenter().printInvalidInput();
             }
             else{
-                UUID id = getEventManager().getAvailableEvents().get(eventChoice);
-                if (isAttendeeFree(username, id)){
-                    getEventManager().addAttendee(username, id);
+                int i = Integer.parseInt(choice);
+                String eventString = eventInfo.get(i);
+                UUID id = stringToID.get(eventString);
+                String roomName = eventString.split(", ")[2];
+                if (isAttendeeFree(username, id) && (em.getEventAttendees(id).size() < getRoomManager().getRoomCapacity(roomName))){
+                    em.addAttendee(username, id);
                     getUserManager().addEventAttending(username, id);
                     getPresenter().printEventSignUpSuccess();
                 }
                 else{
-                    getPresenter().printAlreadyBookedTime();
+                    if (em.getEventAttendees(id).size() >= getRoomManager().getRoomCapacity(roomName)){
+                        getPresenter().printEventFull();
+                    } else {
+                        getPresenter().printAlreadyBookedTime();
+                    }
                 }
             }
         } else {
@@ -94,7 +101,7 @@ public class AttendeeSystem extends UserSystem{
 
     private boolean cancelAttendeeHelper(String username, Scanner scanner){
         List<UUID> eventlist = getUserManager().getEventsAttending(username);
-        List<String> eventnames = (getEventManager().convertIDtoName(eventlist));
+        List<String> eventnames = (em.convertIDtoName(eventlist));
         getPresenter().printUCReturns(eventnames);
         getPresenter().printAskWhichEventCancel();
         String eventChoice = scanner.nextLine();
@@ -103,7 +110,7 @@ public class AttendeeSystem extends UserSystem{
         }
         UUID eventRemoving = eventlist.get(eventnames.indexOf(eventChoice));
         getUserManager().removeEventAttending(username, eventRemoving);
-        getEventManager().removeAttendee(username, eventRemoving);
+        em.removeAttendee(username, eventRemoving);
 
         return true;
     }
@@ -111,7 +118,7 @@ public class AttendeeSystem extends UserSystem{
     private boolean isAttendeeFree(String username, UUID newEvent){
         List<UUID> userEvents = getUserManager().getEventsAttending(username);
         for (UUID events :userEvents){
-            if (getEventManager().ifTimeOverlap(events, newEvent)){
+            if (em.ifTimeOverlap(events, newEvent)){
                 return false;
             }
         }

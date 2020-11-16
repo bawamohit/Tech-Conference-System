@@ -33,7 +33,7 @@ public class EventManager implements Serializable {
      */
 
     public List<String> getEventsStrings(List<UUID> IDs) {
-        ArrayList<String> eventString = new ArrayList<>();
+        List<String> eventString = new ArrayList<>();
         for (UUID id: IDs){
             eventString.add(events.get(id).toString());
         }
@@ -80,12 +80,31 @@ public class EventManager implements Serializable {
     public List<UUID> getAvailableEvents() {
         ArrayList<UUID> availableEvents = new ArrayList<>();
         for (UUID id: events.keySet()){
-            Event e = events.get(id);
-            if (e.getCanSignUp()){
+            if (!isFull(id)){
                 availableEvents.add(id);
             }
         }
         return availableEvents;
+    }
+
+    /**
+     * Implements Getter, getEventAttendees, for an event in events.
+     *
+     * @return event attendee list
+     */
+
+    public List<String> getEventAttendees(UUID eventID) {
+        return events.get(eventID).getAttendees();
+    }
+
+    /**
+     * Implements Checker, isFull, for an event's current capacity.
+     *
+     * @return true if the number of attendees exceeds event's maximum capacity and false otherwise
+     */
+    public boolean isFull(UUID eventID) {
+        Event e = events.get(eventID);
+        return (e.getAttendees().size() >= e.getMaxCapacity());
     }
 
     /**
@@ -102,13 +121,19 @@ public class EventManager implements Serializable {
                 return false;
             }
         }
-        if (startTime.getHour() >= 9 && startTime.getHour() <= 16){
-            events.put(new_event.getId(), new_event);
-            return true;
-        }else{
+        if (startTime.getHour() <= 9){
+            return false;
+        } else if (startTime.getHour() == 16){
+            if (startTime.getMinute() == 30){
+                return false;
+            }
+        } else if (startTime.getHour() > 16) {
             return false;
         }
+        events.put(new_event.getId(), new_event);
+        return true;
     }
+
 
     ///**
      //* Implements modifier, removeEvent, for events.
@@ -162,7 +187,6 @@ public class EventManager implements Serializable {
         List<String> updated_event = event.getAttendees();
         if (updated_event.remove(username)){
             event.setAttendees(updated_event);
-            event.setCanSignUp(true);
             return true;
         }
         return false;

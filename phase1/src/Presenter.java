@@ -148,9 +148,10 @@ public class Presenter {
         System.out.println("You have now sign up to this event.");
     }
     public void printEventCancelSuccess(){
-        System.out.println("You have now removed from this event.");
+        System.out.println("You are now removed from this event.");
     }
     public void printDNE(String obj){
         System.out.println("The " + obj + " does not exist in the system.");
     }
+    public void printEventFull(){ System.out.println("Sorry, this event is full."); }
 }
