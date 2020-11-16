@@ -33,8 +33,8 @@ public class AttendeeSystem extends UserSystem{
                     presenter.printAvailableEvents(formatInfo(eventM.getEventsStrings(available)));
                     break;
                 case "3":
-                    List<UUID> eventlist = userM.getEventsAttending(username);
-                    presenter.printUCReturns(eventM.convertIDtoName(eventlist));
+                    List<UUID> eventList = userM.getEventsAttending(username);
+                    presenter.printUCReturns(eventM.convertIDtoName(eventList));
                     break;
                 case "4":  //signup event
                     signupAttendeeHelper(username, scanner);
@@ -56,17 +56,17 @@ public class AttendeeSystem extends UserSystem{
     }
 
     private String formatInfo(List<String> eventStrings){
-        String info = "";
+        StringBuilder info = new StringBuilder();
         int i = 0;
         for (String event: eventStrings){
-            info += "\n" + i + ": " + event;
+            info.append("\n").append(i).append(": ").append(event);
             i += 1;
         }
-        if (info.equals("")) {
+        if (info.toString().equals("")) {
             presenter.printNoEventsAvailable();
             return "";
         }
-        return info;
+        return info.toString();
     }
 
     private void signupAttendeeHelper(String username, Scanner scanner) {
@@ -97,15 +97,15 @@ public class AttendeeSystem extends UserSystem{
     }
 
     private boolean cancelAttendeeHelper(String username, Scanner scanner){
-        List<UUID> eventlist = userM.getEventsAttending(username);
-        List<String> eventnames = (eventM.convertIDtoName(eventlist));
-        presenter.printUCReturns(eventnames);
+        List<UUID> eventList = userM.getEventsAttending(username);
+        List<String> eventNames = (eventM.convertIDtoName(eventList));
+        presenter.printUCReturns(eventNames);
         presenter.printAskWhichEventCancel();
         String eventChoice = scanner.nextLine();
-        if (!eventnames.contains(eventChoice)){
+        if (!eventNames.contains(eventChoice)){
             return false;
         }
-        UUID eventRemoving = eventlist.get(eventnames.indexOf(eventChoice));
+        UUID eventRemoving = eventList.get(eventNames.indexOf(eventChoice));
         userM.removeEventAttending(username, eventRemoving);
         eventM.removeAttendee(username, eventRemoving);
 

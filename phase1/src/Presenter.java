@@ -127,7 +127,7 @@ public class Presenter {
         System.out.println("You have now logged out.");
     }
 
-    public void printUserDoesntExist(){
+    public void printUserDoesNotExist(){
         System.out.println("The user you are trying to message does not exist");
     }
 

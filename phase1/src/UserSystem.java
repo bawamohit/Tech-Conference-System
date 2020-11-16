@@ -49,6 +49,7 @@ public abstract class UserSystem {
         presenter.printMessageSent();
     }
 
+    // TODO: Use this method or delete it
     private void editMessage(String username, Scanner scanner){
         presenter.printUnderConstruction();
     }
