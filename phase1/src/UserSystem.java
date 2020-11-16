@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -6,14 +8,15 @@ public abstract class UserSystem {
     protected UserManager userM;
     protected EventManager eventM;
     protected MessageManager messageM;
-    protected RoomManager roomM;
+    File eventManagerInfo = new File("./phase1/src/eventManager.ser");
+    File messageManagerInfo = new File("./phase1/src/messageManager.ser");
+    File userManagerInfo = new File("./phase1/src/userManager.ser");
 
-    public UserSystem (Presenter p, UserManager uMan, EventManager eMan, MessageManager mMan, RoomManager rMan) {
+    public UserSystem (Presenter p, UserManager uMan, EventManager eMan, MessageManager mMan) {
         presenter = p;
         userM = uMan;
         eventM = eMan;
         messageM = mMan;
-        roomM = rMan;
     }
 
     abstract void run(String username);
@@ -75,6 +78,19 @@ public abstract class UserSystem {
         String contact = scanner.nextLine();
         for (String message : messageM.getInbox(username, contact)){
             System.out.println(message);
+        }
+    }
+
+    protected void save(){
+        try {
+            UserGateway userGateway = new UserGateway();
+            userGateway.saveToFile(userManagerInfo.getPath(), userM);
+            EventGateway eventGateway = new EventGateway();
+            eventGateway.saveToFile(eventManagerInfo.getPath(), eventM);
+            MessageGateway messageGateway = new MessageGateway();
+            messageGateway.saveToFile(messageManagerInfo.getPath(), messageM);
+        } catch (IOException e){
+            e.printStackTrace();
         }
     }
 }
