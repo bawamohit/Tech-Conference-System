@@ -2,16 +2,18 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
 import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 public class OrganizerSystem extends UserSystem {
+    private RoomManager roomM;
 
     public OrganizerSystem(Presenter p, UserManager uMan, EventManager eMan, MessageManager mMan, RoomManager rMan) {
-        super(p, uMan, eMan, mMan, rMan);
+        super(p, uMan, eMan, mMan);
+        this.roomM = rMan;
     }
 
     public void run(String username) {
         Scanner sc = new Scanner(System.in);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         while (true) {
             presenter.printOrganizerMenu();
             String option = sc.nextLine();
@@ -36,30 +38,45 @@ public class OrganizerSystem extends UserSystem {
                     presenter.printAsk("event speaker's name");
                     String speaker = sc.nextLine();
                     presenter.printAsk("event's start time (enter a number from 9-17)");
-                    Integer time = sc.nextInt();
+                    Integer time = Integer.parseInt(sc.nextLine());
                     presenter.printAsk("event's room name (enter room name)");
                     String roomName = sc.nextLine();
                     if (!roomM.getRooms().contains(roomName)){
-                        presenter.printDNE(roomName);
-                    }else {
+                        presenter.printDNE("room");
+                        break;
+                    } else {
                         LocalDateTime startTime = LocalDateTime.of(2020, 6, 9, time, 0, 0);
                         int capacity = roomM.getRoomCapacity(roomName);
+                        //speaker occupied
+                        List<UUID> speakers_events = userM.getEventsAttending(speaker);
+                        for (UUID id: speakers_events){ //check if speaker is occupied -> put in helper
+                            LocalDateTime existingTime = eventM.getEventStartTime(id);
+                            if (startTime.isAfter(existingTime.minusHours(1)) || startTime.isBefore(existingTime.plusHours(1))){
+                                presenter.printObjUnavailable("speaker");
+                                presenter.printFail();
+                                break;
+                            }
+                        }
+//                        if roomM.addEventToSchedule()
+                        //room occupied
+                        //time is wrong
                         if (eventM.addEvent(eventName, speaker, username, startTime, roomName, capacity)) {
                             presenter.printSuccess();
                             presenter.printBack();
-                            if (!sc.nextLine().equals('b')) {
+                            if (!sc.nextLine().equals('b')) { //smth's wrong here idk what
                                 presenter.printInvalidInput();
                             } else {
                                 break;
                             }
                         } else {
-                            presenter.printFail(); //does this automatically prompt again?
+                            presenter.printFail();
                         }
                     }
                 }
-            } else if (option.equals("3")){
+            } else if (option.equals("3")){ //reschedule event
                 presenter.printUnderConstruction();
             } else if (option.equals("4")) { //remove Event
+                presenter.printUnderConstruction();
                 // ask for event id
                 // remove event
                 // print action successful or unsuccessful
