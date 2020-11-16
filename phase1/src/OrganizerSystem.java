@@ -12,8 +12,6 @@ public class OrganizerSystem extends UserSystem {
     public void run(String username) {
         Scanner sc = new Scanner(System.in);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        Presenter p = getPresenter();
-        EventManager em = getEventManager();
         while (true) {
             presenter.printOrganizerMenu();
             String option = sc.nextLine();
@@ -107,14 +105,14 @@ public class OrganizerSystem extends UserSystem {
 
     private void messageAll(String username, String choice, Scanner sc) {
         if (choice.equals("4") || choice.equals("5")) {
-            getPresenter().printAsk("message");
+            presenter.printAsk("message");
             String content = sc.nextLine();
-            List<String> userList = getUserManager().getUsernameList();
+            List<String> userList = userM.getUsernameList();
             for (String user : userList) {
-                if (choice.equals("4") && getUserManager().getUserType(user) == UserType.SPEAKER) {
-                    getMessageManager().sendMessage(username, user, content);
-                } else if (getUserManager().getUserType(user) == UserType.ORGANIZER) {
-                    getMessageManager().sendMessage(username, user, content);
+                if (choice.equals("4") && userM.getUserType(user) == UserType.SPEAKER) {
+                    messageM.sendMessage(username, user, content);
+                } else if (userM.getUserType(user) == UserType.ORGANIZER) {
+                    messageM.sendMessage(username, user, content);
                 }
             }
         }

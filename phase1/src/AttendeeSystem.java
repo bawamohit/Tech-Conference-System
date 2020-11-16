@@ -7,23 +7,22 @@ public class AttendeeSystem extends UserSystem{
 
     public void run(String username) {
         Scanner scanner = new Scanner(System.in);
-        EventManager em = getEventManager();
         label:
         while (true) {
-            getPresenter().printAttendeeMenu();
+            presenter.printAttendeeMenu();
             String attendeeChoice = scanner.nextLine();
 
             switch (attendeeChoice) {
                 case "0":
-                    getPresenter().printLoggedOut();
+                    presenter.printLoggedOut();
                     break label;
                 case "1":
                     while (true) {
-                        getPresenter().printAttendeeMessageMenu();
+                        presenter.printAttendeeMessageMenu();
                         String messageChoice = scanner.nextLine();
                         super.helperMessageSystem(username, messageChoice, scanner);
                         if (!messageChoice.equals("b")) {
-                            getPresenter().printInvalidInput();
+                            presenter.printInvalidInput();
                         } else {
                             break;
                         }
