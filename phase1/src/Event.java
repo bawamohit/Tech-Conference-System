@@ -114,6 +114,15 @@ public class Event implements Serializable {
     }
 
     /**
+     * Implements Getter, getId, for id.
+     *
+     * @return id of event.
+     */
+    public UUID getId() {
+        return id;
+    }
+
+    /**
      * Implements Setter, setAttendees, for attendees.
      *
      * @param attendees new attendees of event
@@ -122,13 +131,6 @@ public class Event implements Serializable {
         this.attendees = attendees;
     }
 
-    /**
-     * Implements Getter, getId, for id.
-     *
-     * @return id of event.
-     */
-    public UUID getId() {
-        return id;
-    }
+
 
 }

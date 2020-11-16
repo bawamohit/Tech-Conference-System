@@ -158,4 +158,5 @@ public class Presenter {
         System.out.println("There are no events available for sign-up :(");
     }
     public void printEventFull(){ System.out.println("Sorry, this event is full."); }
+    public void printObjUnavailable(String obj) {System.out.println("Sorry, this " +  obj + " is unavailable.");}
 }

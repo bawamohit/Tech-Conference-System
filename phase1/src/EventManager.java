@@ -98,6 +98,16 @@ public class EventManager implements Serializable {
     }
 
     /**
+     * Implements Getter, getEventStartTime, for an event in events.
+     *
+     * @return event start time
+     */
+
+    public LocalDateTime getEventStartTime(UUID eventID) {
+        return events.get(eventID).getStartTime();
+    }
+
+    /**
      * Implements Checker, isFull, for an event's current capacity.
      *
      * @return true if the number of attendees exceeds event's maximum capacity and false otherwise
@@ -195,7 +205,7 @@ public class EventManager implements Serializable {
     public boolean ifTimeOverlap(UUID existingEvent, UUID newEvent){
         LocalDateTime existingTime = this.events.get(existingEvent).getStartTime();
         LocalDateTime newTime = this.events.get(newEvent).getStartTime();
-        return !newTime.isAfter(existingTime.minusHours(1)) || !newTime.isBefore(existingTime.plusHours(1));
+        return (newTime.isAfter(existingTime.minusHours(1)) || newTime.isBefore(existingTime.plusHours(1)));
     }
 
     public List<String> convertIDtoName(List<UUID> uuidList){
