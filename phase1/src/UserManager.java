@@ -1,7 +1,5 @@
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class UserManager implements Serializable {
 
@@ -11,13 +9,9 @@ public class UserManager implements Serializable {
         usernamesToUsers = new HashMap<>();
     }
 
-//    public List<User> getUserList() {
-//        return (List<User>) usernamesToUsers.values();
-//    }
-
-    @SuppressWarnings("unchecked")
     public List<String> getUsernameList() {
-        return (List<String>) usernamesToUsers.keySet();
+        Collection<String> users = usernamesToUsers.keySet();
+        return new ArrayList<>(users);
     }
 
     public void setUsernamesToUsers(HashMap<String, User> newMap) {
