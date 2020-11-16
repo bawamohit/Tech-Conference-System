@@ -10,20 +10,20 @@ public class SpeakerSystem extends UserSystem{
         Scanner scan = new Scanner(System.in);
 
         while(true){
-            getPresenter().printSpeakerMenu();
+            presenter.printSpeakerMenu();
             String speakerChoice = scan.nextLine();
 
             switch (speakerChoice){
                 case "0":
-                    getPresenter().printLoggedOut();
+                    presenter.printLoggedOut();
                     break;
                 case "1":
                     while (true) {
-                        getPresenter().printSpeakerMessageMenu();
+                        presenter.printSpeakerMessageMenu();
                         String messageChoice = scan.nextLine();
                         speakerHelperMessageSystem(username, messageChoice, scan);
                         if(!messageChoice.equals("b")) {
-                            getPresenter().printInvalidInput();
+                            presenter.printInvalidInput();
                         } else {
                             break;
                         }
@@ -35,6 +35,7 @@ public class SpeakerSystem extends UserSystem{
         }
     }
 
+    //TODO: Complete this method
     public void speakerHelperMessageSystem(String username, String choice, Scanner scan) {
         super.helperMessageSystem(username, choice, scan);
         if (choice.equals("4")) {

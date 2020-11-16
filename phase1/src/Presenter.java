@@ -127,7 +127,7 @@ public class Presenter {
         System.out.println("You have now logged out.");
     }
 
-    public void printUserDoesntExist(){
+    public void printUserDoesNotExist(){
         System.out.println("The user you are trying to message does not exist");
     }
 
@@ -152,6 +152,10 @@ public class Presenter {
     }
     public void printDNE(String obj){
         System.out.println("The " + obj + " does not exist in the system.");
+    }
+
+    public void printNoEventsAvailable() {
+        System.out.println("There are no events available for sign-up :(");
     }
     public void printEventFull(){ System.out.println("Sorry, this event is full."); }
 }

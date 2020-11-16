@@ -7,6 +7,7 @@ public class AttendeeSystem extends UserSystem{
 
     public void run(String username) {
         Scanner scanner = new Scanner(System.in);
+        EventManager em = getEventManager();
         label:
         while (true) {
             getPresenter().printAttendeeMenu();
@@ -29,12 +30,12 @@ public class AttendeeSystem extends UserSystem{
                     }
                     break;
                 case "2":  //view available events
-                    List<UUID> available = em.getAvailableEvents();
-                    getPresenter().printAvailableEvents(formatInfo(em.getEventsStrings(available)));
+                    List<UUID> available = eventM.getAvailableEvents();
+                    presenter.printAvailableEvents(formatInfo(eventM.getEventsStrings(available)));
                     break;
                 case "3":
-                    List<UUID> eventlist = getUserManager().getEventsAttending(username);
-                    getPresenter().printUCReturns(em.convertIDtoName(eventlist));
+                    List<UUID> eventList = userM.getEventsAttending(username);
+                    presenter.printUCReturns(eventM.convertIDtoName(eventList));
                     break;
                 case "4":  //signup event
                     signupAttendeeHelper(username, scanner);
@@ -42,83 +43,80 @@ public class AttendeeSystem extends UserSystem{
                 case "5":  //cancel event
                     while(true){
                         if (cancelAttendeeHelper(username, scanner)){
-                            getPresenter().printEventCancelSuccess();
+                            presenter.printEventCancelSuccess();
                         } else{
-                            getPresenter().printInvalidInput();
+                            presenter.printInvalidInput();
                             break;}
                     }
 
                 default:
-                    getPresenter().printInvalidInput();
+                    presenter.printInvalidInput();
                     break;
             }
         }
     }
 
     private String formatInfo(List<String> eventStrings){
-        String info = null;
+        StringBuilder info = new StringBuilder();
         int i = 0;
         for (String event: eventStrings){
-            info += "\n" + i + ": " + event;
+            info.append("\n").append(i).append(": ").append(event);
+            i += 1;
         }
-        return info;
+        if (info.toString().equals("")) {
+            presenter.printNoEventsAvailable();
+            return "";
+        }
+        return info.toString();
     }
 
     private void signupAttendeeHelper(String username, Scanner scanner) {
-        List<UUID> availEvents = em.getAvailableEvents();
-        List<String> eventInfo = em.getEventsStrings(availEvents);
-        HashMap<String, UUID> stringToID = em.getStringToID(availEvents);
-        getPresenter().printAskSignUp();
-        getPresenter().printAvailableEvents(formatInfo(eventInfo));
+        List<UUID> availEvents = eventM.getAvailableEvents();
+        List<String> eventInfo = eventM.getEventsStrings(availEvents);
+        presenter.printAskSignUp();
+        presenter.printAvailableEvents(formatInfo(eventInfo));
         String choice = scanner.nextLine();
         if (choice.matches("^[0-9]*$")) {
             int eventChoice = Integer.parseInt(choice);
             if (!(eventChoice < availEvents.size())) {
-                getPresenter().printInvalidInput();
+                presenter.printInvalidInput();
             }
             else{
-                int i = Integer.parseInt(choice);
-                String eventString = eventInfo.get(i);
-                UUID id = stringToID.get(eventString);
-                String roomName = eventString.split(", ")[2];
-                if (isAttendeeFree(username, id) && (em.getEventAttendees(id).size() < getRoomManager().getRoomCapacity(roomName))){
-                    em.addAttendee(username, id);
-                    getUserManager().addEventAttending(username, id);
-                    getPresenter().printEventSignUpSuccess();
+                UUID id = eventM.getAvailableEvents().get(eventChoice);
+                if (isAttendeeFree(username, id)){
+                    eventM.addAttendee(username, id);
+                    userM.addEventAttending(username, id);
+                    presenter.printEventSignUpSuccess();
                 }
                 else{
-                    if (em.getEventAttendees(id).size() >= getRoomManager().getRoomCapacity(roomName)){
-                        getPresenter().printEventFull();
-                    } else {
-                        getPresenter().printAlreadyBookedTime();
-                    }
+                    presenter.printAlreadyBookedTime();
                 }
             }
         } else {
-            getPresenter().printInvalidInput();
+            presenter.printInvalidInput();
         }
     }
 
     private boolean cancelAttendeeHelper(String username, Scanner scanner){
-        List<UUID> eventlist = getUserManager().getEventsAttending(username);
-        List<String> eventnames = (em.convertIDtoName(eventlist));
-        getPresenter().printUCReturns(eventnames);
-        getPresenter().printAskWhichEventCancel();
+        List<UUID> eventList = userM.getEventsAttending(username);
+        List<String> eventNames = (eventM.convertIDtoName(eventList));
+        presenter.printUCReturns(eventNames);
+        presenter.printAskWhichEventCancel();
         String eventChoice = scanner.nextLine();
-        if (!eventnames.contains(eventChoice)){
+        if (!eventNames.contains(eventChoice)){
             return false;
         }
-        UUID eventRemoving = eventlist.get(eventnames.indexOf(eventChoice));
-        getUserManager().removeEventAttending(username, eventRemoving);
-        em.removeAttendee(username, eventRemoving);
+        UUID eventRemoving = eventList.get(eventNames.indexOf(eventChoice));
+        userM.removeEventAttending(username, eventRemoving);
+        eventM.removeAttendee(username, eventRemoving);
 
         return true;
     }
 
     private boolean isAttendeeFree(String username, UUID newEvent){
-        List<UUID> userEvents = getUserManager().getEventsAttending(username);
+        List<UUID> userEvents = userM.getEventsAttending(username);
         for (UUID events :userEvents){
-            if (em.ifTimeOverlap(events, newEvent)){
+            if (eventM.ifTimeOverlap(events, newEvent)){
                 return false;
             }
         }
