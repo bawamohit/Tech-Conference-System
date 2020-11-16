@@ -1,8 +1,9 @@
+import java.io.IOException;
 import java.util.*;
 
 public class AttendeeSystem extends UserSystem{
-    public AttendeeSystem (Presenter p, UserManager uMan, EventManager eMan, MessageManager mMan, RoomManager rMan) {
-        super(p, uMan, eMan, mMan, rMan);
+    public AttendeeSystem (Presenter p, UserManager uMan, EventManager eMan, MessageManager mMan) {
+        super(p, uMan, eMan, mMan);
     }
 
     public void run(String username) {
@@ -37,7 +38,33 @@ public class AttendeeSystem extends UserSystem{
                     presenter.printUCReturns(eventM.convertIDtoName(eventList));
                     break;
                 case "4":  //signup event
-                    signupAttendeeHelper(username, scanner);
+                    while(true){
+                        List<UUID> availEvents = eventM.getAvailableEvents();
+                        String choice = signupAttendeeHelper(username, scanner);
+                        if (choice.matches("^[0-9]*$")) {
+                            int eventChoice = Integer.parseInt(choice);
+                            if (!(eventChoice < availEvents.size())) {
+                                presenter.printInvalidInput();
+                                break;
+                            }
+                            else{
+                                UUID id = eventM.getAvailableEvents().get(eventChoice);
+                                if (isAttendeeFree(username, id)){
+                                    eventM.addAttendee(username, id);
+                                    userM.addEventAttending(username, id);
+                                    presenter.printEventSignUpSuccess();
+                                }
+                                else{
+                                presenter.printAlreadyBookedTime();
+                                break;
+                                }
+                            }
+                        }
+                        else {
+                            presenter.printInvalidInput();
+                            break;
+                        }
+                    }
                     break;
                 case "5":  //cancel event
                     while(true){
@@ -69,31 +96,14 @@ public class AttendeeSystem extends UserSystem{
         return info.toString();
     }
 
-    private void signupAttendeeHelper(String username, Scanner scanner) {
+    private String signupAttendeeHelper(String username, Scanner scanner) {
         List<UUID> availEvents = eventM.getAvailableEvents();
         List<String> eventInfo = eventM.getEventsStrings(availEvents);
         presenter.printAskSignUp();
         presenter.printAvailableEvents(formatInfo(eventInfo));
         String choice = scanner.nextLine();
-        if (choice.matches("^[0-9]*$")) {
-            int eventChoice = Integer.parseInt(choice);
-            if (!(eventChoice < availEvents.size())) {
-                presenter.printInvalidInput();
-            }
-            else{
-                UUID id = eventM.getAvailableEvents().get(eventChoice);
-                if (isAttendeeFree(username, id)){
-                    eventM.addAttendee(username, id);
-                    userM.addEventAttending(username, id);
-                    presenter.printEventSignUpSuccess();
-                }
-                else{
-                    presenter.printAlreadyBookedTime();
-                }
-            }
-        } else {
-            presenter.printInvalidInput();
-        }
+        return choice;
+
     }
 
     private boolean cancelAttendeeHelper(String username, Scanner scanner){

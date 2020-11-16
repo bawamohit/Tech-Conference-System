@@ -2,8 +2,8 @@ import java.util.Scanner;
 
 
 public class SpeakerSystem extends UserSystem{
-    public SpeakerSystem (Presenter p, UserManager uMan, EventManager eMan, MessageManager mMan, RoomManager rMan) {
-        super(p, uMan, eMan, mMan, rMan);
+    public SpeakerSystem (Presenter p, UserManager uMan, EventManager eMan, MessageManager mMan) {
+        super(p, uMan, eMan, mMan);
     }
 
     public void run(String username){
