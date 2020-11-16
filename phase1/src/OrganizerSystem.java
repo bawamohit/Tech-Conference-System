@@ -12,88 +12,86 @@ public class OrganizerSystem extends UserSystem {
     public void run(String username) {
         Scanner sc = new Scanner(System.in);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        Presenter p = getPresenter();
-        EventManager em = getEventManager();
         while (true) {
-            getPresenter().printOrganizerMenu();
+            presenter.printOrganizerMenu();
             String option = sc.nextLine();
             if (option.equals("0")) {
-                getPresenter().printLoggedOut();
+                presenter.printLoggedOut();
                 break;
             } else if (option.equals("1")) {
                 while (true) {
-                    getPresenter().printOrganizerMessageMenu();
+                    presenter.printOrganizerMessageMenu();
                     String messageChoice = sc.nextLine();
                     organizerHelperMessageSystem(username, messageChoice, sc);
                     if(!messageChoice.equals("b")) {
-                        getPresenter().printInvalidInput();
+                        presenter.printInvalidInput();
                     } else {
                         break;
                     }
                 }
             } else if (option.equals("2")) {
                 while (true) {
-                    p.printAsk("event's name");
+                    presenter.printAsk("event's name");
                     String eventName = sc.nextLine();
-                    p.printAsk("event speaker's name");
+                    presenter.printAsk("event speaker's name");
                     String speaker = sc.nextLine();
-                    p.printAsk("event's start time (enter a number from 9-17)");
+                    presenter.printAsk("event's start time (enter a number from 9-17)");
                     Integer time = sc.nextInt();
-                    p.printAsk("event's room name (enter room name)");
+                    presenter.printAsk("event's room name (enter room name)");
                     String roomName = sc.nextLine();
-                    if (!rm.getRooms().contains(roomName)){
-                        p.printDNE(roomName);
+                    if (!roomM.getRooms().contains(roomName)){
+                        presenter.printDNE(roomName);
                     }else {
                         LocalDateTime startTime = LocalDateTime.of(2020, 6, 9, time, 0, 0);
-                        int capacity = rm.getRoomCapacity(roomName);
-                        if (em.addEvent(eventName, speaker, username, startTime, roomName, capacity)) {
-                            p.printSuccess();
-                            p.printBack();
+                        int capacity = roomM.getRoomCapacity(roomName);
+                        if (eventM.addEvent(eventName, speaker, username, startTime, roomName, capacity)) {
+                            presenter.printSuccess();
+                            presenter.printBack();
                             if (!sc.nextLine().equals('b')) {
-                                p.printInvalidInput();
+                                presenter.printInvalidInput();
                             } else {
                                 break;
                             }
                         } else {
-                            p.printFail(); //does this automatically prompt again?
+                            presenter.printFail(); //does this automatically prompt again?
                         }
                     }
                 }
             } else if (option.equals("3")){
-                p.printUnderConstruction();
+                presenter.printUnderConstruction();
             } else if (option.equals("4")) { //remove Event
                 // ask for event id
                 // remove event
                 // print action successful or unsuccessful
             } else if (option.equals("5")) { //create speaker
                 while (true) {
-                    p.printAsk("speaker's name");
+                    presenter.printAsk("speaker's name");
                     String speakerName = sc.nextLine();
-                    p.printAsk("speaker's username");
+                    presenter.printAsk("speaker's username");
                     String speakerUsername = sc.nextLine();
-                    p.printAsk("speaker's account password");
+                    presenter.printAsk("speaker's account password");
                     String speakerPW = sc.nextLine();
-                    if (um.registerUser(UserType.SPEAKER, speakerName, speakerUsername, speakerPW)) {
-                        p.printSuccess();
-                        p.printUserInfo(UserType.SPEAKER, speakerUsername, speakerPW);
+                    if (userM.registerUser(UserType.SPEAKER, speakerName, speakerUsername, speakerPW)) {
+                        presenter.printSuccess();
+                        presenter.printUserInfo(UserType.SPEAKER, speakerUsername, speakerPW);
                         break;
                     } else {
-                        p.printUsernameExists(); //or invalid input?
-                        p.printFail();
+                        presenter.printUsernameExists(); //or invalid input?
+                        presenter.printFail();
                     }
                 }
             } else if (option.equals("6")) { //create new room
                 while (true) {
-                    p.printAsk("new room's name");
+                    presenter.printAsk("new room's name");
                     String roomName = sc.nextLine();
-//                p.printAsk("new room's maximum capacity");
+//                presenter.printAsk("new room's maximum capacity");
 //                String capacity = sc.nextLine();
-                    if (rm.addRoom(roomName, 2)) {
-                        p.printSuccess();
+                    if (roomM.addRoom(roomName, 2)) {
+                        presenter.printSuccess();
                         //return to menu
                         break;
                     } else {
-                        p.printFail();
+                        presenter.printFail();
                     }
                 }
             }
@@ -107,14 +105,14 @@ public class OrganizerSystem extends UserSystem {
 
     private void messageAll(String username, String choice, Scanner sc) {
         if (choice.equals("4") || choice.equals("5")) {
-            getPresenter().printAsk("message");
+            presenter.printAsk("message");
             String content = sc.nextLine();
-            List<String> userList = getUserManager().getUsernameList();
+            List<String> userList = userM.getUsernameList();
             for (String user : userList) {
-                if (choice.equals("4") && getUserManager().getUserType(user) == UserType.SPEAKER) {
-                    getMessageManager().sendMessage(username, user, content);
-                } else if (getUserManager().getUserType(user) == UserType.ORGANIZER) {
-                    getMessageManager().sendMessage(username, user, content);
+                if (choice.equals("4") && userM.getUserType(user) == UserType.SPEAKER) {
+                    messageM.sendMessage(username, user, content);
+                } else if (userM.getUserType(user) == UserType.ORGANIZER) {
+                    messageM.sendMessage(username, user, content);
                 }
             }
         }
