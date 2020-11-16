@@ -39,29 +39,10 @@ public class AttendeeSystem extends UserSystem{
                     break;
                 case "4":  //signup event
                     while(true){
-                        List<UUID> availEvents = eventM.getAvailableEvents();
-                        String choice = signupAttendeeHelper(username, scanner);
-                        if (choice.matches("^[0-9]*$")) {
-                            int eventChoice = Integer.parseInt(choice);
-                            if (!(eventChoice < availEvents.size())) {
-                                presenter.printInvalidInput();
-                                break;
-                            }
-                            else{
-                                UUID id = eventM.getAvailableEvents().get(eventChoice);
-                                if (isAttendeeFree(username, id)){
-                                    eventM.addAttendee(username, id);
-                                    userM.addEventAttending(username, id);
-                                    presenter.printEventSignUpSuccess();
-                                }
-                                else{
-                                presenter.printAlreadyBookedTime();
-                                break;
-                                }
-                            }
+                        if (signupAttendeeHelper(username, scanner)){
+                            presenter.printEventSignUpSuccess();
                         }
-                        else {
-                            presenter.printInvalidInput();
+                        else{
                             break;
                         }
                     }
@@ -96,13 +77,35 @@ public class AttendeeSystem extends UserSystem{
         return info.toString();
     }
 
-    private String signupAttendeeHelper(String username, Scanner scanner) {
+    private boolean signupAttendeeHelper(String username, Scanner scanner) {
         List<UUID> availEvents = eventM.getAvailableEvents();
         List<String> eventInfo = eventM.getEventsStrings(availEvents);
         presenter.printAskSignUp();
         presenter.printAvailableEvents(formatInfo(eventInfo));
         String choice = scanner.nextLine();
-        return choice;
+        if (choice.matches("^[0-9]*$")) {
+            int eventChoice = Integer.parseInt(choice);
+            if (!(eventChoice < availEvents.size())) {
+                presenter.printInvalidInput();
+                return false;
+            }
+            else{
+                UUID id = eventM.getAvailableEvents().get(eventChoice);
+                if (isAttendeeFree(username, id)){
+                    eventM.addAttendee(username, id);
+                    userM.addEventAttending(username, id);
+                    return true;
+                }
+                else{
+                    presenter.printAlreadyBookedTime();
+                    return false;
+                }
+            }
+        }
+        else {
+            presenter.printInvalidInput();
+            return false;
+        }
 
     }
 
