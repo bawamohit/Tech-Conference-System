@@ -33,9 +33,9 @@ public class TechConferenceSystem {
 
         presenter = new Presenter();
 
-        as = new AttendeeSystem(presenter, um, em, mm);
+        as = new AttendeeSystem(presenter, um, em, mm, rm);
         os = new OrganizerSystem(presenter, um, em, mm, rm);
-        ss = new SpeakerSystem(presenter, um, em, mm);
+        ss = new SpeakerSystem(presenter, um, em, mm, rm);
     }
 
     public void run() {

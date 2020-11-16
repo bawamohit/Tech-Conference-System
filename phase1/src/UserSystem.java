@@ -6,29 +6,35 @@ public abstract class UserSystem {
     protected UserManager um;
     protected EventManager em;
     protected MessageManager mm;
+    protected RoomManager rm;
     //TODO If these variables were set to protected, then don't need to initiate new variables in subclasses, or getters in this class
     // and can we please name the variables to more readable stuff this takes me two minutes to translate every time I see it out of context
-    public UserSystem (Presenter p, UserManager uMan, EventManager eMan, MessageManager mMan) {
+    public UserSystem (Presenter p, UserManager uMan, EventManager eMan, MessageManager mMan, RoomManager rMan) {
         presenter = p;
         um = uMan;
         em = eMan;
         mm = mMan;
+        rm = rMan;
     }
 
     public Presenter getPresenter() {
         return presenter;
     }
 
-    public UserManager getUm() {
+    public UserManager getUserManager() {
         return um;
     }
 
-    public EventManager getEm() {
+    public EventManager getEventManager() {
         return em;
     }
 
-    public MessageManager getMm() {
+    public MessageManager getMessageManager() {
         return mm;
+    }
+
+    public RoomManager getRoomManager() {
+        return rm;
     }
 
     abstract void run(String username);
@@ -60,7 +66,7 @@ public abstract class UserSystem {
         String receiver = scanner.nextLine();
         getPresenter().printAsk("message");
         String message = scanner.nextLine();
-        getMm().sendMessage(username, receiver, message);
+        getMessageManager().sendMessage(username, receiver, message);
         getPresenter().printMessageSent();
     }
 
@@ -70,9 +76,9 @@ public abstract class UserSystem {
 
     private void deleteMessage(String username, Scanner scanner){
         getPresenter().printAskWhichInbox();
-        getPresenter().printUCReturns(getMm().getChats(username));
+        getPresenter().printUCReturns(getMessageManager().getChats(username));
         String inboxChoice = scanner.nextLine();
-        List<String> inbox = getMm().getInbox(username, inboxChoice);
+        List<String> inbox = getMessageManager().getInbox(username, inboxChoice);
         int n = 0;
         for (String message : inbox) {
             System.out.println(n + ": " + message);
@@ -80,14 +86,14 @@ public abstract class UserSystem {
         }
         getPresenter().printAskWhichMessage();
         int content = scanner.nextInt();
-        getMm().deleteMessage(getMm().getChat(username, inboxChoice).get(content));
+        getMessageManager().deleteMessage(getMessageManager().getChat(username, inboxChoice).get(content));
     }
 
     private void viewInbox(String username, Scanner scanner){
         getPresenter().printAskWhichInbox();
-        getPresenter().printUCReturns(getMm().getChats(username));
+        getPresenter().printUCReturns(getMessageManager().getChats(username));
         String contact = scanner.nextLine();
-        for (String message :getMm().getInbox(username, contact)){
+        for (String message : getMessageManager().getInbox(username, contact)){
             System.out.println(message);
         }
     }

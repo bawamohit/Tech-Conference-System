@@ -4,18 +4,16 @@ import java.util.Scanner;
 import java.time.format.DateTimeFormatter;
 
 public class OrganizerSystem extends UserSystem {
-    private RoomManager rm;
 
     public OrganizerSystem(Presenter p, UserManager uMan, EventManager eMan, MessageManager mMan, RoomManager rMan) {
-        super(p, uMan, eMan, mMan);
-        RoomManager rm = rMan;
+        super(p, uMan, eMan, mMan, rMan);
     }
 
     public void run(String username) {
         Scanner sc = new Scanner(System.in);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         Presenter p = getPresenter();
-        EventManager em = getEm();
+        EventManager em = getEventManager();
         while (true) {
             getPresenter().printOrganizerMenu();
             String option = sc.nextLine();
@@ -111,12 +109,12 @@ public class OrganizerSystem extends UserSystem {
         if (choice.equals("4") || choice.equals("5")) {
             getPresenter().printAsk("message");
             String content = sc.nextLine();
-            List<String> userList = getUm().getUsernameList();
+            List<String> userList = getUserManager().getUsernameList();
             for (String user : userList) {
-                if (choice.equals("4") && getUm().getUserType(user) == UserType.SPEAKER) {
-                    getMm().sendMessage(username, user, content);
-                } else if (getUm().getUserType(user) == UserType.ORGANIZER) {
-                    getMm().sendMessage(username, user, content);
+                if (choice.equals("4") && getUserManager().getUserType(user) == UserType.SPEAKER) {
+                    getMessageManager().sendMessage(username, user, content);
+                } else if (getUserManager().getUserType(user) == UserType.ORGANIZER) {
+                    getMessageManager().sendMessage(username, user, content);
                 }
             }
         }

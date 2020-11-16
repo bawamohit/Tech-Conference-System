@@ -1,13 +1,13 @@
 import java.util.*;
 
 public class AttendeeSystem extends UserSystem{
-    public AttendeeSystem (Presenter p, UserManager uMan, EventManager eMan, MessageManager mMan) {
-        super(p, uMan, eMan, mMan);
+    public AttendeeSystem (Presenter p, UserManager uMan, EventManager eMan, MessageManager mMan, RoomManager rMan) {
+        super(p, uMan, eMan, mMan, rMan);
     }
 
     public void run(String username) {
         Scanner scanner = new Scanner(System.in);
-        EventManager em = getEm();
+        EventManager em = getEventManager();
         label:
         while (true) {
             getPresenter().printAttendeeMenu();
@@ -34,8 +34,8 @@ public class AttendeeSystem extends UserSystem{
                     getPresenter().printAvailableEvents(formatInfo(em.getEventsStrings(available)));
                     break;
                 case "3":
-                    List<UUID> eventlist = getUm().getEventsAttending(username);
-                    getPresenter().printUCReturns(getEm().convertIDtoName(eventlist));
+                    List<UUID> eventlist = getUserManager().getEventsAttending(username);
+                    getPresenter().printUCReturns(getEventManager().convertIDtoName(eventlist));
                     break;
                 case "4":  //signup event
                     signupAttendeeHelper(username, scanner);
@@ -66,8 +66,8 @@ public class AttendeeSystem extends UserSystem{
     }
 
     private void signupAttendeeHelper(String username, Scanner scanner) {
-        List<UUID> availEvents = getEm().getAvailableEvents();
-        List<String> eventInfo = getEm().getEventsStrings(availEvents);
+        List<UUID> availEvents = getEventManager().getAvailableEvents();
+        List<String> eventInfo = getEventManager().getEventsStrings(availEvents);
         getPresenter().printAskSignUp();
         getPresenter().printAvailableEvents(formatInfo(eventInfo));
         String choice = scanner.nextLine();
@@ -77,10 +77,10 @@ public class AttendeeSystem extends UserSystem{
                 getPresenter().printInvalidInput();
             }
             else{
-                UUID id = getEm().getAvailableEvents().get(eventChoice);
+                UUID id = getEventManager().getAvailableEvents().get(eventChoice);
                 if (isAttendeeFree(username, id)){
-                    getEm().addAttendee(username, id);
-                    getUm().addEventAttending(username, id);
+                    getEventManager().addAttendee(username, id);
+                    getUserManager().addEventAttending(username, id);
                     getPresenter().printEventSignUpSuccess();
                 }
                 else{
@@ -93,8 +93,8 @@ public class AttendeeSystem extends UserSystem{
     }
 
     private boolean cancelAttendeeHelper(String username, Scanner scanner){
-        List<UUID> eventlist = getUm().getEventsAttending(username);
-        List<String> eventnames = (getEm().convertIDtoName(eventlist));
+        List<UUID> eventlist = getUserManager().getEventsAttending(username);
+        List<String> eventnames = (getEventManager().convertIDtoName(eventlist));
         getPresenter().printUCReturns(eventnames);
         getPresenter().printAskWhichEventCancel();
         String eventChoice = scanner.nextLine();
@@ -102,16 +102,16 @@ public class AttendeeSystem extends UserSystem{
             return false;
         }
         UUID eventRemoving = eventlist.get(eventnames.indexOf(eventChoice));
-        getUm().removeEventAttending(username, eventRemoving);
-        getEm().removeAttendee(username, eventRemoving);
+        getUserManager().removeEventAttending(username, eventRemoving);
+        getEventManager().removeAttendee(username, eventRemoving);
 
         return true;
     }
 
     private boolean isAttendeeFree(String username, UUID newEvent){
-        List<UUID> userEvents = getUm().getEventsAttending(username);
+        List<UUID> userEvents = getUserManager().getEventsAttending(username);
         for (UUID events :userEvents){
-            if (getEm().ifTimeOverlap(events, newEvent)){
+            if (getEventManager().ifTimeOverlap(events, newEvent)){
                 return false;
             }
         }
