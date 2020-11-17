@@ -33,44 +33,8 @@ public class OrganizerSystem extends UserSystem {
                 }
             } else if (option.equals("2")) {
                 while (true) {
-                    presenter.printAsk("event's name");
-                    String eventName = sc.nextLine();
-                    presenter.printAsk("event speaker's name");
-                    String speaker = sc.nextLine();
-                    presenter.printAsk("event's start time (enter a number from 9-17)");
-                    Integer time = Integer.parseInt(sc.nextLine());
-                    presenter.printAsk("event's room name (enter room name)");
-                    String roomName = sc.nextLine();
-                    if (!roomM.getRooms().contains(roomName)){
-                        presenter.printDNE("room");
+                    if (addEvent(username, sc)){
                         break;
-                    } else {
-                        LocalDateTime startTime = LocalDateTime.of(2020, 6, 9, time, 0, 0);
-                        int capacity = roomM.getRoomCapacity(roomName);
-                        //speaker occupied
-                        List<UUID> speakers_events = userM.getEventsAttending(speaker);
-                        for (UUID id: speakers_events){ //check if speaker is occupied -> put in helper
-                            LocalDateTime existingTime = eventM.getEventStartTime(id);
-                            if (startTime.isAfter(existingTime.minusHours(1)) || startTime.isBefore(existingTime.plusHours(1))){
-                                presenter.printObjUnavailable("speaker");
-                                presenter.printFail();
-                                break;
-                            }
-                        }
-//                        if roomM.addEventToSchedule()
-                        //room occupied
-                        //time is wrong
-                        if (eventM.addEvent(eventName, speaker, username, startTime, roomName, capacity)) {
-                            presenter.printSuccess();
-                            presenter.printBack();
-                            if (!sc.nextLine().equals('b')) { //smth's wrong here idk what
-                                presenter.printInvalidInput();
-                            } else {
-                                break;
-                            }
-                        } else {
-                            presenter.printFail();
-                        }
                     }
                 }
             } else if (option.equals("3")){ //reschedule event
@@ -105,7 +69,6 @@ public class OrganizerSystem extends UserSystem {
 //                String capacity = sc.nextLine();
                     if (roomM.addRoom(roomName, 2)) {
                         presenter.printSuccess();
-                        //return to menu
                         break;
                     } else {
                         presenter.printFail();
@@ -133,5 +96,49 @@ public class OrganizerSystem extends UserSystem {
                 }
             }
         }
+    }
+
+    private boolean addEvent(String username, Scanner sc) {
+        presenter.printAsk("event's name");
+        String eventName = sc.nextLine();
+        presenter.printAsk("event speaker's name");
+        String speaker = sc.nextLine();
+        if(!userM.getUsernameList().contains(speaker)){
+            presenter.printUserDoesNotExist();
+            return false;
+        }
+        presenter.printAsk("event's start time (enter a number from 9-17)");
+        Integer time = Integer.parseInt(sc.nextLine());
+        presenter.printAsk("event's room name (enter room name)");
+        String roomName = sc.nextLine();
+        // check if room exists
+        if (!roomM.getRooms().contains(roomName)) {
+            presenter.printDNE("room");
+            return false;
+        }
+        LocalDateTime startTime = LocalDateTime.of(2020, 6, 9, time, 0, 0);
+        List<UUID> speakers_events = userM.getEventsAttending(speaker);
+        // check if speaker is occupied
+        for (UUID id: speakers_events){
+            LocalDateTime existingTime = eventM.getEventStartTime(id);
+            if (startTime.isAfter(existingTime.minusHours(1)) || startTime.isBefore(existingTime.plusHours(1))){
+                presenter.printObjUnavailable("speaker");
+                return false;
+            }
+        }
+        int capacity = roomM.getRoomCapacity(roomName);
+        boolean canAdd = true;
+        //if roomM.addEventToSchedule()
+        //room occupied
+        //time is wrong
+        // check if event added successfully
+        if (eventM.addEvent(eventName, speaker, username, startTime, roomName, capacity)) {
+//            if (roomM.addEventToSchedule()) { //find way to access event ID from here
+                presenter.printSuccess();
+                return true;
+//            }
+        }
+        presenter.printFail();
+        return false;
     }
 }
