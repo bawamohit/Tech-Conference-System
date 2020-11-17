@@ -107,7 +107,7 @@ public class OrganizerSystem extends UserSystem {
             presenter.printUserDoesNotExist();
             return false;
         }
-        presenter.printAsk("event's start time (enter a number from 9-17)");
+        presenter.printAsk("event's start time (enter a number from 9-16)");
         Integer time = Integer.parseInt(sc.nextLine());
         presenter.printAsk("event's room name (enter room name)");
         String roomName = sc.nextLine();

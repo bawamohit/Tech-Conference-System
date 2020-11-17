@@ -96,8 +96,10 @@ public class RoomManager implements Serializable {
             return false;
         }
         for (LocalDateTime time : room.getSchedule().keySet()) {
-            if (!start.isBefore(time.minusHours(1)) || !start.isAfter(time.plusHours(1))) {
+            if (start.isAfter(time.minusHours(1))) {
+                if (start.isBefore(time.plusHours(1))) {
                 return false;
+                }
             }
         }
         HashMap<LocalDateTime, UUID> updated_room = room.getSchedule();
@@ -105,7 +107,6 @@ public class RoomManager implements Serializable {
         room.setRoomSchedule(updated_room);
         return true;
     }
-
     public int getRoomCapacity(String roomName) {
         return rooms.get(roomName).getCapacity();
     }

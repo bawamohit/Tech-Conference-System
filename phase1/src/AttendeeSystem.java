@@ -46,16 +46,19 @@ public class AttendeeSystem extends UserSystem{
                         String choice = scanner.nextLine();
                         if (signupAttendeeHelper(username, choice)){
                             presenter.printEventSignUpSuccess();
-                        } else {break; }
+                            break;
+                        }
+                        presenter.printInvalidInput();
                     }
                     break;
                 case "5":  //cancel event
                     while(true){
                         if (cancelAttendeeHelper(username, scanner)){
                             presenter.printEventCancelSuccess();
+                            break;
                         } else{
                             presenter.printInvalidInput();
-                            break;}
+                        }
                     }
 
                 default:

@@ -130,14 +130,19 @@ public class EventManager implements Serializable {
             if (e.getStartTime() == startTime && e.getEventRoomName().equals(roomName)){
                 return null;
             }
-        }
-        if (startTime.getHour() <= 9){
-            return null;
-        } else if (startTime.getHour() == 16){
-            if (startTime.getMinute() == 30){
+            if (id == new_event.getId()){
                 return null;
             }
-        } else if (startTime.getHour() > 16) {
+        }
+        if (startTime.getHour() < 9 ){
+            return null;
+        }
+        else if (startTime.getHour() == 16){
+            if (startTime.getMinute() > 0){
+                return null;
+            }
+        }
+        else if (startTime.getHour() > 16) {
             return null;
         }
         events.put(new_event.getId(), new_event);
