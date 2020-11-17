@@ -121,22 +121,21 @@ public class OrganizerSystem extends UserSystem {
         // check if speaker is occupied
         for (UUID id: speakers_events){
             LocalDateTime existingTime = eventM.getEventStartTime(id);
-            if (startTime.isAfter(existingTime.minusHours(1)) || startTime.isBefore(existingTime.plusHours(1))){
+            if (!userM.scheduleNotOverlap(existingTime, startTime)){
                 presenter.printObjUnavailable("speaker");
                 return false;
             }
         }
         int capacity = roomM.getRoomCapacity(roomName);
-        boolean canAdd = true;
-        //if roomM.addEventToSchedule()
         //room occupied
         //time is wrong
         // check if event added successfully
-        if (eventM.addEvent(eventName, speaker, username, startTime, roomName, capacity)) {
-//            if (roomM.addEventToSchedule()) { //find way to access event ID from here
+        UUID id = eventM.addEvent(eventName, speaker, username, startTime, roomName, capacity);
+        if (id != null) {
+            if (roomM.addEventToSchedule(id, roomName, startTime)) {
                 presenter.printSuccess();
                 return true;
-//            }
+            }
         }
         presenter.printFail();
         return false;

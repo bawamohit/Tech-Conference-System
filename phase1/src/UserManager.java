@@ -1,4 +1,6 @@
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class UserManager implements Serializable {
@@ -95,4 +97,7 @@ public class UserManager implements Serializable {
         return usernamesToUsers.get(username).getUserType();
     }
 
+    public boolean scheduleNotOverlap(LocalDateTime existingTime, LocalDateTime newTime){
+        return (!(newTime.isAfter(existingTime.minusHours(1))) || !(newTime.isBefore(existingTime.plusHours(1))));
+    }
 }

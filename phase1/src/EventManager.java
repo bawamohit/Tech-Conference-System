@@ -122,26 +122,26 @@ public class EventManager implements Serializable {
      *
      * @return a boolean indicating if event was successfully added
      */
-    public boolean addEvent(String eventName, String speaker, String organizer, LocalDateTime startTime,
+    public UUID addEvent(String eventName, String speaker, String organizer, LocalDateTime startTime,
                             String roomName, int max_capacity){
         Event new_event = new Event(eventName, speaker, organizer, startTime, roomName, max_capacity);
         for(UUID id : events.keySet()){
             Event e = events.get(id);
             if (e.getStartTime() == startTime && e.getEventRoomName().equals(roomName)){
-                return false;
+                return null;
             }
         }
         if (startTime.getHour() <= 9){
-            return false;
+            return null;
         } else if (startTime.getHour() == 16){
             if (startTime.getMinute() == 30){
-                return false;
+                return null;
             }
         } else if (startTime.getHour() > 16) {
-            return false;
+            return null;
         }
         events.put(new_event.getId(), new_event);
-        return true;
+        return new_event.getId();
     }
 
 

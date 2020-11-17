@@ -46,8 +46,7 @@ public class AttendeeSystem extends UserSystem{
                         String choice = scanner.nextLine();
                         if (signupAttendeeHelper(username, choice)){
                             presenter.printEventSignUpSuccess();
-                        }
-                        else {break; }
+                        } else {break; }
                     }
                     break;
                 case "5":  //cancel event
@@ -88,21 +87,18 @@ public class AttendeeSystem extends UserSystem{
             if (!(eventChoice < availEvents.size())) {
                 presenter.printInvalidInput();
                 return false;
-            }
-            else{
+            } else{
                 UUID id = availEvents.get(eventChoice);
                 if (isAttendeeFree(username, id)){
                     eventM.addAttendee(username, id);
                     userM.addEventAttending(username, id);
                     return true;
-                }
-                else{
+                } else{
                     presenter.printAlreadyBookedTime();
                     return false;
                 }
             }
-        }
-        else {
+        } else {
             presenter.printInvalidInput();
             return false;
         }
