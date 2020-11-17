@@ -159,20 +159,6 @@ public class EventManager implements Serializable {
 //        return false;
 //    } // for phase 2
 
-//    /**
-//     * Implements helper method, findEvent, to find event object when given its name.
-//     *
-//     * @return an Event object in hashmap of events associated with the given String eventName.
-//     */
-//    private Event findEvent(String eventName){
-//        for (Event e: events.values()){
-//            if (e.getEventName().equals(eventName)){
-//                return e;
-//            }
-//        }
-//        return null;
-//    }
-
     /**
      * Implements modifier, addAttendee, for event in events.
      *
@@ -202,10 +188,10 @@ public class EventManager implements Serializable {
         return false;
     }
 
-    public boolean ifTimeOverlap(UUID existingEvent, UUID newEvent){
+    public boolean timeNotOverlap(UUID existingEvent, UUID newEvent){
         LocalDateTime existingTime = this.events.get(existingEvent).getStartTime();
         LocalDateTime newTime = this.events.get(newEvent).getStartTime();
-        return (newTime.isAfter(existingTime.minusHours(1)) || newTime.isBefore(existingTime.plusHours(1)));
+        return (!(newTime.isAfter(existingTime.minusHours(1))) || !(newTime.isBefore(existingTime.plusHours(1))));
     }
 
     public List<String> convertIDtoName(List<UUID> uuidList){

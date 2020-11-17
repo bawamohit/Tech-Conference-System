@@ -39,12 +39,15 @@ public class AttendeeSystem extends UserSystem{
                     break;
                 case "4":  //signup event
                     while(true){
-                        if (signupAttendeeHelper(username, scanner)){
+                        List<UUID> availEvents = eventM.getAvailableEvents();
+                        List<String> eventInfo = eventM.getEventsStrings(availEvents);
+                        presenter.printAskSignUp();
+                        presenter.printAvailableEvents(formatInfo(eventInfo));
+                        String choice = scanner.nextLine();
+                        if (signupAttendeeHelper(username, choice)){
                             presenter.printEventSignUpSuccess();
                         }
-                        else{
-                            break;
-                        }
+                        else {break; }
                     }
                     break;
                 case "5":  //cancel event
@@ -77,12 +80,9 @@ public class AttendeeSystem extends UserSystem{
         return info.toString();
     }
 
-    private boolean signupAttendeeHelper(String username, Scanner scanner) {
+    private boolean signupAttendeeHelper(String username, String choice) {
         List<UUID> availEvents = eventM.getAvailableEvents();
-        List<String> eventInfo = eventM.getEventsStrings(availEvents);
-        presenter.printAskSignUp();
-        presenter.printAvailableEvents(formatInfo(eventInfo));
-        String choice = scanner.nextLine();
+
         if (choice.matches("^[0-9]*$")) {
             int eventChoice = Integer.parseInt(choice);
             if (!(eventChoice < availEvents.size())) {
@@ -90,7 +90,7 @@ public class AttendeeSystem extends UserSystem{
                 return false;
             }
             else{
-                UUID id = eventM.getAvailableEvents().get(eventChoice);
+                UUID id = availEvents.get(eventChoice);
                 if (isAttendeeFree(username, id)){
                     eventM.addAttendee(username, id);
                     userM.addEventAttending(username, id);
@@ -128,7 +128,7 @@ public class AttendeeSystem extends UserSystem{
     private boolean isAttendeeFree(String username, UUID newEvent){
         List<UUID> userEvents = userM.getEventsAttending(username);
         for (UUID events :userEvents){
-            if (eventM.ifTimeOverlap(events, newEvent)){
+            if (!eventM.timeNotOverlap(events, newEvent)){
                 return false;
             }
         }
