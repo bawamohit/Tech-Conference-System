@@ -14,66 +14,75 @@ public class OrganizerSystem extends UserSystem {
 
     public void run(String username) {
         Scanner sc = new Scanner(System.in);
+        label:
         while (true) {
             presenter.printOrganizerMenu();
             String option = sc.nextLine();
-            if (option.equals("0")) {
-                presenter.printLoggedOut();
-                break;
-            } else if (option.equals("1")) {
-                while (true) {
-                    presenter.printOrganizerMessageMenu();
-                    String messageChoice = sc.nextLine();
-                    organizerHelperMessageSystem(username, messageChoice, sc);
-                    if(!messageChoice.equals("b")) {
-                        presenter.printInvalidInput();
-                    } else {
-                        break;
+            switch (option) {
+                case "0":
+                    presenter.printLoggedOut();
+                    break label;
+                case "1":
+                    while (true) {
+                        presenter.printOrganizerMessageMenu();
+                        String messageChoice = sc.nextLine();
+                        organizerHelperMessageSystem(username, messageChoice, sc);
+                        if (!messageChoice.equals("b")) {
+                            presenter.printInvalidInput();
+                        } else {
+                            break;
+                        }
                     }
-                }
-            } else if (option.equals("2")) {
-                while (true) {
-                    if (addEvent(username, sc)){
-                        break;
+                    break;
+                case "2":
+                    if (addEvent(username, sc)) {
+                        presenter.printEventCreationSuccess();
                     }
-                }
-            } else if (option.equals("3")){ //reschedule event
-                presenter.printUnderConstruction();
-            } else if (option.equals("4")) { //remove Event
-                presenter.printUnderConstruction();
-                // ask for event id
-                // remove event
-                // print action successful or unsuccessful
-            } else if (option.equals("5")) { //create speaker
-                while (true) {
-                    presenter.printAsk("speaker's name");
-                    String speakerName = sc.nextLine();
-                    presenter.printAsk("speaker's username");
-                    String speakerUsername = sc.nextLine();
-                    presenter.printAsk("speaker's account password");
-                    String speakerPW = sc.nextLine();
-                    if (userM.registerUser(UserType.SPEAKER, speakerName, speakerUsername, speakerPW)) {
-                        presenter.printSuccess();
-                        presenter.printUserInfo(UserType.SPEAKER, speakerUsername, speakerPW);
-                        break;
-                    } else {
-                        presenter.printUsernameExists(); //or invalid input?
-                        presenter.printFail();
+                    break;
+                case "3":  //reschedule event
+                    presenter.printUnderConstruction();
+                    break;
+                case "4":  //remove Event
+                    presenter.printUnderConstruction();
+                    // ask for event id
+                    // remove event
+                    // print action successful or unsuccessful
+                    break;
+                case "5":  //create speaker
+                    while (true) {
+                        presenter.printAsk("speaker's name");
+                        String speakerName = sc.nextLine();
+                        presenter.printAsk("speaker's username");
+                        String speakerUsername = sc.nextLine();
+                        presenter.printAsk("speaker's account password");
+                        String speakerPW = sc.nextLine();
+                        if (userM.registerUser(UserType.SPEAKER, speakerName, speakerUsername, speakerPW)) {
+                            presenter.printSuccess();
+                            presenter.printUserInfo(UserType.SPEAKER, speakerUsername, speakerPW);
+                            break;
+                        } else {
+                            presenter.printUsernameExists(); //or invalid input?
+                            presenter.printFail();
+                        }
                     }
-                }
-            } else if (option.equals("6")) { //create new room
-                while (true) {
-                    presenter.printAsk("new room's name");
-                    String roomName = sc.nextLine();
+                    break;
+                case "6":  //create new room
+                    while (true) {
+                        presenter.printAsk("new room's name");
+                        String roomName = sc.nextLine();
 //                presenter.printAsk("new room's maximum capacity");
 //                String capacity = sc.nextLine();
-                    if (roomM.addRoom(roomName, 2)) {
-                        presenter.printSuccess();
-                        break;
-                    } else {
-                        presenter.printFail();
+                        if (roomM.addRoom(roomName, 2)) {
+                            presenter.printSuccess();
+                            break;
+                        } else {
+                            presenter.printFail();
+                        }
                     }
-                }
+                    break;
+                default:
+                    presenter.printInvalidInput();
+                    break;
             }
         }
     }
@@ -103,12 +112,13 @@ public class OrganizerSystem extends UserSystem {
         String eventName = sc.nextLine();
         presenter.printAsk("event speaker's name");
         String speaker = sc.nextLine();
+        // check if speaker exists
         if(!userM.getUsernameList().contains(speaker)){
-            presenter.printUserDoesNotExist();
+            presenter.printDNE(speaker);
             return false;
         }
         presenter.printAsk("event's start time (enter a number from 9-16)");
-        Integer time = Integer.parseInt(sc.nextLine());
+        int time = Integer.parseInt(sc.nextLine());
         presenter.printAsk("event's room name (enter room name)");
         String roomName = sc.nextLine();
         // check if room exists
