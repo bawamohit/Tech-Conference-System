@@ -22,8 +22,7 @@ public class EventManager implements Serializable {
 
     public List<UUID> getEvents() {
         Collection<UUID> eventc = events.keySet();
-        ArrayList<UUID> eventList = new ArrayList<>(eventc);
-        return eventList;
+        return new ArrayList<>(eventc);
     }
 
     /**
@@ -172,10 +171,7 @@ public class EventManager implements Serializable {
     public boolean addAttendee(String username, UUID eventID){
         Event event = events.get(eventID);
 //        LocalDateTime s_event = event.getStartTime();
-        if (event.getAttendees().contains(username)){
-            return false;
-        }
-        return true;
+        return !event.getAttendees().contains(username);
     }
 
     /**

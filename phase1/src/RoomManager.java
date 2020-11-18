@@ -25,8 +25,7 @@ public class RoomManager implements Serializable {
 
     public List<String> getRooms() {
         Collection<String> roomc = rooms.keySet();
-        ArrayList<String> roomlist = new ArrayList<String>(roomc);
-        return roomlist;
+        return new ArrayList<>(roomc);
     }
 
     /**
