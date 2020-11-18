@@ -1,10 +1,28 @@
 import java.util.*;
 
+/**
+ * This class is one of the controllers of this program, specifically for attendees. It is a childclass of UserSystem.
+ */
 public class AttendeeSystem extends UserSystem{
+    /**
+     * The constructor stores Presenter, UserManager, EventManger, MessageManager and assigns each variable.
+     * It inherits these variables from its parent class, UserSystem.
+     *
+     * @param p name of event
+     * @param uMan speaker of event
+     * @param eMan organizer of event
+     * @param mMan date and time of event
+     */
     public AttendeeSystem (Presenter p, UserManager uMan, EventManager eMan, MessageManager mMan) {
         super(p, uMan, eMan, mMan);
     }
 
+    /**
+     * Implements the run method for all attendee users.
+     * With this method, an attendee can logout, message (view, send, recieve), view available events,
+     * signup and remove themselves from events.
+     *
+     */
     public void run(String username) {
         Scanner scanner = new Scanner(System.in);
         label:
@@ -67,23 +85,9 @@ public class AttendeeSystem extends UserSystem{
         }
     }
 
-    private String formatInfo(List<String> eventStrings){
-        StringBuilder info = new StringBuilder();
-        int i = 0;
-        for (String event: eventStrings){
-            info.append("\n").append(i).append(": ").append(event);
-            i += 1;
-        }
-        if (info.toString().equals("")) {
-            presenter.printNoEventsAvailable();
-            return "";
-        }
-        return info.toString();
-    }
 
     private boolean signupAttendeeHelper(String username, String choice) {
         List<UUID> availEvents = eventM.getAvailableEvents();
-
         if (choice.matches("^[0-9]*$")) {
             int eventChoice = Integer.parseInt(choice);
             if (!(eventChoice < availEvents.size())) {

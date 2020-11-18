@@ -24,6 +24,7 @@ public class Event implements Serializable {
      * @param speaker speaker of event
      * @param organizer organizer of event
      * @param startTime date and time of event
+     * @param roomName name of the room
      */
     public Event(String eventName, String speaker, String organizer, LocalDateTime startTime, String roomName,
                  int max_capacity){

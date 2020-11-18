@@ -1,8 +1,6 @@
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.time.format.DateTimeFormatter;
-import java.util.UUID;
 
 public class OrganizerSystem extends UserSystem {
     private RoomManager roomM;
@@ -37,9 +35,9 @@ public class OrganizerSystem extends UserSystem {
                         break;
                     }
                 }
-            } else if (option.equals("3")){ //reschedule event
+            } else if (option.equals("3")){ //for phase 2 reschedule event
                 presenter.printUnderConstruction();
-            } else if (option.equals("4")) { //remove Event
+            } else if (option.equals("4")) { //for phase 2 remove Event
                 presenter.printUnderConstruction();
                 // ask for event id
                 // remove event
@@ -65,7 +63,7 @@ public class OrganizerSystem extends UserSystem {
                 while (true) {
                     presenter.printAsk("new room's name");
                     String roomName = sc.nextLine();
-//                presenter.printAsk("new room's maximum capacity");
+//                presenter.printAsk("new room's maximum capacity"); -phase 2
 //                String capacity = sc.nextLine();
                     if (roomM.addRoom(roomName, 2)) {
                         presenter.printSuccess();
@@ -108,7 +106,7 @@ public class OrganizerSystem extends UserSystem {
             return false;
         }
         presenter.printAsk("event's start time (enter a number from 9-16)");
-        Integer time = Integer.parseInt(sc.nextLine());
+        int time = Integer.parseInt(sc.nextLine());
         presenter.printAsk("event's room name (enter room name)");
         String roomName = sc.nextLine();
         // check if room exists
@@ -140,4 +138,26 @@ public class OrganizerSystem extends UserSystem {
         presenter.printFail();
         return false;
     }
+//for phase 2
+//    private boolean removeEvent(String username, Scanner sc){
+//        List<UUID> wholeEventList = eventM.getEvents();
+//        String info = formatInfo(eventM.getEventsStrings(wholeEventList));
+//        presenter.printAskWhichEventCancel();
+//        presenter.printAvailableEvents(info);
+//        String choice = sc.nextLine();
+//        if (choice.matches("^[0-9]*$")) {
+//            int eventChoice = Integer.parseInt(choice);
+//            if (!(eventChoice < wholeEventList.size())) {
+//                presenter.printInvalidInput();
+//                return false;
+//            } else{
+//                UUID id = wholeEventList.get(eventChoice);
+//                eventM.removeEvent
+//            }
+//        } else {
+//            presenter.printInvalidInput();
+//            return false;
+//        }
+//    }
+
 }

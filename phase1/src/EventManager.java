@@ -2,6 +2,10 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.*;
 
+/**
+ * This class is one of the use cases classes for this program, specifically for manipulating the Event entity class.
+ * It stores a map of all event ids to its event object.
+ */
 public class EventManager implements Serializable {
     private HashMap<UUID, Event> events;
 
@@ -147,21 +151,21 @@ public class EventManager implements Serializable {
         events.put(new_event.getId(), new_event);
         return new_event.getId();
     }
-
-
-    ///**
-     //* Implements modifier, removeEvent, for events.
-    // *
-   //  * @return a boolean indicating if event was successfully removed
-  //   */
-//    public boolean removeEvent(Event event){
-//        if (events.containsKey(event.getId())){
-//            events.remove(event.getId());
-//            update canSignUp as necessary
-//            return true;
+//
+// for phase 2
+//        /**
+//         * Implements modifier, removeEvent, for events.
+//         *
+//         * @return a boolean indicating if event was successfully removed
+//         */
+//        public boolean removeEvent(Event event){
+//            if (events.containsKey(event.getId())){
+//                events.remove(event.getId());
+//                update canSignUp as necessary
+//                return true;
+//            }
+//            return false;
 //        }
-//        return false;
-//    } // for phase 2
 
     /**
      * Implements modifier, addAttendee, for event in events.
@@ -189,12 +193,28 @@ public class EventManager implements Serializable {
         return false;
     }
 
+    /**
+     * Implements a checker method, timeNotOverlap, to compare the start times of 2 events, and to ensure that their
+     * event times do not overlap one another..
+     *
+     * @param existingEvent event that is already existing in this program
+     * @param newEvent event we are trying to add
+     *
+     * @return a boolean indicating if the event times does not overlap.
+     */
     public boolean timeNotOverlap(UUID existingEvent, UUID newEvent){
         LocalDateTime existingTime = this.events.get(existingEvent).getStartTime();
         LocalDateTime newTime = this.events.get(newEvent).getStartTime();
         return (!(newTime.isAfter(existingTime.minusHours(1))) || !(newTime.isBefore(existingTime.plusHours(1))));
     }
 
+    /**
+     * Implements a method, convertIDtoName, to convert a list of event ids to a list of its names
+     *
+     * @param uuidList list of event ids
+     *
+     * @return a list of strings, each the event names according to its id.
+     */
     public List<String> convertIDtoName(List<UUID> uuidList){
         List<String> namelist = new ArrayList<>();
         for (UUID id :uuidList){

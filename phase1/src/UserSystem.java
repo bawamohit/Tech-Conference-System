@@ -21,6 +21,25 @@ public abstract class UserSystem {
 
     abstract void run(String username);
 
+    /**
+     * Implements a method used to format a list of strings to an numbered string.
+     * This is used to format a list of information to a string, that shows each element inside the list as a numbered
+     * string format.
+     */
+    protected String formatInfo(List<String> eventStrings){
+        StringBuilder info = new StringBuilder();
+        int i = 0;
+        for (String event: eventStrings){
+            info.append("\n").append(i).append(": ").append(event);
+            i += 1;
+        }
+        if (info.toString().equals("")) {
+            presenter.printNoEventsAvailable();
+            return "";
+        }
+        return info.toString();
+    }
+
     protected void helperMessageSystem(String username, String choice, Scanner scanner){
         switch (choice) {
             case "0":
@@ -81,6 +100,11 @@ public abstract class UserSystem {
         }
     }
 
+    /**
+     * Implements a method used to save each UserManager, EventManager and MessageManager objects
+     * to its designated .ser file.
+     *
+     */
     protected void save(){
         try {
             UserGateway userGateway = new UserGateway();
