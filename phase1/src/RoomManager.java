@@ -85,27 +85,39 @@ public class RoomManager implements Serializable {
     }
 
     /**
+     * Implements checker, canAddEvent, for a room in rooms.
+     *
+     * @return a boolean indicating if an event with room name roomName and start time start can be successfully added
+     */
+    public boolean canAddEvent(String roomName, LocalDateTime start) {
+        Room room = findRoom(roomName);
+        for (LocalDateTime time : room.getSchedule().keySet()) {
+            if (start.isAfter(time.minusHours(1))) {
+                if (start.isBefore(time.plusHours(1))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    /**
      * Implements modifier, addEventToSchedule, for event in a room.
      *
      * @return a boolean indicating if event was successfully added
      */
     public boolean addEventToSchedule(UUID eventId, String roomName, LocalDateTime start) {
         Room room = findRoom(roomName);
-        if (room.getSchedule().containsValue(eventId)) {
-            return false;
-        }
-        for (LocalDateTime time : room.getSchedule().keySet()) {
-            if (start.isAfter(time.minusHours(1))) {
-                if (start.isBefore(time.plusHours(1))) {
-                return false;
-                }
-            }
-        }
         HashMap<LocalDateTime, UUID> updated_room = room.getSchedule();
         updated_room.put(start, eventId);
         room.setRoomSchedule(updated_room);
         return true;
     }
+
+    /**
+     * Implements getter, getRoomCapacity, for room in rooms.
+     *
+     * @return the room roomName's capacity
+     */
     public int getRoomCapacity(String roomName) {
         return rooms.get(roomName).getCapacity();
     }

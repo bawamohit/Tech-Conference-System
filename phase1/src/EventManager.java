@@ -131,10 +131,10 @@ public class EventManager implements Serializable {
         for(UUID id : events.keySet()){
             Event e = events.get(id);
             if (e.getStartTime() == startTime && e.getEventRoomName().equals(roomName)){
-                return null;
+                return null; //checked in RM canAdd?
             }
             if (id == new_event.getId()){
-                return null;
+                return null; //do we need to check this? since everytime new event, ID distinct
             }
         }
         if (startTime.getHour() < 9 ){

@@ -110,44 +110,60 @@ public class OrganizerSystem extends UserSystem {
     private boolean addEvent(String username, Scanner sc) {
         presenter.printAsk("event's name");
         String eventName = sc.nextLine();
+        presenter.printAsk("event's start time (enter in the format H:MM )");
+        String[] time = sc.nextLine().split(":");
+        int hour = Integer.parseInt(time[0]);
+        int minute = Integer.parseInt(time[1]);
+        LocalDateTime startTime = LocalDateTime.of(2020, 6, 9, hour, minute, 0); //catch exception
+        if (hour < 9 || hour > 16){
+            presenter.printInvalidInput();
+            return false;//check time between 9-16
+        }
         presenter.printAsk("event speaker's name");
         String speaker = sc.nextLine();
-        // check if speaker exists
-        if(!userM.getUsernameList().contains(speaker)){
-            presenter.printDNE(speaker);
-            return false;
-        }
-        presenter.printAsk("event's start time (enter a number from 9-16)");
-        int time = Integer.parseInt(sc.nextLine());
+        if (!isSpeakerOk(speaker, startTime)){ return false; }
         presenter.printAsk("event's room name (enter room name)");
         String roomName = sc.nextLine();
-        // check if room exists
-        if (!roomM.getRooms().contains(roomName)) {
-            presenter.printDNE("room");
-            return false;
-        }
-        LocalDateTime startTime = LocalDateTime.of(2020, 6, 9, time, 0, 0);
-        List<UUID> speakers_events = userM.getEventsAttending(speaker);
-        // check if speaker is occupied
-        for (UUID id: speakers_events){
-            LocalDateTime existingTime = eventM.getEventStartTime(id);
-            if (!userM.scheduleNotOverlap(existingTime, startTime)){
-                presenter.printObjUnavailable("speaker");
-                return false;
-            }
-        }
+        if (!isRoomOk(roomName, startTime)){ return false; }
         int capacity = roomM.getRoomCapacity(roomName);
-        //room occupied
-        //time is wrong
-        // check if event added successfully
         UUID id = eventM.addEvent(eventName, speaker, username, startTime, roomName, capacity);
         if (id != null) {
             if (roomM.addEventToSchedule(id, roomName, startTime)) {
                 presenter.printSuccess();
                 return true;
+            } else{
+
             }
         }
         presenter.printFail();
         return false;
+    }
+
+    private boolean isSpeakerOk(String speaker, LocalDateTime newTime){
+        if(!userM.getUsernameList().contains(speaker)){
+            presenter.printDNE(speaker);
+            return false;
+        }
+        List<UUID> speakers_events = userM.getEventsAttending(speaker);
+        for (UUID id: speakers_events){
+            LocalDateTime existingTime = eventM.getEventStartTime(id);
+            if (!userM.scheduleNotOverlap(existingTime, newTime)){
+                presenter.printObjUnavailable("speaker");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isRoomOk(String roomName, LocalDateTime startTime){
+        if (!roomM.getRooms().contains(roomName)) {
+            presenter.printDNE("room");
+            return false;
+        }
+        if (!roomM.canAddEvent(roomName, startTime)){
+            presenter.printObjUnavailable("room at this time");
+            return false;
+        }
+        return true;
     }
 }
