@@ -80,10 +80,6 @@ public class Presenter {
     }
 
 // Creating an account
-    public void printUsernameExists() {
-        System.out.println("\nUsername already exists\n");
-    }
-
     public void printWrongAccountInfo() {
         System.out.println("\nOOPS looks like you entered the wrong login information," +
                 "Please enter your username again.\n" +
@@ -109,15 +105,15 @@ public class Presenter {
         System.out.println("The events available for sign-up are: \n" + compiled);
     }
     public void printAskSignUp() {
-        System.out.println("Enter the number of the event you would like to register for");
+        System.out.println("Enter the number of the event you would like to register for:");
     }
 
     public void printAskWhichEventCancel() {
-        System.out.println("Type the name of event you would like to remove");
+        System.out.println("Enter the name of event you would like to remove sign up from:");
     }
 
     public void printAlreadyBookedTime() {
-        System.out.println("You have another event already book during the time of this event.");
+        System.out.println("You have already booked for another event during the time of this event.");
     }
 
     public void printEventSignUpSuccess() {
@@ -157,6 +153,10 @@ public class Presenter {
         System.out.println("Sorry, " + obj + " is unavailable.");
     }
 
+    public void printObjectExists(String obj) { System.out.println("\n" + obj + "already exists\n"); }
+
+    public void printUnprocessed() { System.out.println("Sorry, your request didn't go through. Please try again!"); }
+
 // Action status
     public void printSuccess() {
         System.out.println("\nYou crazy son of a female dog, you did it.");
@@ -177,7 +177,7 @@ public class Presenter {
     }
 
     public void printBack() {
-        System.out.println("Enter 'b' to go back to previous menu");
+        System.out.println("Enter 'b' to go back to previous menu.");
     }
 
 // Other general statements

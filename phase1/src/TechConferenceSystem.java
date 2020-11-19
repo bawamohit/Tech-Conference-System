@@ -125,7 +125,7 @@ public class TechConferenceSystem {
             return info[0];
         }
         else {
-            presenter.printUsernameExists();
+            presenter.printObjectExists("Username");
             return null;
         }
     }

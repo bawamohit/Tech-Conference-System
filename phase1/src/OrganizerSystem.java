@@ -1,7 +1,6 @@
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
-import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 public class OrganizerSystem extends UserSystem {
@@ -35,49 +34,36 @@ public class OrganizerSystem extends UserSystem {
                     }
                     break;
                 case "2":
-                    if (addEvent(username, sc)) {
-                        presenter.printEventCreationSuccess();
+                    while (true) {
+                        if (addEvent(username, sc)) {
+                            presenter.printEventCreationSuccess();
+                            presenter.printSuccess();
+                            break; //where should we reprompt??
+                        }
                     }
-                    break;
                 case "3":  //reschedule event
                     presenter.printUnderConstruction();
                     break;
                 case "4":  //remove Event
                     presenter.printUnderConstruction();
-                    // ask for event id
-                    // remove event
-                    // print action successful or unsuccessful
                     break;
                 case "5":  //create speaker
                     while (true) {
-                        presenter.printAsk("speaker's name");
-                        String speakerName = sc.nextLine();
-                        presenter.printAsk("speaker's username");
-                        String speakerUsername = sc.nextLine();
-                        presenter.printAsk("speaker's account password");
-                        String speakerPW = sc.nextLine();
-                        if (userM.registerUser(UserType.SPEAKER, speakerName, speakerUsername, speakerPW)) {
+                        if (addSpeaker(sc)) {
                             presenter.printSuccess();
-                            presenter.printUserInfo(UserType.SPEAKER, speakerUsername, speakerPW);
                             break;
-                        } else {
-                            presenter.printUsernameExists(); //or invalid input?
-                            presenter.printFail();
-                        }
+                        } // give option to go back if fail?
                     }
-                    break;
                 case "6":  //create new room
                     while (true) {
                         presenter.printAsk("new room's name");
                         String roomName = sc.nextLine();
-//                presenter.printAsk("new room's maximum capacity");
-//                String capacity = sc.nextLine();
+        //                presenter.printAsk("new room's maximum capacity");
+        //                String capacity = sc.nextLine();
                         if (roomM.addRoom(roomName, 2)) {
                             presenter.printSuccess();
                             break;
-                        } else {
-                            presenter.printFail();
-                        }
+                        } else { presenter.printObjectExists("Room"); }
                     }
                     break;
                 default:
@@ -107,6 +93,23 @@ public class OrganizerSystem extends UserSystem {
         }
     }
 
+    private boolean addSpeaker(Scanner sc){
+        presenter.printAsk("speaker's name");
+        String speakerName = sc.nextLine();
+        presenter.printAsk("speaker's username");
+        String speakerUsername = sc.nextLine();
+        presenter.printAsk("speaker's account password");
+        String speakerPW = sc.nextLine();
+        if (userM.registerUser(UserType.SPEAKER, speakerName, speakerUsername, speakerPW)) {
+            presenter.printUserInfo(UserType.SPEAKER, speakerUsername, speakerPW);
+            return true;
+        } else {
+            presenter.printObjectExists("Username"); //or invalid input?
+            presenter.printFail();
+            return false;
+        }
+    }
+
     private boolean addEvent(String username, Scanner sc) {
         presenter.printAsk("event's name");
         String eventName = sc.nextLine();
@@ -129,10 +132,10 @@ public class OrganizerSystem extends UserSystem {
         UUID id = eventM.addEvent(eventName, speaker, username, startTime, roomName, capacity);
         if (id != null) {
             if (roomM.addEventToSchedule(id, roomName, startTime)) {
-                presenter.printSuccess();
                 return true;
             } else{
-
+                presenter.printUnprocessed();
+                return false;
             }
         }
         presenter.printFail();
