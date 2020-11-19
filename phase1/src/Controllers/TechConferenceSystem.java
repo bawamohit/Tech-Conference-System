@@ -15,6 +15,10 @@ public class TechConferenceSystem {
     private EventManager em;
     private MessageManager mm;
     private RoomManager rm;
+    private UserGateway userGateway;
+    private EventGateway eventGateway;
+    private MessageGateway messageGateway;
+    private RoomGateway roomGateway;
     File eventManagerInfo = new File("./phase1/src/eventManager.ser");
     File messageManagerInfo = new File("./phase1/src/messageManager.ser");
     File userManagerInfo = new File("./phase1/src/userManager.ser");
@@ -22,13 +26,13 @@ public class TechConferenceSystem {
 
     public TechConferenceSystem () {
         try {
-            UserGateway userGateway = new UserGateway();
+            userGateway = new UserGateway();
+            eventGateway = new EventGateway();
+            messageGateway = new MessageGateway();
+            roomGateway = new RoomGateway();
             um = userGateway.readFromFile(userManagerInfo.getPath());
-            EventGateway eventGateway = new EventGateway();
             em = eventGateway.readFromFile(eventManagerInfo.getPath());
-            MessageGateway messageGateway = new MessageGateway();
             mm = messageGateway.readFromFile(messageManagerInfo.getPath());
-            RoomGateway roomGateway = new RoomGateway();
             rm = roomGateway.readFromFile(roomManagerInfo.getPath());
         } catch (ClassNotFoundException e){
             e.printStackTrace();
@@ -45,28 +49,43 @@ public class TechConferenceSystem {
 
             UserSystem system;
             if (um.getUserType(loggedInUsername) == UserType.ATTENDEE) {
-                system = new AttendeeSystem(presenter, um, em, mm);
+                system = new AttendeeSystem();
             } else if (um.getUserType(loggedInUsername) == UserType.ORGANIZER) {
-                system = new OrganizerSystem(presenter, um, em, mm, rm);
+                system = new OrganizerSystem();
             } else {
-                system = new SpeakerSystem(presenter, um, em, mm);
+                system = new SpeakerSystem();
             }
-            system.run(loggedInUsername);
+            system.run(loggedInUsername, this);
 
             //THIS IS WHERE WE CAN SAVE INFO (WRITE TO FILES)
             try {
-                UserGateway userGateway = new UserGateway();
                 userGateway.saveToFile(userManagerInfo.getPath(), um);
-                EventGateway eventGateway = new EventGateway();
                 eventGateway.saveToFile(eventManagerInfo.getPath(), em);
-                MessageGateway messageGateway = new MessageGateway();
                 messageGateway.saveToFile(messageManagerInfo.getPath(), mm);
-                RoomGateway roomGateway = new RoomGateway();
                 roomGateway.saveToFile(roomManagerInfo.getPath(), rm);
             } catch (IOException e){
                 e.printStackTrace();
             }
         }
+    }
+
+    public Presenter getPresenter(){
+        return presenter;
+    }
+
+    public UserManager getUM(){
+        return um;
+    }
+    public EventManager getEM(){
+        return em;
+    }
+
+    public MessageManager getMM(){
+        return mm;
+    }
+
+    public RoomManager getRM(){
+        return rm;
     }
 
     private UserType askAccountType(Scanner in) {

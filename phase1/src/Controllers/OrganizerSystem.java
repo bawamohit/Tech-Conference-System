@@ -9,168 +9,162 @@ import UI.Presenter;
 import Entities.UserType;
 
 public class OrganizerSystem extends UserSystem {
-    private RoomManager roomM;
 
-    public OrganizerSystem(Presenter p, UserManager uMan, EventManager eMan, MessageManager mMan, RoomManager rMan) {
-        super(p, uMan, eMan, mMan);
-        this.roomM = rMan;
-    }
-
-    public void run(String username) {
+    public void run(String username, TechConferenceSystem tcs) {
         Scanner sc = new Scanner(System.in);
         label:
         while (true) {
-            presenter.printOrganizerMenu();
+            tcs.getPresenter().printOrganizerMenu();
             String option = sc.nextLine();
             switch (option) {
                 case "0":
-                    presenter.printLoggedOut();
+                    tcs.getPresenter().printLoggedOut();
                     break label;
                 case "1":
                     while (true) {
-                        presenter.printOrganizerMessageMenu();
+                        tcs.getPresenter().printOrganizerMessageMenu();
                         String messageChoice = sc.nextLine();
-                        organizerHelperMessageSystem(username, messageChoice, sc);
+                        organizerHelperMessageSystem(username, messageChoice, sc, tcs);
                         if (messageChoice.equals("b")) {
                             break;
                         } else if (!messageChoice.matches("^[012345]$")){
-                            presenter.printInvalidInput();
+                            tcs.getPresenter().printInvalidInput();
                         }
                     }
                     break;
                 case "2":
-                    if (addEvent(username, sc)) {
-                        presenter.printEventCreationSuccess();
-                        presenter.printSuccess();
+                    if (addEvent(username, sc, tcs)) {
+                        tcs.getPresenter().printEventCreationSuccess();
+                        tcs.getPresenter().printSuccess();
                         break; //where should we re-prompt??
                     }
                     else {
-                        presenter.printEventCreationFail();
+                        tcs.getPresenter().printEventCreationFail();
                     }
                 case "3":  //reschedule event
-                    presenter.printUnderConstruction();
+                    tcs.getPresenter().printUnderConstruction();
                     break;
                 case "4":  //remove Event
-                    presenter.printUnderConstruction();
+                    tcs.getPresenter().printUnderConstruction();
                     break;
                 case "5":  //create speaker
                     while (true) {
-                        if (addSpeaker(sc)) {
-                            presenter.printSuccess();
+                        if (addSpeaker(sc, tcs)) {
+                            tcs.getPresenter().printSuccess();
                             break;
                         }// give option to go back if fail?
                     } break;
                 case "6":  //create new room
                     while (true) {
-                        presenter.printAsk("new room's name");
+                        tcs.getPresenter().printAsk("new room's name");
                         String roomName = sc.nextLine();
         //                presenter.printAsk("new room's maximum capacity");
         //                String capacity = sc.nextLine();
-                        if (roomM.addRoom(roomName, 2)) {
-                            presenter.printSuccess();
+                        if (tcs.getRM().addRoom(roomName, 2)) {
+                            tcs.getPresenter().printSuccess();
                             break;
-                        } else { presenter.printObjectExists("Room"); }
+                        } else { tcs.getPresenter().printObjectExists("Room"); }
                     }
                     break;
                 default:
-                    presenter.printInvalidInput();
+                    tcs.getPresenter().printInvalidInput();
                     break;
             }
         }
     }
 
-    private void organizerHelperMessageSystem(String username, String choice, Scanner sc) {
-        super.helperMessageSystem(username, choice, sc);
-        messageAll(username, choice, sc);
+    private void organizerHelperMessageSystem(String username, String choice, Scanner sc, TechConferenceSystem tcs) {
+        super.helperMessageSystem(username, choice, sc, tcs);
+        messageAll(username, choice, sc, tcs);
     }
 
-    private void messageAll(String username, String choice, Scanner sc) {
+    private void messageAll(String username, String choice, Scanner sc, TechConferenceSystem tcs) {
         if (choice.equals("4") || choice.equals("5")) {
-            presenter.printAsk("message");
+            tcs.getPresenter().printAsk("message");
             String content = sc.nextLine();
-            List<String> userList = userM.getUsernameList();
+            List<String> userList = tcs.getUM().getUsernameList();
             for (String user : userList) {
-                if (choice.equals("4") && userM.getUserType(user) == UserType.SPEAKER) {
-                    messageM.sendMessage(username, user, content);
-                } else if (choice.equals("5") && userM.getUserType(user) == UserType.ORGANIZER) {
-                    messageM.sendMessage(username, user, content);
+                if (choice.equals("4") && tcs.getUM().getUserType(user) == UserType.SPEAKER) {
+                    tcs.getMM().sendMessage(username, user, content);
+                } else if (choice.equals("5") && tcs.getUM().getUserType(user) == UserType.ORGANIZER) {
+                    tcs.getMM().sendMessage(username, user, content);
                 }
             }
         }
     }
 
-    private boolean addSpeaker(Scanner sc){
-        presenter.printAsk("speaker's name");
+    private boolean addSpeaker(Scanner sc, TechConferenceSystem tcs){
+        tcs.getPresenter().printAsk("speaker's name");
         String speakerName = sc.nextLine();
-        presenter.printAsk("speaker's username");
+        tcs.getPresenter().printAsk("speaker's username");
         String speakerUsername = sc.nextLine();
-        presenter.printAsk("speaker's account password");
+        tcs.getPresenter().printAsk("speaker's account password");
         String speakerPW = sc.nextLine();
-        if (userM.registerUser(UserType.SPEAKER, speakerName, speakerUsername, speakerPW)) {
-            presenter.printUserInfo(UserType.SPEAKER, speakerUsername, speakerPW);
+        if (tcs.getUM().registerUser(UserType.SPEAKER, speakerName, speakerUsername, speakerPW)) {
+            tcs.getPresenter().printUserInfo(UserType.SPEAKER, speakerUsername, speakerPW);
             return true;
         } else {
-            presenter.printObjectExists("Username"); //or invalid input?
-            presenter.printFail();
+            tcs.getPresenter().printObjectExists("Username"); //or invalid input?
+            tcs.getPresenter().printFail();
             return false;
         }
     }
 
-    private boolean addEvent(String username, Scanner sc) {
-        presenter.printAsk("event's name");
+    private boolean addEvent(String username, Scanner sc, TechConferenceSystem tcs) {
+        tcs.getPresenter().printAsk("event's name");
         String eventName = sc.nextLine();
-        presenter.printAsk("event's start time (enter in the format H:MM )");
+        tcs.getPresenter().printAsk("event's start time (enter in the format H:MM )");
         String[] time = sc.nextLine().split(":");
         int hour = Integer.parseInt(time[0]);
         int minute = Integer.parseInt(time[1]);
         LocalDateTime startTime = LocalDateTime.of(2020, 6, 9, hour, minute, 0); //catch exception
         if (hour < 9 || hour > 16){
-            presenter.printInvalidInput();
+            tcs.getPresenter().printInvalidInput();
             return false;//check time between 9-16
         }
-        presenter.printAsk("event speaker's name");
+        tcs.getPresenter().printAsk("event speaker's name");
         String speaker = sc.nextLine();
-        if (!isSpeakerOk(speaker, startTime)){ return false; } // speaker time check doesn't work
-        presenter.printAsk("event's room name (enter room name)");
+        if (!isSpeakerOk(speaker, startTime, tcs)){ return false; } // speaker time check doesn't work
+        tcs.getPresenter().printAsk("event's room name (enter room name)");
         String roomName = sc.nextLine();
-        if (!isRoomOk(roomName, startTime)){ return false; }
-        int capacity = roomM.getRoomCapacity(roomName);
-        UUID id = eventM.addEvent(eventName, speaker, username, startTime, roomName, capacity);
+        if (!isRoomOk(roomName, startTime, tcs)){ return false; }
+        int capacity = tcs.getRM().getRoomCapacity(roomName);
+        UUID id = tcs.getEM().addEvent(eventName, speaker, username, startTime, roomName, capacity);
         if (id != null) {
-            if (roomM.addEventToSchedule(id, roomName, startTime)) {
+            if (tcs.getRM().addEventToSchedule(id, roomName, startTime)) {
                 return true;
             } else{
-                presenter.printUnprocessed();
+                tcs.getPresenter().printUnprocessed();
                 return false;
             }
         }
-        presenter.printFail();
+        tcs.getPresenter().printFail();
         return false;
     }
 
-    private boolean isSpeakerOk(String speaker, LocalDateTime newTime){
-        if(!userM.getUsernameList().contains(speaker)){
-            presenter.printDNE(speaker);
+    private boolean isSpeakerOk(String speaker, LocalDateTime newTime, TechConferenceSystem tcs){
+        if(!tcs.getUM().getUsernameList().contains(speaker)){
+            tcs.getPresenter().printDNE(speaker);
             return false;
         }
-        List<UUID> speakers_events = userM.getEventsAttending(speaker);
+        List<UUID> speakers_events = tcs.getUM().getEventsAttending(speaker);
         for (UUID id: speakers_events){
-            LocalDateTime existingTime = eventM.getEventStartTime(id);
-            if (!userM.scheduleNotOverlap(existingTime, newTime)){
-                presenter.printObjUnavailable("speaker");
+            LocalDateTime existingTime = tcs.getEM().getEventStartTime(id);
+            if (!tcs.getUM().scheduleNotOverlap(existingTime, newTime)){
+                tcs.getPresenter().printObjUnavailable("speaker");
                 return false;
             }
         }
         return true;
     }
 
-    private boolean isRoomOk(String roomName, LocalDateTime startTime){
-        if (!roomM.getRooms().contains(roomName)) {
-            presenter.printDNE("room");
+    private boolean isRoomOk(String roomName, LocalDateTime startTime, TechConferenceSystem tcs){
+        if (!tcs.getRM().getRooms().contains(roomName)) {
+            tcs.getPresenter().printDNE("room");
             return false;
         }
-        if (!roomM.canAddEvent(roomName, startTime)){
-            presenter.printObjUnavailable("room at this time");
+        if (!tcs.getRM().canAddEvent(roomName, startTime)){
+            tcs.getPresenter().printObjUnavailable("room at this time");
             return false;
         }
         return true;

@@ -9,22 +9,11 @@ import UI.Presenter;
 import Gateways.*;
 
 public abstract class UserSystem {
-    protected Presenter presenter;
-    protected UserManager userM;
-    protected EventManager eventM;
-    protected MessageManager messageM;
     File eventManagerInfo = new File("./phase1/src/eventManager.ser");
     File messageManagerInfo = new File("./phase1/src/messageManager.ser");
     File userManagerInfo = new File("./phase1/src/userManager.ser");
 
-    public UserSystem (Presenter p, UserManager uMan, EventManager eMan, MessageManager mMan) {
-        presenter = p;
-        userM = uMan;
-        eventM = eMan;
-        messageM = mMan;
-    }
-
-    abstract void run(String username);
+    abstract void run(String username, TechConferenceSystem tcs);
 
     /**
      * Implements a method used to format a list of strings to an numbered string.
@@ -42,78 +31,78 @@ public abstract class UserSystem {
         return info.toString();
     }
 
-    protected void helperMessageSystem(String username, String choice, Scanner scanner){
+    protected void helperMessageSystem(String username, String choice, Scanner scanner, TechConferenceSystem tcs){
         switch (choice) {
             case "0":
-                sendMessage(username, scanner);
+                sendMessage(username, scanner, tcs);
                 break;
             case "1":
                 //edit Message
-                presenter.printUnderConstruction();
+                tcs.getPresenter().printUnderConstruction();
                 break;
             case "2":
                 // delete Message
-                deleteMessage(username, scanner);
+                deleteMessage(username, scanner, tcs);
                 break;
             case "3":
                 // view inbox
-                viewInbox(username, scanner);
+                viewInbox(username, scanner, tcs);
                 break;
             default:
                 break;
         }
     }
 
-    private void sendMessage(String username, Scanner scanner){
-        presenter.printAskMsgReceiver();
+    private void sendMessage(String username, Scanner scanner, TechConferenceSystem tcs){
+        tcs.getPresenter().printAskMsgReceiver();
         String receiver = scanner.nextLine();
-        presenter.printAsk("message");
+        tcs.getPresenter().printAsk("message");
         String message = scanner.nextLine();
-        messageM.sendMessage(username, receiver, message);
-        presenter.printMessageSent();
+        tcs.getMM().sendMessage(username, receiver, message);
+        tcs.getPresenter().printMessageSent();
     }
 
     // TODO: Use this method or delete it
-    private void editMessage(String username, Scanner scanner){
-        presenter.printUnderConstruction();
+    private void editMessage(String username, Scanner scanner, TechConferenceSystem tcs){
+        tcs.getPresenter().printUnderConstruction();
     }
 
-    private void deleteMessage(String username, Scanner scanner){
+    private void deleteMessage(String username, Scanner scanner, TechConferenceSystem tcs){
         String inboxChoice;
         int content;
         while (true) {
             while (true) {
-                presenter.printAskWhichInbox();
-                presenter.printUCReturns(messageM.getChats(username));
+                tcs.getPresenter().printAskWhichInbox();
+                tcs.getPresenter().printUCReturns(tcs.getMM().getChats(username));
                 inboxChoice = scanner.nextLine();
-                if (messageM.getChats(username).contains(inboxChoice)) {
+                if (tcs.getMM().getChats(username).contains(inboxChoice)) {
                     break;
                 } else {
-                    presenter.printInvalidInput();
+                    tcs.getPresenter().printInvalidInput();
                 }
             }
-            List<String> inbox = messageM.getInbox(username, inboxChoice);
+            List<String> inbox = tcs.getMM().getInbox(username, inboxChoice);
             int n = 0;
             for (String message : inbox) {
-                presenter.printUCReturns(n + ": " + message);
+                tcs.getPresenter().printUCReturns(n + ": " + message);
                 n += 1;
             }
-            presenter.printAskWhichMessage();
+            tcs.getPresenter().printAskWhichMessage();
             content = scanner.nextInt();
             if (0 <= content && content < n) {
                 break;
             } else {
-                presenter.printInvalidInput();
+                tcs.getPresenter().printInvalidInput();
             }
         }
-        messageM.deleteMessage(messageM.getChat(username, inboxChoice).get(content));
+        tcs.getMM().deleteMessage(tcs.getMM().getChat(username, inboxChoice).get(content));
     }
 
-    private void viewInbox(String username, Scanner scanner){
-        presenter.printAskWhichInbox();
-        presenter.printUCReturns(messageM.getChats(username));
+    private void viewInbox(String username, Scanner scanner, TechConferenceSystem tcs){
+        tcs.getPresenter().printAskWhichInbox();
+        tcs.getPresenter().printUCReturns(tcs.getMM().getChats(username));
         String contact = scanner.nextLine();
-        for (String message : messageM.getInbox(username, contact)){
+        for (String message : tcs.getMM().getInbox(username, contact)){
             System.out.println(message);
         }
     }
@@ -123,7 +112,7 @@ public abstract class UserSystem {
      * to its designated .ser file.
      *
      */
-    protected void save(){
+    /*protected void save(){
         try {
             UserGateway userGateway = new UserGateway();
             userGateway.saveToFile(userManagerInfo.getPath(), userM);
@@ -134,6 +123,6 @@ public abstract class UserSystem {
         } catch (IOException e){
             e.printStackTrace();
         }
-    }
+    }*/
 }
 

@@ -8,30 +8,27 @@ import Use_cases.*;
 import UI.Presenter;
 
 public class SpeakerSystem extends UserSystem{
-    public SpeakerSystem (Presenter p, UserManager uMan, EventManager eMan, MessageManager mMan) {
-        super(p, uMan, eMan, mMan);
-    }
 
-    public void run(String username){
+    public void run(String username, TechConferenceSystem tcs){
         Scanner scan = new Scanner(System.in);
 
         while(true){
-            presenter.printSpeakerMenu();
+            tcs.getPresenter().printSpeakerMenu();
             String speakerChoice = scan.nextLine();
 
             switch (speakerChoice){
                 case "0":
-                    presenter.printLoggedOut();
+                    tcs.getPresenter().printLoggedOut();
                     break;
                 case "1":
                     while (true) {
-                        presenter.printSpeakerMessageMenu();
+                        tcs.getPresenter().printSpeakerMessageMenu();
                         String messageChoice = scan.nextLine();
-                        speakerHelperMessageSystem(username, messageChoice, scan);
+                        speakerHelperMessageSystem(username, messageChoice, scan, tcs);
                         if(messageChoice.equals("b")) {
                             break;
                         } else if (!messageChoice.matches("^[01234]$")) {
-                            presenter.printInvalidInput();
+                            tcs.getPresenter().printInvalidInput();
                         }
                     }
                 case "2":
@@ -43,20 +40,20 @@ public class SpeakerSystem extends UserSystem{
     }
 
     //TODO: Complete this method
-    public void speakerHelperMessageSystem(String username, String choice, Scanner scan) {
-        super.helperMessageSystem(username, choice, scan);
-        messageAll(username, choice, scan);
+    public void speakerHelperMessageSystem(String username, String choice, Scanner scan, TechConferenceSystem tcs) {
+        super.helperMessageSystem(username, choice, scan, tcs);
+        messageAll(username, choice, scan, tcs);
     }
 
-    public void messageAll(String username, String choice, Scanner scan) {
+    public void messageAll(String username, String choice, Scanner scan, TechConferenceSystem tcs) {
         if (choice.equals("4")) {
-            List<UUID> listEvents = userM.getEventsAttending(username);
+            List<UUID> listEvents = tcs.getUM().getEventsAttending(username);
             String listChoice;
             while (true) {
-                presenter.printAskWhichEvents();
+                tcs.getPresenter().printAskWhichEvents();
                 int n = 0;
                 for (UUID eventID : listEvents) {
-                    presenter.printUCReturns(n + ": " + eventID);
+                    tcs.getPresenter().printUCReturns(n + ": " + eventID);
                     n += 1;
                 }
                 listChoice = scan.nextLine();
@@ -70,16 +67,16 @@ public class SpeakerSystem extends UserSystem{
                 if (possibleChoices.contains(listChoice)) {
                     break;
                 } else {
-                    presenter.printInvalidInput();
+                    tcs.getPresenter().printInvalidInput();
                 }
             }
-            presenter.printAsk("message");
+            tcs.getPresenter().printAsk("message");
             String content = scan.nextLine();
             char[] listChoiceSorted = listChoice.toCharArray();
             for (Character eventID : listChoiceSorted) {
-                List<String> attendeeList = eventM.getEventAttendees(listEvents.get((int)eventID));
+                List<String> attendeeList = tcs.getEM().getEventAttendees(listEvents.get((int)eventID));
                 for (String user : attendeeList) {
-                    messageM.sendMessage(username, user, content);
+                    tcs.getMM().sendMessage(username, user, content);
                 }
             }
         }

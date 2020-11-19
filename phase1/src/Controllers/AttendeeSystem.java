@@ -8,18 +8,6 @@ import UI.Presenter;
  * This class is one of the controllers of this program, specifically for attendees. It is a child class of UserSystem.
  */
 public class AttendeeSystem extends UserSystem{
-    /**
-     * The constructor stores Presenter, UserManager, EventManger, MessageManager and assigns each variable.
-     * It inherits these variables from its parent class, UserSystem.
-     *
-     * @param p name of event
-     * @param uMan speaker of event
-     * @param eMan organizer of event
-     * @param mMan date and time of event
-     */
-    public AttendeeSystem (Presenter p, UserManager uMan, EventManager eMan, MessageManager mMan) {
-        super(p, uMan, eMan, mMan);
-    }
 
     /**
      * Implements the run method for all attendee users.
@@ -27,121 +15,121 @@ public class AttendeeSystem extends UserSystem{
      * signup and remove themselves from events.
      *
      */
-    public void run(String username) {
+    public void run(String username, TechConferenceSystem tcs) {
         Scanner scanner = new Scanner(System.in);
         label:
         while (true) {
-            presenter.printAttendeeMenu();
+            tcs.getPresenter().printAttendeeMenu();
             String attendeeChoice = scanner.nextLine();
 
             switch (attendeeChoice) {
                 case "0":
-                    presenter.printLoggedOut();
+                    tcs.getPresenter().printLoggedOut();
                     break label;
                 case "1":
                     while (true) {
-                        presenter.printAttendeeMessageMenu();
+                        tcs.getPresenter().printAttendeeMessageMenu();
                         String messageChoice = scanner.nextLine();
-                        super.helperMessageSystem(username, messageChoice, scanner);
+                        super.helperMessageSystem(username, messageChoice, scanner, tcs);
                         if (messageChoice.equals("b")) {
                             break;
                         } else if (!messageChoice.matches("^[0123]$")) {
-                            presenter.printInvalidInput();
+                            tcs.getPresenter().printInvalidInput();
                         }
                     }
                     break;
                 case "2":  //view available events
-                    List<UUID> available = eventM.getAvailableEvents();
-                    String formattedOutput = formatInfo(eventM.getEventsStrings(available));
+                    List<UUID> available = tcs.getEM().getAvailableEvents();
+                    String formattedOutput = formatInfo(tcs.getEM().getEventsStrings(available));
                     if (formattedOutput.equals("")) {
-                        presenter.printNoEventsAvailable();
+                        tcs.getPresenter().printNoEventsAvailable();
                     }
                     else{
-                        presenter.printAvailableEvents(formattedOutput);
+                        tcs.getPresenter().printAvailableEvents(formattedOutput);
                     }
                     break;
                 case "3":
-                    List<UUID> eventList = userM.getEventsAttending(username);
-                    presenter.printUCReturns(eventM.getEventsStrings(eventList));
+                    List<UUID> eventList = tcs.getUM().getEventsAttending(username);
+                    tcs.getPresenter().printUCReturns(tcs.getEM().getEventsStrings(eventList));
                     break;
                 case "4":  //signup event
                     while(true){
-                        List<UUID> availEvents = eventM.getAvailableEvents();
-                        List<String> eventInfo = eventM.getEventsStrings(availEvents);
-                        presenter.printAskSignUp();
-                        presenter.printAvailableEvents(formatInfo(eventInfo));
+                        List<UUID> availEvents = tcs.getEM().getAvailableEvents();
+                        List<String> eventInfo = tcs.getEM().getEventsStrings(availEvents);
+                        tcs.getPresenter().printAskSignUp();
+                        tcs.getPresenter().printAvailableEvents(formatInfo(eventInfo));
                         String choice = scanner.nextLine();
-                        if (signupAttendeeHelper(username, choice)){
-                            presenter.printEventSignUpSuccess();
+                        if (signupAttendeeHelper(username, choice, tcs)){
+                            tcs.getPresenter().printEventSignUpSuccess();
                             break;
                         }
-                        presenter.printInvalidInput();
+                        tcs.getPresenter().printInvalidInput();
                     }
                     break;
                 case "5":  //cancel event
                     while(true){
-                        if (cancelAttendeeHelper(username, scanner)){
-                            presenter.printEventCancelSuccess();
+                        if (cancelAttendeeHelper(username, scanner, tcs)){
+                            tcs.getPresenter().printEventCancelSuccess();
                             break;
                         } else{
-                            presenter.printInvalidInput();
+                            tcs.getPresenter().printInvalidInput();
                         }
                     }
 
                 default:
-                    presenter.printInvalidInput();
+                    tcs.getPresenter().printInvalidInput();
                     break;
             }
         }
     }
 
 
-    private boolean signupAttendeeHelper(String username, String choice) {
-        List<UUID> availEvents = eventM.getAvailableEvents();
+    private boolean signupAttendeeHelper(String username, String choice, TechConferenceSystem tcs) {
+        List<UUID> availEvents = tcs.getEM().getAvailableEvents();
         if (choice.matches("^[0-9]*$")) {
             int eventChoice = Integer.parseInt(choice);
             if (!(eventChoice < availEvents.size())) {
-                presenter.printInvalidInput();
+                tcs.getPresenter().printInvalidInput();
                 return false;
             } else{
                 UUID id = availEvents.get(eventChoice);
-                if (isAttendeeFree(username, id)){
-                    if (eventM.addAttendee(username, id) && userM.addEventAttending(username, id)) {
+                if (isAttendeeFree(username, id, tcs)){
+                    if (tcs.getEM().addAttendee(username, id) && tcs.getUM().addEventAttending(username, id)) {
                         return true;
                     }
                 } else{
-                    presenter.printAlreadyBookedTime();
+                    tcs.getPresenter().printAlreadyBookedTime();
                     return false;
                 }
             }
         } else {
-            presenter.printInvalidInput();
+            tcs.getPresenter().printInvalidInput();
             return false;
         }
         return false;
     }
 
-    private boolean cancelAttendeeHelper(String username, Scanner scanner){
-        List<UUID> eventList = userM.getEventsAttending(username);
-        List<String> eventNames = (eventM.convertIDtoName(eventList));
-        presenter.printUCReturns(eventNames);
-        presenter.printAskWhichEventCancel();
+    private boolean cancelAttendeeHelper(String username, Scanner scanner, TechConferenceSystem tcs){
+        List<UUID> eventList = tcs.getUM().getEventsAttending(username);
+        List<String> eventNames = (tcs.getEM().convertIDtoName(eventList));
+        tcs.getPresenter().printUCReturns(eventNames);
+        tcs.getPresenter().printAskWhichEventCancel();
         String eventChoice = scanner.nextLine();
         if (!eventNames.contains(eventChoice)){
             return false;
         }
         UUID eventRemoving = eventList.get(eventNames.indexOf(eventChoice));
-        if (userM.removeEventAttending(username, eventRemoving) && eventM.removeAttendee(username, eventRemoving)){
+        if (tcs.getUM().removeEventAttending(username, eventRemoving) && tcs.getEM().removeAttendee(username, eventRemoving)){
             return true;
         }
-        presenter.printNotInEvent();
+        tcs.getPresenter().printNotInEvent();
         return false;
     }
 
-    private boolean isAttendeeFree(String username, UUID newEvent){
-        List<UUID> userEvents = userM.getEventsAttending(username);
+    private boolean isAttendeeFree(String username, UUID newEvent, TechConferenceSystem tcs){
+        List<UUID> userEvents = tcs.getUM().getEventsAttending(username);
         for (UUID events :userEvents){
-            if (!eventM.timeNotOverlap(events, newEvent)){
+            if (!tcs.getEM().timeNotOverlap(events, newEvent)){
                 return false;
             }
         }
