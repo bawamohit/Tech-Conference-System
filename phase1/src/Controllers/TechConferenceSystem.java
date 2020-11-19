@@ -86,9 +86,6 @@ public class TechConferenceSystem {
                 case "1":
                     accountType = UserType.ORGANIZER;
                     break;
-                case "2":
-                    accountType = UserType.SPEAKER;
-                    break;
                 default:
                     presenter.printInvalidInput();
                     break;
