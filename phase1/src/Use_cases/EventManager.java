@@ -21,16 +21,17 @@ public class EventManager implements Serializable {
         this.events = new HashMap<>();
     }
 
-    /**
-     * Implements Getter, getEvents, for event IDs.
-     *
-     * @return event IDs for all scheduled events
-     */
-
-    public List<UUID> getEvents() {
-        Collection<UUID> eventC = events.keySet();
-        return new ArrayList<>(eventC);
-    }
+//    phase 2
+//    /**
+//     * Implements Getter, getEvents, for event IDs.
+//     *
+//     * @return event IDs for all scheduled events
+//     */
+//
+//    public List<UUID> getEvents() {
+//        Collection<UUID> eventC = events.keySet();
+//        return new ArrayList<>(eventC);
+//    }
 
     /**
      * Implements Getter, getEventsStrings, for event strings.
@@ -44,37 +45,6 @@ public class EventManager implements Serializable {
             eventString.add(events.get(id).toString());
         }
         return eventString;
-    }
-
-    /**
-     * Implements Getter, getStringToID, for events' IDs and string representation.
-     *
-     * @return a Map of Event string representation to its ID.
-     */
-
-    public HashMap<String, UUID> getStringToID(List<UUID> IDs){
-        HashMap<String, UUID> eventStringToID = new HashMap<>();
-        for (UUID id: IDs){
-            eventStringToID.put(events.get(id).toString(), id);
-        }
-        return eventStringToID;
-    }
-
-    /**
-     * Implements Getter, getEventsInfo, for a list of events.
-     *
-     * @return a Map of Event Name to its time and location
-     */
-
-    public LinkedHashMap<String, HashMap<LocalDateTime, String>> getEventsInfo(List<UUID> eventIDs){
-        LinkedHashMap<String, HashMap<LocalDateTime, String>> eventsInfo = new LinkedHashMap<>();
-        for (UUID id: eventIDs){
-            Event e = events.get(id);
-            HashMap<LocalDateTime, String> timeToPlace = new HashMap<>();
-            timeToPlace.put(e.getStartTime(), e.getEventRoomName());
-            eventsInfo.put(e.getEventName(), timeToPlace);
-        }
-        return eventsInfo;
     }
 
     /**
@@ -178,7 +148,8 @@ public class EventManager implements Serializable {
     public boolean addAttendee(String username, UUID eventID){
         Event event = events.get(eventID);
         List<String> updated_attendees = getEventAttendees(event.getId());
-        if (!event.getAttendees().contains(username) && updated_attendees.add(username)){
+        if (!event.getAttendees().contains(username)) {
+            updated_attendees.add(username);
             event.setAttendees(updated_attendees);
             return true;
         }

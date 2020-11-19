@@ -20,10 +20,6 @@ public class UserManager implements Serializable {
         return new ArrayList<>(users);
     }
 
-    public void setUsernamesToUsers(HashMap<String, User> newMap) {
-        usernamesToUsers = newMap;
-    }
-
     public boolean isRegistered(String username) {
         return usernamesToUsers.containsKey(username);
     }
@@ -32,12 +28,8 @@ public class UserManager implements Serializable {
         if (isRegistered(username)){
             return false;
         }
-        usernamesToUsers.put(username, createUser(userType, name, username, password));
+        usernamesToUsers.put(username, new User(userType, name, username, password));
         return true;
-    }
-
-    private User createUser(UserType userType, String name, String username, String password) {
-        return new User(userType, name, username, password);
     }
 
     public boolean verifyLogin(String username, String password) { //ask about returning null
