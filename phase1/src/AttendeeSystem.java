@@ -1,7 +1,7 @@
 import java.util.*;
 
 /**
- * This class is one of the controllers of this program, specifically for attendees. It is a childclass of UserSystem.
+ * This class is one of the controllers of this program, specifically for attendees. It is a child class of UserSystem.
  */
 public class AttendeeSystem extends UserSystem{
     /**
@@ -19,7 +19,7 @@ public class AttendeeSystem extends UserSystem{
 
     /**
      * Implements the run method for all attendee users.
-     * With this method, an attendee can logout, message (view, send, recieve), view available events,
+     * With this method, an attendee can logout, message (view, send, receive), view available events,
      * signup and remove themselves from events.
      *
      */

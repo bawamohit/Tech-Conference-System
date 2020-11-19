@@ -74,8 +74,8 @@ public abstract class UserSystem {
     }
 
     private void deleteMessage(String username, Scanner scanner){
-        String inboxChoice = "";
-        int content = 0;
+        String inboxChoice;
+        int content;
         while (true) {
             while (true) {
                 presenter.printAskWhichInbox();

@@ -37,7 +37,7 @@ public class OrganizerSystem extends UserSystem {
                     if (addEvent(username, sc)) {
                         presenter.printEventCreationSuccess();
                         presenter.printSuccess();
-                        break; //where should we reprompt??
+                        break; //where should we re-prompt??
                     }
                     else {
                         presenter.printEventCreationFail();
