@@ -53,7 +53,7 @@ public class AttendeeSystem extends UserSystem{
                         presenter.printNoEventsAvailable();
                     }
                     else{
-                        presenter.printAvailableEvents();
+                        presenter.printAvailableEvents(formattedOutput);
                     }
                     break;
                 case "3":
