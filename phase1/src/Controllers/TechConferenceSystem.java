@@ -1,6 +1,12 @@
+package Controllers;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
+import Use_cases.*;
+import UI.Presenter;
+import Gateways.*;
+import Entities.UserType;
 
 public class TechConferenceSystem {
 

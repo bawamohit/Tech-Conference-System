@@ -1,3 +1,5 @@
+package Gateways;
+
 import java.io.*;
 
 public class MessageGateway {

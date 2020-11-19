@@ -1,6 +1,6 @@
+package Gateways;
+
 import java.io.*;
-
-
 
 public class RoomGateway {
 
