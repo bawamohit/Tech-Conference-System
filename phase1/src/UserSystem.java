@@ -33,10 +33,7 @@ public abstract class UserSystem {
             info.append("\n").append(i).append(": ").append(event);
             i += 1;
         }
-        if (info.toString().equals("")) {
-            presenter.printNoEventsAvailable();
-            return "";
-        }
+
         return info.toString();
     }
 

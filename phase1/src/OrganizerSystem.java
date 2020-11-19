@@ -34,12 +34,13 @@ public class OrganizerSystem extends UserSystem {
                     }
                     break;
                 case "2":
-                    while (true) {
-                        if (addEvent(username, sc)) {
-                            presenter.printEventCreationSuccess();
-                            presenter.printSuccess();
-                            break; //where should we reprompt??
-                        }
+                    if (addEvent(username, sc)) {
+                        presenter.printEventCreationSuccess();
+                        presenter.printSuccess();
+                        break; //where should we reprompt??
+                    }
+                    else {
+                        presenter.printEventCreationFail();
                     }
                 case "3":  //reschedule event
                     presenter.printUnderConstruction();

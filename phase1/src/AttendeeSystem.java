@@ -48,7 +48,13 @@ public class AttendeeSystem extends UserSystem{
                     break;
                 case "2":  //view available events
                     List<UUID> available = eventM.getAvailableEvents();
-                    presenter.printAvailableEvents(formatInfo(eventM.getEventsStrings(available)));
+                    String formattedOutput = formatInfo(eventM.getEventsStrings(available));
+                    if (formattedOutput.equals("")) {
+                        presenter.printNoEventsAvailable();
+                    }
+                    else{
+                        presenter.printAvailableEvents();
+                    }
                     break;
                 case "3":
                     List<UUID> eventList = userM.getEventsAttending(username);

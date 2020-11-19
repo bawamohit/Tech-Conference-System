@@ -132,6 +132,10 @@ public class Presenter {
         System.out.println("Event successfully created.");
     }
 
+    public void printEventCreationFail() {
+        System.out.println("Error! Event not created.");
+    }
+
     public void printNoEventsAvailable() {
         System.out.println("There are no events available for sign-up :(");
     }
