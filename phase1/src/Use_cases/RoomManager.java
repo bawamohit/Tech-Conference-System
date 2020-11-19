@@ -66,26 +66,26 @@ public class RoomManager implements Serializable {
         }
         return null;
     }
-
-    /**
-     * Implements modifier, removeEventFromSchedule, for a scheduled event.
-     *
-     * @return a boolean indicating if event was successfully removed
-     */
-    public boolean removeEventFromSchedule(UUID eventID) {
-        for (String name : rooms.keySet()) {
-            Room r = rooms.get(name);
-            HashMap<LocalDateTime, UUID> schedule = r.getSchedule();
-            for (LocalDateTime time : schedule.keySet()) {
-                if (schedule.get(time).equals(eventID)) {
-                    schedule.remove(time);
-                    r.setRoomSchedule(schedule);
-                    return true; // since same event with diff time will have different ids, we don't need to worry about it
-                }
-            }
-        }
-        return false;
-    }
+//    phase 2
+//    /**
+//     * Implements modifier, removeEventFromSchedule, for a scheduled event.
+//     *
+//     * @return a boolean indicating if event was successfully removed
+//     */
+//    public boolean removeEventFromSchedule(UUID eventID) {
+//        for (String name : rooms.keySet()) {
+//            Room r = rooms.get(name);
+//            HashMap<LocalDateTime, UUID> schedule = r.getSchedule();
+//            for (LocalDateTime time : schedule.keySet()) {
+//                if (schedule.get(time).equals(eventID)) {
+//                    schedule.remove(time);
+//                    r.setRoomSchedule(schedule);
+//                    return true; // since same event with diff time will have different ids, we don't need to worry about it
+//                }
+//            }
+//        }
+//        return false;
+//    }
 
     /**
      * Implements checker, canAddEvent, for a room in rooms.

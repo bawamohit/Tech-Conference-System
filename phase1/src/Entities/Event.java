@@ -15,7 +15,6 @@ public class Event implements Serializable {
     private LocalDateTime startTime;
     private UUID id;
     private String roomName;
-    private boolean canSignUp;
     private int max_capacity;
 
     /**
@@ -67,7 +66,7 @@ public class Event implements Serializable {
      *
      * @return username of event's organizer
      */
-    public String getOrganizer(){
+    public String getOrganizer(){ //phase 2
         return organizer;
     }
 
@@ -76,7 +75,7 @@ public class Event implements Serializable {
      *
      * @return username of speaker of event
      */
-    public String getSpeaker(){
+    public String getSpeaker(){ //phase 2
         return speaker;
     }
 

@@ -2,7 +2,6 @@ package Gateways;
 import Use_cases.EventManager;
 
 import java.io.*;
-import Use_cases.EventManager;
 
 /**
  * This class is one of the gateways of this program, specifically for EventManager.
