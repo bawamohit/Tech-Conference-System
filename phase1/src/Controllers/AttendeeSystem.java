@@ -94,9 +94,7 @@ public class AttendeeSystem extends UserSystem{
             } else{
                 UUID id = availEvents.get(eventChoice);
                 if (isAttendeeFree(username, id, tcs)){
-                    if (tcs.getEM().addAttendee(username, id) && tcs.getUM().addEventAttending(username, id)) {
-                        return true;
-                    }
+                    return tcs.getEM().addAttendee(username, id) && tcs.getUM().addEventAttending(username, id);
                 } else{
                     tcs.getPresenter().printAlreadyBookedTime();
                     return false;
@@ -106,7 +104,6 @@ public class AttendeeSystem extends UserSystem{
             tcs.getPresenter().printInvalidInput();
             return false;
         }
-        return false;
     }
 
     private boolean cancelAttendeeHelper(String username, Scanner scanner, TechConferenceSystem tcs){
