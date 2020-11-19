@@ -106,9 +106,7 @@ public class AttendeeSystem extends UserSystem{
             } else{
                 UUID id = availEvents.get(eventChoice);
                 if (isAttendeeFree(username, id)){
-                    if (eventM.addAttendee(username, id) && userM.addEventAttending(username, id)) {
-                        return true;
-                    }
+                    return eventM.addAttendee(username, id) && userM.addEventAttending(username, id);
                 } else{
                     presenter.printAlreadyBookedTime();
                     return false;
@@ -118,7 +116,6 @@ public class AttendeeSystem extends UserSystem{
             presenter.printInvalidInput();
             return false;
         }
-        return false;
     }
 
     private boolean cancelAttendeeHelper(String username, Scanner scanner){
