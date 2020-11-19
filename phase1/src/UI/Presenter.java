@@ -94,8 +94,7 @@ public class Presenter {
     public void printAskUserType() {
         System.out.println("\nPlease enter your account type.\n");
         System.out.println("0. Attendee\n" +
-                "1. Organizer\n" +
-                "2. Speaker\n");
+                "1. Organizer\n");
     }
 
     public void printUserInfo(UserType usertype, String username, String pw) {
