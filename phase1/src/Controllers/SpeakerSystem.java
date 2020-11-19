@@ -48,7 +48,7 @@ public class SpeakerSystem extends UserSystem{
     public void messageAll(String username, String choice, Scanner scan) {
         if (choice.equals("4")) {
             List<UUID> listEvents = userM.getEventsAttending(username);
-            String listChoice = "";
+            String listChoice;
             while (true) {
                 presenter.printAskWhichEvents();
                 int n = 0;

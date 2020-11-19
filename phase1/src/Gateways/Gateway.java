@@ -1,5 +1,4 @@
 import java.io.*;
-import java.lang.reflect.Type;
 
 public class Gateway<T> {
     public T readFromFile(String path, Class<T> managerType) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
