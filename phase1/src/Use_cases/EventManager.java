@@ -1,6 +1,9 @@
+package Use_cases;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.*;
+import Entities.Event;
 
 /**
  * This class is one of the use cases classes for this program, specifically for manipulating the Event entity class.
@@ -25,8 +28,8 @@ public class EventManager implements Serializable {
      */
 
     public List<UUID> getEvents() {
-        Collection<UUID> eventc = events.keySet();
-        return new ArrayList<>(eventc);
+        Collection<UUID> eventC = events.keySet();
+        return new ArrayList<>(eventC);
     }
 
     /**
@@ -220,11 +223,11 @@ public class EventManager implements Serializable {
      * @return a list of strings, each the event names according to its id.
      */
     public List<String> convertIDtoName(List<UUID> uuidList){
-        List<String> namelist = new ArrayList<>();
+        List<String> nameList = new ArrayList<>();
         for (UUID id :uuidList){
             Event event = events.get(id);
-            namelist.add(event.getEventName());
+            nameList.add(event.getEventName());
         }
-        return namelist; //might have multiple names -> might still be better to get the entire toString
+        return nameList;
     }
 }

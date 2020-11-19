@@ -1,3 +1,7 @@
+package UI;
+
+import Entities.UserType;
+
 public class Presenter {
 // Main Menu
     public void printWelcome() {

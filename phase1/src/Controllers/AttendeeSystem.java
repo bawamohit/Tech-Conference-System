@@ -1,4 +1,8 @@
+package Controllers;
+
 import java.util.*;
+import Use_cases.*;
+import UI.Presenter;
 
 /**
  * This class is one of the controllers of this program, specifically for attendees. It is a child class of UserSystem.

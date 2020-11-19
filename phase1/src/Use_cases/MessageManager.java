@@ -1,8 +1,11 @@
+package Use_cases;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import Entities.Message;
 
 public class MessageManager implements Serializable {
     private HashMap<String, HashMap<String, List<Message>>> chats;
@@ -11,7 +14,7 @@ public class MessageManager implements Serializable {
         this.chats = new HashMap<>();
     }
 
-    protected void sendMessage(String sender, String receiver, String content) {
+    public void sendMessage(String sender, String receiver, String content) {
         addMessage(sender, receiver, content);
         addMessage(receiver, sender, content);
     }

@@ -1,6 +1,9 @@
+package Use_cases;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.*;
+import Entities.Room;
 
 public class RoomManager implements Serializable {
     private HashMap<String, Room> rooms;

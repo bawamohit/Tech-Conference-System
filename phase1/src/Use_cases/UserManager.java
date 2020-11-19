@@ -1,7 +1,11 @@
+package Use_cases;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
+import Entities.User;
+import Entities.UserType;
 
 public class UserManager implements Serializable {
 
