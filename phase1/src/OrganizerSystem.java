@@ -27,10 +27,10 @@ public class OrganizerSystem extends UserSystem {
                         presenter.printOrganizerMessageMenu();
                         String messageChoice = sc.nextLine();
                         organizerHelperMessageSystem(username, messageChoice, sc);
-                        if (!messageChoice.equals("b")) {
-                            presenter.printInvalidInput();
-                        } else {
+                        if (messageChoice.equals("b")) {
                             break;
+                        } else if (!messageChoice.matches("^[012345]$")){
+                            presenter.printInvalidInput();
                         }
                     }
                     break;
@@ -100,7 +100,7 @@ public class OrganizerSystem extends UserSystem {
             for (String user : userList) {
                 if (choice.equals("4") && userM.getUserType(user) == UserType.SPEAKER) {
                     messageM.sendMessage(username, user, content);
-                } else if (userM.getUserType(user) == UserType.ORGANIZER) {
+                } else if (choice.equals("5") && userM.getUserType(user) == UserType.ORGANIZER) {
                     messageM.sendMessage(username, user, content);
                 }
             }

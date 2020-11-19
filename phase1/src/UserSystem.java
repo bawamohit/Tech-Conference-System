@@ -77,17 +77,33 @@ public abstract class UserSystem {
     }
 
     private void deleteMessage(String username, Scanner scanner){
-        presenter.printAskWhichInbox();
-        presenter.printUCReturns(messageM.getChats(username));
-        String inboxChoice = scanner.nextLine();
-        List<String> inbox = messageM.getInbox(username, inboxChoice);
-        int n = 0;
-        for (String message : inbox) {
-            System.out.println(n + ": " + message);
-            n += 1;
+        String inboxChoice = "";
+        int content = 0;
+        while (true) {
+            while (true) {
+                presenter.printAskWhichInbox();
+                presenter.printUCReturns(messageM.getChats(username));
+                inboxChoice = scanner.nextLine();
+                if (messageM.getChats(username).contains(inboxChoice)) {
+                    break;
+                } else {
+                    presenter.printInvalidInput();
+                }
+            }
+            List<String> inbox = messageM.getInbox(username, inboxChoice);
+            int n = 0;
+            for (String message : inbox) {
+                presenter.printUCReturns(n + ": " + message);
+                n += 1;
+            }
+            presenter.printAskWhichMessage();
+            content = scanner.nextInt();
+            if (0 <= content && content < n) {
+                break;
+            } else {
+                presenter.printInvalidInput();
+            }
         }
-        presenter.printAskWhichMessage();
-        int content = scanner.nextInt();
         messageM.deleteMessage(messageM.getChat(username, inboxChoice).get(content));
     }
 

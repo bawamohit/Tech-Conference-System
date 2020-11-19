@@ -131,6 +131,8 @@ public class Presenter {
         System.out.println("Which message? (Enter a number)");
     }
 
+    public void printAskWhichEvents() { System.out.println("Which event(s)? (Enter the number(s))"); }
+
     public void printLoggedOut() {
         System.out.println("You have now logged out.");
     }

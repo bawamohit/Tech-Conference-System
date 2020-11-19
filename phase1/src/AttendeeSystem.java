@@ -39,10 +39,10 @@ public class AttendeeSystem extends UserSystem{
                         presenter.printAttendeeMessageMenu();
                         String messageChoice = scanner.nextLine();
                         super.helperMessageSystem(username, messageChoice, scanner);
-                        if (!messageChoice.equals("b")) {
-                            presenter.printInvalidInput();
-                        } else {
+                        if (messageChoice.equals("b")) {
                             break;
+                        } else if (!messageChoice.matches("^[0123]$")) {
+                            presenter.printInvalidInput();
                         }
                     }
                     break;
