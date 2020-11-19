@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 import Use_cases.*;
 import UI.Presenter;
+import Gateways.*;
 
 public abstract class UserSystem {
     protected Presenter presenter;

@@ -1,6 +1,7 @@
 package Gateways;
 
 import java.io.*;
+import Use_cases.UserManager;
 
 public class UserGateway {
     public UserManager readFromFile(String path) throws ClassNotFoundException {

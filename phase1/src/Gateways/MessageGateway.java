@@ -1,6 +1,7 @@
 package Gateways;
 
 import java.io.*;
+import Use_cases.MessageManager;
 
 public class MessageGateway {
     public MessageManager readFromFile(String path) throws ClassNotFoundException {

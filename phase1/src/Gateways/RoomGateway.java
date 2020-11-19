@@ -1,6 +1,7 @@
 package Gateways;
 
 import java.io.*;
+import Use_cases.RoomManager;
 
 public class RoomGateway {
 
