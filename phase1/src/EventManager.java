@@ -225,6 +225,6 @@ public class EventManager implements Serializable {
             Event event = events.get(id);
             namelist.add(event.getEventName());
         }
-        return namelist;
+        return namelist; //might have multiple names -> might still be better to get the entire toString
     }
 }
