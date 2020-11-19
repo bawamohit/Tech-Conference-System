@@ -62,7 +62,7 @@ public class AttendeeSystem extends UserSystem{
                     break;
                 case "3":
                     List<UUID> eventList = userM.getEventsAttending(username);
-                    presenter.printUCReturns(eventM.convertIDtoName(eventList));
+                    presenter.printUCReturns(eventM.getEventsStrings(eventList));
                     break;
                 case "4":  //signup event
                     while(true){

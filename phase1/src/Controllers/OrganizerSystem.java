@@ -58,8 +58,8 @@ public class OrganizerSystem extends UserSystem {
                         if (addSpeaker(sc)) {
                             presenter.printSuccess();
                             break;
-                        } // give option to go back if fail?
-                    }
+                        }// give option to go back if fail?
+                    } break;
                 case "6":  //create new room
                     while (true) {
                         presenter.printAsk("new room's name");
@@ -130,7 +130,7 @@ public class OrganizerSystem extends UserSystem {
         }
         presenter.printAsk("event speaker's name");
         String speaker = sc.nextLine();
-        if (!isSpeakerOk(speaker, startTime)){ return false; }
+        if (!isSpeakerOk(speaker, startTime)){ return false; } // speaker time check doesn't work
         presenter.printAsk("event's room name (enter room name)");
         String roomName = sc.nextLine();
         if (!isRoomOk(roomName, startTime)){ return false; }

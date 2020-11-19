@@ -220,13 +220,13 @@ public class EventManager implements Serializable {
      *
      * @param uuidList list of event ids
      *
-     * @return a list of strings, each the event names according to its id.
+     * @return a list of strings, each the event's string representation according to its id.
      */
     public List<String> convertIDtoName(List<UUID> uuidList){
         List<String> nameList = new ArrayList<>();
         for (UUID id :uuidList){
             Event event = events.get(id);
-            nameList.add(event.getEventName());
+            nameList.add(event.toString());
         }
         return nameList;
     }
