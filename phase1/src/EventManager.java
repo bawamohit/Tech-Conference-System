@@ -174,8 +174,12 @@ public class EventManager implements Serializable {
      */
     public boolean addAttendee(String username, UUID eventID){
         Event event = events.get(eventID);
-//        LocalDateTime s_event = event.getStartTime();
-        return !event.getAttendees().contains(username);
+        List<String> updated_attendees = getEventAttendees(event.getId());
+        if (!event.getAttendees().contains(username) && updated_attendees.add(username)){
+            event.setAttendees(updated_attendees);
+            return true;
+        }
+        return false;
     }
 
     /**

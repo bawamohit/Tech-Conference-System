@@ -69,10 +69,13 @@ public class UserManager implements Serializable {
         return true;
     }
 
-    public void removeEventAttending(String username, UUID eventId) {
+    public boolean removeEventAttending(String username, UUID eventId) {
         List<UUID> eventsAttending = usernamesToUsers.get(username).getEventsAttending();
-        eventsAttending.remove(eventId);
-        usernamesToUsers.get(username).setEventsAttending(eventsAttending);
+        if (eventsAttending.remove(eventId)) {
+            usernamesToUsers.get(username).setEventsAttending(eventsAttending);
+            return true;
+        }
+        return false;
     }
 
     public void addFriend(String username, String friendUsername) {

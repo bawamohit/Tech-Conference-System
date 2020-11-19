@@ -124,6 +124,10 @@ public class Presenter {
         System.out.println("You are now removed from this event.");
     }
 
+    public void printNotInEvent() {
+        System.out.println("You have not signed up to this event.");
+    }
+
     public void printEventCreationSuccess() {
         System.out.println("Event successfully created.");
     }
