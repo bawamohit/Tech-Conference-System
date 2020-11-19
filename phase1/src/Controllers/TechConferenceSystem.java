@@ -15,9 +15,6 @@ public class TechConferenceSystem {
     private EventManager em;
     private MessageManager mm;
     private RoomManager rm;
-    private AttendeeSystem as;
-    private OrganizerSystem os;
-    private SpeakerSystem ss;
     File eventManagerInfo = new File("./phase1/src/eventManager.ser");
     File messageManagerInfo = new File("./phase1/src/messageManager.ser");
     File userManagerInfo = new File("./phase1/src/userManager.ser");
@@ -38,25 +35,24 @@ public class TechConferenceSystem {
         }
 
         presenter = new Presenter();
-
-        as = new AttendeeSystem(presenter, um, em, mm);
-        os = new OrganizerSystem(presenter, um, em, mm, rm);
-        ss = new SpeakerSystem(presenter, um, em, mm);
     }
 
     public void run() {
         Scanner in = new Scanner(System.in);
-        String loggedInUsername = null;
+        String loggedInUsername;
         while (true) {//TODO need exit option
             loggedInUsername = startUp(in);
 
+            UserSystem system;
             if (um.getUserType(loggedInUsername) == UserType.ATTENDEE) {
-                as.run(loggedInUsername);
+                system = new AttendeeSystem(presenter, um, em, mm);
             } else if (um.getUserType(loggedInUsername) == UserType.ORGANIZER) {
-                os.run(loggedInUsername);
+                system = new OrganizerSystem(presenter, um, em, mm, rm);
             } else {
-                ss.run(loggedInUsername);
+                system = new SpeakerSystem(presenter, um, em, mm);
             }
+            system.run(loggedInUsername);
+
             //THIS IS WHERE WE CAN SAVE INFO (WRITE TO FILES)
             try {
                 UserGateway userGateway = new UserGateway();
