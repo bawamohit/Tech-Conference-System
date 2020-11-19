@@ -19,7 +19,7 @@ public class MessageManager implements Serializable {
         addMessage(receiver, sender, content);
     }
 
-    protected void deleteMessage(Message message) {
+    public void deleteMessage(Message message) {
         String sender = message.getSender();
         String receiver = message.getReceiver();
         List<Message> chat = chats.get(sender).get(receiver);
@@ -31,12 +31,12 @@ public class MessageManager implements Serializable {
         }
     }
 
-    protected List<String> getChats(String user) {
+    public List<String> getChats(String user) {
         addSenderChat(user);
         return new ArrayList<>(chats.get(user).keySet());
     }
 
-    protected List<String> getInbox(String firstUser, String secondUser){
+    public List<String> getInbox(String firstUser, String secondUser){
         List<Message> messages = chats.get(firstUser).get(secondUser);
         List<String> inbox = new ArrayList<>();
         for(Message message : messages){
@@ -47,11 +47,11 @@ public class MessageManager implements Serializable {
     }
 
     //might not need
-    protected List<Message> getChat(String firstUser, String secondUser) {
+    public List<Message> getChat(String firstUser, String secondUser) {
         return chats.get(firstUser).get(secondUser);
     }
 
-    protected void messageEvent(String sender, List<String> userList, String content) {
+    public void messageEvent(String sender, List<String> userList, String content) {
         for (String user : userList) {
             sendMessage(sender, user, content);
         }
