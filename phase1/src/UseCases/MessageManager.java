@@ -128,6 +128,12 @@ public class MessageManager implements Serializable {
         return inbox;
     }
 
+    /** Sends a message from the User to everyone in the userList
+     *
+     * @param sender Sender of Message
+     * @param userList List of Receivers
+     * @param content Content of Message
+     */
     public void messageEvent(String sender, List<String> userList, String content) {
         for (String user : userList) {
             sendMessage(sender, user, content);
