@@ -110,9 +110,9 @@ public class TechConferenceSystem {
     }
 
     private String[] askInfo(Scanner in) {
-        presenter.printAsk("Username");//TODO lowercase username
+        presenter.printAsk("username");
         String username = in.nextLine();
-        presenter.printAsk("Password");//TODO lowercase password
+        presenter.printAsk("password");
         String password = in.nextLine();
         String[] info = new String[2];
         info[0] = username;
@@ -133,7 +133,7 @@ public class TechConferenceSystem {
     }
 
     private String signUp(Scanner in) {//TODO sign-up successful prompt
-        presenter.printAsk("Name");//TODO lowercase name
+        presenter.printAsk("name");
         String name = in.nextLine();
         //TODO need restriction on input, currently accepts empty string
         String[] info = askInfo(in);//TODO move isRegistered() here so user don't have to waste time inputting password?
@@ -163,7 +163,7 @@ public class TechConferenceSystem {
                     break;
                 default:
                     presenter.printInvalidInput();
-                    break; //TODO added this line
+                    break;
             }
         }
         return username;

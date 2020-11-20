@@ -5,7 +5,7 @@ import Entities.UserType;
 public class Presenter {
 // Main Menu
     public void printWelcome() {
-        System.out.println("\nWelcome to the lamest Technology conference ever!!!\n" +
+        System.out.println("\nWelcome To The Lamest Technology Conference Ever!!!\n" +
                 "\nPress 1 to login to your account\n" +
                 "\nPress 2 to sign up for an account\n");
     }
@@ -44,7 +44,7 @@ public class Presenter {
     public void printAttendeeMessageMenu() {
         printBack();
         printPrompt();
-        System.out.println("\n0. Message\n" +
+        System.out.println("\n0. Direct message\n" +
                 "1. Edit a message\n" +
                 "2. Delete a message\n" +
                 "3. View message chats");
