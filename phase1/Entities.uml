@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>Entities</OriginalElement>
+  <nodes>
+    <node x="0.0" y="0.0">Entities.UserType</node>
+    <node x="0.0" y="150.0">Entities.Event</node>
+    <node x="0.0" y="75.0">Entities.Message</node>
+    <node x="133.0" y="150.0">Entities.Room</node>
+    <node x="0.0" y="225.0">Entities.User</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic Group" zoom="1.0" x="106.5" y="127.5" />
+  <SelectedNodes>
+    <node>Entities.UserType</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
