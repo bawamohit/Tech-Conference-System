@@ -294,7 +294,7 @@ public class Presenter {
     /**
      * Prints error message that an empty string is inputted.
      *
-     * @param string is the input field
+     * @param field is the input field
      */
     public void printInvalidField(String field){
         System.out.println("This string is not a valid " + field + ", please enter a valid " + field + ".");
@@ -335,6 +335,10 @@ public class Presenter {
     public void printAskWithBack(String ask) {
         System.out.println("\nPlease enter your " + ask +
                 ", or enter the empty string to go back to the previous step.");
+    }
+
+    public void printBackToMainMenu(){
+        System.out.println("Or press enter to go back to the main menu");
     }
 
     /**

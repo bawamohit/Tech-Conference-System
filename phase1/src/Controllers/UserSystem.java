@@ -56,7 +56,9 @@ public abstract class UserSystem {
         String receiver;
         while(true) {
             tcs.getPresenter().printAskMsgReceiver();
+            tcs.getPresenter().printBackToMainMenu();
             receiver = scanner.nextLine();
+            if(receiver.equals("")) return;
             if(tcs.getUM().isRegistered(receiver)){
                 break;
             } else{
@@ -64,7 +66,9 @@ public abstract class UserSystem {
             }
         }
         tcs.getPresenter().printAsk("message");
+        tcs.getPresenter().printBackToMainMenu();
         String message = scanner.nextLine();
+        if(message.equals("")) return;
         tcs.getMM().sendMessage(username, receiver, message);
         tcs.getPresenter().printMessageSent();
     }
