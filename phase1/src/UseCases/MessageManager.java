@@ -94,11 +94,11 @@ public class MessageManager implements Serializable {
     }
 
     /** Implements Getter for getting the inboxes of a user
-     *
+     * If the user hasn't messaged anyone, add the sender key to the HashMap first.
      * @param user Username of the user requesting to view their inboxes
      * @return List of usernames - the people that user has been messaging
      */
-    public List<String> getChats(String user) {
+    public List<String> getInboxes(String user) {
         addSenderChat(user);
         return new ArrayList<>(chats.get(user).keySet());
     }
@@ -109,7 +109,7 @@ public class MessageManager implements Serializable {
      * @param secondUser Other user of the inbox
      * @return List of Messages between the 2 users
      */
-    public List<Message> getChat(String firstUser, String secondUser) {
+    public List<Message> getInbox(String firstUser, String secondUser) {
         return chats.get(firstUser).get(secondUser);
     }
 
@@ -119,7 +119,7 @@ public class MessageManager implements Serializable {
      * @param secondUser Other user of the inbox
      * @return List of Messages' Contents between the 2 users
      */
-    public List<String> getInbox(String firstUser, String secondUser){
+    public List<String> getInboxString(String firstUser, String secondUser){
         List<Message> messages = chats.get(firstUser).get(secondUser);
         List<String> inbox = new ArrayList<>();
         for(Message message : messages){
