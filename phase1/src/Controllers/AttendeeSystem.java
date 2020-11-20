@@ -64,10 +64,9 @@ public class AttendeeSystem extends UserSystem{
                     while(true){
                         if (cancelAttendeeHelper(username, scanner, tcs)){
                             tcs.getPresenter().printEventCancelSuccess();
-                            break;
-                        } else{
-                            tcs.getPresenter().printInvalidInput();
                         }
+                        tcs.getPresenter().printInvalidInput();
+                        break;
                     }
                     break;
                 default:
@@ -95,7 +94,6 @@ public class AttendeeSystem extends UserSystem{
                 }
             }
         } else {
-            tcs.getPresenter().printInvalidInput();
             return false;
         }
     }
