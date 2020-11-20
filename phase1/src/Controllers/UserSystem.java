@@ -53,7 +53,7 @@ public abstract class UserSystem {
         }
     }
 
-    private void sendMessage(String username, Scanner scanner, TechConferenceSystem tcs){
+    private void sendMessage(String username, Scanner scanner, TechConferenceSystem tcs){//TODO user doesn't exist
         tcs.getPresenter().printAskMsgReceiver();
         String receiver = scanner.nextLine();
         tcs.getPresenter().printAsk("message");
@@ -68,43 +68,41 @@ public abstract class UserSystem {
     }
 
     private void deleteMessage(String username, Scanner scanner, TechConferenceSystem tcs){
-        String inboxChoice;
-        int content;
-        while (true) {
-            while (true) {
-                tcs.getPresenter().printAskWhichInbox();
-                tcs.getPresenter().printUCReturns(tcs.getMM().getChats(username));
-                inboxChoice = scanner.nextLine();
-                if (tcs.getMM().getChats(username).contains(inboxChoice)) {
-                    break;
-                } else {
-                    tcs.getPresenter().printInvalidInput();
-                }
-            }
-            List<String> inbox = tcs.getMM().getInbox(username, inboxChoice);
-            int n = 0;
-            for (String message : inbox) {
-                tcs.getPresenter().printUCReturns(n + ": " + message);
-                n += 1;
-            }
+        String inboxChoice = viewInbox(username, scanner, tcs);
+        int inboxSize = tcs.getMM().getInbox(username, inboxChoice).size();
+        int index;
+        while(true) {
             tcs.getPresenter().printAskWhichMessage();
-            content = scanner.nextInt();
-            if (0 <= content && content < n) {
+            index = scanner.nextInt();
+            if (0 <= index && index < inboxSize) {
                 break;
             } else {
                 tcs.getPresenter().printInvalidInput();
             }
         }
-        tcs.getMM().deleteMessage(tcs.getMM().getChat(username, inboxChoice).get(content));
+        tcs.getMM().deleteMessage(tcs.getMM().getChat(username, inboxChoice).get(index));
     }
 
-    private void viewInbox(String username, Scanner scanner, TechConferenceSystem tcs){
-        tcs.getPresenter().printAskWhichInbox();
-        tcs.getPresenter().printUCReturns(tcs.getMM().getChats(username));
-        String contact = scanner.nextLine();
-        for (String message : tcs.getMM().getInbox(username, contact)){
-            System.out.println(message);
+    private String viewInbox(String username, Scanner scanner, TechConferenceSystem tcs){
+        String inboxChoice;
+        while (true) {
+            tcs.getPresenter().printAskWhichInbox();
+            tcs.getPresenter().printUCReturns(tcs.getMM().getChats(username));
+            inboxChoice = scanner.nextLine();
+            if (tcs.getMM().getChats(username).contains(inboxChoice)) {
+                break;
+            } else {
+                tcs.getPresenter().printInvalidInput();
+            }
         }
+        List<String> inbox = tcs.getMM().getInbox(username, inboxChoice);
+
+        int inboxSize = tcs.getMM().getInbox(username, inboxChoice).size();
+        for (int i = 0; i < inboxSize; i++) {
+            tcs.getPresenter().printUCReturns(i + ". " + inbox.get(i));
+        }
+
+        return inboxChoice;
     }
 
     /**

@@ -74,7 +74,7 @@ public class Presenter {
     }
 
     public void printAskWhichMessage() {
-        System.out.println("Which message? (Enter a number)");
+        System.out.println("Which message? (Enter the index number)");
     }
 
     public void printAskWhichEvents() { System.out.println("Which event(s)? (Enter the number(s))"); }
