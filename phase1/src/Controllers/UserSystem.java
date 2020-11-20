@@ -5,9 +5,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public abstract class UserSystem {
-    File eventManagerInfo = new File("./phase1/src/eventManager.ser");
-    File messageManagerInfo = new File("./phase1/src/messageManager.ser");
-    File userManagerInfo = new File("./phase1/src/userManager.ser");
 
     abstract void run(String username, TechConferenceSystem tcs);
 
@@ -50,8 +47,16 @@ public abstract class UserSystem {
     }
 
     private void sendMessage(String username, Scanner scanner, TechConferenceSystem tcs){//TODO user doesn't exist
-        tcs.getPresenter().printAskMsgReceiver();
-        String receiver = scanner.nextLine();
+        String receiver;
+        while(true) {
+            tcs.getPresenter().printAskMsgReceiver();
+            receiver = scanner.nextLine();
+            if(tcs.getUM().isRegistered(receiver)){
+                break;
+            } else{
+                tcs.getPresenter().printInvalidInput();
+            }
+        }
         tcs.getPresenter().printAsk("message");
         String message = scanner.nextLine();
         tcs.getMM().sendMessage(username, receiver, message);
@@ -100,23 +105,5 @@ public abstract class UserSystem {
 
         return inboxChoice;
     }
-
-    /**
-     * Implements a method used to save each UserManager, EventManager and MessageManager objects
-     * to its designated .ser file.
-     *
-     */
-    /*protected void save(){
-        try {
-            UserGateway userGateway = new UserGateway();
-            userGateway.saveToFile(userManagerInfo.getPath(), userM);
-            EventGateway eventGateway = new EventGateway();
-            eventGateway.saveToFile(eventManagerInfo.getPath(), eventM);
-            MessageGateway messageGateway = new MessageGateway();
-            messageGateway.saveToFile(messageManagerInfo.getPath(), messageM);
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-    }*/
 }
 

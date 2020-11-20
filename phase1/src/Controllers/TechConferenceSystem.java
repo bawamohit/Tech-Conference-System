@@ -19,10 +19,10 @@ public class TechConferenceSystem {
     private EventGateway eventGateway;
     private MessageGateway messageGateway;
     private RoomGateway roomGateway;
-    File eventManagerInfo = new File("./phase1/src/DataBase/eventManager.ser");
-    File messageManagerInfo = new File("./phase1/src/DataBase/messageManager.ser");
-    File userManagerInfo = new File("./phase1/src/DataBase/userManager.ser");
-    File roomManagerInfo = new File("./phase1/src/DataBase/roomManager.ser");
+    File eventManagerInfo = new File("./src/Database/eventManager.ser");
+    File messageManagerInfo = new File("./src/Database/messageManager.ser");
+    File userManagerInfo = new File("./src/Database/userManager.ser");
+    File roomManagerInfo = new File("./src/Database/roomManager.ser");
 
     public TechConferenceSystem () {
         try {
