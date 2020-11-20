@@ -21,20 +21,29 @@ public abstract class UserSystem {
         return info.toString();
     }
 
+    protected String validInput(String pattern, Scanner scanner, TechConferenceSystem tcs){
+        String input = scanner.nextLine();
+        while(!input.matches(pattern)){
+            tcs.getPresenter().printInvalidInput();
+            input = scanner.nextLine();
+        }
+        return input;
+    }
+
     protected void helperMessageSystem(String username, String choice, Scanner scanner, TechConferenceSystem tcs){
         switch (choice) {
-            case "0":
+            case "1":
                 sendMessage(username, scanner, tcs);
                 break;
-            case "1":
+            case "2":
                 //edit Message
                 tcs.getPresenter().printUnderConstruction();
                 break;
-            case "2":
+            case "3":
                 // delete Message
                 deleteMessage(username, scanner, tcs);
                 break;
-            case "3":
+            case "4":
                 // view inbox
                 viewInbox(username, scanner, tcs);
                 break;
@@ -43,7 +52,7 @@ public abstract class UserSystem {
         }
     }
 
-    private void sendMessage(String username, Scanner scanner, TechConferenceSystem tcs){//TODO user doesn't exist
+    private void sendMessage(String username, Scanner scanner, TechConferenceSystem tcs){
         String receiver;
         while(true) {
             tcs.getPresenter().printAskMsgReceiver();

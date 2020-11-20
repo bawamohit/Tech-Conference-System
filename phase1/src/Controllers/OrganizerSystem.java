@@ -9,29 +9,25 @@ import Entities.UserType;
 public class OrganizerSystem extends UserSystem {
 
     public void run(String username, TechConferenceSystem tcs) {
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         label:
         while (true) {
             tcs.getPresenter().printOrganizerMenu();
-            String option = sc.nextLine();
-            switch (option) {
+            String choice = scanner.nextLine();
+            switch (choice) {
                 case "0":
                     tcs.getPresenter().printLoggedOut();
                     break label;
                 case "1":
-                    while (true) {
-                        tcs.getPresenter().printOrganizerMessageMenu();
-                        String messageChoice = sc.nextLine();
-                        organizerHelperMessageSystem(username, messageChoice, sc, tcs);
-                        if (messageChoice.equals("b")) {
-                            break;
-                        } else if (!messageChoice.matches("^[012345]$")){
-                            tcs.getPresenter().printInvalidInput();
-                        }
+                    tcs.getPresenter().printOrganizerMessageMenu();
+                    choice = validInput("^[0123456]$", scanner, tcs);
+                    if(!choice.equals(Character.toString('0'))) {
+                        super.helperMessageSystem(username, choice, scanner, tcs);
+                        organizerHelperMessageSystem(username, choice, scanner, tcs);
                     }
                     break;
                 case "2":
-                    if (addEvent(username, sc, tcs)) {
+                    if (addEvent(username, scanner, tcs)) {
                         tcs.getPresenter().printEventCreationSuccess();
                         tcs.getPresenter().printSuccess();
                         break; //where should we re-prompt??
@@ -47,7 +43,7 @@ public class OrganizerSystem extends UserSystem {
                     break;
                 case "5":  //create speaker
                     while (true) {
-                        if (addSpeaker(sc, tcs)) {
+                        if (addSpeaker(scanner, tcs)) {
                             tcs.getPresenter().printSuccess();
                             break;
                         }// give option to go back if fail?
@@ -55,9 +51,9 @@ public class OrganizerSystem extends UserSystem {
                 case "6":  //create new room
                     while (true) {
                         tcs.getPresenter().printAsk("new room's name");
-                        String roomName = sc.nextLine();
+                        String roomName = scanner.nextLine();
         //                presenter.printAsk("new room's maximum capacity");
-        //                String capacity = sc.nextLine();
+        //                String capacity = scanner.nextLine();
                         if (tcs.getRM().addRoom(roomName, 2)) {
                             tcs.getPresenter().printSuccess();
                             break;
@@ -76,15 +72,15 @@ public class OrganizerSystem extends UserSystem {
         messageAll(username, choice, sc, tcs);
     }
 
-    private void messageAll(String username, String choice, Scanner sc, TechConferenceSystem tcs) {
-        if (choice.equals("4") || choice.equals("5")) {
+    private void messageAll(String username, String choice, Scanner scanner, TechConferenceSystem tcs) {
+        if (choice.equals("5") || choice.equals("6")) {
             tcs.getPresenter().printAsk("message");
-            String content = sc.nextLine();
+            String content = scanner.nextLine();
             List<String> userList = tcs.getUM().getUsernameList();
             for (String user : userList) {
-                if (choice.equals("4") && tcs.getUM().getUserType(user) == UserType.SPEAKER) {
+                if (choice.equals("5") && tcs.getUM().getUserType(user) == UserType.SPEAKER) {
                     tcs.getMM().sendMessage(username, user, content);
-                } else if (choice.equals("5") && tcs.getUM().getUserType(user) == UserType.ORGANIZER) {
+                } else if (choice.equals("6") && tcs.getUM().getUserType(user) == UserType.ORGANIZER) {
                     tcs.getMM().sendMessage(username, user, content);
                 }
             }

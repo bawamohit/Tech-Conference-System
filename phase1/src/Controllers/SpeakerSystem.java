@@ -8,27 +8,23 @@ import java.util.UUID;
 public class SpeakerSystem extends UserSystem{
 
     public void run(String username, TechConferenceSystem tcs){
-        Scanner scan = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         label:
         while(true){
             tcs.getPresenter().printSpeakerMenu();
-            String speakerChoice = scan.nextLine();
+            String choice = scanner.nextLine();
 
-            switch (speakerChoice){
+            switch (choice){
                 case "0":
                     tcs.getPresenter().printLoggedOut();
                     break label;
                 case "1":
-                    while (true) {
                         tcs.getPresenter().printSpeakerMessageMenu();
-                        String messageChoice = scan.nextLine();
-                        speakerHelperMessageSystem(username, messageChoice, scan, tcs);
-                        if(messageChoice.equals("b")) {
-                            break;
-                        } else if (!messageChoice.matches("^[01234]$")) {
-                            tcs.getPresenter().printInvalidInput();
+                        choice = validInput("^[012345]$", scanner, tcs);
+                        if(!choice.equals(Character.toString('0'))) {
+                            speakerHelperMessageSystem(username, choice, scanner, tcs);
                         }
-                    }
+                        break;
                 case "2":
 
                 default:
@@ -44,7 +40,7 @@ public class SpeakerSystem extends UserSystem{
     }
 
     public void messageAll(String username, String choice, Scanner scan, TechConferenceSystem tcs) {
-        if (choice.equals("4")) {
+        if (choice.equals("5")) {
             List<UUID> listEvents = tcs.getUM().getEventsAttending(username);
             String listChoice;
             while (true) {

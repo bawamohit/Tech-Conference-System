@@ -18,22 +18,17 @@ public class AttendeeSystem extends UserSystem{
         label:
         while (true) {
             tcs.getPresenter().printAttendeeMenu();
-            String attendeeChoice = scanner.nextLine();
+            String choice = scanner.nextLine();
 
-            switch (attendeeChoice) {
+            switch (choice) {
                 case "0":
                     tcs.getPresenter().printLoggedOut();
                     break label;
                 case "1":
-                    while (true) {
-                        tcs.getPresenter().printAttendeeMessageMenu();
-                        String messageChoice = scanner.nextLine();
-                        super.helperMessageSystem(username, messageChoice, scanner, tcs);
-                        if (messageChoice.equals("b")) {
-                            break;
-                        } else if (!messageChoice.matches("^[0123]$")) {
-                            tcs.getPresenter().printInvalidInput();
-                        }
+                    tcs.getPresenter().printAttendeeMessageMenu();
+                    choice = validInput("^[01234]$", scanner, tcs);
+                    if(!choice.equals(Character.toString('0'))) {
+                        super.helperMessageSystem(username, choice, scanner, tcs);
                     }
                     break;
                 case "2":  //view available events
@@ -57,7 +52,7 @@ public class AttendeeSystem extends UserSystem{
                         List<String> eventInfo = tcs.getEM().getEventsStrings(availEvents);
                         tcs.getPresenter().printAskSignUp();
                         tcs.getPresenter().printAvailableEvents(formatInfo(eventInfo));
-                        String choice = scanner.nextLine();
+                        choice = scanner.nextLine();
                         if (signupAttendeeHelper(username, choice, tcs)){
                             tcs.getPresenter().printEventSignUpSuccess();
                             break;

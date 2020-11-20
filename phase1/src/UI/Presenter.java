@@ -2,6 +2,8 @@ package UI;
 
 import Entities.UserType;
 
+import java.sql.SQLOutput;
+
 public class Presenter {
 // Main Menu
     public void printWelcome() {
@@ -12,7 +14,7 @@ public class Presenter {
 
     public void printCommonMenu() {
         printPrompt();
-        System.out.println("\n0. Logout\n" +
+        System.out.println("0. Logout\n" +
                 "1. Messaging");
     }
 
@@ -42,27 +44,27 @@ public class Presenter {
 
 // Message Center
     public void printAttendeeMessageMenu() {
-        printBack();
         printPrompt();
-        System.out.println("\n0. Direct message\n" +
-                "1. Edit a message\n" +
-                "2. Delete a message\n" +
-                "3. View message chats");
+        System.out.println("0. Back to previous Menu\n" +
+                "1. Direct message\n" +
+                "2. Edit a message\n" +
+                "3. Delete a message\n" +
+                "4. View message chats");
     }
 
     public void printOrganizerMessageMenu() {
         printAttendeeMessageMenu();
-        System.out.println("4. Message all speakers\n" +
-                "5. Message all attendees\n");
+        System.out.println("5. Message all speakers\n" +
+                "6. Message all attendees\n");
     }
 
     public void printSpeakerMessageMenu() {
         printAttendeeMessageMenu();
-        System.out.println("4. Message all Attendees of your talk(s).\n");
+        System.out.println("5. Message all Attendees of your talk(s).\n");
     }
 
     public void printAskMsgReceiver() {
-        System.out.println("Enter username you would like to message");
+        System.out.println("Enter the username you would like to message");
     }
 
     public void printMessageSent() {
@@ -86,9 +88,7 @@ public class Presenter {
 // Creating an account
     public void printWrongAccountInfo() {
         System.out.println("\nOOPS looks like you entered the wrong login information," +
-                "Please enter your username again.\n" +
-                "If you get it wong again FBI WILL BE KNOCKING ON YOUR DOOR IN 10 MINUTES\n" +
-                "Or enter 'sign up' to sign up for an account.");
+                "If you get it wong again FBI WILL BE KNOCKING ON YOUR DOOR IN 10 MINUTES\n");
     }
 
     public void printAskUserType() {
@@ -154,7 +154,7 @@ public class Presenter {
 
 // :( There's a problem :(
     public void printInvalidInput() {
-        System.out.println("\nInvalid input.\n");
+        System.out.println("\nInvalid input, please try again.");
     }
 
     public void printIOException() {
@@ -169,7 +169,7 @@ public class Presenter {
         System.out.println("Sorry, " + obj + " is unavailable.");
     }
 
-    public void printObjectExists(String obj) { System.out.println("\n" + obj + "already exists\n"); }
+    public void printObjectExists(String obj) { System.out.println("\n" + obj + " already exists\n"); }
 
     public void printUnprocessed() { System.out.println("Sorry, your request didn't go through. Please try again!"); }
 
@@ -188,12 +188,12 @@ public class Presenter {
     }
 
     public void printPrompt() {
-        System.out.println("\nPick a number to perform the corresponding action, " +
-                "or don't, I'm not yo dad\n ");
+        System.out.println("\nPick a number to perform the corresponding action." +
+                " Or don't, I'm not yo dad\n");
     }
 
-    public void printBack() {
-        System.out.println("Enter 'b' to go back to previous menu.");
+    public void printBack(){
+        System.out.println(stringBack());
     }
 
 // Other general statements
@@ -209,5 +209,8 @@ public class Presenter {
         System.out.println("You have now logged out.");
     }
 
+    private String stringBack() {
+        return ("enter the empty string '' to go back to the previous menu.");
+    }
 }
 
