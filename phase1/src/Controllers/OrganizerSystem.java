@@ -170,6 +170,6 @@ public class OrganizerSystem extends UserSystem {
         int minute = startTime.getMinute();
         if (hour < 9 || hour > 16){ return false; }
         if (hour == 16 && minute > 0){ return false; }
-        return true;
+        return true;startTime
     }
 }
