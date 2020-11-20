@@ -3,7 +3,7 @@ package Controllers;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
-import Use_cases.*;
+import UseCases.*;
 import UI.Presenter;
 import Gateways.*;
 import Entities.UserType;
@@ -19,10 +19,10 @@ public class TechConferenceSystem {
     private EventGateway eventGateway;
     private MessageGateway messageGateway;
     private RoomGateway roomGateway;
-    File eventManagerInfo = new File("./phase1/src/eventManager.ser");
-    File messageManagerInfo = new File("./phase1/src/messageManager.ser");
-    File userManagerInfo = new File("./phase1/src/userManager.ser");
-    File roomManagerInfo = new File("./phase1/src/roomManager.ser");
+    File eventManagerInfo = new File("./phase1/src/DataBase/eventManager.ser");
+    File messageManagerInfo = new File("./phase1/src/DataBase/messageManager.ser");
+    File userManagerInfo = new File("./phase1/src/DataBase/userManager.ser");
+    File roomManagerInfo = new File("./phase1/src/DataBase/roomManager.ser");
 
     public TechConferenceSystem () {
         try {

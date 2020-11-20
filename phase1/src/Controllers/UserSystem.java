@@ -1,12 +1,8 @@
 package Controllers;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
-import Use_cases.*;
-import UI.Presenter;
-import Gateways.*;
 
 public abstract class UserSystem {
     File eventManagerInfo = new File("./phase1/src/eventManager.ser");

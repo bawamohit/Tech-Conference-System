@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
-import Use_cases.*;
-import UI.Presenter;
 
 public class SpeakerSystem extends UserSystem{
 

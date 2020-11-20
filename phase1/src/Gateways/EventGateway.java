@@ -1,5 +1,5 @@
 package Gateways;
-import Use_cases.EventManager;
+import UseCases.EventManager;
 
 import java.io.*;
 
