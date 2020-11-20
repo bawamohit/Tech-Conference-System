@@ -26,7 +26,9 @@ public class SpeakerSystem extends UserSystem{
                         }
                         break;
                 case "2":
-
+                    List<UUID> eventList = tcs.getUM().getEventsAttending(username);
+                    tcs.getPresenter().printMyEvents(formatInfo(tcs.getEM().getEventsStrings(eventList)),
+                            "speak at");
                 default:
 
             }

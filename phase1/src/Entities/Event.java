@@ -53,7 +53,7 @@ public class Event implements Serializable {
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String formattedTime = startTime.format(formatter);
-        return eventName + ", " + formattedTime + ", " + roomName;
+        return eventName + ", " + speaker + ", " + formattedTime + ", " + roomName;
     }
 
     /**

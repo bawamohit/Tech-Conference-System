@@ -108,8 +108,8 @@ public class Presenter {
         System.out.println("The events available for sign-up are: \n" + compiled);
     }
 
-    public void printMyEvents(String compiled) {
-        System.out.println("The events you have signed up for are: \n" + compiled);
+    public void printMyEvents(String compiled, String role) {
+        System.out.println("The events you have signed up to" +  role + "are: \n" + compiled);
     }
 
     public void printAskSignUp() {

@@ -43,8 +43,7 @@ public class AttendeeSystem extends UserSystem{
                     break;
                 case "3":
                     List<UUID> eventList = tcs.getUM().getEventsAttending(username);
-                    tcs.getPresenter().printMyEvents(formatInfo(tcs.getEM().getEventsStrings(eventList)));
-//                    tcs.getPresenter().printUCReturns(formatInfo(tcs.getEM().getEventsStrings(eventList)));
+                    tcs.getPresenter().printMyEvents(formatInfo(tcs.getEM().getEventsStrings(eventList)), "attend");
                     break;
                 case "4":  //signup event
                     while(true){

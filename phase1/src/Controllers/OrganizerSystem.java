@@ -30,11 +30,12 @@ public class OrganizerSystem extends UserSystem {
                     if (addEvent(username, scanner, tcs)) {
                         tcs.getPresenter().printEventCreationSuccess();
                         tcs.getPresenter().printSuccess();
-                        break; //where should we re-prompt??
+                        break;
                     }
                     else {
                         tcs.getPresenter().printEventCreationFail();
                     }
+                    break;
                 case "3":  //reschedule event
                     tcs.getPresenter().printUnderConstruction();
                     break;
@@ -46,7 +47,7 @@ public class OrganizerSystem extends UserSystem {
                         if (addSpeaker(scanner, tcs)) {
                             tcs.getPresenter().printSuccess();
                             break;
-                        }// give option to go back if fail?
+                        }
                     } break;
                 case "6":  //create new room
                     while (true) {
@@ -112,20 +113,20 @@ public class OrganizerSystem extends UserSystem {
         int hour = Integer.parseInt(time[0]);
         int minute = Integer.parseInt(time[1]);
         LocalDateTime startTime = LocalDateTime.of(2020, 6, 9, hour, minute, 0); //catch exception
-        if (hour < 9 || hour > 16){
+        if (!isTimeOk(startTime, tcs)){
             tcs.getPresenter().printInvalidInput();
-            return false;//check time between 9-16
+            return false;
         }
         tcs.getPresenter().printAsk("event speaker's name");
         String speaker = sc.nextLine();
-        if (!isSpeakerOk(speaker, startTime, tcs)){ return false; } // speaker time check doesn't work
+        if (!isSpeakerOk(speaker, startTime, tcs)){ return false; }
         tcs.getPresenter().printAsk("event's room name (enter room name)");
         String roomName = sc.nextLine();
         if (!isRoomOk(roomName, startTime, tcs)){ return false; }
         int capacity = tcs.getRM().getRoomCapacity(roomName);
-        UUID id = tcs.getEM().addEvent(eventName, speaker, username, startTime, roomName, capacity);
+        UUID id = tcs.getEM().addEvent(eventName, speaker, username, startTime, roomName, (capacity - 1));
         if (id != null) {
-            if (tcs.getRM().addEventToSchedule(id, roomName, startTime)) {
+            if (tcs.getRM().addEventToSchedule(id, roomName, startTime) && tcs.getUM().addEventAttending(speaker, id)) {
                 return true;
             } else{
                 tcs.getPresenter().printUnprocessed();
@@ -161,6 +162,14 @@ public class OrganizerSystem extends UserSystem {
             tcs.getPresenter().printObjUnavailable("room at this time");
             return false;
         }
+        return true;
+    }
+
+    private boolean isTimeOk(LocalDateTime startTime, TechConferenceSystem tcs){
+        int hour = startTime.getHour();
+        int minute = startTime.getMinute();
+        if (hour < 9 || hour > 16){ return false; }
+        if (hour == 16 && minute > 0){ return false; }
         return true;
     }
 }
