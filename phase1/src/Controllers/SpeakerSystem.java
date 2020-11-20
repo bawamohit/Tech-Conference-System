@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
-public class SpeakerSystem extends UserSystem{
+public class SpeakerSystem extends UserSystem {
 
     public void run(String username, TechConferenceSystem tcs){
         Scanner scanner = new Scanner(System.in);
@@ -71,10 +71,9 @@ public class SpeakerSystem extends UserSystem{
             char[] listChoiceSorted = listChoice.toCharArray();
             for (Character eventID : listChoiceSorted) {
                 List<String> attendeeList = tcs.getEM().getEventAttendees(listEvents.get((int)eventID));
-                for (String user : attendeeList) {
-                    tcs.getMM().sendMessage(username, user, content);
-                }
+                tcs.getMM().messageEvent(username, attendeeList, content);
             }
         }
     }
 }
+
