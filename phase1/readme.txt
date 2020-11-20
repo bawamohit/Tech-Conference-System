@@ -13,4 +13,21 @@ Please read the following instructions below to ensure the program runs successf
 3. When creating events as an organizer, you need to create the speaker and the room before.
    When selecting an hour for the start time of an event, note that the times are in 24 hour format. (ex. 15 = 3PM)
 
+Here are some pre-made attendees, organizers, speakers, and rooms that you can try out! Feel free to also make your own
+The format of the following user accounts below is Name: Username, Password
+    Attendees
+        Elmo: elmo, red
+        Big Bird: bigbird, yellow
+        Cookie Monster: cookiemonster, blue
 
+    Organizers
+        Oscar: oscar, green
+        Grover: grover, blue
+
+    Speakers
+        Ernie: ernie, orange
+        Bert: bert, yellow
+
+    Rooms
+        Sesame Street
+        Big Bird's House

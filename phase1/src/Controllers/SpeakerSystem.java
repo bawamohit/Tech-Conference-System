@@ -9,7 +9,7 @@ public class SpeakerSystem extends UserSystem{
 
     public void run(String username, TechConferenceSystem tcs){
         Scanner scan = new Scanner(System.in);
-
+        label:
         while(true){
             tcs.getPresenter().printSpeakerMenu();
             String speakerChoice = scan.nextLine();
@@ -17,7 +17,7 @@ public class SpeakerSystem extends UserSystem{
             switch (speakerChoice){
                 case "0":
                     tcs.getPresenter().printLoggedOut();
-                    break;
+                    break label;
                 case "1":
                     while (true) {
                         tcs.getPresenter().printSpeakerMessageMenu();
