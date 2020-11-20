@@ -27,7 +27,7 @@ public class AttendeeSystem extends UserSystem{
                 case "1":
                     tcs.getPresenter().printAttendeeMessageMenu();
                     choice = validInput("^[01234]$", scanner, tcs);
-                    if(!choice.equals(Character.toString('0'))) {
+                    if(!choice.equals("0")) {
                         super.helperMessageSystem(username, choice, scanner, tcs);
                     }
                     break;

@@ -21,7 +21,7 @@ public class OrganizerSystem extends UserSystem {
                 case "1":
                     tcs.getPresenter().printOrganizerMessageMenu();
                     choice = validInput("^[0123456]$", scanner, tcs);
-                    if(!choice.equals(Character.toString('0'))) {
+                    if(!choice.equals("0")) {
                         super.helperMessageSystem(username, choice, scanner, tcs);
                         organizerHelperMessageSystem(username, choice, scanner, tcs);
                     }
