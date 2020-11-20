@@ -1,6 +1,5 @@
 package Controllers;
 
-import java.io.File;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,12 +12,10 @@ public abstract class UserSystem {
      * This is used to format a list of information to a string, that shows each element inside the list as a numbered
      * string format.
      */
-    protected String formatInfo(List<String> eventStrings){
+    protected String formatInfo(List<String> strings){
         StringBuilder info = new StringBuilder();
-        int i = 0;
-        for (String event: eventStrings){
-            info.append("\n").append(i).append(": ").append(event);
-            i += 1;
+        for (int i = 0; i < strings.size(); i++){
+            info.append("\n").append(i).append(". ").append(strings.get(i));
         }
 
         return info.toString();
@@ -97,11 +94,8 @@ public abstract class UserSystem {
             }
         }
         List<String> inbox = tcs.getMM().getInbox(username, inboxChoice);
-
-        int inboxSize = tcs.getMM().getInbox(username, inboxChoice).size();
-        for (int i = 0; i < inboxSize; i++) {
-            tcs.getPresenter().printUCReturns(i + ". " + inbox.get(i));
-        }
+        String inboxToString = formatInfo(inbox);
+        tcs.getPresenter().printUCReturns(inboxToString);
 
         return inboxChoice;
     }
