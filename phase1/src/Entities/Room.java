@@ -5,6 +5,10 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.UUID;
 
+/**
+ * This class is one of the entity classes for this program, specifically for room.
+ *
+ */
 public class Room implements Serializable {
     private String roomName;
     private int capacity; //do we need curr_capacity and max_capacity

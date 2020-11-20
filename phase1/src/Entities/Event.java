@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * This class is one of the entity classes for this program, specifically for event.
+ *
+ */
 public class Event implements Serializable {
     private String eventName;
     private String speaker;
@@ -57,7 +61,7 @@ public class Event implements Serializable {
      *
      * @return name of event
      */
-    public String getEventName(){
+    public String getEventName(){ //phase 2
         return eventName;
     }
 
