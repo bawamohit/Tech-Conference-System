@@ -107,6 +107,11 @@ public class Presenter {
     public void printAvailableEvents(String compiled) {
         System.out.println("The events available for sign-up are: \n" + compiled);
     }
+
+    public void printMyEvents(String compiled) {
+        System.out.println("The events you have signed up for are: \n" + compiled);
+    }
+
     public void printAskSignUp() {
         System.out.println("Enter the number of the event you would like to register for:");
     }
