@@ -21,7 +21,7 @@ public class SpeakerSystem extends UserSystem{
                 case "1":
                         tcs.getPresenter().printSpeakerMessageMenu();
                         choice = validInput("^[012345]$", scanner, tcs);
-                        if(!choice.equals(Character.toString('0'))) {
+                        if(!choice.equals("0")) {
                             speakerHelperMessageSystem(username, choice, scanner, tcs);
                         }
                         break;
