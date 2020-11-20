@@ -69,7 +69,7 @@ public class AttendeeSystem extends UserSystem{
                             tcs.getPresenter().printInvalidInput();
                         }
                     }
-
+                    break;
                 default:
                     tcs.getPresenter().printInvalidInput();
                     break;
@@ -102,15 +102,14 @@ public class AttendeeSystem extends UserSystem{
 
     private boolean cancelAttendeeHelper(String username, Scanner scanner, TechConferenceSystem tcs){
         List<UUID> eventList = tcs.getUM().getEventsAttending(username);
-        List<String> eventNames = (tcs.getEM().convertIDtoName(eventList));
-        tcs.getPresenter().printUCReturns(eventNames);
+        tcs.getPresenter().printMyEvents(formatInfo(tcs.getEM().getEventsStrings(eventList)), "attend");
         tcs.getPresenter().printAskWhichEventCancel();
-        String eventChoice = scanner.nextLine();
-        if (!eventNames.contains(eventChoice)){
+        int choice = Integer.parseInt(scanner.nextLine());
+        if (!(choice <= eventList.size() - 1)){
             return false;
         }
-        UUID eventRemoving = eventList.get(eventNames.indexOf(eventChoice));
-        if (tcs.getUM().removeEventAttending(username, eventRemoving) && tcs.getEM().removeAttendee(username, eventRemoving)){
+        UUID id = eventList.get(choice);
+        if (tcs.getUM().removeEventAttending(username, id) && tcs.getEM().removeAttendee(username, id)){
             return true;
         }
         tcs.getPresenter().printNotInEvent();

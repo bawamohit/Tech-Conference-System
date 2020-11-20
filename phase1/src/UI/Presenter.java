@@ -109,7 +109,7 @@ public class Presenter {
     }
 
     public void printMyEvents(String compiled, String role) {
-        System.out.println("The events you have signed up to" +  role + "are: \n" + compiled);
+        System.out.println("The events you have signed up to " +  role + " are: \n" + compiled);
     }
 
     public void printAskSignUp() {
@@ -125,7 +125,7 @@ public class Presenter {
     }
 
     public void printEventSignUpSuccess() {
-        System.out.println("You have now sign up to this event.");
+        System.out.println("You have now signed up to this event.");
     }
 
     public void printEventCancelSuccess() {

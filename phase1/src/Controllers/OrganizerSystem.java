@@ -108,7 +108,7 @@ public class OrganizerSystem extends UserSystem {
     private boolean addEvent(String username, Scanner sc, TechConferenceSystem tcs) {
         tcs.getPresenter().printAsk("event's name");
         String eventName = sc.nextLine();
-        tcs.getPresenter().printAsk("event's start time (enter in the format H:MM )");
+        tcs.getPresenter().printAsk("event's start time (enter in the format H:MM of a time between 9-16)");
         String[] time = sc.nextLine().split(":");
         int hour = Integer.parseInt(time[0]);
         int minute = Integer.parseInt(time[1]);
@@ -170,6 +170,6 @@ public class OrganizerSystem extends UserSystem {
         int minute = startTime.getMinute();
         if (hour < 9 || hour > 16){ return false; }
         if (hour == 16 && minute > 0){ return false; }
-        return true;startTime
+        return true;
     }
 }
