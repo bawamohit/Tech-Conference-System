@@ -4,9 +4,9 @@
   <OriginalElement>Gateways</OriginalElement>
   <nodes>
     <node x="0.0" y="0.0">Gateways.MessageGateway</node>
-    <node x="0.0" y="150.0">Gateways.UserGateway</node>
-    <node x="0.0" y="225.0">Gateways.RoomGateway</node>
-    <node x="0.0" y="75.0">Gateways.EventGateway</node>
+    <node x="0.0" y="363.0">Gateways.UserGateway</node>
+    <node x="0.0" y="121.0">Gateways.RoomGateway</node>
+    <node x="0.0" y="242.0">Gateways.EventGateway</node>
   </nodes>
   <notes />
   <edges />
@@ -14,7 +14,11 @@
   <SelectedNodes>
     <node>Gateways.MessageGateway</node>
   </SelectedNodes>
-  <Categories />
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+  </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>
 </Diagram>

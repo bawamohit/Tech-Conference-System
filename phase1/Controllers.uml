@@ -3,36 +3,40 @@
   <ID>JAVA</ID>
   <OriginalElement>Controllers</OriginalElement>
   <nodes>
-    <node x="0.0" y="80.0">Controllers.AttendeeSystem</node>
-    <node x="0.0" y="155.0">Controllers.TechConferenceSystem</node>
-    <node x="200.0" y="0.0">Controllers.UserSystem</node>
-    <node x="368.0" y="80.0">Controllers.SpeakerSystem</node>
-    <node x="180.0" y="80.0">Controllers.OrganizerSystem</node>
+    <node x="0.0" y="898.0">Controllers.AttendeeSystem</node>
+    <node x="0.0" y="0.0">Controllers.TechConferenceSystem</node>
+    <node x="475.5" y="629.0">Controllers.UserSystem</node>
+    <node x="967.0" y="909.0">Controllers.SpeakerSystem</node>
+    <node x="449.0" y="865.0">Controllers.OrganizerSystem</node>
   </nodes>
   <notes />
   <edges>
     <edge source="Controllers.OrganizerSystem" target="Controllers.UserSystem">
-      <point x="0.0" y="-15.0" />
-      <point x="0.0" y="15.0" />
+      <point x="0.0" y="-93.0" />
+      <point x="0.0" y="93.0" />
     </edge>
     <edge source="Controllers.AttendeeSystem" target="Controllers.UserSystem">
-      <point x="0.0" y="-15.0" />
-      <point x="80.0" y="55.0" />
-      <point x="221.33333333333334" y="55.0" />
-      <point x="-42.66666666666666" y="15.0" />
+      <point x="0.0" y="-60.0" />
+      <point x="214.5" y="840.0" />
+      <point x="549.6666666666666" y="840.0" />
+      <point x="-148.33333333333337" y="93.0" />
     </edge>
     <edge source="Controllers.SpeakerSystem" target="Controllers.UserSystem">
-      <point x="0.0" y="-15.0" />
-      <point x="444.0" y="55.0" />
-      <point x="306.66666666666663" y="55.0" />
-      <point x="42.66666666666663" y="15.0" />
+      <point x="0.0" y="-49.0" />
+      <point x="1211.0" y="840.0" />
+      <point x="846.3333333333334" y="840.0" />
+      <point x="148.33333333333337" y="93.0" />
     </edge>
   </edges>
   <settings layout="Hierarchic Group" zoom="1.0" x="260.0" y="92.5" />
   <SelectedNodes>
     <node>Controllers.OrganizerSystem</node>
   </SelectedNodes>
-  <Categories />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>
 </Diagram>

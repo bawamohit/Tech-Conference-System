@@ -3,19 +3,23 @@
   <ID>JAVA</ID>
   <OriginalElement>Entities</OriginalElement>
   <nodes>
-    <node x="0.0" y="0.0">Entities.UserType</node>
-    <node x="0.0" y="150.0">Entities.Event</node>
-    <node x="0.0" y="75.0">Entities.Message</node>
-    <node x="133.0" y="150.0">Entities.Room</node>
-    <node x="0.0" y="225.0">Entities.User</node>
+    <node x="662.0" y="497.0">Entities.UserType</node>
+    <node x="0.0" y="0.0">Entities.Event</node>
+    <node x="0.0" y="497.0">Entities.Message</node>
+    <node x="257.0" y="497.0">Entities.Room</node>
+    <node x="381.0" y="0.0">Entities.User</node>
   </nodes>
   <notes />
   <edges />
-  <settings layout="Hierarchic Group" zoom="1.0" x="106.5" y="127.5" />
+  <settings layout="Hierarchic Group" zoom="1.0" x="295.0" y="165.5" />
   <SelectedNodes>
     <node>Entities.UserType</node>
   </SelectedNodes>
-  <Categories />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>
 </Diagram>

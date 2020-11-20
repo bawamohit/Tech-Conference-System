@@ -3,18 +3,22 @@
   <ID>JAVA</ID>
   <OriginalElement>UseCases</OriginalElement>
   <nodes>
-    <node x="0.0" y="75.0">UseCases.EventManager</node>
-    <node x="0.0" y="150.0">UseCases.UserManager</node>
-    <node x="0.0" y="0.0">UseCases.MessageManager</node>
-    <node x="0.0" y="225.0">UseCases.RoomManager</node>
+    <node x="0.0" y="431.0">UseCases.EventManager</node>
+    <node x="0.0" y="0.0">UseCases.UserManager</node>
+    <node x="423.0" y="0.0">UseCases.MessageManager</node>
+    <node x="429.0" y="431.0">UseCases.RoomManager</node>
   </nodes>
   <notes />
   <edges />
-  <settings layout="Hierarchic Group" zoom="1.0" x="80.0" y="127.5" />
+  <settings layout="Hierarchic Group" zoom="1.0" x="80.0" y="632.5" />
   <SelectedNodes>
     <node>UseCases.EventManager</node>
   </SelectedNodes>
-  <Categories />
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+  </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>
 </Diagram>
