@@ -47,7 +47,7 @@ public class Event implements Serializable {
      * Implements the default toString method and return a String with the following format:
      * "The event <eventName> will occur at <startTime> in <roomName>.
      *
-     * @return A string representation of the event.
+     * @return a string representation of the event
      */
     @Override
     public String toString() {
@@ -95,7 +95,7 @@ public class Event implements Serializable {
     /**
      * Implements Getter, getStartTime, for StartTime.
      *
-     * @return date and time of this event.
+     * @return date and time of this event
      */
     public LocalDateTime getStartTime(){
         return startTime;
@@ -122,7 +122,7 @@ public class Event implements Serializable {
     /**
      * Implements Getter, getId, for id.
      *
-     * @return id of event.
+     * @return id of event
      */
     public UUID getId() {
         return id;

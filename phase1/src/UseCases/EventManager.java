@@ -36,6 +36,8 @@ public class EventManager implements Serializable {
     /**
      * Implements Getter, getEventsStrings, for event strings.
      *
+     * @param IDs list of event IDs for which to get string representations for
+     *
      * @return event strings for all scheduled events
      */
 
@@ -66,7 +68,9 @@ public class EventManager implements Serializable {
     /**
      * Implements Getter, getEventAttendees, for an event in events.
      *
-     * @return event attendee list
+     * @param eventID ID of the event to retrieve attendee list for
+     *
+     * @return event attendee list, which should not include the speaker
      */
 
     public List<String> getEventAttendees(UUID eventID) {
@@ -75,6 +79,8 @@ public class EventManager implements Serializable {
 
     /**
      * Implements Getter, getEventStartTime, for an event in events.
+     *
+     * @param eventID ID of the event to retrieve the start time for
      *
      * @return event start time
      */
@@ -86,6 +92,8 @@ public class EventManager implements Serializable {
     /**
      * Implements Checker, isFull, for an event's current capacity.
      *
+     * @param eventID ID of the event to check availability for; should be a valid event in list of existing events
+     *
      * @return true if the number of attendees exceeds event's maximum capacity and false otherwise
      */
     public boolean isFull(UUID eventID) {
@@ -95,6 +103,14 @@ public class EventManager implements Serializable {
 
     /**
      * Implements modifier, addEvent, for events.
+     *
+     * @param eventName name of the event to be added
+     * @param speaker name of speaker of this new event
+     * @param organizer name of organizer of this new event
+     * @param startTime this event's start time; it can take on any time between 9-16
+     * @param roomName name of the room where this event is located in
+     * @param max_capacity the maximum capacity of this event excluding the speaker; this should not exceed the maximum
+     *                     capacity of the room
      *
      * @return a boolean indicating if event was successfully added
      */
@@ -143,6 +159,9 @@ public class EventManager implements Serializable {
     /**
      * Implements modifier, addAttendee, for event in events.
      *
+     * @param username name of attendee to be added
+     * @param eventID ID of event to add attendee to
+     *
      * @return a boolean indicating if user was successfully added
      */
     public boolean addAttendee(String username, UUID eventID){
@@ -158,6 +177,9 @@ public class EventManager implements Serializable {
 
     /**
      * Implements modifier, removeAttendee, for event in events.
+     *
+     * @param username attendee username
+     * @param eventID list of event ids
      *
      * @return a boolean indicating if user was successfully removed
      */

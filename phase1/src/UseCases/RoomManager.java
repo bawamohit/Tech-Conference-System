@@ -32,16 +32,22 @@ public class RoomManager implements Serializable {
     }
 
     /**
-     * Implements creator, createRoom, to instantiate a Room object.
+     * Implements getter, getRoomCapacity, for room in rooms.
      *
-     * @return a Room object with assigned attributes as specified by the parameters
+     * @param roomName name of room to retrieve capacity for
+     *
+     * @return the room roomName's capacity
      */
-    public Room createRoom(String roomName, int capacity) {
-        return new Room(roomName, capacity);
+
+    public int getRoomCapacity(String roomName) {
+        return rooms.get(roomName).getCapacity();
     }
 
     /**
      * Implements modifier, addRoom, for rooms.
+     *
+     * @param roomName name of room to be added
+     * @param capacity maximum capacity of this new room
      *
      * @return a boolean indicating if room was successfully added
      */
@@ -49,7 +55,7 @@ public class RoomManager implements Serializable {
         if (rooms.containsKey(roomName)) {
             return false;
         } else {
-            Room new_room = createRoom(roomName, capacity);
+            Room new_room = new Room(roomName, capacity);
             rooms.put(roomName, new_room);
             return true;
         }
@@ -57,6 +63,8 @@ public class RoomManager implements Serializable {
 
     /**
      * Implements helper method, findRoom, to find Room object when given its name.
+     *
+     * @param roomName name of room to search for
      *
      * @return a Room object in hashmap of rooms associated with the given String roomName
      */
@@ -90,6 +98,9 @@ public class RoomManager implements Serializable {
     /**
      * Implements checker, canAddEvent, for a room in rooms.
      *
+     * @param roomName name of room to add an event to
+     * @param start start time of potential event to be added
+     *
      * @return a boolean indicating if an event with room name roomName and start time start can be successfully added
      */
     public boolean canAddEvent(String roomName, LocalDateTime start) {
@@ -106,6 +117,10 @@ public class RoomManager implements Serializable {
     /**
      * Implements modifier, addEventToSchedule, for event in a room.
      *
+     * @param eventId id of the event to be added to a room's schedule
+     * @param roomName name of room to modify schedule for
+     * @param start start time of event to be added
+     *
      * @return a boolean indicating if event was successfully added
      */
     public boolean addEventToSchedule(UUID eventId, String roomName, LocalDateTime start) {
@@ -116,12 +131,4 @@ public class RoomManager implements Serializable {
         return true;
     }
 
-    /**
-     * Implements getter, getRoomCapacity, for room in rooms.
-     *
-     * @return the room roomName's capacity
-     */
-    public int getRoomCapacity(String roomName) {
-        return rooms.get(roomName).getCapacity();
-    }
 }
