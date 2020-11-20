@@ -31,7 +31,6 @@ public abstract class UserSystem {
         return info.toString();
     }
 
-
     protected void helperMessageSystem(String username, String choice, Scanner scanner, TechConferenceSystem tcs){
         switch (choice) {
             case "0":
