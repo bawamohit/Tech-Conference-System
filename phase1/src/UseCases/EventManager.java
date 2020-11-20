@@ -40,7 +40,6 @@ public class EventManager implements Serializable {
      *
      * @return event strings for all scheduled events
      */
-
     public List<String> getEventsStrings(List<UUID> IDs) {
         List<String> eventString = new ArrayList<>();
         for (UUID id: IDs){
@@ -54,7 +53,6 @@ public class EventManager implements Serializable {
      *
      * @return event IDs for all events still open for signup
      */
-
     public List<UUID> getAvailableEvents() {
         ArrayList<UUID> availableEvents = new ArrayList<>();
         for (UUID id: events.keySet()){
@@ -72,7 +70,6 @@ public class EventManager implements Serializable {
      *
      * @return event attendee list, which should not include the speaker
      */
-
     public List<String> getEventAttendees(UUID eventID) {
         return events.get(eventID).getAttendees();
     }
@@ -84,7 +81,6 @@ public class EventManager implements Serializable {
      *
      * @return event start time
      */
-
     public LocalDateTime getEventStartTime(UUID eventID) {
         return events.get(eventID).getStartTime();
     }

@@ -15,7 +15,6 @@ public class RoomManager implements Serializable {
     /**
      * The constructor takes rooms and assigns the variable an appropriate value.
      */
-
     public RoomManager() {
         this.rooms = new HashMap<>();
     }
@@ -25,7 +24,6 @@ public class RoomManager implements Serializable {
      *
      * @return List of all room names
      */
-
     public List<String> getRooms() {
         Collection<String> roomC = rooms.keySet();
         return new ArrayList<>(roomC);
@@ -38,7 +36,6 @@ public class RoomManager implements Serializable {
      *
      * @return the room roomName's capacity
      */
-
     public int getRoomCapacity(String roomName) {
         return rooms.get(roomName).getCapacity();
     }
