@@ -286,6 +286,22 @@ public class Presenter {
     public void printObjectExists(String obj) { System.out.println("\n" + obj + " already exists\n"); }
 
     /**
+     * Prints error message that username already exists in the system and prompts another input.
+     */
+    public void printUsernameTaken() { System.out.println("\nSorry, this username is taken, " +
+            "please try another username.\n"); }
+
+    /**
+     * Prints error message that an empty string is inputted.
+     *
+     * @param string is the input field
+     */
+    public void printInvalidField(String field){
+        System.out.println("This string is not a valid " + field + ", please enter a valid " + field + ".");
+    }
+
+
+    /**
      * Prints error message that request has failed.
      */
     public void printUnprocessed() { System.out.println("Sorry, your request didn't go through. Please try again!"); }
@@ -313,6 +329,12 @@ public class Presenter {
      */
     public void printAsk(String ask) {
         System.out.println("\nPlease enter your " + ask + ": ");
+    }
+
+    //TODO javadoc
+    public void printAskWithBack(String ask) {
+        System.out.println("\nPlease enter your " + ask +
+                ", or enter the empty string to go back to the previous step.");
     }
 
     /**
@@ -350,6 +372,11 @@ public class Presenter {
      */
     public void printLoggedOut() {
         System.out.println("You have now logged out.");
+    }
+
+    //TODO javadoc
+    public void printSignUpSuccessful(String name){
+        System.out.println("Congratulations! You, " + name + ", is now a valued member of the lamest technology conference ever!");
     }
 
     /**

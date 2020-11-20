@@ -19,10 +19,10 @@ public class TechConferenceSystem {
     private EventGateway eventGateway;
     private MessageGateway messageGateway;
     private RoomGateway roomGateway;
-    File eventManagerInfo = new File("./phase1/src/Data/eventManager.ser");
-    File messageManagerInfo = new File("./phase1/src/Data/messageManager.ser");
-    File userManagerInfo = new File("./phase1/src/Data/userManager.ser");
-    File roomManagerInfo = new File("./phase1/src/Data/roomManager.ser");
+    File eventManagerInfo = new File("./src/Data/eventManager.ser");
+    File messageManagerInfo = new File("./src/Data/messageManager.ser");
+    File userManagerInfo = new File("./src/Data/userManager.ser");
+    File roomManagerInfo = new File("./src/Data/roomManager.ser");
 
     public TechConferenceSystem () {
         try {
@@ -42,10 +42,10 @@ public class TechConferenceSystem {
     }
 
     public void run() {
-        Scanner in = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         String loggedInUsername;
         while (true) {//TODO need exit option
-            loggedInUsername = startUp(in);
+            loggedInUsername = startUp(scanner);
 
             UserSystem system;
             if (um.getUserType(loggedInUsername) == UserType.ATTENDEE) {
@@ -88,11 +88,87 @@ public class TechConferenceSystem {
         return rm;
     }
 
-    private UserType askAccountType(Scanner in) {
+    private String startUp(Scanner scanner) {//TODO add exit option, start from 0
+        String username = null;
+        presenter.printWelcome();
+        String loginOrSignUp = validInput("^[12]$", "option", scanner);
+
+        while(username == null) {
+            switch (loginOrSignUp) {
+                case "1":
+                    username = login(scanner);
+                    break;
+                case "2":
+                    username = signUp(scanner);
+                    break;
+            }
+            if(username == null){
+                presenter.printWelcome();
+                loginOrSignUp = validInput("^[12]$", "option", scanner);
+            }
+        }
+
+        return username;
+    }
+
+    private String login(Scanner scanner) {
+        presenter.printAsk("username");
+        String username = scanner.nextLine();
+        presenter.printAsk("password");
+        String password = scanner.nextLine();
+
+        if (um.verifyLogin(username, password)) {
+            return username;
+        }
+        else {
+            presenter.printWrongAccountInfo();
+            return null;
+        }
+    }
+
+    private String signUp(Scanner scanner) {
+        presenter.printAskWithBack("username");
+        String username = scanner.nextLine();
+        if (username.equals("")) return null;
+        while(um.isRegistered(username)){
+            presenter.printUsernameTaken();
+            username = scanner.nextLine();
+            if (username.equals("")) return null;
+        }
+
+        presenter.printAsk("password");
+        String password = validInput(".+", "password", scanner);
+        UserType accountType = askAccountType(scanner);
+        presenter.printAsk("name");
+        String name = validInput(".+", "name", scanner);
+
+        um.registerUser(accountType, name, username, password);
+        presenter.printSignUpSuccessful(name);
+        return username;
+    }
+
+    protected String validInput(String pattern, String field, Scanner scanner){
+        String input = scanner.nextLine();
+        while(!input.matches(pattern)){
+            presenter.printInvalidField(field);
+            input = scanner.nextLine();
+        }
+        return input;
+    }
+
+    private String nonEmptyInput(String input, String field, Scanner scanner) {
+        while(input.equals("")){
+            presenter.printInvalidField(field);
+            input = scanner.nextLine();
+        }
+        return input;
+    }
+
+    private UserType askAccountType(Scanner scanner) {
         UserType accountType = null;
         while (accountType == null) {
             presenter.printAskUserType();
-            String accountOption = in.nextLine();
+            String accountOption = scanner.nextLine();
 
             switch (accountOption) {
                 case "0":
@@ -107,65 +183,5 @@ public class TechConferenceSystem {
             }
         }
         return accountType;
-    }
-
-    private String[] askInfo(Scanner in) {
-        presenter.printAsk("username");
-        String username = in.nextLine();
-        presenter.printAsk("password");
-        String password = in.nextLine();
-        String[] info = new String[2];
-        info[0] = username;
-        info[1] = password;
-        return info;
-    }
-
-    private String login(Scanner in) {
-        String[] info = askInfo(in);
-
-        if (um.verifyLogin(info[0], info[1])) {
-            return info[0];
-        }
-        else {
-            presenter.printWrongAccountInfo();
-            return null;
-        }
-    }
-
-    private String signUp(Scanner in) {//TODO sign-up successful prompt
-        presenter.printAsk("name");
-        String name = in.nextLine();
-        //TODO need restriction on input, currently accepts empty string
-        String[] info = askInfo(in);//TODO move isRegistered() here so user don't have to waste time inputting password?
-        UserType accountType = askAccountType(in);
-
-        if (um.registerUser(accountType, name, info[0], info[1])) {
-            return info[0];
-        }
-        else {
-            presenter.printObjectExists("Username");
-            return null;
-        }
-    }
-
-    private String startUp(Scanner in) {//TODO add exit option, start from 0
-        String username = null;
-        while (username == null) {
-            presenter.printWelcome(); //TODO move outside of while-loop?
-            String loginOrSignUp = in.nextLine();
-
-            switch (loginOrSignUp) {
-                case "1":
-                    username = login(in);
-                    break;
-                case "2":
-                    username = signUp(in);
-                    break;
-                default:
-                    presenter.printInvalidInput();
-                    break;
-            }
-        }
-        return username;
     }
 }
