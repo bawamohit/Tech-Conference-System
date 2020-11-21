@@ -19,10 +19,10 @@ public class TechConferenceSystem {
     private EventGateway eventGateway;
     private MessageGateway messageGateway;
     private RoomGateway roomGateway;
-    File eventManagerInfo = new File("./src/Data/eventManager.ser");
-    File messageManagerInfo = new File("./src/Data/messageManager.ser");
-    File userManagerInfo = new File("./src/Data/userManager.ser");
-    File roomManagerInfo = new File("./src/Data/roomManager.ser");
+    File eventManagerInfo = new File("./phase1/src/Data/eventManager.ser");
+    File messageManagerInfo = new File("./phase1/src/Data/messageManager.ser");
+    File userManagerInfo = new File("./phase1/src/Data/userManager.ser");
+    File roomManagerInfo = new File("./phase1/src/Data/roomManager.ser");
 
     public TechConferenceSystem () {
         try {
@@ -44,8 +44,17 @@ public class TechConferenceSystem {
     public void run() {
         Scanner scanner = new Scanner(System.in);
         String loggedInUsername;
-        while (true) {//TODO need exit option
+        while (true) {
             loggedInUsername = startUp(scanner);
+            if(loggedInUsername == null) try {
+                userGateway.saveToFile(userManagerInfo.getPath(), um);
+                eventGateway.saveToFile(eventManagerInfo.getPath(), em);
+                messageGateway.saveToFile(messageManagerInfo.getPath(), mm);
+                roomGateway.saveToFile(roomManagerInfo.getPath(), rm);
+                break;
+            } catch (IOException e){
+                e.printStackTrace();
+            }
 
             UserSystem system;
             if (um.getUserType(loggedInUsername) == UserType.ATTENDEE) {
@@ -56,16 +65,6 @@ public class TechConferenceSystem {
                 system = new SpeakerSystem();
             }
             system.run(loggedInUsername, this);
-
-            //THIS IS WHERE WE CAN SAVE INFO (WRITE TO FILES)
-            try {
-                userGateway.saveToFile(userManagerInfo.getPath(), um);
-                eventGateway.saveToFile(eventManagerInfo.getPath(), em);
-                messageGateway.saveToFile(messageManagerInfo.getPath(), mm);
-                roomGateway.saveToFile(roomManagerInfo.getPath(), rm);
-            } catch (IOException e){
-                e.printStackTrace();
-            }
         }
     }
 
@@ -88,13 +87,15 @@ public class TechConferenceSystem {
         return rm;
     }
 
-    private String startUp(Scanner scanner) {//TODO add exit option, start from 0
+    private String startUp(Scanner scanner) {
         String username = null;
         presenter.printWelcome();
-        String loginOrSignUp = validInput("^[12]$", "option", scanner);
-
+        String loginOrSignUp = validInput("^[012]$", "option", scanner);
+        label:
         while(username == null) {
             switch (loginOrSignUp) {
+                case "0":
+                    break label;
                 case "1":
                     username = login(scanner);
                     break;
@@ -104,7 +105,7 @@ public class TechConferenceSystem {
             }
             if(username == null){
                 presenter.printWelcome();
-                loginOrSignUp = validInput("^[12]$", "option", scanner);
+                loginOrSignUp = validInput("^[012]$", "option", scanner);
             }
         }
 
@@ -150,14 +151,6 @@ public class TechConferenceSystem {
     protected String validInput(String pattern, String field, Scanner scanner){
         String input = scanner.nextLine();
         while(!input.matches(pattern)){
-            presenter.printInvalidField(field);
-            input = scanner.nextLine();
-        }
-        return input;
-    }
-
-    private String nonEmptyInput(String input, String field, Scanner scanner) {
-        while(input.equals("")){
             presenter.printInvalidField(field);
             input = scanner.nextLine();
         }

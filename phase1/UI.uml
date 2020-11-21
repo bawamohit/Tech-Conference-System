@@ -7,14 +7,14 @@
   </nodes>
   <notes />
   <edges />
-  <settings layout="Hierarchic Group" zoom="1.0" x="60.0" y="100.5" />
+  <settings layout="Hierarchic Group" zoom="0.5815972222222222" x="138.0" y="566.0" />
   <SelectedNodes>
     <node>UI.Presenter</node>
   </SelectedNodes>
   <Categories>
-    <Category>Methods</Category>
     <Category>Fields</Category>
     <Category>Constructors</Category>
+    <Category>Methods</Category>
   </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>

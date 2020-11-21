@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+/**
+ * This class is one of the entity classes for this program, specifically for message.
+ *
+ */
 public class Message implements Serializable {
     private String sender;
     private String receiver;

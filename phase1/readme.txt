@@ -8,7 +8,7 @@ Please read the following instructions below to ensure the program runs successf
    This is to prevent errors regarding the file path of the .ser files needed to retrieve/save information of this program.
 
 2. When exiting the program, please log out before stopping the program as it will only save
-   the new information the user has made when you log out.
+   the new information you have made when you log out and exit the program by pressing 0 on the log in menu.
 
 3. When creating events as an organizer, you need to create the speaker and the room before.
    When selecting an hour for the start time of an event, note that the times are in 24 hour format. (ex. 15 = 3PM)

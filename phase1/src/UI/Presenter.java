@@ -337,6 +337,10 @@ public class Presenter {
                 ", or enter the empty string to go back to the previous step.");
     }
 
+    //TODO javadoc
+    public void printMesaageDeleted(){
+        System.out.println("The message has been successfully deleted.");
+    }
     public void printBackToMainMenu(){
         System.out.println("Or press enter to go back to the main menu");
     }

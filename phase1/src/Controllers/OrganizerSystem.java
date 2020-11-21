@@ -68,11 +68,13 @@ public class OrganizerSystem extends UserSystem {
         }
     }
 
+    // Helper method, implements the general message system, and add Organizer-specific choices
     private void organizerHelperMessageSystem(String username, String choice, Scanner sc, TechConferenceSystem tcs) {
         super.helperMessageSystem(username, choice, sc, tcs);
         messageAll(username, choice, sc, tcs);
     }
 
+    // Helper method, implements the additional Organizer-specific messaging choices
     private void messageAll(String username, String choice, Scanner scanner, TechConferenceSystem tcs) {
         if (choice.equals("5") || choice.equals("6")) {
             tcs.getPresenter().printAsk("message");
@@ -99,8 +101,7 @@ public class OrganizerSystem extends UserSystem {
             tcs.getPresenter().printUserInfo(UserType.SPEAKER, speakerUsername, speakerPW);
             return true;
         } else {
-            tcs.getPresenter().printObjectExists("Username"); //or invalid input?
-            tcs.getPresenter().printFail();
+            tcs.getPresenter().printUsernameTaken();
             return false;
         }
     }
@@ -113,7 +114,7 @@ public class OrganizerSystem extends UserSystem {
         int hour = Integer.parseInt(time[0]);
         int minute = Integer.parseInt(time[1]);
         LocalDateTime startTime = LocalDateTime.of(2020, 6, 9, hour, minute, 0); //catch exception
-        if (!isTimeOk(startTime, tcs)){
+        if (!isTimeOk(startTime)){
             tcs.getPresenter().printInvalidInput();
             return false;
         }
@@ -165,11 +166,13 @@ public class OrganizerSystem extends UserSystem {
         return true;
     }
 
-    private boolean isTimeOk(LocalDateTime startTime, TechConferenceSystem tcs){
+    private boolean isTimeOk(LocalDateTime startTime){
         int hour = startTime.getHour();
         int minute = startTime.getMinute();
-        if (hour < 9 || hour > 16){ return false; }
-        if (hour == 16 && minute > 0){ return false; }
+        if (hour < 9 || hour > 16){return false;}
+        else if (hour == 16) {
+            return minute <= 0;
+        }
         return true;
     }
 }

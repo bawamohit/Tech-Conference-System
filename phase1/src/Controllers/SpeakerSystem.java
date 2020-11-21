@@ -35,12 +35,13 @@ public class SpeakerSystem extends UserSystem {
         }
     }
 
-    //TODO: Complete this method
+    // Helper method, implements the general message system, and add Speaker-specific choices
     public void speakerHelperMessageSystem(String username, String choice, Scanner scan, TechConferenceSystem tcs) {
         super.helperMessageSystem(username, choice, scan, tcs);
         messageAll(username, choice, scan, tcs);
     }
 
+    // Helper method, implements the additional Speaker-specific messaging choices
     public void messageAll(String username, String choice, Scanner scan, TechConferenceSystem tcs) {
         if (choice.equals("5")) {
             List<UUID> listEvents = tcs.getUM().getEventsAttending(username);

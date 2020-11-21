@@ -3,8 +3,18 @@ package Gateways;
 import java.io.*;
 import UseCases.RoomManager;
 
+/**
+ * This class is one of the gateways of this program, specifically for RoomManager.
+ * It is used to read and write an RoomManager object, by serialization.
+ */
 public class RoomGateway {
 
+    /**
+     * Implements a method used to read the .ser file, returning an RoomManager object
+     *
+     * @param path the file path of which this .ser file is stored.
+     * @return RoomManager object stored in this file.
+     */
     public RoomManager readFromFile(String path) throws ClassNotFoundException {
 
         try {
@@ -21,6 +31,12 @@ public class RoomGateway {
         }
     }
 
+    /**
+     * Implements a method used to save an RoomManager object to a designated .ser file.
+     *
+     * @param filePath the file path of which this .ser file will be stored.
+     * @param roomManager the RoomManager object we would like to save.
+     */
     public void saveToFile(String filePath, RoomManager roomManager) throws IOException {
 
         OutputStream file = new FileOutputStream(filePath); //the path needs to be a .ser so eventData.ser in parameter
