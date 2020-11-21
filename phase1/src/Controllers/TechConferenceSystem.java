@@ -19,10 +19,10 @@ public class TechConferenceSystem {
     private EventGateway eventGateway;
     private MessageGateway messageGateway;
     private RoomGateway roomGateway;
-    File eventManagerInfo = new File("./phase1/src/Data/eventManager.ser");
-    File messageManagerInfo = new File("./phase1/src/Data/messageManager.ser");
-    File userManagerInfo = new File("./phase1/src/Data/userManager.ser");
-    File roomManagerInfo = new File("./phase1/src/Data/roomManager.ser");
+    File eventManagerInfo = new File("./src/Data/eventManager.ser");
+    File messageManagerInfo = new File("./src/Data/messageManager.ser");
+    File userManagerInfo = new File("./src/Data/userManager.ser");
+    File roomManagerInfo = new File("./src/Data/roomManager.ser");
 
     public TechConferenceSystem () {
         try {
@@ -68,6 +68,26 @@ public class TechConferenceSystem {
         }
     }
 
+    public String signUp(Scanner scanner, UserType accountType) {
+        presenter.printAskWithBack("username");
+        String username = scanner.nextLine();
+        if (username.equals("")) return null;
+        while(um.isRegistered(username)){
+            presenter.printUsernameTaken();
+            username = scanner.nextLine();
+            if (username.equals("")) return null;
+        }
+
+        presenter.printAsk("password");
+        String password = validInput(".+", "password", scanner);
+        presenter.printAsk("name");
+        String name = validInput(".+", "name", scanner);
+
+        um.registerUser(accountType, name, username, password);
+        presenter.printSignUpSuccessful(name);
+        return username;
+    }
+
     public Presenter getPresenter(){
         return presenter;
     }
@@ -100,7 +120,8 @@ public class TechConferenceSystem {
                     username = login(scanner);
                     break;
                 case "2":
-                    username = signUp(scanner);
+                    UserType accountType = askAccountType(scanner);
+                    username = signUp(scanner, accountType);
                     break;
             }
             if(username == null){
@@ -125,27 +146,6 @@ public class TechConferenceSystem {
             presenter.printWrongAccountInfo();
             return null;
         }
-    }
-
-    private String signUp(Scanner scanner) {
-        presenter.printAskWithBack("username");
-        String username = scanner.nextLine();
-        if (username.equals("")) return null;
-        while(um.isRegistered(username)){
-            presenter.printUsernameTaken();
-            username = scanner.nextLine();
-            if (username.equals("")) return null;
-        }
-
-        presenter.printAsk("password");
-        String password = validInput(".+", "password", scanner);
-        UserType accountType = askAccountType(scanner);
-        presenter.printAsk("name");
-        String name = validInput(".+", "name", scanner);
-
-        um.registerUser(accountType, name, username, password);
-        presenter.printSignUpSuccessful(name);
-        return username;
     }
 
     protected String validInput(String pattern, String field, Scanner scanner){

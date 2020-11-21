@@ -43,12 +43,9 @@ public class OrganizerSystem extends UserSystem {
                     tcs.getPresenter().printUnderConstruction();
                     break;
                 case "5":  //create speaker
-                    while (true) {
-                        if (addSpeaker(scanner, tcs)) {
-                            tcs.getPresenter().printSuccess();
-                            break;
-                        }
-                    } break;
+                    tcs.signUp(scanner, UserType.SPEAKER);
+                    tcs.getPresenter().printSuccess();
+                    break;
                 case "6":  //create new room
                     while (true) {
                         tcs.getPresenter().printAsk("new room's name");
