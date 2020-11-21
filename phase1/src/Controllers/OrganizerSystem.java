@@ -76,13 +76,12 @@ public class OrganizerSystem extends UserSystem {
         if (choice.equals("4") || choice.equals("5")) {
             tcs.getPresenter().printAsk("message");
             String content = scanner.nextLine();
-            List<String> userList = tcs.getUM().getUsernameList();
-            for (String user : userList) {
-                if (choice.equals("4") && tcs.getUM().getUserType(user) == UserType.SPEAKER) {
-                    tcs.getMM().sendMessage(username, user, content);
-                } else if (choice.equals("5") && tcs.getUM().getUserType(user) == UserType.ORGANIZER) {
-                    tcs.getMM().sendMessage(username, user, content);
-                }
+            if (choice.equals("4")) {
+                List<String> speakers = tcs.getUM().getSpeakerList();
+                tcs.getMM().messageAll(username, speakers, content);
+            } else {
+                List<String> attendees = tcs.getUM().getAttendeeList();
+                tcs.getMM().messageAll(username, attendees, content);
             }
         }
     }
