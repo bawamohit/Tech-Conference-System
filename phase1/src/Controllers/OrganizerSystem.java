@@ -83,6 +83,7 @@ public class OrganizerSystem extends UserSystem {
                 tcs.getMM().messageAll(username, attendees, content);
             }
         }
+        tcs.getPresenter().printSuccess();
     }
 
     private boolean addEvent(String username, Scanner sc, TechConferenceSystem tcs) {
