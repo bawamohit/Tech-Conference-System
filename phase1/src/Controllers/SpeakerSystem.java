@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
+/**
+ * This class is one of the controllers of this program, specifically for speakers. It is a child class of UserSystem.
+ */
 public class SpeakerSystem extends UserSystem {
     private SpeakerPresenter presenter;
 
@@ -14,6 +17,10 @@ public class SpeakerSystem extends UserSystem {
         this.presenter = new SpeakerPresenter();
     }
 
+    /**
+     * Implements the run method for all speaker users.
+     *
+     */
     public void run(String username, TechConferenceSystem tcs){
         Scanner scanner = new Scanner(System.in);
         label:
@@ -43,13 +50,13 @@ public class SpeakerSystem extends UserSystem {
     }
 
     // Helper method, implements the general message system, and add Speaker-specific choices
-    public void speakerHelperMessageSystem(String username, String choice, Scanner scan, TechConferenceSystem tcs) {
+    private void speakerHelperMessageSystem(String username, String choice, Scanner scan, TechConferenceSystem tcs) {
         super.helperMessageSystem(username, choice, scan, tcs);
         messageAll(username, choice, scan, tcs);
     }
 
     // Helper method, implements the additional Speaker-specific messaging choices
-    public void messageAll(String username, String choice, Scanner scan, TechConferenceSystem tcs) {
+    private void messageAll(String username, String choice, Scanner scan, TechConferenceSystem tcs) {
         if (choice.equals("4")) {
             List<UUID> listEvents = tcs.getUM().getEventsAttending(username);
             String listChoice;
