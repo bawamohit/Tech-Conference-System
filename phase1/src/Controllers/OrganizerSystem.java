@@ -7,6 +7,9 @@ import java.util.UUID;
 import Entities.UserType;
 import UI.OrganizerPresenter;
 
+/**
+ * This class is one of the controllers of this program, specifically for organizers. It is a child class of UserSystem.
+ */
 public class OrganizerSystem extends UserSystem {
 
     private OrganizerPresenter presenter;
@@ -15,6 +18,10 @@ public class OrganizerSystem extends UserSystem {
         this.presenter = new OrganizerPresenter();
     }
 
+    /**
+     * Implements the run method for all organizer users.
+     *
+     */
     public void run(String username, TechConferenceSystem tcs) {
         Scanner scanner = new Scanner(System.in);
         label:
