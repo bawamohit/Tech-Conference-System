@@ -102,15 +102,6 @@ public class UserPresenter {
 
 // Event Actions
     /**
-     * Prints a display of all events available for signup and their detailed info.
-     *
-     * @param compiled formatted string of all the aforementioned events
-     */
-    public void printAvailableEvents(String compiled) {
-        System.out.println("The events available for sign-up are: \n" + compiled);
-    }
-
-    /**
      * Prints a user's attending events.
      *
      * @param compiled formatted string of all the aforementioned events
