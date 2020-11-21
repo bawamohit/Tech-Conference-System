@@ -17,7 +17,7 @@ public class AttendeeSystem extends UserSystem{
         Scanner scanner = new Scanner(System.in);
         label:
         while (true) {
-            tcs.getPresenter().printAttendeeMenu();
+            tcs.getAP().printAttendeeMenu();
             String choice = scanner.nextLine();
 
             switch (choice) {
@@ -25,7 +25,7 @@ public class AttendeeSystem extends UserSystem{
                     tcs.getPresenter().printLoggedOut();
                     break label;
                 case "1":
-                    tcs.getPresenter().printAttendeeMessageMenu();
+                    tcs.getAP().printAttendeeMessageMenu();
                     choice = validInput("^[0123]$", scanner, tcs);
                     if(!choice.equals(Character.toString('0'))) {
                         super.helperMessageSystem(username, choice, scanner, tcs);

@@ -27,18 +27,6 @@ public class Presenter {
     }
 
     /**
-     * Prints the menu options specific to attendees.
-     */
-    public void printAttendeeMenu() {
-        printCommonMenu();
-        System.out.println(
-                "2. View All Available Events\n" +
-                        "3. View My Events\n" +
-                        "4. Sign-up Event\n" +
-                        "5. Cancel Event\n");
-    }
-
-    /**
      * Prints the menu options specific to organizers.
      */
     public void printOrganizerMenu() {
@@ -63,7 +51,7 @@ public class Presenter {
     /**
      * Prints the message menu options specific to attendees.
      */
-    public void printAttendeeMessageMenu() {
+    public void printCommonMessageMenu() {
         printPrompt();
         System.out.println("0. Back to previous Menu\n" +
                 "1. Direct message\n" +
@@ -75,7 +63,7 @@ public class Presenter {
      * Prints the message menu options specific to organizers.
      */
     public void printOrganizerMessageMenu() {
-        printAttendeeMessageMenu();
+        printCommonMessageMenu();
         System.out.println("4. Message all speakers\n" +
                 "5. Message all attendees\n");
     }
@@ -84,7 +72,7 @@ public class Presenter {
      * Prints the message menu options specific to speakers.
      */
     public void printSpeakerMessageMenu() {
-        printAttendeeMessageMenu();
+        printCommonMessageMenu();
         System.out.println("4. Message all Attendees of your talk(s).\n");
     }
 
@@ -323,16 +311,25 @@ public class Presenter {
         System.out.println("\nPlease enter the " + ask + ": ");
     }
 
-    //TODO javadoc
+    /**
+     * Prints request for input of a certain object with the option to go back
+     * @param ask the object that requires the input information
+     */
     public void printAskWithBack(String ask) {
         System.out.println("\nPlease enter the " + ask +
-                ", or enter the empty string to go back to the previous step.");
+                ", or press enter to go back to the previous step.");
     }
 
-    //TODO javadoc
+    /**
+     * Prints message deleted successfully
+     */
     public void printMessageDeleted(){
         System.out.println("The message has been successfully deleted.");
     }
+
+    /**
+     * Prints the option to enter to go back
+     */
     public void printBackToMainMenu(){
         System.out.println("Or press enter to go back to the main menu");
     }
@@ -345,13 +342,6 @@ public class Presenter {
                 " Or don't, I'm not yo dad\n");
     }
 
-    /**
-     * Prints message to press ??? to go back//TODO.
-     */
-    public void printBack(){
-        System.out.println(stringBack());
-    }
-
 // Other general statements
     /**
      * Prints function under construction message.
@@ -361,7 +351,7 @@ public class Presenter {
     }
 
     /**
-     * Prints a  //TODO.
+     * Prints the object
      */
     public void printUCReturns(Object obj) {
         System.out.println(obj);
@@ -374,16 +364,11 @@ public class Presenter {
         System.out.println("You have now logged out.");
     }
 
-    //TODO javadoc
-    public void printSignUpSuccessful(String name){
-        System.out.println("Congratulations! You, " + name + ", is now a valued member of the lamest technology conference ever!");
-    }
-
     /**
-     * Prints a  //TODO.
+     * Prints the user has signed up successfully
      */
-    private String stringBack() {
-        return ("enter the empty string '' to go back to the previous menu.");
+    public void printSignUpSuccessful(String name){
+        System.out.println("Congratulations! " + name + " is now a valued member of the lamest technology conference ever!");
     }
 }
 

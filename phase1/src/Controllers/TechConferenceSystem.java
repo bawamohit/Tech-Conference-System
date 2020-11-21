@@ -3,6 +3,8 @@ package Controllers;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
+
+import UI.AttendeePresenter;
 import UseCases.*;
 import UI.Presenter;
 import Gateways.*;
@@ -11,6 +13,7 @@ import Entities.UserType;
 public class TechConferenceSystem {
 
     private Presenter presenter;
+    private AttendeePresenter ap;
     private UserManager um;
     private EventManager em;
     private MessageManager mm;
@@ -39,6 +42,8 @@ public class TechConferenceSystem {
         }
 
         presenter = new Presenter();
+        ap = new AttendeePresenter();
+
     }
 
     public void run() {
@@ -90,6 +95,10 @@ public class TechConferenceSystem {
 
     public Presenter getPresenter(){
         return presenter;
+    }
+
+    public AttendeePresenter getAP() {
+        return ap;
     }
 
     public UserManager getUM(){
