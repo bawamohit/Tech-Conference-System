@@ -72,7 +72,7 @@ public class SpeakerSystem extends UserSystem {
             char[] listChoiceSorted = listChoice.toCharArray();
             for (Character eventID : listChoiceSorted) {
                 List<String> attendeeList = tcs.getEM().getEventAttendees(listEvents.get((int)eventID));
-                tcs.getMM().messageEvent(username, attendeeList, content);
+                tcs.getMM().messageAll(username, attendeeList, content);
             }
         }
     }
