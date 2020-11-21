@@ -26,8 +26,8 @@ public class AttendeeSystem extends UserSystem{
                     break label;
                 case "1":
                     tcs.getPresenter().printAttendeeMessageMenu();
-                    choice = validInput("^[0123]$", scanner, tcs);
-                    if(!choice.equals("0")) {
+                    choice = validInput("^[01234]$", scanner, tcs);
+                    if(!choice.equals(Character.toString('0'))) {
                         super.helperMessageSystem(username, choice, scanner, tcs);
                     }
                     break;
@@ -57,16 +57,16 @@ public class AttendeeSystem extends UserSystem{
                             break;
                         }
                         tcs.getPresenter().printInvalidInput();
-                        break;
                     }
                     break;
                 case "5":  //cancel event
                     while(true){
                         if (cancelAttendeeHelper(username, scanner, tcs)){
                             tcs.getPresenter().printEventCancelSuccess();
+                            break;
+                        } else{
+                            tcs.getPresenter().printInvalidInput();
                         }
-                        tcs.getPresenter().printInvalidInput();
-                        break;
                     }
                     break;
                 default:
@@ -94,6 +94,7 @@ public class AttendeeSystem extends UserSystem{
                 }
             }
         } else {
+            tcs.getPresenter().printInvalidInput();
             return false;
         }
     }
