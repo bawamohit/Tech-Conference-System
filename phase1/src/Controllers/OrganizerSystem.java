@@ -97,7 +97,7 @@ public class OrganizerSystem extends UserSystem {
     private boolean addEvent(String username, Scanner sc, TechConferenceSystem tcs) {
         presenter.printAsk("event's name");
         String eventName = sc.nextLine();
-        presenter.printAsk("event's start time (enter in the format H:MM of a time between 9-16)");
+        presenter.printAsk("event's start time (enter in the format HH:MM of a time between 9-16)");
         String[] time = sc.nextLine().split(":");
         int hour = Integer.parseInt(time[0]);
         int minute = Integer.parseInt(time[1]);
