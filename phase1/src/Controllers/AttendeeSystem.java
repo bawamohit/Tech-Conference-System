@@ -94,7 +94,6 @@ public class AttendeeSystem extends UserSystem{
                 }
             }
         } else {
-            tcs.getPresenter().printInvalidInput();
             return false;
         }
     }
