@@ -87,22 +87,6 @@ public class OrganizerSystem extends UserSystem {
         }
     }
 
-    private boolean addSpeaker(Scanner sc, TechConferenceSystem tcs){
-        tcs.getPresenter().printAsk("speaker's name");
-        String speakerName = sc.nextLine();
-        tcs.getPresenter().printAsk("speaker's username");
-        String speakerUsername = sc.nextLine();
-        tcs.getPresenter().printAsk("speaker's account password");
-        String speakerPW = sc.nextLine();
-        if (tcs.getUM().registerUser(UserType.SPEAKER, speakerName, speakerUsername, speakerPW)) {
-            tcs.getPresenter().printUserInfo(UserType.SPEAKER, speakerUsername, speakerPW);
-            return true;
-        } else {
-            tcs.getPresenter().printUsernameTaken();
-            return false;
-        }
-    }
-
     private boolean addEvent(String username, Scanner sc, TechConferenceSystem tcs) {
         tcs.getPresenter().printAsk("event's name");
         String eventName = sc.nextLine();
@@ -143,7 +127,7 @@ public class OrganizerSystem extends UserSystem {
         List<UUID> speakers_events = tcs.getUM().getEventsAttending(speaker);
         for (UUID id: speakers_events){
             LocalDateTime existingTime = tcs.getEM().getEventStartTime(id);
-            if (!tcs.getUM().scheduleNotOverlap(existingTime, newTime)){
+            if (!tcs.getEM().scheduleNotOverlap(existingTime, newTime)){
                 tcs.getPresenter().printObjUnavailable("speaker");
                 return false;
             }

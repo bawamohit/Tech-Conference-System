@@ -1,6 +1,7 @@
 package UseCases;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 import Entities.Event;
@@ -189,6 +190,17 @@ public class EventManager implements Serializable {
         return false;
     }
 
+    /** Determines whether two times overlap.
+     *
+     * @param existingTime A time that is already occupied.
+     * @param newTime A new time that will be compared.
+     *
+     * @return true if existingTime does not overlap with newTime, and false otherwise.
+     */
+    public boolean scheduleNotOverlap(LocalDateTime existingTime, LocalDateTime newTime){
+        return (!(newTime.isAfter(existingTime.minusHours(1))) || !(newTime.isBefore(existingTime.plusHours(1))));
+    }
+
     /**
      * Implements a checker method, timeNotOverlap, to compare the start times of 2 events, and to ensure that their
      * event times do not overlap one another..
@@ -201,7 +213,7 @@ public class EventManager implements Serializable {
     public boolean timeNotOverlap(UUID existingEvent, UUID newEvent){
         LocalDateTime existingTime = this.events.get(existingEvent).getStartTime();
         LocalDateTime newTime = this.events.get(newEvent).getStartTime();
-        return (!(newTime.isAfter(existingTime.minusHours(1))) || !(newTime.isBefore(existingTime.plusHours(1))));
+        return scheduleNotOverlap(existingTime, newTime);
     }
 
     /**
