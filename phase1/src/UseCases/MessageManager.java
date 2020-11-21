@@ -134,7 +134,7 @@ public class MessageManager implements Serializable {
      * @param userList List of Receivers
      * @param content Content of Message
      */
-    public void messageEvent(String sender, List<String> userList, String content) {
+    public void messageAll(String sender, List<String> userList, String content) {
         for (String user : userList) {
             sendMessage(sender, user, content);
         }
