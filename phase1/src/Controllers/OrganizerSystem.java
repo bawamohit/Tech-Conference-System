@@ -68,11 +68,13 @@ public class OrganizerSystem extends UserSystem {
         }
     }
 
+    // Helper method, implements the general message system, and add Organizer-specific choices
     private void organizerHelperMessageSystem(String username, String choice, Scanner sc, TechConferenceSystem tcs) {
         super.helperMessageSystem(username, choice, sc, tcs);
         messageAll(username, choice, sc, tcs);
     }
 
+    // Helper method, implements the additional Organizer-specific messaging choices
     private void messageAll(String username, String choice, Scanner scanner, TechConferenceSystem tcs) {
         if (choice.equals("5") || choice.equals("6")) {
             tcs.getPresenter().printAsk("message");
