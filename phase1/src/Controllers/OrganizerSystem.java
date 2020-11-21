@@ -22,7 +22,6 @@ public class OrganizerSystem extends UserSystem {
                     tcs.getPresenter().printOrganizerMessageMenu();
                     choice = validInput("^[012345]$", scanner, tcs);
                     if(!choice.equals("0")) {
-                        super.helperMessageSystem(username, choice, scanner, tcs);
                         organizerHelperMessageSystem(username, choice, scanner, tcs);
                     }
                     break;
