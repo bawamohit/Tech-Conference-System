@@ -26,6 +26,7 @@ public class AttendeeSystem extends UserSystem{
         while (true) {
             presenter.printAttendeeMenu();
             String choice = scanner.nextLine();
+            List<UUID> availEvents = tcs.getEM().getAvailableEvents();
 
             switch (choice) {
                 case "0":
@@ -39,8 +40,7 @@ public class AttendeeSystem extends UserSystem{
                     }
                     break;
                 case "2":  //view available events
-                    List<UUID> available = tcs.getEM().getAvailableEvents();
-                    String formattedOutput = formatInfo(tcs.getEM().getEventsStrings(available));
+                    String formattedOutput = formatInfo(tcs.getEM().getEventsStrings(availEvents));
                     if (formattedOutput.equals("")) {
                         presenter.printNoEventsAvailable();
                     }
@@ -52,20 +52,23 @@ public class AttendeeSystem extends UserSystem{
                     List<UUID> eventList = tcs.getUM().getEventsAttending(username);
                     presenter.printMyEvents(formatInfo(tcs.getEM().getEventsStrings(eventList)), "attend");
                     break;
+
                 case "4":  //signup event
-                    while(true){
-                        List<UUID> availEvents = tcs.getEM().getAvailableEvents();
-                        List<String> eventInfo = tcs.getEM().getEventsStrings(availEvents);
-                        presenter.printAskSignUp();
-                        presenter.printAvailableEvents(formatInfo(eventInfo));
-                        choice = scanner.nextLine();
-                        if (signupAttendeeHelper(username, choice, tcs)){
-                            presenter.printEventSignUpSuccess();
-                            break;
-                        }
-                        presenter.printInvalidInput();
+                    List<String> eventInfo = tcs.getEM().getEventsStrings(availEvents);
+                    presenter.printAskSignUp();
+                    presenter.printAvailableEvents(formatInfo(eventInfo));
+                    presenter.printBackToMainMenu();
+                    choice = validInput("^[0-" + (availEvents.size() - 1) + "]$|^.{0}$", scanner ,tcs);
+                    if(choice.equals("")) break;
+                    UUID id = availEvents.get(Integer.parseInt(choice));
+                    if (isAttendeeFree(username, id, tcs) && tcs.getEM().addAttendee(username, id) &&
+                            tcs.getUM().addEventAttending(username, id)){
+                        presenter.printEventSignUpSuccess();
+                    } else{
+                        presenter.printAlreadyBookedTime();
                     }
                     break;
+
                 case "5":  //cancel event
                     while(true){
                         if (cancelAttendeeHelper(username, scanner, tcs)){
@@ -80,28 +83,6 @@ public class AttendeeSystem extends UserSystem{
                     presenter.printInvalidInput();
                     break;
             }
-        }
-    }
-
-
-    private boolean signupAttendeeHelper(String username, String choice, TechConferenceSystem tcs) {
-        List<UUID> availEvents = tcs.getEM().getAvailableEvents();
-        if (choice.matches("^[0-9]*$")) {
-            int eventChoice = Integer.parseInt(choice);
-            if (!(eventChoice < availEvents.size())) {
-                presenter.printInvalidInput();
-                return false;
-            } else{
-                UUID id = availEvents.get(eventChoice);
-                if (isAttendeeFree(username, id, tcs)){
-                    return tcs.getEM().addAttendee(username, id) && tcs.getUM().addEventAttending(username, id);
-                } else{
-                    presenter.printAlreadyBookedTime();
-                    return false;
-                }
-            }
-        } else {
-            return false;
         }
     }
 
