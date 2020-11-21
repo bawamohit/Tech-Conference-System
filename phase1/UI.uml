@@ -3,13 +3,13 @@
   <ID>JAVA</ID>
   <OriginalElement>UI</OriginalElement>
   <nodes>
-    <node x="0.0" y="0.0">UI.Presenter</node>
+    <node x="0.0" y="0.0">UI.UserPresenter</node>
   </nodes>
   <notes />
   <edges />
   <settings layout="Hierarchic Group" zoom="0.5815972222222222" x="138.0" y="566.0" />
   <SelectedNodes>
-    <node>UI.Presenter</node>
+    <node>UI.UserPresenter</node>
   </SelectedNodes>
   <Categories>
     <Category>Fields</Category>

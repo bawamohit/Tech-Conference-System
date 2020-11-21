@@ -5,21 +5,28 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 import Entities.UserType;
+import UI.OrganizerPresenter;
 
 public class OrganizerSystem extends UserSystem {
+
+    private OrganizerPresenter presenter;
+
+    public OrganizerSystem(){
+        this.presenter = new OrganizerPresenter();
+    }
 
     public void run(String username, TechConferenceSystem tcs) {
         Scanner scanner = new Scanner(System.in);
         label:
         while (true) {
-            tcs.getPresenter().printOrganizerMenu();
+            presenter.printOrganizerMenu();
             String choice = scanner.nextLine();
             switch (choice) {
                 case "0":
-                    tcs.getPresenter().printLoggedOut();
+                    presenter.printLoggedOut();
                     break label;
                 case "1":
-                    tcs.getPresenter().printOrganizerMessageMenu();
+                    presenter.printOrganizerMessageMenu();
                     choice = validInput("^[012345]$", scanner, tcs);
                     if(!choice.equals("0")) {
                         organizerHelperMessageSystem(username, choice, scanner, tcs);
@@ -27,38 +34,38 @@ public class OrganizerSystem extends UserSystem {
                     break;
                 case "2":
                     if (addEvent(username, scanner, tcs)) {
-                        tcs.getPresenter().printEventCreationSuccess();
-                        tcs.getPresenter().printSuccess();
+                        presenter.printEventCreationSuccess();
+                        presenter.printSuccess();
                         break;
                     }
                     else {
-                        tcs.getPresenter().printEventCreationFail();
+                        presenter.printEventCreationFail();
                     }
                     break;
                 case "3":  //reschedule event
-                    tcs.getPresenter().printUnderConstruction();
+                    presenter.printUnderConstruction();
                     break;
                 case "4":  //remove Event
-                    tcs.getPresenter().printUnderConstruction();
+                    presenter.printUnderConstruction();
                     break;
                 case "5":  //create speaker
                     tcs.signUp(scanner, UserType.SPEAKER);
-                    tcs.getPresenter().printSuccess();
+                    presenter.printSuccess();
                     break;
                 case "6":  //create new room
                     while (true) {
-                        tcs.getPresenter().printAsk("new room's name");
+                        presenter.printAsk("new room's name");
                         String roomName = scanner.nextLine();
         //                presenter.printAsk("new room's maximum capacity");
         //                String capacity = scanner.nextLine();
                         if (tcs.getRM().addRoom(roomName, 2)) {
-                            tcs.getPresenter().printSuccess();
+                            presenter.printSuccess();
                             break;
-                        } else { tcs.getPresenter().printObjectExists("Room"); }
+                        } else { presenter.printObjectExists("Room"); }
                     }
                     break;
                 default:
-                    tcs.getPresenter().printInvalidInput();
+                    presenter.printInvalidInput();
                     break;
             }
         }
@@ -75,7 +82,7 @@ public class OrganizerSystem extends UserSystem {
 
     // Helper method, implements the additional Organizer-specific messaging choices
     private void messageAll(String username, String choice, Scanner scanner, TechConferenceSystem tcs) {
-        tcs.getPresenter().printAsk("message");
+        presenter.printAsk("message");
         String content = scanner.nextLine();
         if (choice.equals("4")) {
             List<String> speakers = tcs.getUM().getSpeakerList();
@@ -84,25 +91,25 @@ public class OrganizerSystem extends UserSystem {
             List<String> attendees = tcs.getUM().getAttendeeList();
             tcs.getMM().messageAll(username, attendees, content);
         }
-        tcs.getPresenter().printSuccess();
+        presenter.printSuccess();
     }
 
     private boolean addEvent(String username, Scanner sc, TechConferenceSystem tcs) {
-        tcs.getPresenter().printAsk("event's name");
+        presenter.printAsk("event's name");
         String eventName = sc.nextLine();
-        tcs.getPresenter().printAsk("event's start time (enter in the format H:MM of a time between 9-16)");
+        presenter.printAsk("event's start time (enter in the format H:MM of a time between 9-16)");
         String[] time = sc.nextLine().split(":");
         int hour = Integer.parseInt(time[0]);
         int minute = Integer.parseInt(time[1]);
         LocalDateTime startTime = LocalDateTime.of(2020, 6, 9, hour, minute, 0); //catch exception
         if (!isTimeOk(startTime)){
-            tcs.getPresenter().printInvalidInput();
+            presenter.printInvalidInput();
             return false;
         }
-        tcs.getPresenter().printAsk("event speaker's name");
+        presenter.printAsk("event speaker's name");
         String speaker = sc.nextLine();
         if (!isSpeakerOk(speaker, startTime, tcs)){ return false; }
-        tcs.getPresenter().printAsk("event's room name (enter room name)");
+        presenter.printAsk("event's room name (enter room name)");
         String roomName = sc.nextLine();
         if (!isRoomOk(roomName, startTime, tcs)){ return false; }
         int capacity = tcs.getRM().getRoomCapacity(roomName);
@@ -111,24 +118,24 @@ public class OrganizerSystem extends UserSystem {
             if (tcs.getRM().addEventToSchedule(id, roomName, startTime) && tcs.getUM().addEventAttending(speaker, id)) {
                 return true;
             } else{
-                tcs.getPresenter().printUnprocessed();
+                presenter.printUnprocessed();
                 return false;
             }
         }
-        tcs.getPresenter().printFail();
+        presenter.printFail();
         return false;
     }
 
     private boolean isSpeakerOk(String speaker, LocalDateTime newTime, TechConferenceSystem tcs){
         if(!tcs.getUM().getUsernameList().contains(speaker)){
-            tcs.getPresenter().printDNE(speaker);
+            presenter.printDNE(speaker);
             return false;
         }
         List<UUID> speakers_events = tcs.getUM().getEventsAttending(speaker);
         for (UUID id: speakers_events){
             LocalDateTime existingTime = tcs.getEM().getEventStartTime(id);
             if (!tcs.getEM().scheduleNotOverlap(existingTime, newTime)){
-                tcs.getPresenter().printObjUnavailable("speaker");
+                presenter.printObjUnavailable("speaker");
                 return false;
             }
         }
@@ -137,11 +144,11 @@ public class OrganizerSystem extends UserSystem {
 
     private boolean isRoomOk(String roomName, LocalDateTime startTime, TechConferenceSystem tcs){
         if (!tcs.getRM().getRooms().contains(roomName)) {
-            tcs.getPresenter().printDNE("room");
+            presenter.printDNE("room");
             return false;
         }
         if (!tcs.getRM().canAddEvent(roomName, startTime)){
-            tcs.getPresenter().printObjUnavailable("room at this time");
+            presenter.printObjUnavailable("room at this time");
             return false;
         }
         return true;

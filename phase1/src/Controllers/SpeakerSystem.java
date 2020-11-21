@@ -1,25 +1,32 @@
 package Controllers;
 
+import UI.SpeakerPresenter;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
 public class SpeakerSystem extends UserSystem {
+    private SpeakerPresenter presenter;
+
+    public SpeakerSystem(){
+        this.presenter = new SpeakerPresenter();
+    }
 
     public void run(String username, TechConferenceSystem tcs){
         Scanner scanner = new Scanner(System.in);
         label:
         while(true){
-            tcs.getPresenter().printSpeakerMenu();
+            presenter.printSpeakerMenu();
             String choice = scanner.nextLine();
 
             switch (choice){
                 case "0":
-                    tcs.getPresenter().printLoggedOut();
+                    presenter.printLoggedOut();
                     break label;
                 case "1":
-                        tcs.getPresenter().printSpeakerMessageMenu();
+                        presenter.printSpeakerMessageMenu();
                         choice = validInput("^[01234]$", scanner, tcs);
                         if(!choice.equals("0")) {
                             speakerHelperMessageSystem(username, choice, scanner, tcs);
@@ -27,7 +34,7 @@ public class SpeakerSystem extends UserSystem {
                         break;
                 case "2":
                     List<UUID> eventList = tcs.getUM().getEventsAttending(username);
-                    tcs.getPresenter().printMyEvents(formatInfo(tcs.getEM().getEventsStrings(eventList)),
+                    presenter.printMyEvents(formatInfo(tcs.getEM().getEventsStrings(eventList)),
                             "speak at");
                 default:
 
@@ -47,10 +54,10 @@ public class SpeakerSystem extends UserSystem {
             List<UUID> listEvents = tcs.getUM().getEventsAttending(username);
             String listChoice;
             while (true) {
-                tcs.getPresenter().printAskWhichEvents();
+                presenter.printAskWhichEvents();
                 int n = 0;
                 for (UUID eventID : listEvents) {
-                    tcs.getPresenter().printUCReturns(n + ": " + eventID);
+                    presenter.printUCReturns(n + ": " + eventID);
                     n += 1;
                 }
                 listChoice = scan.nextLine();
@@ -64,10 +71,10 @@ public class SpeakerSystem extends UserSystem {
                 if (possibleChoices.contains(listChoice)) {
                     break;
                 } else {
-                    tcs.getPresenter().printInvalidInput();
+                    presenter.printInvalidInput();
                 }
             }
-            tcs.getPresenter().printAsk("message");
+            presenter.printAsk("message");
             String content = scan.nextLine();
             char[] listChoiceSorted = listChoice.toCharArray();
             for (Character eventID : listChoiceSorted) {

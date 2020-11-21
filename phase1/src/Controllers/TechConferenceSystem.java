@@ -5,15 +5,15 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import UI.AttendeePresenter;
+import UI.OrganizerPresenter;
+import UI.UserPresenter;
 import UseCases.*;
-import UI.Presenter;
 import Gateways.*;
 import Entities.UserType;
 
 public class TechConferenceSystem {
 
-    private Presenter presenter;
-    private AttendeePresenter ap;
+    private UserPresenter presenter;
     private UserManager um;
     private EventManager em;
     private MessageManager mm;
@@ -41,9 +41,7 @@ public class TechConferenceSystem {
             e.printStackTrace();
         }
 
-        presenter = new Presenter();
-        ap = new AttendeePresenter();
-
+        presenter = new UserPresenter();
     }
 
     public void run() {
@@ -93,17 +91,14 @@ public class TechConferenceSystem {
         return username;
     }
 
-    public Presenter getPresenter(){
+    public UserPresenter presenter(){
         return presenter;
-    }
-
-    public AttendeePresenter getAP() {
-        return ap;
     }
 
     public UserManager getUM(){
         return um;
     }
+
     public EventManager getEM(){
         return em;
     }

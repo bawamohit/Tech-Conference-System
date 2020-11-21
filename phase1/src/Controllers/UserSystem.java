@@ -30,22 +30,22 @@ public abstract class UserSystem {
     private void sendMessage(String username, Scanner scanner, TechConferenceSystem tcs){
         String receiver;
         while(true) {
-            tcs.getPresenter().printAskMsgReceiver();
-            tcs.getPresenter().printBackToMainMenu();
+            tcs.presenter().printAskMsgReceiver();
+            tcs.presenter().printBackToMainMenu();
             receiver = scanner.nextLine();
             if(receiver.equals("")) return;
             if(tcs.getUM().isRegistered(receiver)){
                 break;
             } else{
-                tcs.getPresenter().printInvalidInput();
+                tcs.presenter().printInvalidInput();
             }
         }
-        tcs.getPresenter().printAsk("message");
-        tcs.getPresenter().printBackToMainMenu();
+        tcs.presenter().printAsk("message");
+        tcs.presenter().printBackToMainMenu();
         String message = scanner.nextLine();
         if(message.equals("")) return;
         tcs.getMM().sendMessage(username, receiver, message);
-        tcs.getPresenter().printMessageSent();
+        tcs.presenter().printMessageSent();
     }
 
     // Helper method, deletes a message in the User's inboxes (user chooses the message)
@@ -54,33 +54,33 @@ public abstract class UserSystem {
         if(inboxChoice.equals("")) return;
         int inboxSize = tcs.getMM().getInbox(username, inboxChoice).size();
         String index;
-        tcs.getPresenter().printAskWhichMessage();
-        tcs.getPresenter().printBackToMainMenu();
+        tcs.presenter().printAskWhichMessage();
+        tcs.presenter().printBackToMainMenu();
         index = validInput("^[0-" + (inboxSize - 1) + "]$|^.{0}$", scanner, tcs);
         if(index.equals("")) return;
         tcs.getMM().deleteMessage(tcs.getMM().getInbox(username, inboxChoice).get(Integer.parseInt(index)));
-        tcs.getPresenter().printMessageDeleted();
+        tcs.presenter().printMessageDeleted();
     }
 
     // Helper method, views an inbox between the User and another chosen (by input) user
     private String viewInbox(String username, Scanner scanner, TechConferenceSystem tcs){
         String inboxChoice;
         while (true) {
-            tcs.getPresenter().printAskWhichInbox();
-            tcs.getPresenter().printUCReturns(tcs.getMM().getInboxes(username));
-            tcs.getPresenter().printBackToMainMenu();
+            tcs.presenter().printAskWhichInbox();
+            tcs.presenter().printUCReturns(tcs.getMM().getInboxes(username));
+            tcs.presenter().printBackToMainMenu();
             inboxChoice = scanner.nextLine();
             if (inboxChoice.equals("")){
                 return inboxChoice;
             } else if (tcs.getMM().getInboxes(username).contains(inboxChoice)) {
                 break;
             } else {
-                tcs.getPresenter().printInvalidInput();
+                tcs.presenter().printInvalidInput();
             }
         }
         List<String> inbox = tcs.getMM().getInboxString(username, inboxChoice);
         String inboxToString = formatInfo(inbox);
-        tcs.getPresenter().printUCReturns(inboxToString);
+        tcs.presenter().printUCReturns(inboxToString);
 
         return inboxChoice;
     }
@@ -103,7 +103,7 @@ public abstract class UserSystem {
     protected String validInput(String pattern, Scanner scanner, TechConferenceSystem tcs){
         String input = scanner.nextLine();
         while(!input.matches(pattern)){
-            tcs.getPresenter().printInvalidInput();
+            tcs.presenter().printInvalidInput();
             input = scanner.nextLine();
         }
         return input;
