@@ -1,6 +1,6 @@
 package UI;
 
-public class AttendeePresenter extends Presenter {
+public class AttendeePresenter extends UserPresenter {
 
     /**
      * Prints the menu options specific to attendees.
