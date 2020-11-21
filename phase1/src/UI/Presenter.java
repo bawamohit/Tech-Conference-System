@@ -159,51 +159,9 @@ public class Presenter {
     }
 
     /**
-     * Prints a request for number in list to determine which event to sign up for.
-     */
-    public void printAskSignUp() {
-        System.out.println("Enter the number of the event you would like to register for:");
-    }
-
-    /**
-     * Prints a request for number in list to determine which event to cancel sign up for.
-     */
-    public void printAskWhichEventCancel() {
-        System.out.println("Enter the number of event you would like to remove sign up from:");
-    }
-
-    /**
      * Prints a  request for the event the user would like to choose.
      */
     public void printAskWhichEvents() { System.out.println("Which event(s)? (Enter the number(s))"); }
-
-    /**
-     * Prints a notification that user has another event booked at a certain time.
-     */
-    public void printAlreadyBookedTime() {
-        System.out.println("You have already booked for another event during the time of this event.");
-    }
-
-    /**
-     * Prints a notification that user has signed up successfully.
-     */
-    public void printEventSignUpSuccess() {
-        System.out.println("You have now signed up to this event.");
-    }
-
-    /**
-     * Prints a notification that user has removed signup successfully.
-     */
-    public void printEventCancelSuccess() {
-        System.out.println("You are now removed from this event.");
-    }
-
-    /**
-     * Prints a notification that user did not sign up to a certain event.
-     */
-    public void printNotInEvent() {
-        System.out.println("You have not signed up to this event.");
-    }
 
     /**
      * Prints a notification that user has successfully created an event.
@@ -217,13 +175,6 @@ public class Presenter {
      */
     public void printEventCreationFail() {
         System.out.println("Error! Event not created.");
-    }
-
-    /**
-     * Prints a notification that there are no events available for sign-up.
-     */
-    public void printNoEventsAvailable() {
-        System.out.println("There are no events available for sign-up :(");
     }
 
     /**
