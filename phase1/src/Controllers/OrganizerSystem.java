@@ -53,16 +53,13 @@ public class OrganizerSystem extends UserSystem {
                     presenter.printSuccess();
                     break;
                 case "6":  //create new room
-                    while (true) {
-                        presenter.printAsk("new room's name");
-                        String roomName = scanner.nextLine();
-        //                presenter.printAsk("new room's maximum capacity");
-        //                String capacity = scanner.nextLine();
-                        if (tcs.getRM().addRoom(roomName, 2)) {
-                            presenter.printSuccess();
-                            break;
-                        } else { presenter.printObjectExists("Room"); }
-                    }
+                    presenter.printAsk("new room's name");
+                    presenter.printBackToMainMenu();
+                    String roomName = scanner.nextLine();
+                    if(roomName.equals("")) break;
+                    if (tcs.getRM().addRoom(roomName, 2)) {
+                        presenter.printSuccess();
+                    } else { presenter.printObjectExists("Room"); }
                     break;
                 default:
                     presenter.printInvalidInput();
