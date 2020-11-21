@@ -12,6 +12,7 @@ public class Presenter {
      */
     public void printWelcome() {
         System.out.println("\nWelcome To The Lamest Technology Conference Ever!!!\n" +
+                "\nPress 0 to exit the program\n" +
                 "\nPress 1 to login to your account\n" +
                 "\nPress 2 to sign up for an account\n");
     }
@@ -253,13 +254,6 @@ public class Presenter {
     }
 
     /**
-     * Prints error message for IOException.
-     */
-    public void printIOException() {
-        System.out.println("IOException");
-    }
-
-    /**
      * Prints error message that something does not exist in the system.
      *
      * @param obj the object that does not exist; could be a user, event, room, etc.
@@ -299,7 +293,6 @@ public class Presenter {
         System.out.println("This string is not a valid " + field + ", please enter a valid " + field + ".");
     }
 
-
     /**
      * Prints error message that request has failed.
      */
@@ -327,17 +320,17 @@ public class Presenter {
      * @param ask the object that requires the input information
      */
     public void printAsk(String ask) {
-        System.out.println("\nPlease enter your " + ask + ": ");
+        System.out.println("\nPlease enter the " + ask + ": ");
     }
 
     //TODO javadoc
     public void printAskWithBack(String ask) {
-        System.out.println("\nPlease enter your " + ask +
+        System.out.println("\nPlease enter the " + ask +
                 ", or enter the empty string to go back to the previous step.");
     }
 
     //TODO javadoc
-    public void printMesaageDeleted(){
+    public void printMessageDeleted(){
         System.out.println("The message has been successfully deleted.");
     }
     public void printBackToMainMenu(){

@@ -59,7 +59,7 @@ public abstract class UserSystem {
         index = validInput("^[0-" + (inboxSize - 1) + "]$|^.{0}$", scanner, tcs);
         if(index.equals("")) return;
         tcs.getMM().deleteMessage(tcs.getMM().getInbox(username, inboxChoice).get(Integer.parseInt(index)));
-        tcs.getPresenter().printMesaageDeleted();
+        tcs.getPresenter().printMessageDeleted();
     }
 
     // Helper method, views an inbox between the User and another chosen (by input) user
