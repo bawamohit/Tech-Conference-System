@@ -18,13 +18,61 @@ public class UserManager implements Serializable {
         usernamesToUsers = new HashMap<>();
     }
 
-    /** Creates a list of a list of usernames of all registered users and returns it.
+    /** Creates a list of usernames of all registered users and returns it.
      *
      * @return List of usernames
      */
     public List<String> getUsernameList() {
         Collection<String> users = usernamesToUsers.keySet();
         return new ArrayList<>(users);
+    }
+
+    /** Creates a list of usernames of all registered users that are attendees and returns it.
+     *
+     * @return List of attendee usernames
+     */
+    public List<String> getAttendeeList() {
+        ArrayList<String> attendeeList = new ArrayList<>();
+
+        for(String username : getUsernameList()){
+            if (getUserType(username) == UserType.ATTENDEE) {
+                attendeeList.add(username);
+            }
+        }
+
+        return attendeeList;
+    }
+
+    /** Creates a list of usernames of all registered users that are speakers and returns it.
+     *
+     * @return List of speaker usernames
+     */
+    public List<String> getSpeakerList() {
+        ArrayList<String> speakerList = new ArrayList<>();
+
+        for(String username : getUsernameList()){
+            if (getUserType(username) == UserType.SPEAKER) {
+                speakerList.add(username);
+            }
+        }
+
+        return speakerList;
+    }
+
+    /** Creates a list of usernames of all registered users that are organizers and returns it.
+     *
+     * @return List of organizer usernames
+     */
+    public List<String> getOrganizerList() {
+        ArrayList<String> organizerList = new ArrayList<>();
+
+        for(String username : getUsernameList()){
+            if (getUserType(username) == UserType.ORGANIZER) {
+                organizerList.add(username);
+            }
+        }
+
+        return organizerList;
     }
 
     /** Determines whether the given username is registered in this userManager
