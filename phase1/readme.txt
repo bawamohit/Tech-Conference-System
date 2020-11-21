@@ -18,7 +18,6 @@ The format of the following user accounts below is Name: Username, Password
     Attendees
         Elmo: elmo, red
         Big Bird: bigbird, yellow
-        Cookie Monster: cookiemonster, blue
 
     Organizers
         Oscar: oscar, green

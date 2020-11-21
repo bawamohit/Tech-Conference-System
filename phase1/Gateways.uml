@@ -10,8 +10,10 @@
   </nodes>
   <notes />
   <edges />
-  <settings layout="Hierarchic Group" zoom="1.0" x="312.0" y="245.5" />
-  <SelectedNodes />
+  <settings layout="Hierarchic Group" zoom="1.0" x="135.0" y="219.5" />
+  <SelectedNodes>
+    <node>Gateways.MessageGateway</node>
+  </SelectedNodes>
   <Categories>
     <Category>Fields</Category>
     <Category>Constructors</Category>

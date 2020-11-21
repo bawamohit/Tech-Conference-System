@@ -11,10 +11,8 @@
   </nodes>
   <notes />
   <edges />
-  <settings layout="Hierarchic Group" zoom="0.8251001335113485" x="420.0" y="364.5" />
-  <SelectedNodes>
-    <node>Entities.UserType</node>
-  </SelectedNodes>
+  <settings layout="Hierarchic Group" zoom="0.8945260347129506" x="420.0" y="364.5" />
+  <SelectedNodes />
   <Categories>
     <Category>Fields</Category>
     <Category>Constructors</Category>
