@@ -70,7 +70,7 @@ public class OrganizerSystem extends UserSystem {
 
     // Helper method, implements the general message system, and add Organizer-specific choices
     private void organizerHelperMessageSystem(String username, String choice, Scanner sc, TechConferenceSystem tcs) {
-        if (choice.matches("[0123]]")) {
+        if (choice.matches("^[0123]$")) {
             super.helperMessageSystem(username, choice, sc, tcs);
         } else {
             messageAll(username, choice, sc, tcs);
