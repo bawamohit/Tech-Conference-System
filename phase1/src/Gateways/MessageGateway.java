@@ -3,7 +3,18 @@ package Gateways;
 import java.io.*;
 import UseCases.MessageManager;
 
+/**
+ * This class is one of the gateways of this program, specifically for MessageManager.
+ * It is used to read and write an MessageManager object, by serialization.
+ */
 public class MessageGateway {
+
+    /**
+     * Implements a method used to read the .ser file, returning an MessageManager object
+     *
+     * @param path the file path of which this .ser file is stored.
+     * @return MessageManager object stored in this file.
+     */
     public MessageManager readFromFile(String path) throws ClassNotFoundException {
 
         try {
@@ -20,6 +31,12 @@ public class MessageGateway {
         }
     }
 
+    /**
+     * Implements a method used to save an MessageManager object to a designated .ser file.
+     *
+     * @param filePath the file path of which this .ser file will be stored.
+     * @param messageManager the MessageManager object we would like to save.
+     */
     public void saveToFile(String filePath, MessageManager messageManager) throws IOException {
 
         OutputStream file = new FileOutputStream(filePath);
