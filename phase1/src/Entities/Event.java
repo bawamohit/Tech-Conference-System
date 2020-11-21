@@ -56,21 +56,22 @@ public class Event implements Serializable {
         return eventName + ", " + speaker + ", " + formattedTime + ", " + roomName;
     }
 
+    // for phase 2
     /**
      * Implements Getter, getEventName, for eventName.
      *
      * @return name of event
      */
-    public String getEventName(){ //phase 2
+    public String getEventName(){
         return eventName;
     }
-
+    // for phase 2
     /**
      * Implements Getter, getOrganizer, for organizer.
      *
      * @return username of event's organizer
      */
-    public String getOrganizer(){ //phase 2
+    public String getOrganizer(){
         return organizer;
     }
 

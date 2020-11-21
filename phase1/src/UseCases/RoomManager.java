@@ -102,6 +102,7 @@ public class RoomManager implements Serializable {
      */
     public boolean canAddEvent(String roomName, LocalDateTime start) {
         Room room = findRoom(roomName);
+        assert room != null;
         for (LocalDateTime time : room.getSchedule().keySet()) {
             if (start.isAfter(time.minusHours(1))) {
                 if (start.isBefore(time.plusHours(1))) {
@@ -122,6 +123,7 @@ public class RoomManager implements Serializable {
      */
     public boolean addEventToSchedule(UUID eventId, String roomName, LocalDateTime start) {
         Room room = findRoom(roomName);
+        assert room != null;
         HashMap<LocalDateTime, UUID> updated_room = room.getSchedule();
         updated_room.put(start, eventId);
         room.setRoomSchedule(updated_room);

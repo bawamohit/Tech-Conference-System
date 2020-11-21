@@ -28,13 +28,13 @@ public class Room implements Serializable {
         schedule = new HashMap<>();
     }
 
-
+// for phase 2
     /**
      * Implements Getter, getRoomName for roomName.
      *
      * @return name of room
      */
-    public String getRoomName(){ //phase 2
+    public String getRoomName(){
         return roomName;
     }
 
