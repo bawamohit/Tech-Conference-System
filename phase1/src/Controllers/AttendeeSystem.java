@@ -27,6 +27,7 @@ public class AttendeeSystem extends UserSystem{
             presenter.printAttendeeMenu();
             String choice = scanner.nextLine();
             List<UUID> availEvents = tcs.getEM().getAvailableEvents();
+            List<UUID> eventList = tcs.getUM().getEventsAttending(username);
 
             switch (choice) {
                 case "0":
@@ -49,11 +50,14 @@ public class AttendeeSystem extends UserSystem{
                     }
                     break;
                 case "3":
-                    List<UUID> eventList = tcs.getUM().getEventsAttending(username);
                     presenter.printMyEvents(formatInfo(tcs.getEM().getEventsStrings(eventList)), "attend");
                     break;
 
                 case "4":  //signup event
+                    if(availEvents.isEmpty()){
+                        presenter.printNoEventsAvailable();
+                        break;
+                    }
                     List<String> eventInfo = tcs.getEM().getEventsStrings(availEvents);
                     presenter.printAskSignUp();
                     presenter.printAvailableEvents(formatInfo(eventInfo));
@@ -70,6 +74,10 @@ public class AttendeeSystem extends UserSystem{
                     break;
 
                 case "5":  //cancel event
+                    if(eventList.isEmpty()){
+                        presenter.printNoEventsAvailable();
+                        break;
+                    }
                     while(true){
                         if (cancelAttendeeHelper(username, scanner, tcs)){
                             presenter.printEventCancelSuccess();
