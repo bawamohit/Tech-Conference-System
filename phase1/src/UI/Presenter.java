@@ -66,9 +66,8 @@ public class Presenter {
         printPrompt();
         System.out.println("0. Back to previous Menu\n" +
                 "1. Direct message\n" +
-                "2. Edit a message\n" +
-                "3. Delete a message\n" +
-                "4. View message chats");
+                "2. Delete a message\n" +
+                "3. View message chats");
     }
 
     /**
@@ -76,8 +75,8 @@ public class Presenter {
      */
     public void printOrganizerMessageMenu() {
         printAttendeeMessageMenu();
-        System.out.println("5. Message all speakers\n" +
-                "6. Message all attendees\n");
+        System.out.println("4. Message all speakers\n" +
+                "5. Message all attendees\n");
     }
 
     /**
@@ -85,11 +84,11 @@ public class Presenter {
      */
     public void printSpeakerMessageMenu() {
         printAttendeeMessageMenu();
-        System.out.println("5. Message all Attendees of your talk(s).\n");
+        System.out.println("4. Message all Attendees of your talk(s).\n");
     }
 
     /**
-     * Prints a request for the username that the user wold like to message.
+     * Prints a request for the username that the user would like to message.
      */
     public void printAskMsgReceiver() {
         System.out.println("Enter the username you would like to message");
@@ -103,23 +102,18 @@ public class Presenter {
     }
 
     /**
-     * Prints a request for ?? //TODO.
+     * Prints a request for the inbox the user would like to see.
      */
     public void printAskWhichInbox() {
         System.out.println("Which contact inbox do you want to see? Type the username");
     }
 
     /**
-     * Prints a  //TODO.
+     * Prints a  request for the message the user would like to choose.
      */
     public void printAskWhichMessage() {
-        System.out.println("Which message? (Enter the index number)");
+        System.out.println("Which message? (Enter the number)");
     }
-
-    /**
-     * Prints a  //TODO.
-     */
-    public void printAskWhichEvents() { System.out.println("Which event(s)? (Enter the number(s))"); }
 
     /**
      * Prints a  //TODO.
@@ -134,7 +128,7 @@ public class Presenter {
      */
     public void printWrongAccountInfo() {
         System.out.println("\nOOPS looks like you entered the wrong login information," +
-                "If you get it wong again FBI WILL BE KNOCKING ON YOUR DOOR IN 10 MINUTES\n");
+                "If you get it wrong again FBI WILL BE KNOCKING ON YOUR DOOR IN 10 MINUTES\n");
     }
 
     /**
@@ -188,6 +182,11 @@ public class Presenter {
     public void printAskWhichEventCancel() {
         System.out.println("Enter the number of event you would like to remove sign up from:");
     }
+
+    /**
+     * Prints a  request for the event the user would like to choose.
+     */
+    public void printAskWhichEvents() { System.out.println("Which event(s)? (Enter the number(s))"); }
 
     /**
      * Prints a notification that user has another event booked at a certain time.

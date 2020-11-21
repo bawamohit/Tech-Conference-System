@@ -20,7 +20,7 @@ public class SpeakerSystem extends UserSystem {
                     break label;
                 case "1":
                         tcs.getPresenter().printSpeakerMessageMenu();
-                        choice = validInput("^[012345]$", scanner, tcs);
+                        choice = validInput("^[01234]$", scanner, tcs);
                         if(!choice.equals("0")) {
                             speakerHelperMessageSystem(username, choice, scanner, tcs);
                         }
@@ -43,7 +43,7 @@ public class SpeakerSystem extends UserSystem {
 
     // Helper method, implements the additional Speaker-specific messaging choices
     public void messageAll(String username, String choice, Scanner scan, TechConferenceSystem tcs) {
-        if (choice.equals("5")) {
+        if (choice.equals("4")) {
             List<UUID> listEvents = tcs.getUM().getEventsAttending(username);
             String listChoice;
             while (true) {

@@ -20,7 +20,7 @@ public class OrganizerSystem extends UserSystem {
                     break label;
                 case "1":
                     tcs.getPresenter().printOrganizerMessageMenu();
-                    choice = validInput("^[0123456]$", scanner, tcs);
+                    choice = validInput("^[012345]$", scanner, tcs);
                     if(!choice.equals("0")) {
                         super.helperMessageSystem(username, choice, scanner, tcs);
                         organizerHelperMessageSystem(username, choice, scanner, tcs);
@@ -76,14 +76,14 @@ public class OrganizerSystem extends UserSystem {
 
     // Helper method, implements the additional Organizer-specific messaging choices
     private void messageAll(String username, String choice, Scanner scanner, TechConferenceSystem tcs) {
-        if (choice.equals("5") || choice.equals("6")) {
+        if (choice.equals("4") || choice.equals("5")) {
             tcs.getPresenter().printAsk("message");
             String content = scanner.nextLine();
             List<String> userList = tcs.getUM().getUsernameList();
             for (String user : userList) {
-                if (choice.equals("5") && tcs.getUM().getUserType(user) == UserType.SPEAKER) {
+                if (choice.equals("4") && tcs.getUM().getUserType(user) == UserType.SPEAKER) {
                     tcs.getMM().sendMessage(username, user, content);
-                } else if (choice.equals("6") && tcs.getUM().getUserType(user) == UserType.ORGANIZER) {
+                } else if (choice.equals("5") && tcs.getUM().getUserType(user) == UserType.ORGANIZER) {
                     tcs.getMM().sendMessage(username, user, content);
                 }
             }
