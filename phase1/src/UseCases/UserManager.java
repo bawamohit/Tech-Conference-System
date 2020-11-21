@@ -6,6 +6,8 @@ import java.util.*;
 import Entities.User;
 import Entities.UserType;
 
+/** Handles user related functions of this program.
+ */
 public class UserManager implements Serializable {
 
     private HashMap<String, User> usernamesToUsers;
