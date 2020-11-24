@@ -61,6 +61,10 @@ public class SpeakerSystem extends UserSystem {
     // Helper method, implements the additional Speaker-specific messaging choices
     private void messageAll(String username, Scanner scanner, TechConferenceSystem tcs) {//TODO message multiple events simultaneously
         List<UUID> listEvents = tcs.getUM().getEventsAttending(username);//TODO get events speaking at?, includes event not speaking at
+        if(listEvents.isEmpty()){
+            presenter.printDNE("events");//TODO presenter to say no events
+            return;
+        }
         String eventInfo = formatInfo(tcs.getEM().getEventsStrings(listEvents));
         presenter.printUCReturns(eventInfo);
         presenter.printAskWhichEvents();

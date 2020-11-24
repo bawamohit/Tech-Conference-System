@@ -113,10 +113,11 @@ public class TechConferenceSystem {
 
     private String startUp(Scanner scanner) {
         String username = null;
-        presenter.printWelcome();
-        String loginOrSignUp = validInput("^[012]$", "option", scanner);
         label:
-        while(username == null) {
+        do {
+            presenter.printWelcome();
+            String loginOrSignUp = validInput("^[012]$", "option", scanner);
+
             switch (loginOrSignUp) {
                 case "0":
                     break label;
@@ -125,14 +126,11 @@ public class TechConferenceSystem {
                     break;
                 case "2":
                     UserType accountType = askAccountType(scanner);
+                    if(accountType == null) break;
                     username = signUp(scanner, accountType);
                     break;
             }
-            if(username == null){
-                presenter.printWelcome();
-                loginOrSignUp = validInput("^[012]$", "option", scanner);
-            }
-        }
+        }while (username == null) ;
 
         return username;
     }
@@ -163,21 +161,18 @@ public class TechConferenceSystem {
 
     private UserType askAccountType(Scanner scanner) {
         UserType accountType = null;
-        while (accountType == null) {
-            presenter.printAskUserType();
-            String accountOption = scanner.nextLine();
+        presenter.printAskUserType();
+        presenter.printBackToMainMenu();
+        String choice = validInput("^0$|^1$|^.{0}$", "type", scanner);
+        if(choice.equals("")) return null;
 
-            switch (accountOption) {
-                case "0":
-                    accountType = UserType.ATTENDEE;
-                    break;
-                case "1":
-                    accountType = UserType.ORGANIZER;
-                    break;
-                default:
-                    presenter.printInvalidInput();
-                    break;
-            }
+        switch (choice) {
+            case "0":
+                accountType = UserType.ATTENDEE;
+                break;
+            case "1":
+                accountType = UserType.ORGANIZER;
+                break;
         }
         return accountType;
     }
