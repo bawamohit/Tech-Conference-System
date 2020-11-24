@@ -51,44 +51,29 @@ public class SpeakerSystem extends UserSystem {
 
     // Helper method, implements the general message system, and add Speaker-specific choices
     private void speakerHelperMessageSystem(String username, String choice, Scanner scan, TechConferenceSystem tcs) {
-        super.helperMessageSystem(username, choice, scan, tcs);
-        messageAll(username, choice, scan, tcs);
+        if(choice.matches("4")){
+            messageAll(username, scan, tcs);
+        }else {
+            super.helperMessageSystem(username, choice, scan, tcs);
+        }
     }
 
     // Helper method, implements the additional Speaker-specific messaging choices
-    private void messageAll(String username, String choice, Scanner scan, TechConferenceSystem tcs) {
-        if (choice.equals("4")) {
-            List<UUID> listEvents = tcs.getUM().getEventsAttending(username);
-            String listChoice;
-            while (true) {
-                presenter.printAskWhichEvents();
-                int n = 0;
-                for (UUID eventID : listEvents) {
-                    presenter.printUCReturns(n + ": " + eventID);
-                    n += 1;
-                }
-                listChoice = scan.nextLine();
-                char[] listChoiceSorted = listChoice.toCharArray();
-                Arrays.sort(listChoiceSorted);
-                listChoice = new String(listChoiceSorted);
-                String possibleChoices = "";
-                for (int i = 0; i < n; i ++) {
-                    possibleChoices = possibleChoices.concat(String.valueOf(i));
-                }
-                if (possibleChoices.contains(listChoice)) {
-                    break;
-                } else {
-                    presenter.printInvalidInput();
-                }
-            }
-            presenter.printAsk("message");
-            String content = scan.nextLine();
-            char[] listChoiceSorted = listChoice.toCharArray();
-            for (Character eventID : listChoiceSorted) {
-                List<String> attendeeList = tcs.getEM().getEventAttendees(listEvents.get((int)eventID));
-                tcs.getMM().messageAll(username, attendeeList, content);
-            }
-        }
+    private void messageAll(String username, Scanner scanner, TechConferenceSystem tcs) {//TODO message multiple events simultaneously
+        List<UUID> listEvents = tcs.getUM().getEventsAttending(username);//TODO get events speaking at?, includes event not speaking at
+        String eventInfo = formatInfo(tcs.getEM().getEventsStrings(listEvents));
+        presenter.printUCReturns(eventInfo);
+        presenter.printAskWhichEvents();
+        presenter.printBackToMainMenu();
+        String index = validInput("^[0-" + (listEvents.size() - 1) + "]$|^.{0}$", scanner, tcs);
+        if(index.equals("")) return;
+        List<String> attendeeList = tcs.getEM().getEventAttendees(listEvents.get(Integer.parseInt(index)));
+
+        presenter.printAsk("message");
+        presenter.printBackToMainMenu();
+        String content = validInput(".*", scanner, tcs);
+        if(content.equals("")) return;
+        tcs.getMM().messageAll(username, attendeeList, content);
     }
 }
 

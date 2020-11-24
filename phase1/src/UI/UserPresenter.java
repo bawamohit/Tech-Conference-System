@@ -181,7 +181,7 @@ public class UserPresenter {
      * Prints success message.
      */
     public void printSuccess() {
-        System.out.println("\n You did it, congrats!");
+        System.out.println("\nYou did it, congrats!");
     }
 
     /**
@@ -221,7 +221,7 @@ public class UserPresenter {
      * Prints the option to enter to go back
      */
     public void printBackToMainMenu(){
-        System.out.println("Or press enter to go back to the main menu");
+        System.out.println("or press enter to go back to the main menu");
     }
 
     /**

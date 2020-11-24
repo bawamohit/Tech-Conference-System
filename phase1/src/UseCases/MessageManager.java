@@ -62,7 +62,7 @@ public class MessageManager implements Serializable {
      * Removes the Message from the HashMap chats
      * @param message Message chosen by User
      */
-    public void deleteMessage(Message message) {
+    public void deleteMessage(Message message) {//TODO obsolete?, if so binary searches are useless
         String sender = message.getSender();
         String receiver = message.getReceiver();
         List<Message> chat = chats.get(sender).get(receiver);
@@ -72,6 +72,11 @@ public class MessageManager implements Serializable {
         } else {
             chat.remove(message);
         }
+    }
+
+    public void deleteMessage(String sender, String receiver, int index) {
+        List<Message> chat = chats.get(sender).get(receiver);
+        chat.remove(index);
     }
 
     // Helper method
@@ -109,7 +114,7 @@ public class MessageManager implements Serializable {
      * @param secondUser Other user of the inbox
      * @return List of Messages between the 2 users
      */
-    public List<Message> getInbox(String firstUser, String secondUser) {
+    public List<Message> getInbox(String firstUser, String secondUser) {//TODO obsolete?
         return chats.get(firstUser).get(secondUser);
     }
 
@@ -123,7 +128,7 @@ public class MessageManager implements Serializable {
         List<Message> messages = chats.get(firstUser).get(secondUser);
         List<String> inbox = new ArrayList<>();
         for(Message message : messages){
-            inbox.add(message.getContent());
+            inbox.add("(" + message.getTime().toString() +") " + firstUser + ": " +message.getContent());
         }
         return inbox;
     }

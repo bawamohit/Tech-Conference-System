@@ -50,39 +50,40 @@ public abstract class UserSystem {
 
     // Helper method, deletes a message in the User's inboxes (user chooses the message)
     private void deleteMessage(String username, Scanner scanner, TechConferenceSystem tcs){
-        String inboxChoice = viewInbox(username, scanner, tcs);
-        if(inboxChoice.equals("")) return;
-        int inboxSize = tcs.getMM().getInbox(username, inboxChoice).size();
+        String receiver = viewInbox(username, scanner, tcs);
+        if(receiver.equals("")) return;
+        int inboxSize = tcs.getMM().getInboxString(username, receiver).size();
         String index;
         tcs.presenter().printAskWhichMessage();
         tcs.presenter().printBackToMainMenu();
         index = validInput("^[0-" + (inboxSize - 1) + "]$|^.{0}$", scanner, tcs);
         if(index.equals("")) return;
-        tcs.getMM().deleteMessage(tcs.getMM().getInbox(username, inboxChoice).get(Integer.parseInt(index)));
+        tcs.getMM().deleteMessage(username, receiver, (Integer.parseInt(index)));
         tcs.presenter().printMessageDeleted();
     }
 
     // Helper method, views an inbox between the User and another chosen (by input) user
     private String viewInbox(String username, Scanner scanner, TechConferenceSystem tcs){
-        String inboxChoice;
+        String receiver;
         while (true) {
             tcs.presenter().printAskWhichInbox();
             tcs.presenter().printUCReturns(tcs.getMM().getInboxes(username));
             tcs.presenter().printBackToMainMenu();
-            inboxChoice = scanner.nextLine();
-            if (inboxChoice.equals("")){
-                return inboxChoice;
-            } else if (tcs.getMM().getInboxes(username).contains(inboxChoice)) {
+            receiver = scanner.nextLine();
+            if (receiver.equals("")){
+                return receiver;
+            } else if (tcs.getMM().getInboxes(username).contains(receiver)) {
                 break;
             } else {
                 tcs.presenter().printInvalidInput();
             }
         }
-        List<String> inbox = tcs.getMM().getInboxString(username, inboxChoice);
-        String inboxToString = formatInfo(inbox);
-        tcs.presenter().printUCReturns(inboxToString);
+        List<String> inbox = tcs.getMM().getInboxString(username, receiver);
+        for(String s: inbox) {
+            tcs.presenter().printUCReturns(s);
+        }
 
-        return inboxChoice;
+        return receiver;
     }
 
     /**
@@ -90,7 +91,7 @@ public abstract class UserSystem {
      * This is used to format a list of information to a string, that shows each element inside the list as a numbered
      * string format.
      */
-    protected String formatInfo(List<String> strings){
+    protected String formatInfo(List<String> strings){//TODO feels like a presenter method
         StringBuilder info = new StringBuilder();
         for (int i = 0; i < strings.size(); i++){
             info.append("\n").append(i).append(". ").append(strings.get(i));
