@@ -181,7 +181,7 @@ public class UserPresenter {
      * Prints success message.
      */
     public void printSuccess() {
-        System.out.println("\nYou crazy son of a female dog, you did it.");
+        System.out.println("\n You did it, congrats!");
     }
 
     /**
