@@ -1,0 +1,30 @@
+{
+    "a": {
+        "name": "a",
+        "password": "a",
+        "userType": "ATTENDEE",
+        "eventsAttending": [],
+        "friends": []
+    },
+    "anshul": {
+        "name": "Anshul Agrawal",
+        "password": "Anshul",
+        "userType": "ATTENDEE",
+        "eventsAttending": [],
+        "friends": []
+    },
+    "abc": {
+        "name": "abc",
+        "password": "abc",
+        "userType": "ATTENDEE",
+        "eventsAttending": [],
+        "friends": []
+    },
+    "elmo": {
+        "name": "Elmo Red",
+        "password": "res",
+        "userType": "ATTENDEE",
+        "eventsAttending": [],
+        "friends": []
+    }
+}

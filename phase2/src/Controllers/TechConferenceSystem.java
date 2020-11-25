@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
+import JSONGateways.UserJSONGateway;
 import UI.AttendeePresenter;
 import UI.OrganizerPresenter;
 import UI.UserPresenter;
@@ -22,10 +23,13 @@ public class TechConferenceSystem {
     private EventGateway eventGateway;
     private MessageGateway messageGateway;
     private RoomGateway roomGateway;
+    private UserJSONGateway userJSONGateway;
+
     File eventManagerInfo = new File("./src/Data/eventManager.ser");
     File messageManagerInfo = new File("./src/Data/messageManager.ser");
     File userManagerInfo = new File("./src/Data/userManager.ser");
     File roomManagerInfo = new File("./src/Data/roomManager.ser");
+    File userJSONManagerInfo = new File("./src/Data/userJSONManager.json");
 
     public TechConferenceSystem () {
         try {
@@ -33,6 +37,8 @@ public class TechConferenceSystem {
             eventGateway = new EventGateway();
             messageGateway = new MessageGateway();
             roomGateway = new RoomGateway();
+            userJSONGateway = new UserJSONGateway();
+
             um = userGateway.readFromFile(userManagerInfo.getPath());
             em = eventGateway.readFromFile(eventManagerInfo.getPath());
             mm = messageGateway.readFromFile(messageManagerInfo.getPath());
@@ -54,6 +60,7 @@ public class TechConferenceSystem {
                 eventGateway.saveToFile(eventManagerInfo.getPath(), em);
                 messageGateway.saveToFile(messageManagerInfo.getPath(), mm);
                 roomGateway.saveToFile(roomManagerInfo.getPath(), rm);
+                userJSONGateway.saveToFile(userJSONManagerInfo.getPath(), um);
                 break;
             } catch (IOException e){
                 e.printStackTrace();

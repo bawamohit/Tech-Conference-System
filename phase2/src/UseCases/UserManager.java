@@ -152,8 +152,6 @@ public class UserManager implements Serializable {
      *
      * @param username The username of the user who is signing up for an event.
      * @param eventId The id of the event that the user is being signed up for.
-     *
-     * @return true if the id was successfully added, and false if the user was already signed up.
      */
     public void addEventAttending(String username, UUID eventId) {
         List<UUID> eventsAttending = usernamesToUsers.get(username).getEventsAttending();
@@ -195,10 +193,20 @@ public class UserManager implements Serializable {
      *
      * @param username The username of the user whose name is being retrieved.
      *
-     * @return a string that is the name of the user associated with username.
+     * @return a string that is the name of the user associated with the username.
      */
     public String getName(String username) {
         return usernamesToUsers.get(username).getName();
+    }
+
+    /** Gets the password of a particular user.
+     *
+     * @param username The username of the user whose password is being retrieved.
+     *
+     * @return a string that is the password of the user associated with the username.
+     */
+    public String getPassword(String username) {
+        return usernamesToUsers.get(username).getPassword();
     }
 
     /** Gets the list of event ids of the events that a particular user is attending.
@@ -211,17 +219,15 @@ public class UserManager implements Serializable {
         return usernamesToUsers.get(username).getEventsAttending();
     }
 
-//    For Phase 2
-//
-//    /** Gets a list of usernames of the friends of a particular user.
-//     *
-//     * @param username The username of the user whose friend list is being retrieved.
-//     *
-//     * @return the list of the user's friends
-//     */
-//    public List<String> getFriends(String username) {
-//        return usernamesToUsers.get(username).getFriends();
-//    }
+    /** Gets a list of usernames of the friends of a particular user.
+     *
+     * @param username The username of the user whose friend list is being retrieved.
+     *
+     * @return the list of the user's friends
+     */
+    public List<String> getFriends(String username) {
+        return usernamesToUsers.get(username).getFriends();
+    }
 
     /** Gets the type (Attendee, Organizer, or Speaker) of a particular user.
      *
