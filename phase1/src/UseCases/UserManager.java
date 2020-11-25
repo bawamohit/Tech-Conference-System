@@ -155,14 +155,10 @@ public class UserManager implements Serializable {
      *
      * @return true if the id was successfully added, and false if the user was already signed up.
      */
-    public boolean addEventAttending(String username, UUID eventId) {
+    public void addEventAttending(String username, UUID eventId) {
         List<UUID> eventsAttending = usernamesToUsers.get(username).getEventsAttending();
-        if (eventsAttending.contains(eventId)) {
-            return false;
-        }
         eventsAttending.add(eventId);
         usernamesToUsers.get(username).setEventsAttending(eventsAttending);
-        return true;
     }
 
     /** Removes an event id from a particular user's list of events that they are signed up for.

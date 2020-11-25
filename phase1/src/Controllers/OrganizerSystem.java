@@ -40,14 +40,7 @@ public class OrganizerSystem extends UserSystem {
                     }
                     break;
                 case "2":
-                    if (addEvent(username, scanner, tcs)) {
-                        presenter.printEventCreationSuccess();
-                        presenter.printSuccess();
-                        break;
-                    }
-                    else {
-                        presenter.printEventCreationFail();
-                    }
+                    addEvent(username, scanner, tcs);
                     break;
                 case "3":  //reschedule event
                     presenter.printUnderConstruction();
@@ -98,36 +91,33 @@ public class OrganizerSystem extends UserSystem {
         presenter.printSuccess();
     }
 
-    private boolean addEvent(String username, Scanner sc, TechConferenceSystem tcs) {
+    private void addEvent(String username, Scanner scanner, TechConferenceSystem tcs) {//TODO update other methods for adding year moth date
         presenter.printAsk("event's name");
-        String eventName = sc.nextLine();
-        presenter.printAsk("event's start time (enter in the format HH:MM of a time between 9-16)");
-        String[] time = sc.nextLine().split(":");
-        int hour = Integer.parseInt(time[0]);
-        int minute = Integer.parseInt(time[1]);
-        LocalDateTime startTime = LocalDateTime.of(2020, 6, 9, hour, minute, 0); //catch exception
-        if (!isTimeOk(startTime)){
-            presenter.printInvalidInput();
-            return false;
-        }
+        presenter.printBackToMainMenu();
+        String eventName = scanner.nextLine();
+        if(eventName.equals("")) return;
+        presenter.printAsk("event's start time (enter in the format YY:MM:DD:HH:MM of a time between 9-16)");
+        presenter.printBackToMainMenu();
+        String time = validInput("^([0-9][0-9]):([0[1-9]|1[0-2]):([0[0-9]|1[0-6]):[0-5][0-9]$|^.{0}$", scanner, tcs);
+        if(time.equals("")) return;
+        int year = Integer.parseInt(time.substring(0, 2));
+        int month = Integer.parseInt(time.substring(3, 5));
+        int day = Integer.parseInt(time.substring(6, 8));
+        int hour = Integer.parseInt(time.substring(9, 11));
+        int minute = Integer.parseInt(time.substring(12,14));
+        LocalDateTime startTime = LocalDateTime.of(year, month, day, hour, minute);
         presenter.printAsk("event speaker's name");
-        String speaker = sc.nextLine();
-        if (!isSpeakerOk(speaker, startTime, tcs)){ return false; }
+        String speaker = scanner.nextLine();
+        presenter.printBackToMainMenu();
+        if (speaker.equals("") || !isSpeakerOk(speaker, startTime, tcs)) return;//TODO speaker method isSpeaker()
         presenter.printAsk("event's room name (enter room name)");
-        String roomName = sc.nextLine();
-        if (!isRoomOk(roomName, startTime, tcs)){ return false; }
+        presenter.printBackToMainMenu();
+        String roomName = scanner.nextLine();
+        if (roomName.equals("") || !isRoomOk(roomName, startTime, tcs)) return;
         int capacity = tcs.getRM().getRoomCapacity(roomName);
         UUID id = tcs.getEM().addEvent(eventName, speaker, username, startTime, roomName, (capacity - 1));
-        if (id != null) {
-            if (tcs.getRM().addEventToSchedule(id, roomName, startTime) && tcs.getUM().addEventAttending(speaker, id)) {
-                return true;
-            } else{
-                presenter.printUnprocessed();
-                return false;
-            }
-        }
-        presenter.printFail();
-        return false;
+        tcs.getUM().addEventAttending(speaker, id);
+        tcs.getRM().addEventToSchedule(id, roomName, startTime);
     }
 
     private boolean isSpeakerOk(String speaker, LocalDateTime newTime, TechConferenceSystem tcs){
@@ -154,16 +144,6 @@ public class OrganizerSystem extends UserSystem {
         if (!tcs.getRM().canAddEvent(roomName, startTime)){
             presenter.printObjUnavailable("room at this time");
             return false;
-        }
-        return true;
-    }
-
-    private boolean isTimeOk(LocalDateTime startTime){
-        int hour = startTime.getHour();
-        int minute = startTime.getMinute();
-        if (hour < 9 || hour > 16){return false;}
-        else if (hour == 16) {
-            return minute <= 0;
         }
         return true;
     }

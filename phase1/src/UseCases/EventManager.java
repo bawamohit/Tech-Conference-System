@@ -2,6 +2,7 @@ package UseCases;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.*;
 import Entities.Event;
 
@@ -105,36 +106,16 @@ public class EventManager implements Serializable {
      * @param organizer name of organizer of this new event
      * @param startTime this event's start time; it can take on any time between 9-16
      * @param roomName name of the room where this event is located in
-     * @param max_capacity the maximum capacity of this event excluding the speaker; this should not exceed the maximum
+     * @param maxCapacity the maximum capacity of this event excluding the speaker; this should not exceed the maximum
      *                     capacity of the room
      *
      * @return a boolean indicating if event was successfully added
      */
     public UUID addEvent(String eventName, String speaker, String organizer, LocalDateTime startTime,
-                            String roomName, int max_capacity){
-        Event new_event = new Event(eventName, speaker, organizer, startTime, roomName, max_capacity);
-        for(UUID id : events.keySet()){
-            Event e = events.get(id);
-            if (e.getStartTime() == startTime && e.getEventRoomName().equals(roomName)){
-                return null; //checked in RM canAdd?
-            }
-            if (id == new_event.getId()){
-                return null; //do we need to check this? since everytime new event, ID distinct
-            }
-        }
-        if (startTime.getHour() < 9 ){
-            return null;
-        }
-        else if (startTime.getHour() == 16){
-            if (startTime.getMinute() > 0){
-                return null;
-            }
-        }
-        else if (startTime.getHour() > 16) {
-            return null;
-        }
-        events.put(new_event.getId(), new_event);
-        return new_event.getId();
+                            String roomName, int maxCapacity){
+        Event newEvent = new Event(eventName, speaker, organizer, startTime, roomName, maxCapacity);
+        events.put(newEvent.getId(), newEvent);
+        return newEvent.getId();
     }
 //
 // for phase 2

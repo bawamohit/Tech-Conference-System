@@ -59,19 +59,39 @@ public class RoomManager implements Serializable {
     }
 
     /**
-     * Implements helper method, findRoom, to find Room object when given its name.
+     * Implements checker, canAddEvent, for a room in rooms.
      *
-     * @param roomName name of room to search for
+     * @param roomName name of room to add an event to
+     * @param newTime start time of potential event to be added
      *
-     * @return a Room object in hashmap of rooms associated with the given String roomName
+     * @return a boolean indicating if an event with room name roomName and start time start can be successfully added
      */
-    private Room findRoom(String roomName) {
-        if (rooms.containsKey(roomName)) {
-            return rooms.get(roomName);
+    public boolean canAddEvent(String roomName, LocalDateTime newTime) {
+        Room room = rooms.get(roomName);
+        for (LocalDateTime time : room.getSchedule().keySet()) {
+            if (newTime.isAfter(time.minusHours(1)) && newTime.isBefore(time.plusHours(1))) {
+                    return false;
+            }
         }
-        return null;
+        return true;
     }
-//    phase 2
+    /**
+     * Implements modifier, addEventToSchedule, for event in a room.
+     *
+     * @param eventId id of the event to be added to a room's schedule
+     * @param roomName name of room to modify schedule for
+     * @param start start time of event to be added
+     *
+     * @return a boolean indicating if event was successfully added
+     */
+    public void addEventToSchedule(UUID eventId, String roomName, LocalDateTime start) {
+        Room room = rooms.get(roomName);
+        HashMap<LocalDateTime, UUID> updated_room = room.getSchedule();
+        updated_room.put(start, eventId);
+        room.setRoomSchedule(updated_room);
+    }
+
+    //    phase 2
 //    /**
 //     * Implements modifier, removeEventFromSchedule, for a scheduled event.
 //     *
@@ -91,43 +111,5 @@ public class RoomManager implements Serializable {
 //        }
 //        return false;
 //    }
-
-    /**
-     * Implements checker, canAddEvent, for a room in rooms.
-     *
-     * @param roomName name of room to add an event to
-     * @param start start time of potential event to be added
-     *
-     * @return a boolean indicating if an event with room name roomName and start time start can be successfully added
-     */
-    public boolean canAddEvent(String roomName, LocalDateTime start) {
-        Room room = findRoom(roomName);
-        assert room != null;
-        for (LocalDateTime time : room.getSchedule().keySet()) {
-            if (start.isAfter(time.minusHours(1))) {
-                if (start.isBefore(time.plusHours(1))) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-    /**
-     * Implements modifier, addEventToSchedule, for event in a room.
-     *
-     * @param eventId id of the event to be added to a room's schedule
-     * @param roomName name of room to modify schedule for
-     * @param start start time of event to be added
-     *
-     * @return a boolean indicating if event was successfully added
-     */
-    public boolean addEventToSchedule(UUID eventId, String roomName, LocalDateTime start) {
-        Room room = findRoom(roomName);
-        assert room != null;
-        HashMap<LocalDateTime, UUID> updated_room = room.getSchedule();
-        updated_room.put(start, eventId);
-        room.setRoomSchedule(updated_room);
-        return true;
-    }
 
 }
