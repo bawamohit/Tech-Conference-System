@@ -45,7 +45,7 @@
         "name": "Ernie",
         "password": "orange",
         "userType": "SPEAKER",
-        "eventsAttending": [],
+        "eventsAttending": ["8b77ec2b-00da-4893-9280-f8fbe1c53e5e"],
         "friends": []
     }
 }
