@@ -1,11 +1,9 @@
-{
-    "8b77ec2b-00da-4893-9280-f8fbe1c53e5e": {
-        "organizer": "oscar",
-        "attendees": [],
-        "speaker": "ernie",
-        "eventName": "event1",
-        "maxCapacity": 1,
-        "startTime": "0020-11-26T09:00",
-        "roomName": "room1"
-    }
-}
+{"1a29d911-6fb5-44e5-a332-68d18a082160": {
+    "organizer": "oscar",
+    "attendees": [],
+    "speaker": "ernie",
+    "eventName": "event1",
+    "maxCapacity": 1,
+    "startTime": "0020-11-26T09:00",
+    "roomName": "room1"
+}}

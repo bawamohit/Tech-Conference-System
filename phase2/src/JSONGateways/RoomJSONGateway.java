@@ -2,8 +2,6 @@ package JSONGateways;
 
 import UseCases.RoomManager;
 
-import UseCases.UserManager;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.FileNotFoundException;
@@ -11,10 +9,34 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.UUID;
 
 public class RoomJSONGateway {
+
+    public RoomManager readFromFile(String filepath) throws IOException {
+        String content = new String(Files.readAllBytes(Paths.get(filepath)));
+        JSONObject jo = new JSONObject(content);
+
+        RoomManager rm = new RoomManager();
+
+        for (String roomName : JSONObject.getNames(jo)) {
+            JSONObject info = (JSONObject) jo.get(roomName);
+
+            JSONObject schedule = (JSONObject) info.get("schedule");
+
+            rm.addRoom(roomName, (Integer) info.get("capacity"));
+
+            for (Object time : schedule.names()) {
+                LocalDateTime startTime = LocalDateTime.parse((CharSequence) time);
+                UUID id = UUID.fromString((String) schedule.get((String) time));
+                rm.addEventToSchedule(id, roomName, startTime);
+            }
+        }
+
+        return rm;
+    }
 
     public void saveToFile(String filePath, RoomManager roomManager) throws FileNotFoundException {
         JSONObject jo = new JSONObject();

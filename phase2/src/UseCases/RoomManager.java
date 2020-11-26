@@ -92,8 +92,6 @@ public class RoomManager implements Serializable {
      * @param eventId id of the event to be added to a room's schedule
      * @param roomName name of room to modify schedule for
      * @param start start time of event to be added
-     *
-     * @return a boolean indicating if event was successfully added
      */
     public void addEventToSchedule(UUID eventId, String roomName, LocalDateTime start) {
         Room room = rooms.get(roomName);
