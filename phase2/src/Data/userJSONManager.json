@@ -6,9 +6,16 @@
         "eventsAttending": [],
         "friends": []
     },
+    "haha": {
+        "name": "haha hehe",
+        "password": "hehe",
+        "userType": "ATTENDEE",
+        "eventsAttending": [],
+        "friends": []
+    },
     "anshul": {
         "name": "Anshul Agrawal",
-        "password": "Anshul",
+        "password": "daddy",
         "userType": "ATTENDEE",
         "eventsAttending": [],
         "friends": []
@@ -22,7 +29,7 @@
     },
     "elmo": {
         "name": "Elmo Red",
-        "password": "res",
+        "password": "red",
         "userType": "ATTENDEE",
         "eventsAttending": [],
         "friends": []

@@ -175,19 +175,17 @@ public class UserManager implements Serializable {
         return false;
     }
 
-//    For Phase 2
-//
-//    /** Adds a friend to the list of friends that a particular user has
-//     *
-//     * @param username The username of the user who is adding a friend
-//     * @param friendUsername The username of the friend that is being added
-//     *
-//     */
-//    public void addFriend(String username, String friendUsername) {
-//        List<String> friends = usernamesToUsers.get(username).getFriends();
-//        friends.add(friendUsername);
-//        usernamesToUsers.get(username).setFriends(friends);
-//    }
+    /** Adds a friend to the list of friends that a particular user has
+     *
+     * @param username The username of the user who is adding a friend
+     * @param friendUsername The username of the friend that is being added
+     *
+     */
+    public void addFriend(String username, String friendUsername) {
+        List<String> friends = usernamesToUsers.get(username).getFriends();
+        friends.add(friendUsername);
+        usernamesToUsers.get(username).setFriends(friends);
+    }
 
     /** Gets the name of a particular user.
      *

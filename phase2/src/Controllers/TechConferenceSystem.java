@@ -1,6 +1,7 @@
 package Controllers;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -39,11 +40,12 @@ public class TechConferenceSystem {
             roomGateway = new RoomGateway();
             userJSONGateway = new UserJSONGateway();
 
-            um = userGateway.readFromFile(userManagerInfo.getPath());
+//            um = userGateway.readFromFile(userManagerInfo.getPath());
             em = eventGateway.readFromFile(eventManagerInfo.getPath());
             mm = messageGateway.readFromFile(messageManagerInfo.getPath());
             rm = roomGateway.readFromFile(roomManagerInfo.getPath());
-        } catch (ClassNotFoundException e){
+            um = userJSONGateway.readFromFile(userJSONManagerInfo.getPath());
+        } catch (ClassNotFoundException | IOException e){
             e.printStackTrace();
         }
 
