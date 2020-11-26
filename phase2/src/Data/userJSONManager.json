@@ -6,6 +6,13 @@
         "eventsAttending": [],
         "friends": []
     },
+    "oscar": {
+        "name": "Oscar Green",
+        "password": "green",
+        "userType": "ORGANIZER",
+        "eventsAttending": [],
+        "friends": []
+    },
     "haha": {
         "name": "haha hehe",
         "password": "hehe",
@@ -31,6 +38,13 @@
         "name": "Elmo Red",
         "password": "red",
         "userType": "ATTENDEE",
+        "eventsAttending": [],
+        "friends": []
+    },
+    "ernie": {
+        "name": "Ernie",
+        "password": "orange",
+        "userType": "SPEAKER",
         "eventsAttending": [],
         "friends": []
     }
