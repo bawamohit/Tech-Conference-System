@@ -25,9 +25,10 @@ public class EventJSONGateway {
         for (String eventId : JSONObject.getNames(jo)) {
             JSONObject info = (JSONObject) jo.get(eventId);
             LocalDateTime startTime = LocalDateTime.parse((CharSequence) info.get("startTime"));
+            UUID id = UUID.fromString(eventId);
 
-            UUID id = em.addEvent((String) info.get("eventName"), (String) info.get("speaker"), (String) info.get("organizer"),
-                        startTime, (String) info.get("roomName"), (Integer) info.get("maxCapacity"));
+            em.addEvent((String) info.get("eventName"), (String) info.get("speaker"), (String) info.get("organizer"),
+                        startTime, (String) info.get("roomName"), (Integer) info.get("maxCapacity"), id);
 
             JSONArray attendees = (JSONArray) info.get("attendees");
 

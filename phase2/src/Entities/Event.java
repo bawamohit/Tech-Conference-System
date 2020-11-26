@@ -138,6 +138,11 @@ public class Event implements Serializable {
         this.attendees = attendees;
     }
 
-
-
+    /**
+     * Implements Setter for event id. (Use for file reading purposes only)
+     * @param id ID to be set
+     */
+    public void setId(UUID id) {
+        this.id = id;
+    }
 }

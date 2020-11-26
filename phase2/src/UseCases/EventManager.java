@@ -162,6 +162,27 @@ public class EventManager implements Serializable {
         events.put(newEvent.getId(), newEvent);
         return newEvent.getId();
     }
+
+    /**
+     * Implements modifier, addEvent, for events. (Only to be used for reading from files)
+     *
+     * @param eventName name of the event to be added
+     * @param speaker name of speaker of this new event
+     * @param organizer name of organizer of this new event
+     * @param startTime this event's start time; it can take on any time between 9-16
+     * @param roomName name of the room where this event is located in
+     * @param maxCapacity the maximum capacity of this event excluding the speaker; this should not exceed the maximum
+     *                     capacity of the room
+     * @param id id of the new event
+     * @return The ID of the new event created
+     */
+    public UUID addEvent(String eventName, String speaker, String organizer, LocalDateTime startTime,
+                         String roomName, int maxCapacity, UUID id){
+        Event newEvent = new Event(eventName, speaker, organizer, startTime, roomName, maxCapacity);
+        newEvent.setId(id);
+        events.put(newEvent.getId(), newEvent);
+        return newEvent.getId();
+    }
 //
 // for phase 2
 //        /**

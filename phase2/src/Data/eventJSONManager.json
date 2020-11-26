@@ -1,6 +1,6 @@
 {"8b77ec2b-00da-4893-9280-f8fbe1c53e5e": {
     "organizer": "oscar",
-    "attendees": [],
+    "attendees": ["a"],
     "speaker": "ernie",
     "eventName": "event1",
     "maxCapacity": 1,
