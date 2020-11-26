@@ -34,10 +34,21 @@ public class RoomManager implements Serializable {
      *
      * @param roomName name of room to retrieve capacity for
      *
-     * @return the room roomName's capacity
+     * @return the room's capacity
      */
     public int getRoomCapacity(String roomName) {
         return rooms.get(roomName).getCapacity();
+    }
+
+    /**
+     * Implements getter, getRoomCapacity, for room in rooms.
+     *
+     * @param roomName name of room to retrieve schedule for
+     *
+     * @return the room's schedule
+     */
+    public HashMap<LocalDateTime, UUID> getRoomSchedule(String roomName) {
+        return rooms.get(roomName).getSchedule();
     }
 
     /**
