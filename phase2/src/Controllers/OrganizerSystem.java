@@ -106,9 +106,9 @@ public class OrganizerSystem extends UserSystem {
         int hour = Integer.parseInt(time.substring(9, 11));
         int minute = Integer.parseInt(time.substring(12,14));
         LocalDateTime startTime = LocalDateTime.of(year, month, day, hour, minute);
-        presenter.printAsk("event speaker's name");
-        String speaker = scanner.nextLine();
+        presenter.printAsk("event speaker's username");
         presenter.printBackToMainMenu();
+        String speaker = scanner.nextLine();
         if (speaker.equals("") || !isSpeakerOk(speaker, startTime, tcs)) return;//TODO speaker method isSpeaker()
         presenter.printAsk("event's room name (enter room name)");
         presenter.printBackToMainMenu();

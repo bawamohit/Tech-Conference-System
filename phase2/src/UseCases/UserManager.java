@@ -1,6 +1,7 @@
 package UseCases;
 
 import java.io.Serializable;
+import java.nio.charset.Charset;
 import java.time.LocalDateTime;
 import java.util.*;
 import Entities.User;
@@ -25,6 +26,20 @@ public class UserManager implements Serializable {
     public List<String> getUsernameList() {
         Collection<String> users = usernamesToUsers.keySet();
         return new ArrayList<>(users);
+    }
+
+    /**
+     * Creates a list of names of all registered users and returns it.
+     *
+     * @return List of names
+     */
+    public List<String> getNameList() {
+        Collection<User> users = usernamesToUsers.values();
+        List<String> nameList = new ArrayList<>();
+        for (User user : users) {
+            nameList.add(user.getName());
+        }
+        return nameList;
     }
 
     /** Creates a list of usernames of all registered users that are attendees and returns it.

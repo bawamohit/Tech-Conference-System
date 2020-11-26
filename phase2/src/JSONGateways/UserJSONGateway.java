@@ -43,7 +43,7 @@ public class UserJSONGateway {
 
             JSONArray eventIds = (JSONArray) info.get("eventsAttending");
             for (Object eventId : eventIds) {
-                um.addEventAttending(username, (UUID) eventId);
+                um.addEventAttending(username, UUID.fromString((String) eventId));
             }
             JSONArray friends = (JSONArray) info.get("friends");
             for (Object friend : friends) {
