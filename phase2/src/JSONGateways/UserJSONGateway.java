@@ -56,7 +56,7 @@ public class UserJSONGateway {
 
     public void saveToFile(String filePath, UserManager userManager) throws FileNotFoundException {
         JSONObject jo = new JSONObject();
-        for (String username : userManager.getAttendeeList()) {
+        for (String username : userManager.getUsernameList()) {
             LinkedHashMap<String, Object> map = new LinkedHashMap<>(6);
 
             map.put("userType", userManager.getUserType(username).toString());

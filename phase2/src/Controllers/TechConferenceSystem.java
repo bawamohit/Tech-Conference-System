@@ -30,14 +30,14 @@ public class TechConferenceSystem {
 
     File eventManagerInfo = new File("./src/Data/eventManager.ser");
     File messageManagerInfo = new File("./src/Data/messageManager.ser");
-    File userManagerInfo = new File("./src/Data/userManager.ser");
+//    File userManagerInfo = new File("./src/Data/userManager.ser");
     File roomManagerInfo = new File("./src/Data/roomManager.ser");
     File userJSONManagerInfo = new File("./src/Data/userJSONManager.json");
     File eventJSONManagerInfo = new File("./src/Data/eventJSONManager.json");
 
     public TechConferenceSystem () {
         try {
-            userGateway = new UserGateway();
+//            userGateway = new UserGateway();
             eventGateway = new EventGateway();
             messageGateway = new MessageGateway();
             roomGateway = new RoomGateway();
@@ -63,7 +63,7 @@ public class TechConferenceSystem {
         while (true) {
             loggedInUsername = startUp(scanner);
             if(loggedInUsername == null) try {
-                userGateway.saveToFile(userManagerInfo.getPath(), um);
+//                userGateway.saveToFile(userManagerInfo.getPath(), um);
                 eventGateway.saveToFile(eventManagerInfo.getPath(), em);
                 messageGateway.saveToFile(messageManagerInfo.getPath(), mm);
                 roomGateway.saveToFile(roomManagerInfo.getPath(), rm);
