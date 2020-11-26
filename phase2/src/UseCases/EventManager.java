@@ -2,7 +2,6 @@ package UseCases;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.*;
 import Entities.Event;
 
@@ -22,17 +21,63 @@ public class EventManager implements Serializable {
         this.events = new HashMap<>();
     }
 
-//    phase 2
-//    /**
-//     * Implements Getter, getEvents, for event IDs.
-//     *
-//     * @return event IDs for all scheduled events
-//     */
-//
-//    public List<UUID> getEvents() {
-//        Collection<UUID> eventC = events.keySet();
-//        return new ArrayList<>(eventC);
-//    }
+    /**
+     * Implements Getter, getEvents, for event IDs.
+     *
+     * @return event IDs for all scheduled events
+     */
+    public List<UUID> getEvents() {
+        Collection<UUID> eventC = events.keySet();
+        return new ArrayList<>(eventC);
+    }
+
+    /**
+     * Implements getter for event name of a particular event.
+     *
+     * @param id The id of the particular event.
+     *
+     * @return The name of the particular event
+     */
+    public String getEventName(UUID id) {
+        return events.get(id).getEventName();
+    }
+
+    /**
+     * Implements getter for event speaker name of a particular event.
+     *
+     * @param id The id of the particular event.
+     *
+     * @return The speaker's name of the particular event
+     */
+    public String getEventSpeaker(UUID id) {
+        return events.get(id).getSpeaker();
+    }
+
+    /**
+     * Implements getter for event organizer name of a particular event.
+     *
+     * @param id The id of the particular event.
+     *
+     * @return The organizer's name of the particular event
+     */
+    public String getEventOrganizer(UUID id) {
+        return events.get(id).getOrganizer();
+    }
+
+    /**
+     * Implements getter for event room name of a particular event.
+     *
+     * @param id The id of the particular event.
+     *
+     * @return The room's name of the particular event
+     */
+    public String getEventRoomName(UUID id) {
+        return events.get(id).getRoomName();
+    }
+
+    public int getEventMaxCapacity(UUID id) {
+        return events.get(id).getMaxCapacity();
+    }
 
     /**
      * Implements Getter, getEventsStrings, for event strings.
@@ -109,7 +154,7 @@ public class EventManager implements Serializable {
      * @param maxCapacity the maximum capacity of this event excluding the speaker; this should not exceed the maximum
      *                     capacity of the room
      *
-     * @return a boolean indicating if event was successfully added
+     * @return The ID of the new event created
      */
     public UUID addEvent(String eventName, String speaker, String organizer, LocalDateTime startTime,
                             String roomName, int maxCapacity){
