@@ -98,7 +98,7 @@ public class OrganizerSystem extends UserSystem {
         if(eventName.equals("")) return;
         presenter.printAsk("event's start time (enter in the format YY:MM:DD:HH:MM of a time between 9-16)");
         presenter.printBackToMainMenu();
-        String time = validInput("^([0-9][0-9]):([0[1-9]|1[0-2]):([0[0-9]|1[0-6]):[0-5][0-9]$|^.{0}$", scanner, tcs);
+        String time = validInput("^([0-9][0-9]):(0[1-9]|1[0-2]):([0-2][0-9]|3[0-1]):(09|1[0-6]):([0-5][0-9])$", scanner, tcs);
         if(time.equals("")) return;
         int year = Integer.parseInt(time.substring(0, 2));
         int month = Integer.parseInt(time.substring(3, 5));
