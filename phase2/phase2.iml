@@ -10,7 +10,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/json-20201115.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/json-20201115.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
