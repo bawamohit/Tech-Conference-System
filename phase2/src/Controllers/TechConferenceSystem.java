@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import JSONGateways.UserJSONGateway;
+import JSONGateways.EventJSONGateway;
 import UI.AttendeePresenter;
 import UI.OrganizerPresenter;
 import UI.UserPresenter;
@@ -25,12 +26,14 @@ public class TechConferenceSystem {
     private MessageGateway messageGateway;
     private RoomGateway roomGateway;
     private UserJSONGateway userJSONGateway;
+    private EventJSONGateway eventJSONGateway;
 
     File eventManagerInfo = new File("./src/Data/eventManager.ser");
     File messageManagerInfo = new File("./src/Data/messageManager.ser");
     File userManagerInfo = new File("./src/Data/userManager.ser");
     File roomManagerInfo = new File("./src/Data/roomManager.ser");
     File userJSONManagerInfo = new File("./src/Data/userJSONManager.json");
+    File eventJSONManagerInfo = new File("./src/Data/eventJSONManager.json");
 
     public TechConferenceSystem () {
         try {
@@ -39,12 +42,14 @@ public class TechConferenceSystem {
             messageGateway = new MessageGateway();
             roomGateway = new RoomGateway();
             userJSONGateway = new UserJSONGateway();
+            eventJSONGateway = new EventJSONGateway();
 
 //            um = userGateway.readFromFile(userManagerInfo.getPath());
             em = eventGateway.readFromFile(eventManagerInfo.getPath());
             mm = messageGateway.readFromFile(messageManagerInfo.getPath());
             rm = roomGateway.readFromFile(roomManagerInfo.getPath());
             um = userJSONGateway.readFromFile(userJSONManagerInfo.getPath());
+//            em = eventJSONGateway.readFromFile(eventJSONManagerInfo.getPath());
         } catch (ClassNotFoundException | IOException e){
             e.printStackTrace();
         }
