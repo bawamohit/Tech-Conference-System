@@ -2,6 +2,7 @@ package UseCases;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,17 +25,17 @@ public class MessageManager implements Serializable {
      * @param content Content of Message
      */
     public void sendMessage(String sender, String receiver, String content) {
+        Message message = new Message(sender, receiver, content);
         if (sender.equals(receiver)) {
-            addMessage(sender, receiver, content);
+            addMessage(sender, receiver, message);
         } else {
-            addMessage(sender, receiver, content);
-            addMessage(receiver, sender, content);
+            addMessage(sender, receiver, message);
+            addMessage(receiver, sender, message);
         }
     }
 
     // Helper method, adds the message to the HashMap chats
-    private void addMessage(String sender, String receiver, String content) {
-        Message message = new Message(sender, receiver, content);
+    private void addMessage(String sender, String receiver, Message message) {
         addSenderChat(sender);
         addReceiverChat(sender, receiver);
         chats.get(sender).get(receiver).add(message);
@@ -128,7 +129,8 @@ public class MessageManager implements Serializable {
         List<Message> messages = chats.get(firstUser).get(secondUser);
         List<String> inbox = new ArrayList<>();
         for(Message message : messages){
-            inbox.add("(" + message.getTime().toString() +") " + firstUser + ": " +message.getContent());
+            inbox.add("(" + message.getTime().truncatedTo(ChronoUnit.MINUTES).toString() +") "
+                    + message.getSender() + ": " +message.getContent());
         }
         return inbox;
     }

@@ -117,7 +117,7 @@ public class OrganizerSystem extends UserSystem {
         int capacity = tcs.getRM().getRoomCapacity(roomName);
         UUID id = tcs.getEM().addEvent(eventName, speaker, username, startTime, roomName, (capacity - 1));
         tcs.getUM().addEventAttending(speaker, id);
-        tcs.getUM().addEventAttending(username, id);
+        tcs.getUM().addEventAttending(username, id); //TODO organizer
         tcs.getRM().addEventToSchedule(id, roomName, startTime);
         presenter.printEventCreationSuccess();
     }
