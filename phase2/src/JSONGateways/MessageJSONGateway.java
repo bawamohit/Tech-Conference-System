@@ -37,8 +37,9 @@ public class MessageJSONGateway {
         JSONObject jo = new JSONObject();
         List<String> users = messageManager.getUsers();
         for (String sender : users) {
-            LinkedHashMap<String, Object> map = new LinkedHashMap<>();
-            for (String recipient : messageManager.getInboxes(sender)) {
+            List<String> recipients = messageManager.getInboxes(sender);
+            LinkedHashMap<String, Object> map = new LinkedHashMap<>(recipients.size());
+            for (String recipient : recipients) {
                 map.put(recipient, messageManager.getInbox(sender, recipient));
             }
             jo.put(sender, map);

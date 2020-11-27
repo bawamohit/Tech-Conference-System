@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
+import JSONGateways.MessageJSONGateway;
 import JSONGateways.RoomJSONGateway;
 import JSONGateways.UserJSONGateway;
 import JSONGateways.EventJSONGateway;
@@ -29,6 +30,7 @@ public class TechConferenceSystem {
     private UserJSONGateway userJSONGateway;
     private EventJSONGateway eventJSONGateway;
     private RoomJSONGateway roomJSONGateway;
+    private MessageJSONGateway messageJSONGateway;
 
 //    File eventManagerInfo = new File("./src/Data/eventManager.ser");
 //    File userManagerInfo = new File("./src/Data/userManager.ser");
@@ -37,6 +39,7 @@ public class TechConferenceSystem {
     File userJSONManagerInfo = new File("./src/Data/userJSONManager.json");
     File eventJSONManagerInfo = new File("./src/Data/eventJSONManager.json");
     File roomJSONManagerInfo = new File("./src/Data/roomJSONManager.json");
+    File messageJSONManagerInfo = new File("./src/Data/messageJSONManager.json");
 
     public TechConferenceSystem () {
         try {
@@ -47,6 +50,7 @@ public class TechConferenceSystem {
             userJSONGateway = new UserJSONGateway();
             eventJSONGateway = new EventJSONGateway();
             roomJSONGateway = new RoomJSONGateway();
+            messageJSONGateway = new MessageJSONGateway();
 
 //            um = userGateway.readFromFile(userManagerInfo.getPath());
 //            em = eventGateway.readFromFile(eventManagerInfo.getPath());
@@ -55,6 +59,7 @@ public class TechConferenceSystem {
             um = userJSONGateway.readFromFile(userJSONManagerInfo.getPath());
             em = eventJSONGateway.readFromFile(eventJSONManagerInfo.getPath());
             rm = roomJSONGateway.readFromFile(roomJSONManagerInfo.getPath());
+//            mm = messageJSONGateway.readFromFile(messageJSONManagerInfo.getPath());
         } catch (ClassNotFoundException | IOException e){
             e.printStackTrace();
         }
@@ -75,6 +80,7 @@ public class TechConferenceSystem {
                 userJSONGateway.saveToFile(userJSONManagerInfo.getPath(), um);
                 eventJSONGateway.saveToFile(eventJSONManagerInfo.getPath(), em);
                 roomJSONGateway.saveToFile(roomJSONManagerInfo.getPath(), rm);
+                messageJSONGateway.saveToFile(messageJSONManagerInfo.getPath(), mm);
                 break;
             } catch (IOException e){
                 e.printStackTrace();
