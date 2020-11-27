@@ -99,6 +99,15 @@ public class MessageManager implements Serializable {
         }
     }
 
+    /**
+     * Returns the list of users that have chats.
+     *
+     * @return List of usernames
+     */
+    public List<String> getUsers() {
+        return new ArrayList<>(chats.keySet());
+    }
+
     /** Implements Getter for getting the inboxes of a user
      * If the user hasn't messaged anyone, add the sender key to the HashMap first.
      * @param user Username of the user requesting to view their inboxes
