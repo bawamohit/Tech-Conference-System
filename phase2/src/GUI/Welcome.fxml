@@ -11,7 +11,7 @@
 
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
-          fx:controller="GUIControllers.MainController" alignment="center" hgap="10" vgap="10"
+          fx:controller="GUI.MainController" alignment="center" hgap="10" vgap="10"
           styleClass="root">
     <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
 
@@ -40,15 +40,15 @@
     <HBox spacing="10" alignment="bottom_right"
           GridPane.columnIndex="1" GridPane.rowIndex="6">
         <Button id="signUp" text="Don't Have An Account?"
-                onAction="#handleSingUpButtonAction"/>
+                onAction="#handleSignUpButtonAction"/>
     </HBox>
 
-    <Text fx:id="sike"
+    <Text fx:id="prompt"
           GridPane.columnIndex="0" GridPane.columnSpan="2"
           GridPane.halignment="RIGHT" GridPane.rowIndex="7"/>
 
     <stylesheets>
-        <URL value="@Stylez.css" />
+        <URL value="@Welcome.css" />
     </stylesheets>
 
 </GridPane>

@@ -16,7 +16,7 @@
     -fx-fill: #e9aacb;
     -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
 }
-#sike {
+#prompt {
     -fx-fill: FIREBRICK;
     -fx-font-weight: bold;
     -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );

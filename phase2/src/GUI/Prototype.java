@@ -1,34 +1,32 @@
 package GUI;
 
-import GUIControllers.MainController;
 import JSONGateways.UserJSONGateway;
+import UseCases.UserManager;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 
 public class Prototype extends Application implements GUI{
-    File userInfo = new File("./phase2/src/Data/userJSONManager.json");
+    private UserJSONGateway userJSONGateway;
+    private String welcomeFXMLPath = "Welcome.fxml";
+    private File userInfo = new File("./phase2/src/Data/userJSONManager.json");
+    private UserManager userManager;
+
+    @Override
+    public void init() throws Exception {
+        super.init();
+        userJSONGateway = new UserJSONGateway();
+        userManager = userJSONGateway.readFromFile(userInfo.getPath());
+    }
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Prototype.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(welcomeFXMLPath));
 
         Parent root = loader.load();
         Scene scene = new Scene(root, 300, 300);
@@ -37,9 +35,20 @@ public class Prototype extends Application implements GUI{
         primaryStage.setScene(scene);
 
         MainController mainController = loader.getController();
-        mainController.initData(userInfo);
+        mainController.initData(welcomeFXMLPath, userManager);
         primaryStage.show();
     }
+
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+        try {
+            userJSONGateway.saveToFile(userInfo.getPath(), userManager);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         launch(args);
     }
