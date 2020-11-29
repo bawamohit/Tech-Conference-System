@@ -32,14 +32,14 @@ public class TechConferenceSystem {
     private RoomJSONGateway roomJSONGateway;
     private MessageJSONGateway messageJSONGateway;
 
-//    File eventManagerInfo = new File("./src/Data/eventManager.ser");
-//    File userManagerInfo = new File("./src/Data/userManager.ser");
-    File messageManagerInfo = new File("./src/Data/messageManager.ser");
-//    File roomManagerInfo = new File("./src/Data/roomManager.ser");
-    File userJSONManagerInfo = new File("./src/Data/userJSONManager.json");
-    File eventJSONManagerInfo = new File("./src/Data/eventJSONManager.json");
-    File roomJSONManagerInfo = new File("./src/Data/roomJSONManager.json");
-    File messageJSONManagerInfo = new File("./src/Data/messageJSONManager.json");
+//    File eventManagerInfo = new File("./phase2/src/Data/eventManager.ser");
+//    File userManagerInfo = new File("./phase2/src/Data/userManager.ser");
+    File messageManagerInfo = new File("./phase2/src/Data/messageManager.ser");
+//    File roomManagerInfo = new File("./phase2/src/Data/roomManager.ser");
+    File userJSONManagerInfo = new File("./phase2/src/Data/userJSONManager.json");
+    File eventJSONManagerInfo = new File("./phase2/src/Data/eventJSONManager.json");
+    File roomJSONManagerInfo = new File("./phase2/src/Data/roomJSONManager.json");
+    File messageJSONManagerInfo = new File("./phase2/src/Data/messageJSONManager.json");
 
     public TechConferenceSystem () {
         try {
