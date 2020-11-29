@@ -182,26 +182,24 @@ public class EventManager implements Serializable {
         return newEvent.getId();
     }
 
-    public void addSpeaker(UUID eventid, String newSpeaker){
-        Event oldEvent = events.get(eventid);
+    public void addSpeaker(UUID eventID, String newSpeaker){
+        Event oldEvent = events.get(eventID);
         List<String> speakers = oldEvent.getSpeaker();
         speakers.add(newSpeaker);
     }
-//
-// for phase 2
-//        /**
-//         * Implements modifier, removeEvent, for events.
-//         *
-//         * @return a boolean indicating if event was successfully removed
-//         */
-//        public boolean removeEvent(Event event){
-//            if (events.containsKey(event.getId())){
-//                events.remove(event.getId());
-//                update canSignUp as necessary
-//                return true;
-//            }
-//            return false;
-//        }
+
+    /**
+     * Implements modifier, removeEvent, for events.
+     *
+     * @return a boolean indicating if event was successfully removed
+     */
+    public boolean removeEvent(UUID eventID){
+        if (events.containsKey(eventID)){
+            events.remove(eventID);
+            return true;
+        }
+        return false;
+    }
 
     /**
      * Implements modifier, addAttendee, for event in events.

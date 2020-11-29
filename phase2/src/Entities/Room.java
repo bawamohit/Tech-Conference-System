@@ -11,7 +11,7 @@ import java.util.UUID;
  */
 public class Room implements Serializable {
     private String roomName;
-    private int capacity; //do we need curr_capacity and max_capacity
+    private int capacity;
     private HashMap<LocalDateTime, UUID> schedule;
 
     /**

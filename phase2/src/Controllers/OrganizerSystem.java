@@ -46,7 +46,7 @@ public class OrganizerSystem extends UserSystem {
                     presenter.printUnderConstruction();
                     break;
                 case "4":  //remove Event
-                    presenter.printUnderConstruction();
+                    removeEvent(scanner, tcs);
                     break;
                 case "5":  //create speaker
                     tcs.signUp(scanner, UserType.SPEAKER);
@@ -133,7 +133,25 @@ public class OrganizerSystem extends UserSystem {
         UUID id = tcs.getEM().addEvent(eventName, username, startTime, roomName, Integer.parseInt(maxCap));
         tcs.getUM().addEventAttending(username, id); //TODO organizer
         tcs.getRM().addEventToSchedule(id, roomName, startTime);
-        presenter.printEventCreationSuccess();
+        presenter.printEventActionSuccess("created");
+    }
+
+    private void removeEvent(Scanner scanner, TechConferenceSystem tcs){
+        presenter.printAsk("ID of the event you would like to remove");
+        presenter.printBackToMainMenu();
+        String ID = validInput("[0-9]+", scanner, tcs);
+        if(ID.equals("")) return;
+        UUID eventID = UUID.fromString(ID);
+        if (!tcs.getEM().removeEvent(eventID)) {
+            presenter.printDNE(("the event " + ID));
+            presenter.printEventActionFail("removed");
+            return;
+        }
+        tcs.getRM().removeEventFromSchedule(eventID);
+        for (String username: tcs.getUM().getUsernameList()){
+            tcs.getUM().removeEventAttending(username, eventID);
+        }
+        presenter.printEventActionSuccess("removed");
     }
 
     private void addSpeakerToEvent(TechConferenceSystem tcs, Scanner scanner){
@@ -141,16 +159,20 @@ public class OrganizerSystem extends UserSystem {
         List<String> eventInfo = tcs.getEM().getEventsStrings(availEvents);
         presenter.printAskSignUp();
         presenter.printAvailableEvents(formatInfo(eventInfo));
+        presenter.printBackToMainMenu();
         String choice = validInput("^[0-" + (availEvents.size() - 1) + "]$|^.{0}$", scanner ,tcs);
-        UUID eventid = availEvents.get(Integer.parseInt(choice));
-        LocalDateTime time = tcs.getEM().getEventStartTime(eventid);
+        if(choice.equals("")) return;
+        UUID eventID = availEvents.get(Integer.parseInt(choice));
+        LocalDateTime time = tcs.getEM().getEventStartTime(eventID);
         presenter.printAsk("event speaker's username");
+        presenter.printBackToMainMenu();
         String speakerName = validInput(".+", scanner, tcs);
+        if(speakerName.equals("")) return;
         if (!isSpeakerOk(speakerName, time, tcs)){
             presenter.printInvalidInput();
         }
-        tcs.getEM().addSpeaker(eventid, speakerName);
-        tcs.getUM().addEventAttending(speakerName, eventid);
+        tcs.getEM().addSpeaker(eventID, speakerName);
+        tcs.getUM().addEventAttending(speakerName, eventID);
         presenter.printSuccess();
     }
 

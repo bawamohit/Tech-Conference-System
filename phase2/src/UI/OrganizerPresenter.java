@@ -43,16 +43,16 @@ public class OrganizerPresenter extends UserPresenter {
     }
 
     /**
-     * Prints a notification that user has successfully created an event.
+     * Prints a notification that user has successfully performed an action on an event.
      */
-    public void printEventCreationSuccess() {
-        System.out.println("Event successfully created.");
+    public void printEventActionSuccess(String action) {
+        System.out.println("Event successfully " + action + ".");
     }
 
     /**
-     * Prints a notification that user has failed to create an event.
+     * Prints a notification that user has failed to perform an action on an event.
      */
-    public void printEventCreationFail() {
-        System.out.println("Error! Event not created.");
+    public void printEventActionFail(String action) {
+        System.out.println("Error! Event not " + action + ".");
     }
 }
