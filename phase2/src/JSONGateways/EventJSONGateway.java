@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.UUID;
 
 public class EventJSONGateway {
@@ -27,7 +28,7 @@ public class EventJSONGateway {
             LocalDateTime startTime = LocalDateTime.parse((CharSequence) info.get("startTime"));
             UUID id = UUID.fromString(eventId);
 
-            em.addEvent((String) info.get("eventName"), (String) info.get("speaker"), (String) info.get("organizer"),
+            em.addEvent((String) info.get("eventName"), (String) info.get("organizer"),
                         startTime, (String) info.get("roomName"), (Integer) info.get("maxCapacity"), id);
 
             JSONArray attendees = (JSONArray) info.get("attendees");

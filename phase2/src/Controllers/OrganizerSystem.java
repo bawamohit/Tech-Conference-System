@@ -61,6 +61,9 @@ public class OrganizerSystem extends UserSystem {
                         presenter.printSuccess();
                     } else { presenter.printObjectExists("Room"); }
                     break;
+                case "7": //add speaker
+                    addSpeakerToEvent(tcs, scanner);
+                    break;
                 default:
                     presenter.printInvalidInput();
                     break;
@@ -106,20 +109,33 @@ public class OrganizerSystem extends UserSystem {
         int hour = Integer.parseInt(time.substring(9, 11));
         int minute = Integer.parseInt(time.substring(12,14));
         LocalDateTime startTime = LocalDateTime.of(year, month, day, hour, minute);
-        presenter.printAsk("event speaker's username");
-        presenter.printBackToMainMenu();
-        String speaker = scanner.nextLine();
-        if (speaker.equals("") || !isSpeakerOk(speaker, startTime, tcs)) return;//TODO speaker method isSpeaker()
         presenter.printAsk("event's room name (enter room name)");
         presenter.printBackToMainMenu();
         String roomName = scanner.nextLine();
         if (roomName.equals("") || !isRoomOk(roomName, startTime, tcs)) return;
         int capacity = tcs.getRM().getRoomCapacity(roomName);
-        UUID id = tcs.getEM().addEvent(eventName, speaker, username, startTime, roomName, (capacity - 1));
-        tcs.getUM().addEventAttending(speaker, id);
+        UUID id = tcs.getEM().addEvent(eventName, username, startTime, roomName, (capacity - 1));
         tcs.getUM().addEventAttending(username, id); //TODO organizer
         tcs.getRM().addEventToSchedule(id, roomName, startTime);
         presenter.printEventCreationSuccess();
+    }
+
+    private void addSpeakerToEvent(TechConferenceSystem tcs, Scanner scanner){
+        List<UUID> availEvents = tcs.getEM().getAvailableEvents();
+        List<String> eventInfo = tcs.getEM().getEventsStrings(availEvents);
+        presenter.printAskSignUp();
+        presenter.printAvailableEvents(formatInfo(eventInfo));
+        String choice = validInput("^[0-" + (availEvents.size() - 1) + "]$|^.{0}$", scanner ,tcs);
+        UUID eventid = availEvents.get(Integer.parseInt(choice));
+        LocalDateTime time = tcs.getEM().getEventStartTime(eventid);
+        presenter.printAsk("event speaker's username");
+        String speakerName = validInput(".+", scanner, tcs);
+        if (!isSpeakerOk(speakerName, time, tcs)){
+            presenter.printInvalidInput();
+        }
+        tcs.getEM().addSpeaker(eventid, speakerName);
+        tcs.getUM().addEventAttending(speakerName, eventid);
+        presenter.printSuccess();
     }
 
     private boolean isSpeakerOk(String speaker, LocalDateTime newTime, TechConferenceSystem tcs){
@@ -146,6 +162,16 @@ public class OrganizerSystem extends UserSystem {
         if (!tcs.getRM().canAddEvent(roomName, startTime)){
             presenter.printObjUnavailable("room at this time");
             return false;
+        }
+        return true;
+    }
+
+    private boolean isSpeakerFree(String username, UUID newEvent, TechConferenceSystem tcs){
+        List<UUID> userEvents = tcs.getUM().getEventsAttending(username);
+        for (UUID events :userEvents){
+            if (!tcs.getEM().timeNotOverlap(events, newEvent)){
+                return false;
+            }
         }
         return true;
     }

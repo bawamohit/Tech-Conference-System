@@ -47,9 +47,9 @@ public class EventManager implements Serializable {
      *
      * @param id The id of the particular event.
      *
-     * @return The speaker's name of the particular event
+     * @return The list of speakers of the particular event
      */
-    public String getEventSpeaker(UUID id) {
+    public List<String> getEventSpeaker(UUID id) {
         return events.get(id).getSpeaker();
     }
 
@@ -143,11 +143,11 @@ public class EventManager implements Serializable {
         return (e.getAttendees().size() >= e.getMaxCapacity());
     }
 
+
     /**
      * Implements modifier, addEvent, for events.
      *
      * @param eventName name of the event to be added
-     * @param speaker name of speaker of this new event
      * @param organizer name of organizer of this new event
      * @param startTime this event's start time; it can take on any time between 9-16
      * @param roomName name of the room where this event is located in
@@ -156,18 +156,16 @@ public class EventManager implements Serializable {
      *
      * @return The ID of the new event created
      */
-    public UUID addEvent(String eventName, String speaker, String organizer, LocalDateTime startTime,
-                            String roomName, int maxCapacity){
-        Event newEvent = new Event(eventName, speaker, organizer, startTime, roomName, maxCapacity);
+    public UUID addEvent(String eventName, String organizer, LocalDateTime startTime,
+                         String roomName, int maxCapacity){
+        Event newEvent = new Event(eventName, organizer, startTime, roomName, maxCapacity);
         events.put(newEvent.getId(), newEvent);
         return newEvent.getId();
     }
-
     /**
      * Implements modifier, addEvent, for events. (Only to be used for reading from files)
      *
      * @param eventName name of the event to be added
-     * @param speaker name of speaker of this new event
      * @param organizer name of organizer of this new event
      * @param startTime this event's start time; it can take on any time between 9-16
      * @param roomName name of the room where this event is located in
@@ -176,12 +174,18 @@ public class EventManager implements Serializable {
      * @param id id of the new event
      * @return The ID of the new event created
      */
-    public UUID addEvent(String eventName, String speaker, String organizer, LocalDateTime startTime,
+    public UUID addEvent(String eventName, String organizer, LocalDateTime startTime,
                          String roomName, int maxCapacity, UUID id){
-        Event newEvent = new Event(eventName, speaker, organizer, startTime, roomName, maxCapacity);
+        Event newEvent = new Event(eventName, organizer, startTime, roomName, maxCapacity);
         newEvent.setId(id);
         events.put(newEvent.getId(), newEvent);
         return newEvent.getId();
+    }
+
+    public void addSpeaker(UUID eventid, String newSpeaker){
+        Event oldEvent = events.get(eventid);
+        List<String> speakers = oldEvent.getSpeaker();
+        speakers.add(newSpeaker);
     }
 //
 // for phase 2
