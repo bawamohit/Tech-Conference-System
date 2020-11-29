@@ -139,10 +139,19 @@ public class Event implements Serializable {
     }
 
     /**
-     * Implements Setter for event id. (Use for file reading purposes only)
+     * Implements Setter, setId, for event id. (Use for file reading purposes only)
+     *
      * @param id ID to be set
      */
     public void setId(UUID id) {
         this.id = id;
     }
+
+    /**
+     * Implements Setter, setMaxCapacity, for maxCapacity.
+     *
+     * @param newCap new maximum capacity of event
+     */
+    public void setMaxCapacity(int newCap){ this.maxCapacity = newCap; }
+
 }
