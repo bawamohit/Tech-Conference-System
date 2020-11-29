@@ -13,7 +13,7 @@ import java.util.UUID;
  */
 public class Event implements Serializable {
     private String eventName;
-    private String speaker;
+    private List<String> speaker;
     private String organizer;
     private List<String> attendees;
     private LocalDateTime startTime;
@@ -22,19 +22,19 @@ public class Event implements Serializable {
     private int maxCapacity;
 
     /**
-     * The constructor takes eventName, speaker, organizer, startTime of event and assigns each variable.
+     * This constructor is for events with no speaker
+     * The constructor takes eventName, organizer, startTime of event and assigns each variable.
      * It also instantiates the list of attendees, attendees, and sets an unique id for the event.
      *
      * @param eventName name of event
-     * @param speaker speaker of event
      * @param organizer organizer of event
      * @param startTime date and time of event
      * @param roomName name of the room
      */
-    public Event(String eventName, String speaker, String organizer, LocalDateTime startTime, String roomName,
+    public Event(String eventName, String organizer, LocalDateTime startTime, String roomName,
                  int maxCapacity){
         this.eventName = eventName;
-        this.speaker = speaker;
+        this.speaker = new ArrayList<>();
         this.organizer = organizer;
         this.startTime = startTime;
         this.roomName = roomName;
@@ -80,7 +80,7 @@ public class Event implements Serializable {
      *
      * @return username of speaker of event
      */
-    public String getSpeaker(){ //phase 2
+    public List<String> getSpeaker(){ //phase 2
         return speaker;
     }
 

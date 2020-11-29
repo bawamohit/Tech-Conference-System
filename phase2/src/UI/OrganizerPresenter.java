@@ -12,7 +12,9 @@ public class OrganizerPresenter extends UserPresenter {
                         "3. Reschedule Event\n" +
                         "4. Remove Event\n" +
                         "5. Create Speaker Account\n" +
-                        "6. Create Room\n");
+                        "6. Create Room\n" +
+                        "7. Add Speaker to Event"
+        );
     }
 
     /**
@@ -25,16 +27,32 @@ public class OrganizerPresenter extends UserPresenter {
     }
 
     /**
-     * Prints a notification that user has successfully created an event.
+     * Prints a request for number in list to determine which event to sign up for.
      */
-    public void printEventCreationSuccess() {
-        System.out.println("Event successfully created.");
+    public void printAskSignUp() {
+        System.out.println("Enter the number of the event you would like to register the speaker for:");
     }
 
     /**
-     * Prints a notification that user has failed to create an event.
+     * Prints a display of all events available for signup and their detailed info.
+     *
+     * @param compiled formatted string of all the aforementioned events
      */
-    public void printEventCreationFail() {
-        System.out.println("Error! Event not created.");
+    public void printAvailableEvents(String compiled) {
+        System.out.println("The events available for sign-up are: \n" + compiled);
+    }
+
+    /**
+     * Prints a notification that user has successfully performed an action on an event.
+     */
+    public void printEventActionSuccess(String action) {
+        System.out.println("Event successfully " + action + ".");
+    }
+
+    /**
+     * Prints a notification that user has failed to perform an action on an event.
+     */
+    public void printEventActionFail(String action) {
+        System.out.println("Error! Event not " + action + ".");
     }
 }
