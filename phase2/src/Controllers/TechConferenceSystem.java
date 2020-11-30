@@ -25,7 +25,7 @@ public class TechConferenceSystem {
     private RoomManager rm;
 //    private UserGateway userGateway;
 //    private EventGateway eventGateway;
-    private MessageGateway messageGateway;
+//    private MessageGateway messageGateway;
 //    private RoomGateway roomGateway;
     private UserJSONGateway userJSONGateway;
     private EventJSONGateway eventJSONGateway;
@@ -34,7 +34,7 @@ public class TechConferenceSystem {
 
 //    File eventManagerInfo = new File("./src/Data/eventManager.ser");
 //    File userManagerInfo = new File("./src/Data/userManager.ser");
-    File messageManagerInfo = new File("./src/Data/messageManager.ser");
+//    File messageManagerInfo = new File("./src/Data/messageManager.ser");
 //    File roomManagerInfo = new File("./src/Data/roomManager.ser");
     File userJSONManagerInfo = new File("./src/Data/userJSONManager.json");
     File eventJSONManagerInfo = new File("./src/Data/eventJSONManager.json");
@@ -45,7 +45,7 @@ public class TechConferenceSystem {
         try {
 //            userGateway = new UserGateway();
 //            eventGateway = new EventGateway();
-            messageGateway = new MessageGateway();
+//            messageGateway = new MessageGateway();
 //            roomGateway = new RoomGateway();
             userJSONGateway = new UserJSONGateway();
             eventJSONGateway = new EventJSONGateway();
@@ -54,13 +54,13 @@ public class TechConferenceSystem {
 
 //            um = userGateway.readFromFile(userManagerInfo.getPath());
 //            em = eventGateway.readFromFile(eventManagerInfo.getPath());
-            mm = messageGateway.readFromFile(messageManagerInfo.getPath());
+//            mm = messageGateway.readFromFile(messageManagerInfo.getPath());
 //            rm = roomGateway.readFromFile(roomManagerInfo.getPath());
             um = userJSONGateway.readFromFile(userJSONManagerInfo.getPath());
             em = eventJSONGateway.readFromFile(eventJSONManagerInfo.getPath());
             rm = roomJSONGateway.readFromFile(roomJSONManagerInfo.getPath());
-//            mm = messageJSONGateway.readFromFile(messageJSONManagerInfo.getPath());
-        } catch (ClassNotFoundException | IOException e){
+            mm = messageJSONGateway.readFromFile(messageJSONManagerInfo.getPath());
+        } catch (IOException e){
             e.printStackTrace();
         }
 
@@ -75,7 +75,7 @@ public class TechConferenceSystem {
             if(loggedInUsername == null) try {
 //                userGateway.saveToFile(userManagerInfo.getPath(), um);
 //                eventGateway.saveToFile(eventManagerInfo.getPath(), em);
-                messageGateway.saveToFile(messageManagerInfo.getPath(), mm);
+//                messageGateway.saveToFile(messageManagerInfo.getPath(), mm);
 //                roomGateway.saveToFile(roomManagerInfo.getPath(), rm);
                 userJSONGateway.saveToFile(userJSONManagerInfo.getPath(), um);
                 eventJSONGateway.saveToFile(eventJSONManagerInfo.getPath(), em);

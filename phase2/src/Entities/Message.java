@@ -26,6 +26,20 @@ public class Message implements Serializable {
         this.content = content;
     }
 
+    /** Creates an instance of Message
+     *
+     * @param sender Sender of Message
+     * @param receiver Receiver of Message
+     * @param time Time of the message
+     * @param content Content of Message
+     */
+    public Message(String sender, String receiver, String content, LocalDateTime time){
+        this.sender = sender;
+        this.receiver = receiver;
+        this.time = time;
+        this.content = content;
+    }
+
     /** Returns the username of the Sender
      *
      * @return Username of Sender

@@ -34,6 +34,30 @@ public class MessageManager implements Serializable {
         }
     }
 
+    /** Adds a Message from sender to receiver with the content, at the set time, and only records in sender's chat
+     *
+     * @param sender Sender of Message
+     * @param receiver Receiver of Message
+     * @param content Content of Message
+     * @param time Time of Message
+     */
+    public void addToSenderChat(String sender, String receiver, String content, LocalDateTime time) {
+        Message message = new Message(sender, receiver, content, time);
+        addMessage(sender, receiver, message);
+    }
+
+    /** Adds a Message from sender to receiver with the content, at the set time, and only records in receiver's chat
+     *
+     * @param sender Sender of Message
+     * @param receiver Receiver of Message
+     * @param content Content of Message
+     * @param time Time of Message
+     */
+    public void addToReceiverChat(String sender, String receiver, String content, LocalDateTime time) {
+        Message message = new Message(sender, receiver, content, time);
+        addMessage(receiver, sender, message);
+    }
+
     // Helper method, adds the message to the HashMap chats
     private void addMessage(String sender, String receiver, Message message) {
         addSenderChat(sender);
