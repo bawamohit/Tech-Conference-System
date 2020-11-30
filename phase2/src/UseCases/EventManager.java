@@ -204,12 +204,11 @@ public class EventManager implements Serializable {
     /**
      * Implements modifier, addAttendee, for event in events.
      *
-     * @param username name of attendee to be added
      * @param eventID ID of event to add attendee to
-     *
+     * @param username name of attendee to be added
      * @return a boolean indicating if user was successfully added
      */
-    public boolean addAttendee(String username, UUID eventID){
+    public boolean addAttendee(UUID eventID, String username){
         Event event = events.get(eventID);
         List<String> updated_attendees = getEventAttendees(event.getId());
         if (!event.getAttendees().contains(username)) {

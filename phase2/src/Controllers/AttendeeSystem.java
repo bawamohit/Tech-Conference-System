@@ -65,7 +65,7 @@ public class AttendeeSystem extends UserSystem{
                     choice = validInput("^[0-" + (availEvents.size() - 1) + "]$|^.{0}$", scanner ,tcs);
                     if(choice.equals("")) break;
                     UUID id = availEvents.get(Integer.parseInt(choice));
-                    if (isAttendeeFree(username, id, tcs) && tcs.getEM().addAttendee(username, id)){
+                    if (isAttendeeFree(username, id, tcs) && tcs.getEM().addAttendee(id, username)){
                         tcs.getUM().addEventAttending(username, id);
                         presenter.printEventSignUpSuccess();
                     } else{
