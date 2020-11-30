@@ -68,14 +68,6 @@ public class SignUpController implements GUIController {
     }
 
     @FXML protected void handleBackButtonAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../" + mainController.getWelcomeFXMLPath()));
-        Parent root = loader.load();
-        Scene scene = new Scene(root, 300, 300);
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        MainController mainController = loader.getController();
-        mainController.initData(mainController);
-
-        stage.show();
+        mainController.handleLogOutButtonAction(event);
     }
 }
