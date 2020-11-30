@@ -1,5 +1,6 @@
 package GUI;
 
+import Entities.User;
 import GUI.SignUp.SignUpController;
 import UseCases.*;
 import JSONGateways.UserJSONGateway;
@@ -16,7 +17,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 
-public class MainController {
+public class MainController implements GUIController{
     private String welcomeFXMLPath;
     private UserManager userManager;
 
@@ -24,33 +25,78 @@ public class MainController {
     @FXML private TextField usernameField;
     @FXML private TextField passwordField;
 
+    public void initData(MainController mainController){
+        this.welcomeFXMLPath = mainController.getWelcomeFXMLPath();
+        this.userManager = mainController.getUserManager();
+    }
+
     public void initData(String welcomeFXMLPath, UserManager userManager) {
         this.welcomeFXMLPath = welcomeFXMLPath;
         this.userManager = userManager;
     }
 
-    @FXML protected void handleSignInButtonAction(ActionEvent event) {
-        logIn(usernameField.getText(), passwordField.getText());
+    public String getWelcomeFXMLPath(){
+        return welcomeFXMLPath;
     }
 
-    @FXML protected void handleSignUpButtonAction(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("SignUp/SignUp.fxml"));
-        Parent signUpRoot = loader.load();
-        Scene scene = new Scene(signUpRoot, 450, 300);
+    public UserManager getUserManager(){
+        return userManager;
+    }
+
+    @FXML protected void handleSignInButtonAction(ActionEvent event) {
+        String username = usernameField.getText();
+        String pw = passwordField.getText();
+        if (userManager.verifyLogin(username, pw)) {
+            switch (userManager.getUserType(username)){
+                case ATTENDEE:
+                    setNewScene(event, "AttendeeMenu/AttendeeMenu.fxml");
+                    break;
+
+                case ORGANIZER:
+                    setNewScene(event, "OrganizerMenu/OrganizerMenu.fxml");
+                    break;
+
+                case SPEAKER:
+                    setNewScene(event, "SpeakerMenu/SpeakerMenu.fxml");
+                    break;
+            }
+        } else{
+            prompt.setText("Sign in failed.");
+        }
+    }
+
+    @FXML protected void handleSignUpButtonAction(ActionEvent event){
+        setNewScene(event, "SignUp/SignUp.fxml");
+    }
+
+    private void setNewScene(ActionEvent event, String path) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Scene scene = new Scene(root);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 
-        SignUpController signUpController = loader.getController();
-        signUpController.initData(welcomeFXMLPath, userManager);
+        GUIController controller = loader.getController();
+        controller.initData(this);
 
         stage.setScene(scene);
         stage.show();
     }
 
-    private void logIn(String username, String password){
-        if (userManager.verifyLogin(username, password)) {
-            prompt.setText("Logged In! But not really...");
-        } else{
-            prompt.setText("Log in failed.");
-        }
+    public void handleLogOutButtonAction(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(welcomeFXMLPath));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        GUIController controller = loader.getController();
+        controller.initData(this);
+
+        stage.setScene(scene);
+        stage.show();
     }
 }

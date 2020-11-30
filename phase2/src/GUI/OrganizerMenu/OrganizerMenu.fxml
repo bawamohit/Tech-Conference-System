@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane alignment="center" hgap="10" prefHeight="246.0" prefWidth="227.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OrganizerMenu.OrganizerMenuController">
+    <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
+
+    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" />
+    <VBox prefHeight="175.0" prefWidth="185.0">
+        <Button fx:id="messageButton" onAction="#handleChillButtonAction" text="Messages" />
+        <Button fx:id="creatEventButton" onAction="#handleChillButtonAction" text="Create Events" />
+        <Button fx:id="rescheduleEventButton" onAction="#handleChillButtonAction" text="Reschedule Events" />
+        <Button fx:id="removeEventButton" onAction="#handleChillButtonAction" text="Remove Events" />
+        <Button fx:id="createSpeakerAccountButton" onAction="#handleChillButtonAction" text="Create Speaker Accounts" />
+        <Button fx:id="createRoomButton" onAction="#handleChillButtonAction" text="Create Rooms" />
+        <Button fx:id="logOutButton" onAction="#handleLogOutButtonAction" text="Log Out" />
+    </VBox>
+
+    <Text fx:id="prompt" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>

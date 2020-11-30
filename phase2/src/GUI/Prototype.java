@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 
-public class Prototype extends Application implements GUI{
+public class Prototype extends Application{
     private UserJSONGateway userJSONGateway;
     private String welcomeFXMLPath = "Welcome.fxml";
     private File userInfo = new File("./phase2/src/Data/userJSONManager.json");

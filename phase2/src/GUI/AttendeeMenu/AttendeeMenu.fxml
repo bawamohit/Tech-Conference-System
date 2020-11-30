@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane alignment="center" hgap="10" prefHeight="171.0" prefWidth="165.0" vgap="10"
+          xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="GUI.AttendeeMenu.AttendeeMenuController">
+    <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
+
+    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" />
+          <VBox prefHeight="100.0" prefWidth="122.0">
+              <Button fx:id="messageButton" mnemonicParsing="false" onAction="#handleMessageButtonAction" text="Messages" />
+              <Button fx:id="availableEventButton" mnemonicParsing="false" onAction="#handleAvailableEventButtonAction" text="Available Events" />
+              <Button fx:id="myEventButton" mnemonicParsing="false" onAction="#handleMyEventButtonAction" text="My Events" />
+              <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#handleLogOutButtonAction" text="Log Out" />
+          </VBox>
+
+    <Text fx:id="prompt" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+</GridPane>
