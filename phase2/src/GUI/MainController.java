@@ -1,9 +1,6 @@
 package GUI;
 
-import Entities.User;
-import GUI.SignUp.SignUpController;
 import UseCases.*;
-import JSONGateways.UserJSONGateway;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +11,6 @@ import javafx.scene.text.Text;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 
 public class MainController implements GUIController{

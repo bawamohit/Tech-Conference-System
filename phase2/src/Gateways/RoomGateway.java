@@ -1,4 +1,4 @@
-package JSONGateways;
+package Gateways;
 
 import UseCases.RoomManager;
 
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.UUID;
 
-public class RoomJSONGateway {
+public class RoomGateway {
 
     public RoomManager readFromFile(String filepath) throws IOException {
         String content = new String(Files.readAllBytes(Paths.get(filepath)));

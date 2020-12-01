@@ -1,6 +1,6 @@
 package GUI;
 
-import JSONGateways.UserJSONGateway;
+import Gateways.UserGateway;
 import UseCases.UserManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -12,16 +12,16 @@ import java.io.File;
 import java.io.IOException;
 
 public class Prototype extends Application{
-    private UserJSONGateway userJSONGateway;
+    private UserGateway userGateway;
     private String welcomeFXMLPath = "Welcome.fxml";
-    private File userInfo = new File("./phase2/src/Data/userJSONManager.json");
+    private File userInfo = new File("./phase2/src/Data/userManager.json");
     private UserManager userManager;
 
     @Override
     public void init() throws Exception {
         super.init();
-        userJSONGateway = new UserJSONGateway();
-        userManager = userJSONGateway.readFromFile(userInfo.getPath());
+        userGateway = new UserGateway();
+        userManager = userGateway.readFromFile(userInfo.getPath());
     }
 
     @Override
@@ -43,7 +43,7 @@ public class Prototype extends Application{
     public void stop() throws Exception {
         super.stop();
         try {
-            userJSONGateway.saveToFile(userInfo.getPath(), userManager);
+            userGateway.saveToFile(userInfo.getPath(), userManager);
         } catch (IOException e){
             e.printStackTrace();
         }

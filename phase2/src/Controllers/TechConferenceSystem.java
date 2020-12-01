@@ -4,10 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-import JSONGateways.MessageJSONGateway;
-import JSONGateways.RoomJSONGateway;
-import JSONGateways.UserJSONGateway;
-import JSONGateways.EventJSONGateway;
+import Gateways.*;
 import UI.UserPresenter;
 import UseCases.*;
 import Entities.UserType;
@@ -19,27 +16,27 @@ public class TechConferenceSystem {
     private EventManager em;
     private MessageManager mm;
     private RoomManager rm;
-    private UserJSONGateway userJSONGateway;
-    private EventJSONGateway eventJSONGateway;
-    private RoomJSONGateway roomJSONGateway;
-    private MessageJSONGateway messageJSONGateway;
+    private UserGateway userGateway;
+    private EventGateway eventGateway;
+    private RoomGateway roomGateway;
+    private MessageGateway messageGateway;
 
-    File userJSONManagerInfo = new File("./src/Data/userJSONManager.json");
-    File eventJSONManagerInfo = new File("./src/Data/eventJSONManager.json");
-    File roomJSONManagerInfo = new File("./src/Data/roomJSONManager.json");
-    File messageJSONManagerInfo = new File("./src/Data/messageJSONManager.json");
+    File userJSONManagerInfo = new File("./src/Data/userManager.json");
+    File eventJSONManagerInfo = new File("./src/Data/eventManager.json");
+    File roomJSONManagerInfo = new File("./src/Data/roomManager.json");
+    File messageJSONManagerInfo = new File("./src/Data/messageManager.json");
 
     public TechConferenceSystem () {
         try {
-            userJSONGateway = new UserJSONGateway();
-            eventJSONGateway = new EventJSONGateway();
-            roomJSONGateway = new RoomJSONGateway();
-            messageJSONGateway = new MessageJSONGateway();
+            userGateway = new UserGateway();
+            eventGateway = new EventGateway();
+            roomGateway = new RoomGateway();
+            messageGateway = new MessageGateway();
 
-            um = userJSONGateway.readFromFile(userJSONManagerInfo.getPath());
-            em = eventJSONGateway.readFromFile(eventJSONManagerInfo.getPath());
-            rm = roomJSONGateway.readFromFile(roomJSONManagerInfo.getPath());
-            mm = messageJSONGateway.readFromFile(messageJSONManagerInfo.getPath());
+            um = userGateway.readFromFile(userJSONManagerInfo.getPath());
+            em = eventGateway.readFromFile(eventJSONManagerInfo.getPath());
+            rm = roomGateway.readFromFile(roomJSONManagerInfo.getPath());
+            mm = messageGateway.readFromFile(messageJSONManagerInfo.getPath());
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -53,10 +50,10 @@ public class TechConferenceSystem {
         while (true) {
             loggedInUsername = startUp(scanner);
             if(loggedInUsername == null) try {
-                userJSONGateway.saveToFile(userJSONManagerInfo.getPath(), um);
-                eventJSONGateway.saveToFile(eventJSONManagerInfo.getPath(), em);
-                roomJSONGateway.saveToFile(roomJSONManagerInfo.getPath(), rm);
-                messageJSONGateway.saveToFile(messageJSONManagerInfo.getPath(), mm);
+                userGateway.saveToFile(userJSONManagerInfo.getPath(), um);
+                eventGateway.saveToFile(eventJSONManagerInfo.getPath(), em);
+                roomGateway.saveToFile(roomJSONManagerInfo.getPath(), rm);
+                messageGateway.saveToFile(messageJSONManagerInfo.getPath(), mm);
                 break;
             } catch (IOException e){
                 e.printStackTrace();

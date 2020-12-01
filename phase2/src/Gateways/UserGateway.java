@@ -1,4 +1,4 @@
-package JSONGateways;
+package Gateways;
 
 import Entities.UserType;
 import UseCases.UserManager;
@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 import java.util.LinkedHashMap;
 import java.util.UUID;
 
-public class UserJSONGateway {
+public class UserGateway {
 
     public UserManager readFromFile(String filepath) throws IOException {
         String content = new String(Files.readAllBytes(Paths.get(filepath)));

@@ -1,4 +1,4 @@
-package JSONGateways;
+package Gateways;
 
 import UseCases.MessageManager;
 
@@ -15,7 +15,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MessageJSONGateway {
+public class MessageGateway {
 
     public MessageManager readFromFile(String filepath) throws IOException {
         String content = new String(Files.readAllBytes(Paths.get(filepath)));

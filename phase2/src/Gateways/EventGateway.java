@@ -1,4 +1,4 @@
-package JSONGateways;
+package Gateways;
 
 import UseCases.EventManager;
 
@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.UUID;
 
-public class EventJSONGateway {
+public class EventGateway {
 
     public EventManager readFromFile(String filepath) throws IOException {
         String content = new String(Files.readAllBytes(Paths.get(filepath)));
