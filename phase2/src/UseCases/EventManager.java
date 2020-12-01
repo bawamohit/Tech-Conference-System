@@ -1,6 +1,5 @@
 package UseCases;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.*;
 import Entities.Event;
@@ -9,7 +8,7 @@ import Entities.Event;
  * This class is one of the use cases classes for this program, specifically for manipulating the Event entity class.
  * It stores a map of all event ids to its event object.
  */
-public class EventManager implements Serializable {
+public class EventManager {
     private HashMap<UUID, Event> events;
 
     /**

@@ -1,11 +1,10 @@
 package UseCases;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.*;
 import Entities.Room;
 
-public class RoomManager implements Serializable {
+public class RoomManager {
     private HashMap<String, Room> rooms;
     // what we need:
     // attributes: all the room name and their Room object,

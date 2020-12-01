@@ -1,6 +1,5 @@
 package UseCases;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -8,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import Entities.Message;
 
-public class MessageManager implements Serializable {
+public class MessageManager {
     private HashMap<String, HashMap<String, List<Message>>> chats;
 
     /**

@@ -1,7 +1,5 @@
 package UseCases;
 
-import java.io.Serializable;
-import java.nio.charset.Charset;
 import java.time.LocalDateTime;
 import java.util.*;
 import Entities.User;
@@ -9,7 +7,7 @@ import Entities.UserType;
 
 /** Handles user related functions of this program.
  */
-public class UserManager implements Serializable {
+public class UserManager {
 
     private HashMap<String, User> usernamesToUsers;
 
