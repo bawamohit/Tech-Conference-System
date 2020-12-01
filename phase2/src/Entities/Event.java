@@ -13,7 +13,7 @@ import java.util.UUID;
  */
 public class Event implements Serializable {
     private String eventName;
-    private List<String> speaker;
+    private List<String> speakers;
     private String organizer;
     private List<String> attendees;
     private LocalDateTime startTime;
@@ -34,7 +34,7 @@ public class Event implements Serializable {
     public Event(String eventName, String organizer, LocalDateTime startTime, String roomName,
                  int maxCapacity){
         this.eventName = eventName;
-        this.speaker = new ArrayList<>();
+        this.speakers = new ArrayList<>();
         this.organizer = organizer;
         this.startTime = startTime;
         this.roomName = roomName;
@@ -51,9 +51,9 @@ public class Event implements Serializable {
      */
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM uuuu HH:mm");
         String formattedTime = startTime.format(formatter);
-        return eventName + ", " + speaker + ", " + formattedTime + ", " + roomName;
+        return eventName + ", " + speakers + ", " + formattedTime + ", " + roomName;
     }
 
     // for phase 2
@@ -80,8 +80,8 @@ public class Event implements Serializable {
      *
      * @return username of speaker of event
      */
-    public List<String> getSpeaker(){ //phase 2
-        return speaker;
+    public List<String> getSpeakers(){ //phase 2
+        return speakers;
     }
 
     /**

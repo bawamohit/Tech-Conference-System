@@ -50,7 +50,7 @@ public class EventManager implements Serializable {
      * @return The list of speakers of the particular event
      */
     public List<String> getEventSpeaker(UUID id) {
-        return events.get(id).getSpeaker();
+        return events.get(id).getSpeakers();
     }
 
     /**
@@ -184,7 +184,7 @@ public class EventManager implements Serializable {
 
     public void addSpeaker(UUID eventID, String newSpeaker){
         Event oldEvent = events.get(eventID);
-        List<String> speakers = oldEvent.getSpeaker();
+        List<String> speakers = oldEvent.getSpeakers();
         speakers.add(newSpeaker);
     }
 
