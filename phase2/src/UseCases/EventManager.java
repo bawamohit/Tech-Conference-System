@@ -74,6 +74,13 @@ public class EventManager {
         return events.get(id).getRoomName();
     }
 
+    /**
+     * Implements getter for event maximum capacity of a particular event.
+     *
+     * @param id The id of the particular event.
+     *
+     * @return The maximum capacity of the particular event
+     */
     public int getEventMaxCapacity(UUID id) {
         return events.get(id).getMaxCapacity();
     }
@@ -96,14 +103,14 @@ public class EventManager {
     /**
      * Implements Getter, getAvailableEvents, for IDs of available events.
      *
-     * @return event IDs for all events still open for signup
+     * @return event IDs for all events after currTime still open for signup
      */
-    public List<UUID> getAvailableEvents() {
+    public List<UUID> getAvailableEvents(LocalDateTime currTime) {
         ArrayList<UUID> availableEvents = new ArrayList<>();
         for (UUID id: events.keySet()){
-            if (!isFull(id)){
-                availableEvents.add(id);
-            }
+            if (!events.get(id).getStartTime().isBefore(currTime) && !isFull(id)){
+                    availableEvents.add(id);
+                }
         }
         return availableEvents;
     }
@@ -141,6 +148,14 @@ public class EventManager {
         Event e = events.get(eventID);
         return (e.getAttendees().size() >= e.getMaxCapacity());
     }
+
+    /**
+     * Implements Setter, setMaxCapacity, for an event.
+     *
+     * @param eventID ID of event to change capacity for
+     * @param newCap new maximum capacity of event
+     */
+    public void setMaxCapacity(UUID eventID, int newCap){ events.get(eventID).setMaxCapacity(newCap); }
 
 
     /**
@@ -243,7 +258,7 @@ public class EventManager {
      *
      * @return true if existingTime does not overlap with newTime, and false otherwise.
      */
-    public boolean scheduleNotOverlap(LocalDateTime existingTime, LocalDateTime newTime){
+    public boolean scheduleNotOverlap(LocalDateTime existingTime, LocalDateTime newTime){ //TODO modify this to take into account different event duration
         return (!(newTime.isAfter(existingTime.minusHours(1))) || !(newTime.isBefore(existingTime.plusHours(1))));
     }
 

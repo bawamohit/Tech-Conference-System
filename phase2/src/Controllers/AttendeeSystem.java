@@ -2,6 +2,7 @@ package Controllers;
 
 import UI.AttendeePresenter;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 /**
@@ -26,8 +27,17 @@ public class AttendeeSystem extends UserSystem{
         while (true) {
             presenter.printAttendeeMenu();
             String choice = scanner.nextLine();
-            List<UUID> availEvents = tcs.getEM().getAvailableEvents();
-            List<UUID> eventList = tcs.getUM().getEventsAttending(username);
+            List<UUID> openEvents = tcs.getEM().getAvailableEvents(LocalDateTime.now());
+            List<UUID> userEventList = tcs.getUM().getEventsAttending(username);
+            List<UUID> availEvents = new ArrayList<>();
+            for (UUID id: openEvents){ //TODO check if attendee is speaking at this event
+                for (UUID id2: userEventList){
+                    if (!tcs.getEM().scheduleNotOverlap(tcs.getEM().getEventStartTime(id),
+                            tcs.getEM().getEventStartTime(id2))){
+                        availEvents.add(id2);
+                    }
+                }
+            }
 
             switch (choice) {
                 case "0":
@@ -50,7 +60,7 @@ public class AttendeeSystem extends UserSystem{
                     }
                     break;
                 case "3":
-                    presenter.printMyEvents(formatInfo(tcs.getEM().getEventsStrings(eventList)), "attend");
+                    presenter.printMyEvents(formatInfo(tcs.getEM().getEventsStrings(userEventList)), "attend");
                     break;
 
                 case "4":  //signup event
@@ -74,7 +84,7 @@ public class AttendeeSystem extends UserSystem{
                     break;
 
                 case "5":  //cancel event
-                    if(eventList.isEmpty()){
+                    if(userEventList.isEmpty()){
                         presenter.printNoEventsAvailable();
                         break;
                     }
