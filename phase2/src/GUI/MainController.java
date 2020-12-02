@@ -65,7 +65,7 @@ public class MainController implements GUIController{
         setNewScene(event, "SignUp/SignUp.fxml");
     }
 
-    private void setNewScene(ActionEvent event, String path) {
+    public void setNewScene(ActionEvent event, String path) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
         Parent root = null;
         try {

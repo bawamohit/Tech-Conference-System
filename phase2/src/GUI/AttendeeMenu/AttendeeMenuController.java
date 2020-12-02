@@ -26,12 +26,8 @@ public class AttendeeMenuController implements GUIController {
         prompt.setText("sike");
     }
 
-    @FXML protected void handleAvailableEventButtonAction(ActionEvent actionEvent) {
-        prompt.setText("sIkE");
-    }
-
-    @FXML public void handleMyEventButtonAction(ActionEvent event) {
-        prompt.setText("SIKE");
+    @FXML protected void handleEventButtonAction(ActionEvent actionEvent) {
+        mainController.setNewScene(actionEvent, "./EventMenu/EventMenu.fxml");
     }
 
     @FXML public void handleLogOutButtonAction(ActionEvent event) throws IOException {

@@ -14,7 +14,7 @@ import java.io.IOException;
 public class Prototype extends Application{
     private UserGateway userGateway;
     private String welcomeFXMLPath = "Welcome.fxml";
-    private File userInfo = new File("./phase2/src/Data/userManager.json");
+    private File userInfo = new File("./src/Data/userManager.json");
     private UserManager userManager;
 
     @Override
