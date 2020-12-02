@@ -4,11 +4,19 @@ import GUI.GUIController;
 import GUI.MainController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.UUID;
 
 public class EventMenuController implements GUIController {
+    public Button availableEventButton;
+    public Button myEventButton;
+    public Button signUpEventButton;
+    public Button cancelEventButton;
     private MainController mainController;
     @FXML private Text prompt;
 
@@ -18,8 +26,15 @@ public class EventMenuController implements GUIController {
     }
 
     @FXML
-    protected void handleAvailEventButtonAction(ActionEvent event) {
-        prompt.setText("sike");
+    protected void handleAvailEventButtonAction() {
+        List<UUID> availEvents = mainController.getEventManager().getAvailableEvents(LocalDateTime.now());
+        String formattedOutput = formatInfo(mainController.getEventManager().getEventsStrings(availEvents));
+        if (formattedOutput.equals("")) {
+            prompt.setText("There are no available events.");
+        }
+        else{
+            prompt.setText("The available events are \n" + formattedOutput);
+        }
     }
 
     @FXML
@@ -35,6 +50,15 @@ public class EventMenuController implements GUIController {
     @FXML
     public void handleCancelEventButtonAction(ActionEvent event) {
         prompt.setText("sike");
+    }
+
+    private String formatInfo(List<String> strings){
+        StringBuilder info = new StringBuilder();
+        for (int i = 0; i < strings.size(); i++){
+            info.append("\n").append(i).append(". ").append(strings.get(i));
+        }
+
+        return info.toString();
     }
 }
 

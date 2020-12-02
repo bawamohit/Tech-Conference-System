@@ -16,6 +16,7 @@ import java.io.IOException;
 public class MainController implements GUIController{
     private String welcomeFXMLPath;
     private UserManager userManager;
+    private EventManager eventManager;
 
     @FXML private Text prompt;
     @FXML private TextField usernameField;
@@ -26,9 +27,10 @@ public class MainController implements GUIController{
         this.userManager = mainController.getUserManager();
     }
 
-    public void initData(String welcomeFXMLPath, UserManager userManager) {
+    public void initData(String welcomeFXMLPath, UserManager userManager, EventManager eventManager) {
         this.welcomeFXMLPath = welcomeFXMLPath;
         this.userManager = userManager;
+        this.eventManager = eventManager;
     }
 
     public String getWelcomeFXMLPath(){
@@ -37,6 +39,10 @@ public class MainController implements GUIController{
 
     public UserManager getUserManager(){
         return userManager;
+    }
+
+    public EventManager getEventManager() {
+        return eventManager;
     }
 
     @FXML protected void handleSignInButtonAction(ActionEvent event) {
