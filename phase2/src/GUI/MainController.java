@@ -82,6 +82,7 @@ public class MainController implements GUIController{
         stage.setScene(scene);
         stage.show();
     }
+    //TODO create changeScene so we can have a back button
 
     public void handleLogOutButtonAction(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(welcomeFXMLPath));

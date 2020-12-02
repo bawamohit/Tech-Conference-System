@@ -33,7 +33,7 @@ public class EventMenuController implements GUIController {
     }
 
     @FXML
-    public void handleCancelEventButtonAction(ActionEvent event) throws IOException {
+    public void handleCancelEventButtonAction(ActionEvent event) {
         prompt.setText("sike");
     }
 }
