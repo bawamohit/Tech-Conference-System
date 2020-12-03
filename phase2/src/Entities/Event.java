@@ -17,6 +17,7 @@ public class Event implements Serializable {
     private String organizer;
     private List<String> attendees;
     private LocalDateTime startTime;
+    private LocalDateTime endTime;
     private UUID id;
     private String roomName;
     private int maxCapacity;
@@ -28,15 +29,17 @@ public class Event implements Serializable {
      *
      * @param eventName name of event
      * @param organizer organizer of event
-     * @param startTime date and time of event
+     * @param startTime starting date and time of event
+     * @param endTime ending date and time of event
      * @param roomName name of the room
      */
-    public Event(String eventName, String organizer, LocalDateTime startTime, String roomName,
+    public Event(String eventName, String organizer, LocalDateTime startTime, LocalDateTime endTime, String roomName,
                  int maxCapacity){
         this.eventName = eventName;
         this.speakers = new ArrayList<>();
         this.organizer = organizer;
         this.startTime = startTime;
+        this.endTime = endTime;
         this.roomName = roomName;
         this.maxCapacity = maxCapacity;
         attendees = new ArrayList<>();
@@ -52,8 +55,9 @@ public class Event implements Serializable {
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM uuuu HH:mm");
-        String formattedTime = startTime.format(formatter);
-        return eventName + ", " + speakers + ", " + formattedTime + ", " + roomName;
+        String formattedST = startTime.format(formatter);
+        String formattedET = endTime.format(formatter);
+        return eventName + ", " + speakers + ", " + formattedST + "~" + formattedET + ", " + roomName;
     }
 
     // for phase 2
@@ -100,6 +104,15 @@ public class Event implements Serializable {
      */
     public LocalDateTime getStartTime(){
         return startTime;
+    }
+
+    /**
+     * Implements Getter, getEndTime, for StartTime.
+     *
+     * @return date and time of this event
+     */
+    public LocalDateTime getEndTime(){
+        return endTime;
     }
 
     /**

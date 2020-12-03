@@ -136,14 +136,24 @@ public class OrganizerSystem extends UserSystem {
         if(eventName.equals("")) return;
         presenter.printAsk("event's start time (enter in the format YY:MM:DD:HH:MM of a time between 9-16)");
         presenter.printBackToMainMenu();
-        String time = validInput("^([0-9][0-9]):(0[1-9]|1[0-2]):([0-2][0-9]|3[0-1]):(09|1[0-6]):([0-5][0-9])$", scanner, tcs);
-        if(time.equals("")) return;
-        int year = Integer.parseInt(time.substring(0, 2));
-        int month = Integer.parseInt(time.substring(3, 5));
-        int day = Integer.parseInt(time.substring(6, 8));
-        int hour = Integer.parseInt(time.substring(9, 11));
-        int minute = Integer.parseInt(time.substring(12,14));
-        LocalDateTime startTime = LocalDateTime.of(year, month, day, hour, minute);
+        String time1 = validInput("^([0-9][0-9]):(0[1-9]|1[0-2]):([0-2][0-9]|3[0-1]):(09|1[0-6]):([0-5][0-9])$", scanner, tcs);
+        if(time1.equals("")) return;
+        int year1 = Integer.parseInt(time1.substring(0, 2));
+        int month1 = Integer.parseInt(time1.substring(3, 5));
+        int day1 = Integer.parseInt(time1.substring(6, 8));
+        int hour1 = Integer.parseInt(time1.substring(9, 11));
+        int minute1 = Integer.parseInt(time1.substring(12,14));
+        LocalDateTime startTime = LocalDateTime.of(year1, month1, day1, hour1, minute1);
+        presenter.printAsk("event's end time (enter in the format YY:MM:DD:HH:MM of a time between 9-16)");
+        presenter.printBackToMainMenu();
+        String time2 = validInput("^([0-9][0-9]):(0[1-9]|1[0-2]):([0-2][0-9]|3[0-1]):(09|1[0-6]):([0-5][0-9])$", scanner, tcs);
+        if(time2.equals("")) return;
+        int year2 = Integer.parseInt(time2.substring(0, 2));
+        int month2 = Integer.parseInt(time2.substring(3, 5));
+        int day2 = Integer.parseInt(time2.substring(6, 8));
+        int hour2 = Integer.parseInt(time2.substring(9, 11));
+        int minute2 = Integer.parseInt(time2.substring(12,14));
+        LocalDateTime endTime = LocalDateTime.of(year2, month2, day2, hour2, minute2);
         presenter.printAsk("event's room name (enter room name)");
         presenter.printBackToMainMenu();
         String roomName = scanner.nextLine();
@@ -153,7 +163,7 @@ public class OrganizerSystem extends UserSystem {
         String maxCap = validInput("^[1-9][0-9]*$", scanner, tcs);
         if(maxCap.equals("")) return;
         if (!tcs.getRM().canSetCapacity(roomName, Integer.parseInt(maxCap))) return;
-        UUID id = tcs.getEM().addEvent(eventName, username, startTime, roomName, Integer.parseInt(maxCap));
+        UUID id = tcs.getEM().addEvent(eventName, username, startTime, endTime, roomName, Integer.parseInt(maxCap));
         tcs.getUM().addEventAttending(username, id); //TODO organizer
         tcs.getRM().addEventToSchedule(id, roomName, startTime);
         presenter.printEventActionSuccess("created");
@@ -186,12 +196,13 @@ public class OrganizerSystem extends UserSystem {
         String choice = validInput("^[0-" + (availEvents.size() - 1) + "]$|^.{0}$", scanner ,tcs);
         if(choice.equals("")) return;
         UUID eventID = availEvents.get(Integer.parseInt(choice));
-        LocalDateTime time = tcs.getEM().getEventStartTime(eventID);
+        LocalDateTime startTime = tcs.getEM().getEventStartTime(eventID);
+        LocalDateTime endTime = tcs.getEM().getEventEndTime(eventID);
         presenter.printAsk("event speaker's username");
         presenter.printBackToMainMenu();
         String speakerName = validInput(".+", scanner, tcs);
         if(speakerName.equals("")) return;
-        if (!isSpeakerOk(speakerName, time, tcs)){
+        if (!isSpeakerOk(speakerName, startTime, endTime, tcs)){
             presenter.printInvalidInput();
         }
         tcs.getEM().addSpeaker(eventID, speakerName);
@@ -199,15 +210,16 @@ public class OrganizerSystem extends UserSystem {
         presenter.printSuccess();
     }
 
-    private boolean isSpeakerOk(String speaker, LocalDateTime newTime, TechConferenceSystem tcs){
+    private boolean isSpeakerOk(String speaker, LocalDateTime newST, LocalDateTime newET, TechConferenceSystem tcs){
         if(!tcs.getUM().getUsernameList().contains(speaker)){
             presenter.printDNE(speaker);
             return false;
         }
         List<UUID> speakers_events = tcs.getUM().getEventsAttending(speaker);
         for (UUID id: speakers_events){
-            LocalDateTime existingTime = tcs.getEM().getEventStartTime(id);
-            if (!tcs.getEM().scheduleNotOverlap(existingTime, newTime)){
+            LocalDateTime existingST = tcs.getEM().getEventStartTime(id);
+            LocalDateTime existingET = tcs.getEM().getEventEndTime(id);
+            if (!tcs.getEM().scheduleNotOverlap(existingST, existingET, newST, newET)){
                 presenter.printObjUnavailable("speaker");
                 return false;
             }

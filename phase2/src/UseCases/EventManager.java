@@ -1,5 +1,6 @@
 package UseCases;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 import Entities.Event;
@@ -138,6 +139,17 @@ public class EventManager {
     }
 
     /**
+     * Implements Getter, getEventStartTime, for an event in events.
+     *
+     * @param eventID ID of the event to retrieve the start time for
+     *
+     * @return event start time
+     */
+    public LocalDateTime getEventEndTime(UUID eventID) {
+        return events.get(eventID).getEndTime();
+    }
+
+    /**
      * Implements Checker, isFull, for an event's current capacity.
      *
      * @param eventID ID of the event to check availability for; should be a valid event in list of existing events
@@ -183,9 +195,9 @@ public class EventManager {
      *
      * @return The ID of the new event created
      */
-    public UUID addEvent(String eventName, String organizer, LocalDateTime startTime,
+    public UUID addEvent(String eventName, String organizer, LocalDateTime startTime, LocalDateTime endTime,
                          String roomName, int maxCapacity){
-        Event newEvent = new Event(eventName, organizer, startTime, roomName, maxCapacity);
+        Event newEvent = new Event(eventName, organizer, startTime, endTime, roomName, maxCapacity);
         events.put(newEvent.getId(), newEvent);
         return newEvent.getId();
     }
@@ -201,9 +213,9 @@ public class EventManager {
      * @param id id of the new event
      * @return The ID of the new event created
      */
-    public UUID addEvent(String eventName, String organizer, LocalDateTime startTime,
+    public UUID addEvent(String eventName, String organizer, LocalDateTime startTime, LocalDateTime endTime,
                          String roomName, int maxCapacity, UUID id){
-        Event newEvent = new Event(eventName, organizer, startTime, roomName, maxCapacity);
+        Event newEvent = new Event(eventName, organizer, startTime, endTime, roomName, maxCapacity);
         newEvent.setId(id);
         events.put(newEvent.getId(), newEvent);
         return newEvent.getId();
@@ -264,30 +276,19 @@ public class EventManager {
         return false;
     }
 
-    /** Determines whether two times overlap.
+    /** Determines whether two time blocks (start time ~ end time) overlap.
      *
-     * @param existingTime A time that is already occupied.
-     * @param newTime A new time that will be compared.
+     * @param existingST A start time that is already occupied.
+     * @param existingST An end time that is already occupied.
+     * @param newST A new start time that will be compared.
+     * @param newET A new end time that will be compared.
      *
-     * @return true if existingTime does not overlap with newTime, and false otherwise.
+     * @return a boolean indicating if the new and existing time blocks overlap
      */
-    public boolean scheduleNotOverlap(LocalDateTime existingTime, LocalDateTime newTime){ //TODO modify this to take into account different event duration
-        return (!(newTime.isAfter(existingTime.minusHours(1))) || !(newTime.isBefore(existingTime.plusHours(1))));
+    public boolean scheduleNotOverlap(LocalDateTime existingST, LocalDateTime existingET,
+                                      LocalDateTime newST, LocalDateTime newET){
+        return (!(newET.isAfter(existingST)) || !(newST.isBefore(existingET)));
     }
 
-    /**
-     * Implements a checker method, timeNotOverlap, to compare the start times of 2 events, and to ensure that their
-     * event times do not overlap one another..
-     *
-     * @param existingEvent event that is already existing in this program
-     * @param newEvent event we are trying to add
-     *
-     * @return a boolean indicating if the event times does not overlap.
-     */
-    public boolean timeNotOverlap(UUID existingEvent, UUID newEvent){
-        LocalDateTime existingTime = this.events.get(existingEvent).getStartTime();
-        LocalDateTime newTime = this.events.get(newEvent).getStartTime();
-        return scheduleNotOverlap(existingTime, newTime);
-    }
 
 }

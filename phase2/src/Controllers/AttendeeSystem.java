@@ -33,7 +33,8 @@ public class AttendeeSystem extends UserSystem{
             for (UUID id: openEvents){ //TODO check if attendee is speaking at this event
                 for (UUID id2: userEventList){
                     if (!tcs.getEM().scheduleNotOverlap(tcs.getEM().getEventStartTime(id),
-                            tcs.getEM().getEventStartTime(id2))){
+                            tcs.getEM().getEventEndTime(id), tcs.getEM().getEventStartTime(id2),
+                            tcs.getEM().getEventEndTime(id2))){
                         availEvents.add(id2);
                     }
                 }
@@ -122,8 +123,9 @@ public class AttendeeSystem extends UserSystem{
 
     private boolean isAttendeeFree(String username, UUID newEvent, TechConferenceSystem tcs){
         List<UUID> userEvents = tcs.getUM().getEventsAttending(username);
-        for (UUID events :userEvents){
-            if (!tcs.getEM().timeNotOverlap(events, newEvent)){
+        for (UUID id :userEvents){
+            if (!tcs.getEM().scheduleNotOverlap(tcs.getEM().getEventStartTime(id), tcs.getEM().getEventEndTime(id),
+                    tcs.getEM().getEventStartTime(newEvent), tcs.getEM().getEventEndTime(newEvent))){
                 return false;
             }
         }
