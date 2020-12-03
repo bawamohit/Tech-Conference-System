@@ -44,7 +44,7 @@ public class Prototype extends Application{
         FXMLLoader loader = new FXMLLoader(getClass().getResource(welcomeFXMLPath));
 
         Parent root = loader.load();
-        Scene scene = new Scene(root, 750, 650);
+        Scene scene = new Scene(root);
 
         primaryStage.setTitle("Conference");
         primaryStage.setScene(scene);

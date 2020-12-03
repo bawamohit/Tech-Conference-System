@@ -12,7 +12,8 @@
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           fx:controller="GUI.SignUp.SignUpController"
-          alignment="center" hgap="10" vgap="10">
+          alignment="center" hgap="10" vgap="10"
+          prefHeight="650.0" prefWidth="750.0">
     <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
 
     <Text id="signUp" text="Sign Up"
