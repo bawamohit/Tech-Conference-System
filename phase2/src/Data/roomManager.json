@@ -1,4 +1,10 @@
-{"room1": {
-    "schedule": {"2020-11-26T09:00": "8b77ec2b-00da-4893-9280-f8fbe1c53e5e"},
-    "capacity": 2
-}}
+{
+    "room1": {
+        "schedule": {"2020-11-26T09:00": "8b77ec2b-00da-4893-9280-f8fbe1c53e5e"},
+        "capacity": 2
+    },
+    "room2": {
+        "schedule": {"2020-12-04T10:00": "a952787e-851b-40a2-90ac-c7758aed432e"},
+        "capacity": 2
+    }
+}

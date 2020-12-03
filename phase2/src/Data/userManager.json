@@ -3,14 +3,17 @@
         "name": "a",
         "password": "a",
         "userType": "ATTENDEE",
-        "eventsAttending": [],
+        "eventsAttending": ["a952787e-851b-40a2-90ac-c7758aed432e"],
         "friends": []
     },
     "oscar": {
         "name": "Oscar Green",
         "password": "green",
         "userType": "ORGANIZER",
-        "eventsAttending": ["8b77ec2b-00da-4893-9280-f8fbe1c53e5e"],
+        "eventsAttending": [
+            "8b77ec2b-00da-4893-9280-f8fbe1c53e5e",
+            "a952787e-851b-40a2-90ac-c7758aed432e"
+        ],
         "friends": []
     },
     "haha": {
@@ -24,7 +27,10 @@
         "name": "Anshul Agrawal",
         "password": "daddy",
         "userType": "ATTENDEE",
-        "eventsAttending": ["8b77ec2b-00da-4893-9280-f8fbe1c53e5e"],
+        "eventsAttending": [
+            "8b77ec2b-00da-4893-9280-f8fbe1c53e5e",
+            "a952787e-851b-40a2-90ac-c7758aed432e"
+        ],
         "friends": []
     },
     "abc": {
@@ -45,7 +51,10 @@
         "name": "Ernie",
         "password": "orange",
         "userType": "SPEAKER",
-        "eventsAttending": ["8b77ec2b-00da-4893-9280-f8fbe1c53e5e"],
+        "eventsAttending": [
+            "8b77ec2b-00da-4893-9280-f8fbe1c53e5e",
+            "a952787e-851b-40a2-90ac-c7758aed432e"
+        ],
         "friends": []
     }
 }
