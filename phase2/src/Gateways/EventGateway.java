@@ -25,10 +25,11 @@ public class EventGateway {
         for (String eventId : JSONObject.getNames(jo)) {
             JSONObject info = (JSONObject) jo.get(eventId);
             LocalDateTime startTime = LocalDateTime.parse((CharSequence) info.get("startTime"));
+            LocalDateTime endTime = LocalDateTime.parse((CharSequence) info.get("endTime"));
             UUID id = UUID.fromString(eventId);
 
             em.addEvent((String) info.get("eventName"), (String) info.get("organizer"),
-                        startTime, (String) info.get("roomName"), (Integer) info.get("maxCapacity"), id);
+                        startTime, endTime, (String) info.get("roomName"), (Integer) info.get("maxCapacity"), id);
 
             JSONArray attendees = (JSONArray) info.get("attendees");
 
@@ -55,6 +56,7 @@ public class EventGateway {
             map.put("organizer", eventManager.getEventOrganizer(id));
             map.put("attendees", eventManager.getEventAttendees(id));
             map.put("startTime", eventManager.getEventStartTime(id));
+            map.put("endTime", eventManager.getEventEndTime(id));
             map.put("roomName", eventManager.getEventRoomName(id));
             map.put("maxCapacity", eventManager.getEventMaxCapacity(id));
 

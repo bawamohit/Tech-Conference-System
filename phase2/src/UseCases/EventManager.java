@@ -139,11 +139,11 @@ public class EventManager {
     }
 
     /**
-     * Implements Getter, getEventStartTime, for an event in events.
+     * Implements Getter, getEventEndTime, for an event in events.
      *
-     * @param eventID ID of the event to retrieve the start time for
+     * @param eventID ID of the event to retrieve the end time for
      *
-     * @return event start time
+     * @return event end time
      */
     public LocalDateTime getEventEndTime(UUID eventID) {
         return events.get(eventID).getEndTime();

@@ -1,6 +1,7 @@
 package Controllers;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
@@ -134,30 +135,16 @@ public class OrganizerSystem extends UserSystem {
         presenter.printBackToMainMenu();
         String eventName = scanner.nextLine();
         if(eventName.equals("")) return;
-        presenter.printAsk("event's start time (enter in the format YY:MM:DD:HH:MM of a time between 9-16)");
-        presenter.printBackToMainMenu();
-        String time1 = validInput("^([0-9][0-9]):(0[1-9]|1[0-2]):([0-2][0-9]|3[0-1]):(09|1[0-6]):([0-5][0-9])$", scanner, tcs);
-        if(time1.equals("")) return;
-        int year1 = Integer.parseInt(time1.substring(0, 2));
-        int month1 = Integer.parseInt(time1.substring(3, 5));
-        int day1 = Integer.parseInt(time1.substring(6, 8));
-        int hour1 = Integer.parseInt(time1.substring(9, 11));
-        int minute1 = Integer.parseInt(time1.substring(12,14));
-        LocalDateTime startTime = LocalDateTime.of(year1, month1, day1, hour1, minute1);
-        presenter.printAsk("event's end time (enter in the format YY:MM:DD:HH:MM of a time between 9-16)");
-        presenter.printBackToMainMenu();
-        String time2 = validInput("^([0-9][0-9]):(0[1-9]|1[0-2]):([0-2][0-9]|3[0-1]):(09|1[0-6]):([0-5][0-9])$", scanner, tcs);
-        if(time2.equals("")) return;
-        int year2 = Integer.parseInt(time2.substring(0, 2));
-        int month2 = Integer.parseInt(time2.substring(3, 5));
-        int day2 = Integer.parseInt(time2.substring(6, 8));
-        int hour2 = Integer.parseInt(time2.substring(9, 11));
-        int minute2 = Integer.parseInt(time2.substring(12,14));
-        LocalDateTime endTime = LocalDateTime.of(year2, month2, day2, hour2, minute2);
+        LocalDateTime startTime = getTime(scanner, tcs, "event's start time (enter in the format YY:MM:DD:HH:MM of " +
+                "a time between 9-16)");
+        if (startTime == null) return;
+        LocalDateTime endTime = getTime(scanner, tcs, "event's end time (enter in the format YY:MM:DD:HH:MM of " +
+                "a time between 9-16)");
+        if (endTime == null) return;
         presenter.printAsk("event's room name (enter room name)");
         presenter.printBackToMainMenu();
         String roomName = scanner.nextLine();
-        if (roomName.equals("") || !isRoomOk(roomName, startTime, tcs)) return;
+        if (roomName.equals("") || !isRoomOk(roomName, startTime, endTime, tcs)) return;
         presenter.printAsk("event's maximum capacity");
         presenter.printBackToMainMenu();
         String maxCap = validInput("^[1-9][0-9]*$", scanner, tcs);
@@ -167,6 +154,20 @@ public class OrganizerSystem extends UserSystem {
         tcs.getUM().addEventAttending(username, id); //TODO organizer
         tcs.getRM().addEventToSchedule(id, roomName, startTime);
         presenter.printEventActionSuccess("created");
+    }
+
+    private LocalDateTime getTime(Scanner scanner, TechConferenceSystem tcs, String s) {
+        presenter.printAsk(s);
+        presenter.printBackToMainMenu();
+        String timeStr = validInput("^([0-9][0-9]):(0[1-9]|1[0-2]):([0-2][0-9]|3[0-1]):(09|1[0-6]):([0-5][0-9])$", scanner, tcs);
+        if (timeStr.equals("")) return null;
+        int year2 = Integer.parseInt(timeStr.substring(0, 2));
+        int month2 = Integer.parseInt(timeStr.substring(3, 5));
+        int day2 = Integer.parseInt(timeStr.substring(6, 8));
+        int hour2 = Integer.parseInt(timeStr.substring(9, 11));
+        int minute2 = Integer.parseInt(timeStr.substring(12, 14));
+        LocalDateTime time = LocalDateTime.of(year2, month2, day2, hour2, minute2);
+        return time;
     }
 
     private void removeEvent(Scanner scanner, TechConferenceSystem tcs){
@@ -227,14 +228,17 @@ public class OrganizerSystem extends UserSystem {
         return true;
     }
 
-    private boolean isRoomOk(String roomName, LocalDateTime startTime, TechConferenceSystem tcs){
+    private boolean isRoomOk(String roomName, LocalDateTime newST, LocalDateTime newET, TechConferenceSystem tcs){
         if (!tcs.getRM().getRooms().contains(roomName)) {
             presenter.printDNE("room");
             return false;
         }
-        if (!tcs.getRM().canAddEvent(roomName, startTime)){
-            presenter.printObjUnavailable("room at this time");
-            return false;
+        HashMap<LocalDateTime, UUID> schedule = tcs.getRM().getRoomSchedule(roomName);
+        for (LocalDateTime existingST: schedule.keySet()) {
+            if (newET.isAfter(existingST) || newST.isBefore(tcs.getEM().getEventEndTime(schedule.get(existingST)))) {
+                presenter.printObjUnavailable("room at this time");
+                return false;
+            }
         }
         return true;
     }
