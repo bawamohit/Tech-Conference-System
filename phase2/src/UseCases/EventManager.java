@@ -109,7 +109,7 @@ public class EventManager {
     public List<UUID> getAvailableEvents(LocalDateTime currTime) {
         ArrayList<UUID> availableEvents = new ArrayList<>();
         for (UUID id: events.keySet()){
-            if (!events.get(id).getStartTime().isBefore(currTime) && !isFull(id)){
+            if (currTime.isBefore(events.get(id).getStartTime())){
                     availableEvents.add(id);
                 }
         }

@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.UUID;
 
+
 public class EventGateway {
 
     public EventManager readFromFile(String filepath) throws IOException {
@@ -29,7 +30,7 @@ public class EventGateway {
             UUID id = UUID.fromString(eventId);
 
             em.addEvent((String) info.get("eventName"), (String) info.get("organizer"),
-                        startTime, endTime, (String) info.get("roomName"), (Integer) info.get("maxCapacity"), id);
+                    startTime, endTime, (String) info.get("roomName"), (Integer) info.get("maxCapacity"), id);
 
             JSONArray attendees = (JSONArray) info.get("attendees");
 

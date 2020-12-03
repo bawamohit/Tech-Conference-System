@@ -29,16 +29,6 @@ public class AttendeeSystem extends UserSystem{
             String choice = scanner.nextLine();
             List<UUID> openEvents = tcs.getEM().getAvailableEvents(LocalDateTime.now());
             List<UUID> userEventList = tcs.getUM().getEventsAttending(username);
-            List<UUID> availEvents = new ArrayList<>();
-            for (UUID id: openEvents){ //TODO check if attendee is speaking at this event
-                for (UUID id2: userEventList){
-                    if (!tcs.getEM().scheduleNotOverlap(tcs.getEM().getEventStartTime(id),
-                            tcs.getEM().getEventEndTime(id), tcs.getEM().getEventStartTime(id2),
-                            tcs.getEM().getEventEndTime(id2))){
-                        availEvents.add(id2);
-                    }
-                }
-            }
 
             switch (choice) {
                 case "0":
@@ -52,7 +42,7 @@ public class AttendeeSystem extends UserSystem{
                     }
                     break;
                 case "2":  //view available events
-                    String formattedOutput = formatInfo(tcs.getEM().getEventsStrings(availEvents));
+                    String formattedOutput = formatInfo(tcs.getEM().getEventsStrings(openEvents));
                     if (formattedOutput.equals("")) {
                         presenter.printNoEventsAvailable("sign-up");
                     }
@@ -65,17 +55,21 @@ public class AttendeeSystem extends UserSystem{
                     break;
 
                 case "4":  //signup event
-                    if(availEvents.isEmpty()){
+                    if(openEvents.isEmpty()){
                         presenter.printNoEventsAvailable("sign-up");
                         break;
                     }
-                    List<String> eventInfo = tcs.getEM().getEventsStrings(availEvents);
+                    List<String> eventInfo = tcs.getEM().getEventsStrings(openEvents);
                     presenter.printAskSignUp();
                     presenter.printAvailableEvents(formatInfo(eventInfo));
                     presenter.printBackToMainMenu();
-                    choice = validInput("^[0-" + (availEvents.size() - 1) + "]$|^.{0}$", scanner ,tcs);
+                    choice = validInput("^[0-" + (openEvents.size() - 1) + "]$|^.{0}$", scanner ,tcs);
                     if(choice.equals("")) break;
-                    UUID id = availEvents.get(Integer.parseInt(choice));
+                    UUID id = openEvents.get(Integer.parseInt(choice));
+                    if (!tcs.getEM().isFull(id)){
+                        presenter.printEventFull();
+                        break;
+                    }
                     if (isAttendeeFree(username, id, tcs) && tcs.getEM().addAttendee(id, username)){
                         tcs.getUM().addEventAttending(username, id);
                         presenter.printEventSignUpSuccess();

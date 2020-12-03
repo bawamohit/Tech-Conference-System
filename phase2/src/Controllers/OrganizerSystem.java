@@ -135,10 +135,10 @@ public class OrganizerSystem extends UserSystem {
         presenter.printBackToMainMenu();
         String eventName = scanner.nextLine();
         if(eventName.equals("")) return;
-        LocalDateTime startTime = getTime(scanner, tcs, "event's start time (enter in the format YY:MM:DD:HH:MM of " +
+        LocalDateTime startTime = getTime(scanner, tcs, "event's start time (enter in the format YYYY:MM:DD:HH:MM of " +
                 "a time between 9-16)");
         if (startTime == null) return;
-        LocalDateTime endTime = getTime(scanner, tcs, "event's end time (enter in the format YY:MM:DD:HH:MM of " +
+        LocalDateTime endTime = getTime(scanner, tcs, "event's end time (enter in the format YYYY:MM:DD:HH:MM of " +
                 "a time between 9-16)");
         if (endTime == null) return;
         presenter.printAsk("event's room name (enter room name)");
@@ -161,11 +161,11 @@ public class OrganizerSystem extends UserSystem {
         presenter.printBackToMainMenu();
         String timeStr = validInput("^([0-9][0-9]):(0[1-9]|1[0-2]):([0-2][0-9]|3[0-1]):(09|1[0-6]):([0-5][0-9])$", scanner, tcs);
         if (timeStr.equals("")) return null;
-        int year2 = Integer.parseInt(timeStr.substring(0, 2));
-        int month2 = Integer.parseInt(timeStr.substring(3, 5));
-        int day2 = Integer.parseInt(timeStr.substring(6, 8));
-        int hour2 = Integer.parseInt(timeStr.substring(9, 11));
-        int minute2 = Integer.parseInt(timeStr.substring(12, 14));
+        int year2 = Integer.parseInt(timeStr.substring(0, 4));
+        int month2 = Integer.parseInt(timeStr.substring(5, 7));
+        int day2 = Integer.parseInt(timeStr.substring(8, 10));
+        int hour2 = Integer.parseInt(timeStr.substring(11, 13));
+        int minute2 = Integer.parseInt(timeStr.substring(14, 16));
         LocalDateTime time = LocalDateTime.of(year2, month2, day2, hour2, minute2);
         return time;
     }

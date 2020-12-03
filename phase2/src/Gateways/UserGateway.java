@@ -25,8 +25,21 @@ public class UserGateway {
 
         for (String username : JSONObject.getNames(jo)) {
             JSONObject info = (JSONObject) jo.get(username);
-            UserType userType = UserType.valueOf((String) info.get("userType"));
-
+            UserType userType;
+            switch ((String) info.get("userType")) {
+                case "ATTENDEE":
+                    userType = UserType.ATTENDEE;
+                    break;
+                case "ORGANIZER":
+                    userType = UserType.ORGANIZER;
+                    break;
+                case "SPEAKER":
+                    userType = UserType.SPEAKER;
+                    break;
+                default:
+                    userType = null;
+                    break;
+            }
             um.registerUser(userType, (String) info.get("name"), username, (String) info.get("password"));
 
             JSONArray eventIds = (JSONArray) info.get("eventsAttending");

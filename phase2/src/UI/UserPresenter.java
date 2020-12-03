@@ -267,6 +267,5 @@ public class UserPresenter {
     public void printSignUpSuccessful(String name){
         System.out.println("Congratulations! " + name + " is now a valued member of the lamest technology conference ever!");
     }
-
 }
 

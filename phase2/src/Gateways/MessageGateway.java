@@ -38,10 +38,10 @@ public class MessageGateway {
                                             time);
                     }
                     else {
-                        mm.addToReceiverChat((String) receiver,
-                                            (String) sender,
-                                            (String) messageInfo.get("content"),
-                                             time);
+                        mm.addToReceiverChat((String) sender,
+                                (String) receiver,
+                                (String) messageInfo.get("content"),
+                                time);
                     }
                 }
             }
