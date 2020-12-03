@@ -33,13 +33,13 @@ public class MessageGateway {
 
                     if (messageInfo.get("sender").equals(sender)) {
                         mm.addToSenderChat((String) sender,
-                                            (String) receiver,
-                                            (String) messageInfo.get("content"),
-                                            time);
+                                (String) receiver,
+                                (String) messageInfo.get("content"),
+                                time);
                     }
                     else {
-                        mm.addToReceiverChat((String) sender,
-                                (String) receiver,
+                        mm.addToReceiverChat((String) receiver,
+                                (String) sender,
                                 (String) messageInfo.get("content"),
                                 time);
                     }

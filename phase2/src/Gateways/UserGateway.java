@@ -6,7 +6,6 @@ import UseCases.UserManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,21 +24,8 @@ public class UserGateway {
 
         for (String username : JSONObject.getNames(jo)) {
             JSONObject info = (JSONObject) jo.get(username);
-            UserType userType;
-            switch ((String) info.get("userType")) {
-                case "ATTENDEE":
-                    userType = UserType.ATTENDEE;
-                    break;
-                case "ORGANIZER":
-                    userType = UserType.ORGANIZER;
-                    break;
-                case "SPEAKER":
-                    userType = UserType.SPEAKER;
-                    break;
-                default:
-                    userType = null;
-                    break;
-            }
+            UserType userType = UserType.valueOf((String) info.get("userType"));
+
             um.registerUser(userType, (String) info.get("name"), username, (String) info.get("password"));
 
             JSONArray eventIds = (JSONArray) info.get("eventsAttending");
