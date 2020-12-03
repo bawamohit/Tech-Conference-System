@@ -96,7 +96,7 @@ public class OrganizerSystem extends UserSystem {
         if(roomName.equals("")) return;
         presenter.printAsk("new room's maximum capacity");
         presenter.printBackToMainMenu();
-        String roomCap = validInput("^[1-9][0-9]*$", scanner, tcs);
+        String roomCap = validInput("^[1-9][0-9]*$|^.{0}$", scanner, tcs);
         if(roomCap.equals("")) return;
         if (tcs.getRM().addRoom(roomName, Integer.parseInt(roomCap))) {
             presenter.printSuccess();
@@ -120,7 +120,7 @@ public class OrganizerSystem extends UserSystem {
         UUID id = openEvents.get(Integer.parseInt(choice));
         presenter.printAsk("new maximum capacity");
         presenter.printBackToMainMenu();
-        String maxCap = validInput("^[1-9][0-9]*$", scanner, tcs);
+        String maxCap = validInput("^[1-9][0-9]*$|^.{0}$", scanner, tcs);
         if(maxCap.equals("")) return;
         if (!isNewCapacityOk(id, Integer.parseInt(maxCap), tcs)){
             presenter.printInvalidInput();
@@ -147,7 +147,7 @@ public class OrganizerSystem extends UserSystem {
         if (roomName.equals("") || !isRoomOk(roomName, startTime, endTime, tcs)) return;
         presenter.printAsk("event's maximum capacity");
         presenter.printBackToMainMenu();
-        String maxCap = validInput("^[1-9][0-9]*$", scanner, tcs);
+        String maxCap = validInput("^[1-9][0-9]*$|^.{0}$", scanner, tcs);
         if(maxCap.equals("")) return;
         if (!tcs.getRM().canSetCapacity(roomName, Integer.parseInt(maxCap))) return;
         UUID id = tcs.getEM().addEvent(eventName, username, startTime, endTime, roomName, Integer.parseInt(maxCap));
