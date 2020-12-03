@@ -159,7 +159,7 @@ public class OrganizerSystem extends UserSystem {
     private LocalDateTime getTime(Scanner scanner, TechConferenceSystem tcs, String s) {
         presenter.printAsk(s);
         presenter.printBackToMainMenu();
-        String timeStr = validInput("^([0-9][0-9]):(0[1-9]|1[0-2]):([0-2][0-9]|3[0-1]):(09|1[0-6]):([0-5][0-9])$", scanner, tcs);
+        String timeStr = validInput("^([0-9][0-9][0-9][0-9]):(0[1-9]|1[0-2]):([0-2][0-9]|3[0-1]):(09|1[0-6]):([0-5][0-9])$", scanner, tcs);
         if (timeStr.equals("")) return null;
         int year2 = Integer.parseInt(timeStr.substring(0, 4));
         int month2 = Integer.parseInt(timeStr.substring(5, 7));
