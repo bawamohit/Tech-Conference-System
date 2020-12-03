@@ -176,6 +176,13 @@ public class UserPresenter {
      */
     public void printUnprocessed() { System.out.println("Sorry, your request didn't go through. Please try again!"); }
 
+    /**
+     * Prints a notification that there are no events available for a certain action.
+     */
+    public void printNoEventsAvailable(String action) {
+        System.out.println("There are no events available for " + action + " :(");
+    }
+
 // Action status
     /**
      * Prints success message.

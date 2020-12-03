@@ -85,6 +85,21 @@ public class RoomManager {
         }
         return true;
     }
+
+    /**
+     * Implements checker, canSetCapacity, for an event in a given room
+     *
+     * @param roomName name of room to compare new capacity with
+     * @param newCapacity new capacity for a certain event occurring in room
+     *
+     * @return a boolean indicating if newCapacity can be set
+     */
+    public boolean canSetCapacity(String roomName, int newCapacity) {
+        int capacity = getRoomCapacity(roomName);
+        if (newCapacity > capacity) return false;
+        return true;
+    }
+
     /**
      * Implements modifier, addEventToSchedule, for event in a room.
      *

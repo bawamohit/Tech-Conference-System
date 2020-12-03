@@ -53,7 +53,7 @@ public class AttendeeSystem extends UserSystem{
                 case "2":  //view available events
                     String formattedOutput = formatInfo(tcs.getEM().getEventsStrings(availEvents));
                     if (formattedOutput.equals("")) {
-                        presenter.printNoEventsAvailable();
+                        presenter.printNoEventsAvailable("sign-up");
                     }
                     else{
                         presenter.printAvailableEvents(formattedOutput);
@@ -65,7 +65,7 @@ public class AttendeeSystem extends UserSystem{
 
                 case "4":  //signup event
                     if(availEvents.isEmpty()){
-                        presenter.printNoEventsAvailable();
+                        presenter.printNoEventsAvailable("sign-up");
                         break;
                     }
                     List<String> eventInfo = tcs.getEM().getEventsStrings(availEvents);
@@ -85,7 +85,7 @@ public class AttendeeSystem extends UserSystem{
 
                 case "5":  //cancel event
                     if(userEventList.isEmpty()){
-                        presenter.printNoEventsAvailable();
+                        presenter.printNoEventsAvailable("cancellation");
                         break;
                     }
                     while(true){

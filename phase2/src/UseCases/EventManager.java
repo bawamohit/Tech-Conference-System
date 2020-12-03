@@ -142,11 +142,24 @@ public class EventManager {
      *
      * @param eventID ID of the event to check availability for; should be a valid event in list of existing events
      *
-     * @return true if the number of attendees exceeds event's maximum capacity and false otherwise
+     * @return a boolean indicating if the event is full
      */
     public boolean isFull(UUID eventID) {
         Event e = events.get(eventID);
         return (e.getAttendees().size() >= e.getMaxCapacity());
+    }
+
+    /**
+     * Implements Checker, canChangeCapacity, for an event's capacity.
+     *
+     * @param eventID ID of the event to check capacity for
+     * @param newCapacity new capacity to change to
+     *
+     * @return a boolean indicating if event's maximum capacity can be changed to newCapacity
+     */
+    public boolean canChangeCapacity(UUID eventID, int newCapacity) {
+        Event e = events.get(eventID);
+        return (e.getAttendees().size() <= newCapacity);
     }
 
     /**

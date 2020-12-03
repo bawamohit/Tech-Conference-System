@@ -9,7 +9,7 @@ public class OrganizerPresenter extends UserPresenter {
         printCommonMenu();
         System.out.println(
                 "2. Create Event\n" +
-                        "3. Reschedule Event\n" +
+                        "3. Change Event Capacity\n" +
                         "4. Remove Event\n" +
                         "5. Create Speaker Account\n" +
                         "6. Create Room\n" +

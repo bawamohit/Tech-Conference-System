@@ -72,10 +72,4 @@ public class AttendeePresenter extends UserPresenter {
         System.out.println("You have not signed up to this event.");
     }
 
-    /**
-     * Prints a notification that there are no events available for sign-up.
-     */
-    public void printNoEventsAvailable() {
-        System.out.println("There are no events available for sign-up :(");
-    }
 }
