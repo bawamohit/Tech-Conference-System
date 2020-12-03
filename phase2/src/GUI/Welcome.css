@@ -1,42 +1,39 @@
 .root {
-    -fx-background-image: url("./Images/salmon.jpg");
+    -fx-background-image: url("./Images/bg.jpg");
 }
 
 .label {
-    -fx-font-size: 12px;
+    -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-text-fill: #86092f;
-    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+    -fx-text-fill: black;
 }
 
 #welcome {
     -fx-font-size: 32px;
     -fx-font-weight: normal;
     -fx-font-family: "Arial Black";
-    -fx-fill: #e9aacb;
+    -fx-fill: black;
     -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
 }
 #prompt {
     -fx-fill: FIREBRICK;
     -fx-font-weight: bold;
-    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
 }
 
 .button {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-font-family: "Arial Narrow";
     -fx-font-weight: bold;
-    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-background-color: white;
 }
 
 .button:hover {
-    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+    -fx-background-color: linear-gradient(whitesmoke, lightgrey);
 }
 
 #signUp{
-    -fx-text-fill: orange;
-    -fx-font-size: 10;
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
     -fx-font-weight: normal;
     -fx-border-color: transparent;
     -fx-background-color: transparent;
