@@ -5,10 +5,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="center" hgap="10" prefHeight="300.0" prefWidth="300.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AttendeeMenu.AttendeeMenuController">
+<GridPane alignment="center" hgap="10" prefHeight="300.0" prefWidth="300.0" vgap="10"
+          xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.AttendeeMenu.AttendeeMenuController">
     <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
           <VBox fillWidth="false" prefHeight="99.0" prefWidth="164.0" snapToPixel="false">
-              <Button fx:id="messageButton" mnemonicParsing="false" onAction="#handleMessageButtonAction" prefHeight="33.0" prefWidth="192.0" text="Messages" />
+              <Button fx:id="messageButton" mnemonicParsing="false" onAction="#handleMessageButtonAction" prefHeight="33.0" prefWidth="192.0" text="Message" />
               <Button fx:id="eventButton" mnemonicParsing="false" onAction="#handleEventButtonAction" prefHeight="33.0" prefWidth="195.0" text="Events" />
               <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#handleLogOutButtonAction" prefHeight="33.0" prefWidth="200.0" text="Log Out" />
           </VBox>

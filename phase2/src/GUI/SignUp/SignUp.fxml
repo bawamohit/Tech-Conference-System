@@ -26,30 +26,30 @@
                GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
     <HBox spacing="10" alignment="bottom_right"
-          GridPane.columnIndex="3" GridPane.rowIndex="1">
+          GridPane.columnIndex="1" GridPane.rowIndex="2">
         <Button text="Check Availability"
                 onAction="#handleCheckAvailableButtonAction"/>
     </HBox>
 
     <Label text="Password:"
-           GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-
-    <PasswordField fx:id="passwordField"
-                   GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-    <Label text="Re-enter Password:"
            GridPane.columnIndex="0" GridPane.rowIndex="3"/>
 
-    <PasswordField fx:id="passwordFieldRe"
+    <PasswordField fx:id="passwordField"
                    GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-
-    <Label text="Preferred Name:"
+    <Label text="Re-enter Password:"
            GridPane.columnIndex="0" GridPane.rowIndex="4"/>
 
+    <PasswordField fx:id="passwordFieldRe"
+                   GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+    <Label text="Preferred Name:"
+           GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+
     <TextField fx:id="nameField"
-               GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+               GridPane.columnIndex="1" GridPane.rowIndex="5"/>
 
     <HBox spacing="10"
-          GridPane.columnIndex="0" GridPane.rowIndex="5">
+          GridPane.columnIndex="0" GridPane.rowIndex="6">
         <fx:define>
             <ToggleGroup fx:id="group" />
         </fx:define>
@@ -58,13 +58,13 @@
     </HBox>
 
     <HBox spacing="10" alignment="bottom_right"
-          GridPane.columnIndex="1" GridPane.rowIndex="6">
+          GridPane.columnIndex="1" GridPane.rowIndex="7">
         <Button text="Sign Up"
                 onAction="#handleSignUpButtonAction"/>
     </HBox>
 
     <HBox spacing="10" alignment="bottom_left"
-          GridPane.columnIndex="0" GridPane.rowIndex="6">
+          GridPane.columnIndex="0" GridPane.rowIndex="7">
         <Button text="Back"
                 onAction="#handleBackButtonAction"/>
     </HBox>

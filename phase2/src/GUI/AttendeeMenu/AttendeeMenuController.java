@@ -23,11 +23,13 @@ public class AttendeeMenuController implements GUIController {
     }
 
     @FXML protected void handleMessageButtonAction(ActionEvent event) {
-        prompt.setText("sike");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Message/Message.fxml"));
+        mainController.setNewScene(event, loader);
     }
 
-    @FXML protected void handleEventButtonAction(ActionEvent actionEvent) {
-        mainController.setNewScene(actionEvent, "./EventMenu/EventMenu.fxml");
+    @FXML protected void handleEventButtonAction(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("EventMenu/EventMenu.fxml"));
+        mainController.setNewScene(event, loader);
     }
 
     @FXML public void handleLogOutButtonAction(ActionEvent event) throws IOException {

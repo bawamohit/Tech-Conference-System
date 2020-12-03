@@ -11,7 +11,7 @@
     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
       <children>
           <VBox prefHeight="176.0" prefWidth="123.0" snapToPixel="false">
-              <Button fx:id="messageButton" onAction="#handleChillButtonAction" prefHeight="26.0" prefWidth="233.0" text="Messages" />
+              <Button fx:id="messageButton" onAction="#handleChillButtonAction" prefHeight="26.0" prefWidth="233.0" text="Message" />
               <Button fx:id="creatEventButton" onAction="#handleChillButtonAction" prefHeight="25.0" prefWidth="220.0" text="Create Events" />
               <Button fx:id="rescheduleEventButton" onAction="#handleChillButtonAction" prefHeight="25.0" prefWidth="209.0" text="Reschedule Events" />
               <Button fx:id="removeEventButton" onAction="#handleChillButtonAction" prefHeight="25.0" prefWidth="238.0" text="Remove Events" />

@@ -1,13 +1,13 @@
-package GUI.EventMenu;
+package GUI.AttendeeMenu.EventMenu;
 
 import GUI.GUIController;
 import GUI.MainController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -53,7 +53,8 @@ public class EventMenuController implements GUIController {
     }
 
     public void handleBackButtonAction(ActionEvent event) {
-        mainController.setNewScene(event, "AttendeeMenu/AttendeeMenu.fxml");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../AttendeeMenu.fxml"));
+        mainController.setNewScene(event, loader);
     }
 
     private String formatInfo(List<String> strings){

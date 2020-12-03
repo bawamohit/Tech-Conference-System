@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="center" hgap="10" prefHeight="300.0" prefWidth="300.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.202-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.EventMenu.EventMenuController">
+<GridPane alignment="center" hgap="10" prefHeight="300.0" prefWidth="300.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.202-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AttendeeMenu.EventMenu.EventMenuController">
     <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
     <VBox prefHeight="160.0" prefWidth="200.0" snapToPixel="false">
         <Button fx:id="availableEventButton" mnemonicParsing="false" onAction="#handleAvailEventButtonAction" prefHeight="40.0" prefWidth="200.0" snapToPixel="false" text="View Available Events" />

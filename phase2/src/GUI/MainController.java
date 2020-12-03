@@ -17,6 +17,7 @@ public class MainController implements GUIController{
     private String welcomeFXMLPath;
     private UserManager userManager;
     private EventManager eventManager;
+    private MessageManager messageManager;
 
     @FXML private Text prompt;
     @FXML private TextField usernameField;
@@ -25,12 +26,15 @@ public class MainController implements GUIController{
     public void initData(MainController mainController){
         this.welcomeFXMLPath = mainController.getWelcomeFXMLPath();
         this.userManager = mainController.getUserManager();
+        this.messageManager = mainController.getMessageManager();
     }
 
-    public void initData(String welcomeFXMLPath, UserManager userManager, EventManager eventManager) {
+    public void initData(String welcomeFXMLPath, UserManager userManager, EventManager eventManager,
+                         MessageManager messageManager) {
         this.welcomeFXMLPath = welcomeFXMLPath;
         this.userManager = userManager;
         this.eventManager = eventManager;
+        this.messageManager = messageManager;
     }
 
     public String getWelcomeFXMLPath(){
@@ -45,21 +49,27 @@ public class MainController implements GUIController{
         return eventManager;
     }
 
+    public MessageManager getMessageManager() { return messageManager; }
+
     @FXML protected void handleSignInButtonAction(ActionEvent event) {
         String username = usernameField.getText();
         String pw = passwordField.getText();
         if (userManager.verifyLogin(username, pw)) {
+            FXMLLoader loader = null;
             switch (userManager.getUserType(username)){
                 case ATTENDEE:
-                    setNewScene(event, "AttendeeMenu/AttendeeMenu.fxml");
+                    loader = new FXMLLoader(getClass().getResource("AttendeeMenu/AttendeeMenu.fxml"));
+                    setNewScene(event, loader);
                     break;
 
                 case ORGANIZER:
-                    setNewScene(event, "OrganizerMenu/OrganizerMenu.fxml");
+                    loader = new FXMLLoader(getClass().getResource("OrganizerMenu/OrganizerMenu.fxml"));
+                    setNewScene(event, loader);
                     break;
 
                 case SPEAKER:
-                    setNewScene(event, "SpeakerMenu/SpeakerMenu.fxml");
+                    loader = new FXMLLoader(getClass().getResource("SpeakerMenu/SpeakerMenu.fxml"));
+                    setNewScene(event, loader);
                     break;
             }
         } else{
@@ -68,11 +78,12 @@ public class MainController implements GUIController{
     }
 
     @FXML protected void handleSignUpButtonAction(ActionEvent event){
-        setNewScene(event, "SignUp/SignUp.fxml");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("SignUp/SignUp.fxml"));
+        setNewScene(event, loader);
     }
 
-    public void setNewScene(ActionEvent event, String path) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+    public void setNewScene(ActionEvent event, FXMLLoader loader) {
+        //TODO new FXMLLoader(getClass().getResource("")); //relative or absolute?
         Parent root = null;
         try {
             root = loader.load();
@@ -88,7 +99,6 @@ public class MainController implements GUIController{
         stage.setScene(scene);
         stage.show();
     }
-    //TODO create changeScene so we can have a back button
 
     public void handleLogOutButtonAction(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(welcomeFXMLPath));
