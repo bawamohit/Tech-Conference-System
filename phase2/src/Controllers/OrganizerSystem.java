@@ -1,6 +1,7 @@
 package Controllers;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
@@ -134,29 +135,39 @@ public class OrganizerSystem extends UserSystem {
         presenter.printBackToMainMenu();
         String eventName = scanner.nextLine();
         if(eventName.equals("")) return;
-        presenter.printAsk("event's start time (enter in the format YYYY:MM:DD:HH:MM of a time between 9-16)");
-        presenter.printBackToMainMenu();
-        String time = validInput("^([0-9][0-9][0-9][0-9]):(0[1-9]|1[0-2]):([0-2][0-9]|3[0-1]):(09|1[0-6]):([0-5][0-9])$", scanner, tcs);
-        if(time.equals("")) return;
-        int year = Integer.parseInt(time.substring(0, 4));
-        int month = Integer.parseInt(time.substring(5, 7));
-        int day = Integer.parseInt(time.substring(8, 10));
-        int hour = Integer.parseInt(time.substring(11, 13));
-        int minute = Integer.parseInt(time.substring(14,16));
-        LocalDateTime startTime = LocalDateTime.of(year, month, day, hour, minute);
+        LocalDateTime startTime = getTime(scanner, tcs, "event's start time (enter in the format YY:MM:DD:HH:MM of " +
+                "a time between 9-16)");
+        if (startTime == null) return;
+        LocalDateTime endTime = getTime(scanner, tcs, "event's end time (enter in the format YY:MM:DD:HH:MM of " +
+                "a time between 9-16)");
+        if (endTime == null) return;
         presenter.printAsk("event's room name (enter room name)");
         presenter.printBackToMainMenu();
         String roomName = scanner.nextLine();
-        if (roomName.equals("") || !isRoomOk(roomName, startTime, tcs)) return;
+        if (roomName.equals("") || !isRoomOk(roomName, startTime, endTime, tcs)) return;
         presenter.printAsk("event's maximum capacity");
         presenter.printBackToMainMenu();
         String maxCap = validInput("^[1-9][0-9]*$", scanner, tcs);
         if(maxCap.equals("")) return;
         if (!tcs.getRM().canSetCapacity(roomName, Integer.parseInt(maxCap))) return;
-        UUID id = tcs.getEM().addEvent(eventName, username, startTime, roomName, Integer.parseInt(maxCap));
+        UUID id = tcs.getEM().addEvent(eventName, username, startTime, endTime, roomName, Integer.parseInt(maxCap));
         tcs.getUM().addEventAttending(username, id); //TODO organizer
         tcs.getRM().addEventToSchedule(id, roomName, startTime);
         presenter.printEventActionSuccess("created");
+    }
+
+    private LocalDateTime getTime(Scanner scanner, TechConferenceSystem tcs, String s) {
+        presenter.printAsk(s);
+        presenter.printBackToMainMenu();
+        String timeStr = validInput("^([0-9][0-9]):(0[1-9]|1[0-2]):([0-2][0-9]|3[0-1]):(09|1[0-6]):([0-5][0-9])$", scanner, tcs);
+        if (timeStr.equals("")) return null;
+        int year2 = Integer.parseInt(timeStr.substring(0, 2));
+        int month2 = Integer.parseInt(timeStr.substring(3, 5));
+        int day2 = Integer.parseInt(timeStr.substring(6, 8));
+        int hour2 = Integer.parseInt(timeStr.substring(9, 11));
+        int minute2 = Integer.parseInt(timeStr.substring(12, 14));
+        LocalDateTime time = LocalDateTime.of(year2, month2, day2, hour2, minute2);
+        return time;
     }
 
     private void removeEvent(Scanner scanner, TechConferenceSystem tcs){
@@ -186,12 +197,13 @@ public class OrganizerSystem extends UserSystem {
         String choice = validInput("^[0-" + (availEvents.size() - 1) + "]$|^.{0}$", scanner ,tcs);
         if(choice.equals("")) return;
         UUID eventID = availEvents.get(Integer.parseInt(choice));
-        LocalDateTime time = tcs.getEM().getEventStartTime(eventID);
+        LocalDateTime startTime = tcs.getEM().getEventStartTime(eventID);
+        LocalDateTime endTime = tcs.getEM().getEventEndTime(eventID);
         presenter.printAsk("event speaker's username");
         presenter.printBackToMainMenu();
         String speakerName = validInput(".+", scanner, tcs);
         if(speakerName.equals("")) return;
-        if (!isSpeakerOk(speakerName, time, tcs)){
+        if (!isSpeakerOk(speakerName, startTime, endTime, tcs)){
             presenter.printInvalidInput();
         }
         tcs.getEM().addSpeaker(eventID, speakerName);
@@ -199,15 +211,16 @@ public class OrganizerSystem extends UserSystem {
         presenter.printSuccess();
     }
 
-    private boolean isSpeakerOk(String speaker, LocalDateTime newTime, TechConferenceSystem tcs){
+    private boolean isSpeakerOk(String speaker, LocalDateTime newST, LocalDateTime newET, TechConferenceSystem tcs){
         if(!tcs.getUM().getUsernameList().contains(speaker)){
             presenter.printDNE(speaker);
             return false;
         }
         List<UUID> speakers_events = tcs.getUM().getEventsAttending(speaker);
         for (UUID id: speakers_events){
-            LocalDateTime existingTime = tcs.getEM().getEventStartTime(id);
-            if (!tcs.getEM().scheduleNotOverlap(existingTime, newTime)){
+            LocalDateTime existingST = tcs.getEM().getEventStartTime(id);
+            LocalDateTime existingET = tcs.getEM().getEventEndTime(id);
+            if (!tcs.getEM().scheduleNotOverlap(existingST, existingET, newST, newET)){
                 presenter.printObjUnavailable("speaker");
                 return false;
             }
@@ -215,14 +228,17 @@ public class OrganizerSystem extends UserSystem {
         return true;
     }
 
-    private boolean isRoomOk(String roomName, LocalDateTime startTime, TechConferenceSystem tcs){
+    private boolean isRoomOk(String roomName, LocalDateTime newST, LocalDateTime newET, TechConferenceSystem tcs){
         if (!tcs.getRM().getRooms().contains(roomName)) {
             presenter.printDNE("room");
             return false;
         }
-        if (!tcs.getRM().canAddEvent(roomName, startTime)){
-            presenter.printObjUnavailable("room at this time");
-            return false;
+        HashMap<LocalDateTime, UUID> schedule = tcs.getRM().getRoomSchedule(roomName);
+        for (LocalDateTime existingST: schedule.keySet()) {
+            if (newET.isAfter(existingST) || newST.isBefore(tcs.getEM().getEventEndTime(schedule.get(existingST)))) {
+                presenter.printObjUnavailable("room at this time");
+                return false;
+            }
         }
         return true;
     }

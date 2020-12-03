@@ -66,7 +66,7 @@ public class AttendeeSystem extends UserSystem{
                     choice = validInput("^[0-" + (openEvents.size() - 1) + "]$|^.{0}$", scanner ,tcs);
                     if(choice.equals("")) break;
                     UUID id = openEvents.get(Integer.parseInt(choice));
-                    if (!tcs.getEM().isFull(id)){
+                    if (tcs.getEM().isFull(id)){
                         presenter.printEventFull();
                         break;
                     }
@@ -117,8 +117,9 @@ public class AttendeeSystem extends UserSystem{
 
     private boolean isAttendeeFree(String username, UUID newEvent, TechConferenceSystem tcs){
         List<UUID> userEvents = tcs.getUM().getEventsAttending(username);
-        for (UUID events :userEvents){
-            if (!tcs.getEM().timeNotOverlap(events, newEvent)){
+        for (UUID id :userEvents){
+            if (!tcs.getEM().scheduleNotOverlap(tcs.getEM().getEventStartTime(id), tcs.getEM().getEventEndTime(id),
+                    tcs.getEM().getEventStartTime(newEvent), tcs.getEM().getEventEndTime(newEvent))){
                 return false;
             }
         }
