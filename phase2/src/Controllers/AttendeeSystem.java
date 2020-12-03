@@ -66,7 +66,7 @@ public class AttendeeSystem extends UserSystem{
                     choice = validInput("^[0-" + (openEvents.size() - 1) + "]$|^.{0}$", scanner ,tcs);
                     if(choice.equals("")) break;
                     UUID id = openEvents.get(Integer.parseInt(choice));
-                    if (tcs.getEM().isFull(id)){
+                    if (!tcs.getEM().isFull(id)){
                         presenter.printEventFull();
                         break;
                     }
