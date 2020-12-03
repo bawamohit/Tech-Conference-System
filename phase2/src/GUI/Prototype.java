@@ -47,6 +47,8 @@ public class Prototype extends Application{
         Scene scene = new Scene(root);
 
         primaryStage.setTitle("Conference");
+        primaryStage.setMinHeight(650);
+        primaryStage.setMinWidth(750);
         primaryStage.setScene(scene);
 
         MainController mainController = loader.getController();
