@@ -52,6 +52,10 @@ public class EventMenuController implements GUIController {
         prompt.setText("sike");
     }
 
+    public void handleBackButtonAction(ActionEvent event) {
+        mainController.setNewScene(event, "AttendeeMenu/AttendeeMenu.fxml");
+    }
+
     private String formatInfo(List<String> strings){
         StringBuilder info = new StringBuilder();
         for (int i = 0; i < strings.size(); i++){

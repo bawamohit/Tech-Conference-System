@@ -17,8 +17,8 @@ public class Prototype extends Application{
     private UserGateway userGateway;
     private EventGateway eventGateway;
     private String welcomeFXMLPath = "Welcome.fxml";
-    private File userInfo = new File("./src/Data/userManager.json");
-    private File eventInfo = new File("./src/Data/eventManager.json");
+    private File userInfo = new File("./phase2/src/Data/userManager.json");
+    private File eventInfo = new File("./phase2/src/Data/eventManager.json");
     private UserManager userManager;
     private EventManager eventManager;
 
