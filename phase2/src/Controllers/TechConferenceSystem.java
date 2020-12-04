@@ -21,10 +21,10 @@ public class TechConferenceSystem {
     private RoomGateway roomGateway;
     private MessageGateway messageGateway;
 
-    File userJSONManagerInfo = new File("./phase2/src/Data/userManager.json");
-    File eventJSONManagerInfo = new File("./phase2/src/Data/eventManager.json");
-    File roomJSONManagerInfo = new File("./phase2/src/Data/roomManager.json");
-    File messageJSONManagerInfo = new File("./phase2/src/Data/messageManager.json");
+    File userJSONManagerInfo = new File("./src/Data/userManager.json");
+    File eventJSONManagerInfo = new File("./src/Data/eventManager.json");
+    File roomJSONManagerInfo = new File("./src/Data/roomManager.json");
+    File messageJSONManagerInfo = new File("./src/Data/messageManager.json");
 
     public TechConferenceSystem () {
         try {
