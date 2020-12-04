@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="650.0" prefWidth="900.0" styleClass="root" stylesheets="@SignUp2.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SignUp.SignUpController">
+    <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="342.0" layoutX="238.0" layoutY="154.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="424.0" />
+      <Label graphicTextGap="3.0" layoutX="279.0" layoutY="242.0" lineSpacing="1.0" text="username" />
+      <PasswordField layoutX="426.0" layoutY="273.0">
+         <effect>
+            <Blend />
+         </effect></PasswordField>
+      <TextField layoutX="426.0" layoutY="238.0" styleClass="text-field" stylesheets="@SignUp2.css" />
+      <Label graphicTextGap="3.0" layoutX="279.0" layoutY="277.0" lineSpacing="1.0" text="password" />
+      <Text layoutX="259.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="sign up">
+         <font>
+            <Font name="System Bold" size="28.0" />
+         </font>
+      </Text>
+      <Label graphicTextGap="3.0" layoutX="279.0" layoutY="315.0" lineSpacing="1.0" text="re-enter password" />
+      <PasswordField layoutX="426.0" layoutY="311.0">
+         <effect>
+            <Blend />
+         </effect>
+      </PasswordField>
+      <Label graphicTextGap="3.0" layoutX="279.0" layoutY="350.0" lineSpacing="1.0" text="preferred name" />
+      <PasswordField layoutX="426.0" layoutY="346.0">
+         <effect>
+            <Blend />
+         </effect>
+      </PasswordField>
+      <RadioButton graphicTextGap="0.0" layoutX="279.0" layoutY="397.0" mnemonicParsing="false" text="attendee" />
+      <RadioButton graphicTextGap="0.0" layoutX="373.0" layoutY="397.0" mnemonicParsing="false" text="organizer" />
+      <Button layoutX="587.0" layoutY="457.0" mnemonicParsing="false" stylesheets="@SignUp2.css" text="sign up" />
+   </children>
+
+
+</AnchorPane>

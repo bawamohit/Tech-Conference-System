@@ -1,5 +1,8 @@
 .root {
-    -fx-background-image: url("../Images/bg3.jpg");
+    -fx-background-image: url("../Images/SignUp2.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
 }
 
 #signUp {
