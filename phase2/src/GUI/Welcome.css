@@ -48,10 +48,10 @@
 
 .text-field {
     -fx-border-color: #5bc8afff;
-    -fx-border-width: 0 0 1 0;
+    -fx-border-width: 0 0 1.5 0;
     -fx-background-color: transparent;
     -fx-background-radius: 0 ;
 }
 .text-field:focused {
-    -fx-background-color: -fx-focus-color, -fx-background ;
+    -fx-background-color: transparent ;
 }
