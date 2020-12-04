@@ -11,6 +11,8 @@ import java.io.IOException;
 
 public class SpeakerMenuController implements GUIController {
     private MainController mainController;
+    private String username;
+
     @FXML private Text prompt;
 
     public void initData(MainController mainController) {

@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class SignUpController implements GUIController {
+public class SignUpController{
     private MainController mainController;
 
     @FXML private TextField usernameField;

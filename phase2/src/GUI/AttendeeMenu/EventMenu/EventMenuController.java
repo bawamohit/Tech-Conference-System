@@ -18,6 +18,7 @@ public class EventMenuController implements GUIController {
     public Button signUpEventButton;
     public Button cancelEventButton;
     private MainController mainController;
+    private String username;
     @FXML private Text prompt;
 
     @Override

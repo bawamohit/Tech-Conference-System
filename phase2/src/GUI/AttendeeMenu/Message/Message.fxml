@@ -8,6 +8,14 @@
 
 <GridPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="GUI.AttendeeMenu.DashboardController" alignment="center" hgap="10" vgap="10" prefHeight="650" prefWidth="750">
+            fx:controller="GUI.AttendeeMenu.Message.MessageController"
+            prefHeight="400.0">
+
+
+
+    <ScrollPane prefWidth="500" fitToWidth="true" fx:id="container">
+        <VBox alignment="center" fx:id="chatsContainer">
+        </VBox>
+    </ScrollPane>
 
 </GridPane>

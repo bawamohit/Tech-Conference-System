@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="GUI.AttendeeGUI.Message.MessageController"
+          prefHeight="400.0" prefWidth="600.0">
+    <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
+
+    <TextField fx:id="searchField" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+    <Button text="+" onAction="#handleNewChatButtonAction" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+    <ScrollPane prefWidth="500" prefHeight="600" fitToWidth="true" fx:id="container" GridPane.columnIndex="0" GridPane.rowIndex="1">
+        <VBox alignment="center" fx:id="chatsContainer">
+        </VBox>
+    </ScrollPane>
+
+</GridPane>

@@ -1,5 +1,6 @@
 package GUI;
 
+import GUI.SignUp.SignUpController;
 import UseCases.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +19,7 @@ public class MainController implements GUIController{
     private UserManager userManager;
     private EventManager eventManager;
     private MessageManager messageManager;
+    private String username;
 
     @FXML private Text prompt;
     @FXML private TextField usernameField;
@@ -27,6 +29,7 @@ public class MainController implements GUIController{
         this.welcomeFXMLPath = mainController.getWelcomeFXMLPath();
         this.userManager = mainController.getUserManager();
         this.messageManager = mainController.getMessageManager();
+        this.username = null;
     }
 
     public void initData(String welcomeFXMLPath, UserManager userManager, EventManager eventManager,
@@ -51,14 +54,21 @@ public class MainController implements GUIController{
 
     public MessageManager getMessageManager() { return messageManager; }
 
+    public String getUsername(){
+        return username;
+    }
+
     @FXML protected void handleSignInButtonAction(ActionEvent event) {
         String username = usernameField.getText();
         String pw = passwordField.getText();
         if (userManager.verifyLogin(username, pw)) {
-            FXMLLoader loader = null;
+            this.username = username;
+            UserHolder.getInstance().setUsername(username);
+            ((Node)event.getSource()).getScene().getWindow().hide();
+            FXMLLoader loader;
             switch (userManager.getUserType(username)){
                 case ATTENDEE:
-                    loader = new FXMLLoader(getClass().getResource("AttendeeMenu/AttendeeMenu.fxml"));
+                    loader = new FXMLLoader(getClass().getResource("AttendeeGUI/Dashboard.fxml"));
                     setNewScene(event, loader);
                     break;
 
@@ -79,7 +89,19 @@ public class MainController implements GUIController{
 
     @FXML protected void handleSignUpButtonAction(ActionEvent event){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("SignUp/SignUp.fxml"));
-        setNewScene(event, loader);
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Scene scene = new Scene(root);
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        SignUpController signUpController = loader.getController();
+        signUpController.initData(this);
+
+        stage.setScene(scene);
     }
 
     public void setNewScene(ActionEvent event, FXMLLoader loader) {
@@ -93,10 +115,9 @@ public class MainController implements GUIController{
         Scene scene = new Scene(root);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 
+        stage.setScene(scene);
         GUIController controller = loader.getController();
         controller.initData(this);
-
-        stage.setScene(scene);
         stage.show();
     }
 
@@ -105,9 +126,11 @@ public class MainController implements GUIController{
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.hide();
 
         GUIController controller = loader.getController();
         controller.initData(this);
+        UserHolder.getInstance().setUsername(null);
 
         stage.setScene(scene);
         stage.show();

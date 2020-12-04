@@ -1,5 +1,8 @@
 .root {
-    -fx-background-image: url("./Images/bgg.jpg");
+    -fx-background-image: url("./Images/welcome_minibkg.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
 }
 
 .label {
