@@ -21,9 +21,9 @@ public class Prototype extends Application{
     private EventGateway eventGateway;
     private MessageGateway messageGateway;
     private String welcomeFXMLPath = "Welcome.fxml";
-    private File userInfo = new File("./src/Data/userManager.json");
-    private File eventInfo = new File("./src/Data/eventManager.json");
-    private File messageInfo = new File("./src/Data/messageManager.json");
+    private File userInfo = new File("./phase2/src/Data/userManager.json");
+    private File eventInfo = new File("./phase2/src/Data/eventManager.json");
+    private File messageInfo = new File("./phase2/src/Data/messageManager.json");
     private UserManager userManager;
     private EventManager eventManager;
     private MessageManager messageManager;

@@ -16,6 +16,8 @@ import java.io.IOException;
 
 public class AttendeeMenuController implements GUIController {
     private MainController mainController;
+    private String username;
+
     @FXML private Text prompt;
 
     public void initData(MainController mainController){

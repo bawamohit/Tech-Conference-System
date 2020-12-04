@@ -17,6 +17,8 @@ import java.io.IOException;
 
 public class OrganizerMenuController implements GUIController {
     private MainController mainController;
+    private String username;
+
     @FXML private Text prompt;
 
     public void initData(MainController mainController){
