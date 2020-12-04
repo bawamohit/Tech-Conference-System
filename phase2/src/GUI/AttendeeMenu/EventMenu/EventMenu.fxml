@@ -5,14 +5,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="center" hgap="10" prefHeight="650.0" prefWidth="750.0" vgap="10" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.AttendeeMenu.EventMenu.EventMenuController">
+<GridPane alignment="center" hgap="10" prefHeight="650.0" prefWidth="750.0" styleClass="root" stylesheets="@EventMenu.css" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AttendeeMenu.EventMenu.EventMenuController">
     <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
-    <VBox prefHeight="160.0" prefWidth="200.0" snapToPixel="false">
-        <Button fx:id="availableEventButton" mnemonicParsing="false" onAction="#handleAvailEventButtonAction" prefHeight="40.0" prefWidth="200.0" snapToPixel="false" text="View Available Events" />
-        <Button fx:id="myEventButton" mnemonicParsing="false" onAction="#handleMyEventsButtonAction" prefHeight="40.0" prefWidth="200.0" text="View My Events" />
-        <Button fx:id="signUpEventButton" mnemonicParsing="false" onAction="#handleSignUpEventButtonAction" prefHeight="40.0" prefWidth="200.0" text="Register to an Event" />
-        <Button fx:id="cancelEventButton" mnemonicParsing="false" onAction="#handleCancelEventButtonAction" prefHeight="40.0" prefWidth="200.0" text="Cancel Registration" />
-        <Button fx:id="Back" onAction="#handleBackButtonAction" prefHeight="40.0" prefWidth="200.0" text="Back"/>
+    <VBox prefHeight="200" prefWidth="318.0" snapToPixel="false">
+        <Button fx:id="availableEventButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="365.0" onAction="#handleAvailEventButtonAction"  snapToPixel="false" text="View Available Events" />
+        <Button fx:id="myEventButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="365.0" onAction="#handleMyEventsButtonAction"  text="View My Events" />
+        <Button fx:id="signUpEventButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="365.0" onAction="#handleSignUpEventButtonAction"  text="Register to an Event" />
+        <Button fx:id="cancelEventButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="365.0" onAction="#handleCancelEventButtonAction"  text="Cancel Registration" />
+        <Button fx:id="Back" onAction="#handleBackButtonAction" prefHeight="40.0" prefWidth="365.0" text="Back" />
     </VBox>
 
     <Text fx:id="prompt" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />

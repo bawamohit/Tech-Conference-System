@@ -1,0 +1,33 @@
+.root {
+    -fx-background-image: url("../Images/bg3.jpg");
+}
+
+#signUp {
+    -fx-font-size: 28px;
+    -fx-font-weight: normal;
+    -fx-font-family: "Arial Black";
+    -fx-fill: #0c637d;
+    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+}
+
+.button {
+    -fx-text-fill: #064659;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: whitesmoke;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(whitesmoke, lightgrey);
+}
+
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #0b718f;
+}
+
+.radio-button{
+    -fx-text-fill: #064659;
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+}
