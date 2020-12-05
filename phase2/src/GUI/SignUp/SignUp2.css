@@ -10,18 +10,16 @@
     -fx-font-weight: normal;
     -fx-font-family: "Arial Black";
     -fx-fill: #0c637d;
-    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
 }
 
 .button {
-    -fx-text-fill: #064659;
-    -fx-font-family: "Arial Narrow";
+    -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
-    -fx-background-color: whitesmoke;
+    -fx-background-color: #6c91bfff;
 }
 
 .button:hover {
-    -fx-background-color: linear-gradient(whitesmoke, lightgrey);
+    -fx-background-color: linear-gradient(#6c91bfff, lightgrey);
 }
 
 .label {
@@ -36,7 +34,7 @@
 }
 
 .text-field {
-    -fx-border-color: #5bc8afff;
+    -fx-border-color: #6c91bfff;
     -fx-border-width: 0 0 1 0;
     -fx-background-color: transparent;
     -fx-background-radius: 0 ;
@@ -50,8 +48,8 @@
 }
 
 #signUp{
-    -fx-text-fill: #064659;
-    -fx-font-size: 14px;
+    -fx-text-fill: #6c91bfff;
+    -fx-font-size: 28px;
     -fx-font-weight: normal;
     -fx-border-color: transparent;
     -fx-background-color: transparent;

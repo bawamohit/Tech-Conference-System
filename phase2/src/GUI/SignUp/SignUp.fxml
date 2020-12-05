@@ -17,11 +17,11 @@
           styleClass="root" stylesheets="@SignUp.css">
     <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
 
-    <Text id="signUp" text="Sign Up"
+    <Text id="signUp" text="SIGN UP"
           GridPane.columnIndex="0" GridPane.rowIndex="0"
           GridPane.columnSpan="2"/>
 
-    <Label text="Username:"
+    <Label text="username:"
            GridPane.columnIndex="0" GridPane.rowIndex="1"/>
 
     <TextField fx:id="usernameField"
@@ -29,45 +29,45 @@
 
     <HBox spacing="10" alignment="bottom_right"
           GridPane.columnIndex="1" GridPane.rowIndex="2">
-        <Button text="Check Availability"
+        <Button text="check availability"
                 onAction="#handleCheckAvailableButtonAction"/>
     </HBox>
 
-    <Label text="Password:"
+    <Label text="password:"
            GridPane.columnIndex="0" GridPane.rowIndex="3"/>
 
     <PasswordField fx:id="passwordField"
                    GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-    <Label text="Re-enter Password:"
+    <Label text="re-enter password:"
            GridPane.columnIndex="0" GridPane.rowIndex="4"/>
 
     <PasswordField fx:id="passwordFieldRe"
                    GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
-    <Label text="Preferred Name:"
+    <Label text="preferred name:"
            GridPane.columnIndex="0" GridPane.rowIndex="5"/>
 
     <TextField fx:id="nameField"
                GridPane.columnIndex="1" GridPane.rowIndex="5"/>
-
+    <HBox  spacing="10" alignment="bottom_right" GridPane.columnIndex="0" GridPane.rowIndex="6" />
     <HBox spacing="10"
-          GridPane.columnIndex="0" GridPane.rowIndex="6">
+          GridPane.columnIndex="0" GridPane.rowIndex="7">
         <fx:define>
             <ToggleGroup fx:id="group" />
         </fx:define>
-        <RadioButton fx:id="radioButton" text="Attendee" toggleGroup="$group" selected="true"/>
-        <RadioButton fx:id="radioButton2" text="Organizer" toggleGroup="$group"/>
+        <RadioButton fx:id="radioButton" text="attendee" toggleGroup="$group" selected="true"/>
+        <RadioButton fx:id="radioButton2" text="organizer" toggleGroup="$group"/>
     </HBox>
-
+<!--    <HBox  spacing="6" alignment="bottom_right" GridPane.columnIndex="0" GridPane.rowIndex="8" />-->
     <HBox spacing="10" alignment="bottom_right"
-          GridPane.columnIndex="1" GridPane.rowIndex="7">
-        <Button text="Sign Up"
+          GridPane.columnIndex="1" GridPane.rowIndex="9">
+        <Button text="sign up"
                 onAction="#handleSignUpButtonAction"/>
     </HBox>
 
     <HBox spacing="10" alignment="bottom_left"
-          GridPane.columnIndex="0" GridPane.rowIndex="7">
-        <Button text="Back"
+          GridPane.columnIndex="0" GridPane.rowIndex="9">
+        <Button text="back"
                 onAction="#handleBackButtonAction"/>
     </HBox>
 

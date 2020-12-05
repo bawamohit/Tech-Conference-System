@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -37,6 +38,11 @@ public class MainController implements GUIController{
         this.userManager = ManagersStorage.getInstance().getUserManager();
         this.eventManager = ManagersStorage.getInstance().getEventManager();
         this.messageManager = ManagersStorage.getInstance().getMessageManager();
+//        Font.loadFont(getClass().getResourceAsStream("/Resources/MontserratBlack.ttf"), 14);
+//        Font.loadFont(getClass().getResourceAsStream("/Resources/MontserratBold.ttf"), 14);
+//        Font.loadFont(getClass().getResourceAsStream("/Resources/MontserratExtrabold.ttf"), 14);
+//        Font.loadFont(getClass().getResourceAsStream("/Resources/MontserratMed.ttf"), 14);
+//        Font.loadFont(getClass().getResourceAsStream("/Resources/MontserratReg.ttf"), 14);
     }
 
     public String getWelcomeFXMLPath(){
