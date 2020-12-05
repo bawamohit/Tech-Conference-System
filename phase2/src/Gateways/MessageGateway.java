@@ -25,8 +25,10 @@ public class MessageGateway {
 
         for (Object sender : jo.names()) {
             JSONObject jo2 = (JSONObject) jo.get((String) sender);
+            if (jo2.names() == null) continue;
             for (Object receiver : jo2.names()) {
                 JSONArray messages = jo2.getJSONArray((String) receiver);
+                if (messages == null) continue;
                 for (Object message : messages) {
                     JSONObject messageInfo = (JSONObject) message;
                     LocalDateTime time = LocalDateTime.parse((CharSequence) messageInfo.get("time"));
