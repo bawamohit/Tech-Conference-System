@@ -127,6 +127,7 @@ public class MessageManager {
      *
      * @return List of usernames
      */
+    //TODO sort from lastest to oldest
     public List<String> getUsers() {
         return new ArrayList<>(chats.keySet());
     }
@@ -163,6 +164,21 @@ public class MessageManager {
         for(Message message : messages){
             inbox.add("(" + message.getTime().truncatedTo(ChronoUnit.MINUTES).toString() +") "
                     + message.getSender() + ": " +message.getContent());
+        }
+        return inbox;
+    }
+
+    //TODO javadoc
+    public List<List<String>> getInboxStringGUI(String firstUser, String secondUser){
+        List<Message> messages = chats.get(firstUser).get(secondUser);
+        List<List<String>> inbox = new ArrayList<>();
+        if(messages == null) return inbox;
+        for(Message message : messages){
+            List<String> messageInfo = new ArrayList<>();
+            messageInfo.add(message.getSender());
+            messageInfo.add(message.getTime().truncatedTo(ChronoUnit.MINUTES).toString());
+            messageInfo.add(message.getContent());
+            inbox.add(messageInfo);
         }
         return inbox;
     }

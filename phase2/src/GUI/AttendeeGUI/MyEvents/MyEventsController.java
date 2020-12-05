@@ -1,4 +1,11 @@
 package GUI.AttendeeGUI.MyEvents;
 
-public class MyEventsController {
+import GUI.GUIController;
+import GUI.MainController;
+
+public class MyEventsController implements GUIController {
+    @Override
+    public void initData(MainController mainController) {
+
+    }
 }

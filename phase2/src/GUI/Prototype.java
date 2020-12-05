@@ -52,20 +52,14 @@ public class Prototype extends Application{
         primaryStage.setScene(scene);
 
         MainController mainController = loader.getController();
-        mainController.initData(welcomeFXMLPath, userManager, eventManager, messageManager);
+        mainController.initData(welcomeFXMLPath);
         primaryStage.show();
     }
 
     @Override
     public void stop() throws Exception {
         super.stop();
-        try {
-            userGateway.saveToFile(userInfo.getPath(), userManager);
-            eventGateway.saveToFile(eventInfo.getPath(), eventManager);
-            messageGateway.saveToFile(messageInfo.getPath(), messageManager);
-        } catch (IOException e){
-            e.printStackTrace();
-        }
+        ManagersStorage.getInstance().save();
     }
 
     public static void main(String[] args) {

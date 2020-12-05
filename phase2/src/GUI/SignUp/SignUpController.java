@@ -3,6 +3,7 @@ package GUI.SignUp;
 import Entities.UserType;
 import GUI.GUIController;
 import GUI.MainController;
+import GUI.ManagersStorage;
 import UseCases.UserManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +21,7 @@ import java.io.IOException;
 
 public class SignUpController{
     private MainController mainController;
+    private UserManager userManager;
 
     @FXML private TextField usernameField;
     @FXML private TextField passwordField;
@@ -29,6 +31,10 @@ public class SignUpController{
     @FXML private ToggleGroup group;
     @FXML private RadioButton radioButton;
     @FXML private RadioButton radioButton2;
+
+    public void initialize(){
+        this.userManager = ManagersStorage.getInstance().getUserManager();
+    }
 
     public void initData(MainController mainController){
         this.mainController = mainController;
@@ -41,7 +47,7 @@ public class SignUpController{
         String name = nameField.getText();
         if(username.isEmpty() || password.isEmpty() || passwordRe.isEmpty() || name.isEmpty()){
             prompt.setText("Please complete the fields.");
-        } else if(mainController.getUserManager().isRegistered(username)){
+        } else if(userManager.isRegistered(username)){
             prompt.setText("This username is already registered.");
         } else if(!password.equals(passwordRe)){
             prompt.setText("Your passwords do not match.");
@@ -52,13 +58,13 @@ public class SignUpController{
             }else if(radioButton2.isSelected()){
                 userType = UserType.ORGANIZER;
             }
-            mainController.getUserManager().registerUser(userType, name, username, password);
+            userManager.registerUser(userType, name, username, password);
             prompt.setText("Signed Up!");
         }
     }
 
     @FXML protected void handleCheckAvailableButtonAction(ActionEvent event) {
-        if(mainController.getUserManager().isRegistered(usernameField.getText())) {
+        if(userManager.isRegistered(usernameField.getText())) {
             prompt.setText("This username is already registered.");
         }else if(usernameField.getText().isEmpty()){
             prompt.setText("Please enter an username.");

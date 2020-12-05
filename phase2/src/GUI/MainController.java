@@ -32,12 +32,11 @@ public class MainController implements GUIController{
         this.username = null;
     }
 
-    public void initData(String welcomeFXMLPath, UserManager userManager, EventManager eventManager,
-                         MessageManager messageManager) {
+    public void initData(String welcomeFXMLPath) {
         this.welcomeFXMLPath = welcomeFXMLPath;
-        this.userManager = userManager;
-        this.eventManager = eventManager;
-        this.messageManager = messageManager;
+        this.userManager = ManagersStorage.getInstance().getUserManager();
+        this.eventManager = ManagersStorage.getInstance().getEventManager();
+        this.messageManager = ManagersStorage.getInstance().getMessageManager();
     }
 
     public String getWelcomeFXMLPath(){
