@@ -13,6 +13,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
 
 import java.util.List;
 
@@ -52,6 +53,7 @@ public class ChatController implements GUIController {
     private void displayMessage(List<String> messageInfo){
         Label label=new Label(messageInfo.get(0) + "     " + messageInfo.get(1) + "\n" + messageInfo.get(2));
         label.setId(Integer.toString(index));
+        label.setTextAlignment(TextAlignment.RIGHT);
         HBox hBox=new HBox();
         hBox.getChildren().add(label);
         if(messageInfo.get(0).equals(user)){
