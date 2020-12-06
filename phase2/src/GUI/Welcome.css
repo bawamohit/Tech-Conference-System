@@ -27,6 +27,7 @@
     -fx-font-weight: bold;
     -fx-font-size: 18px;
     -fx-background-color: #f7f7f7;
+    -fx-background-radius: 10px;
 }
 
 .button:hover {

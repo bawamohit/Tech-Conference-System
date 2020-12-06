@@ -12,12 +12,32 @@
             "time": "2020-12-04T05:44:56.647",
             "content": "another one"
         }],
-        "ernie": [{
-            "receiver": "ernie",
-            "sender": "haha",
-            "time": "2020-12-04T05:44:46.214",
-            "content": "another one"
-        }],
+        "ernie": [
+            {
+                "receiver": "ernie",
+                "sender": "haha",
+                "time": "2020-12-04T05:44:46.214",
+                "content": "another one"
+            },
+            {
+                "receiver": "ernie",
+                "sender": "haha",
+                "time": "2020-12-06T05:19:40.397",
+                "content": "sdfsddfsd"
+            },
+            {
+                "receiver": "ernie",
+                "sender": "haha",
+                "time": "2020-12-06T05:19:44.613",
+                "content": "whoa"
+            },
+            {
+                "receiver": "ernie",
+                "sender": "haha",
+                "time": "2020-12-06T05:19:46.587",
+                "content": "kinda cool"
+            }
+        ],
         "haha": [{
             "receiver": "haha",
             "sender": "haha",
@@ -101,10 +121,30 @@
             "content": "dad"
         }
     ]},
-    "ernie": {"haha": [{
-        "receiver": "ernie",
-        "sender": "haha",
-        "time": "2020-12-04T05:44:46.214",
-        "content": "another one"
-    }]}
+    "ernie": {"haha": [
+        {
+            "receiver": "ernie",
+            "sender": "haha",
+            "time": "2020-12-04T05:44:46.214",
+            "content": "another one"
+        },
+        {
+            "receiver": "ernie",
+            "sender": "haha",
+            "time": "2020-12-06T05:19:40.397",
+            "content": "sdfsddfsd"
+        },
+        {
+            "receiver": "ernie",
+            "sender": "haha",
+            "time": "2020-12-06T05:19:44.613",
+            "content": "whoa"
+        },
+        {
+            "receiver": "ernie",
+            "sender": "haha",
+            "time": "2020-12-06T05:19:46.587",
+            "content": "kinda cool"
+        }
+    ]}
 }

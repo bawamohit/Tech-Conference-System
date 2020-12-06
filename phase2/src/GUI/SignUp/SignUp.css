@@ -9,7 +9,7 @@
     -fx-font-size: 28px;
     -fx-font-weight: normal;
     -fx-font-family: "Arial Black";
-    -fx-fill: #a14ebf;
+    -fx-fill: #6d3684;
     -fx-border-color: transparent;
     -fx-background-color: transparent;
 }
@@ -17,35 +17,36 @@
 .button {
     -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
-    -fx-background-color: #a14ebf;
+    -fx-background-color: #6d3684;
+    -fx-background-radius: 10px;
 }
 
 .label {
     -fx-font-size: 14px;
-    -fx-text-fill: #a14ebf;
+    -fx-text-fill: #6d3684;
 }
 
 .radio-button{
-    -fx-text-fill: #a14ebf;
+    -fx-text-fill: #6d3684;
     -fx-font-size: 14px;
     -fx-font-weight: normal;
 }
 
 .text-field {
-    -fx-border-color: #a14ebf;
+    -fx-border-color: #6d3684;
     -fx-border-width: 0 0 1 0;
     -fx-background-color: transparent;
     -fx-background-radius: 0 ;
 }
 .text-field:focused {
     -fx-background-color: transparent ;
-    -fx-border-color: #a14ebf;
+    -fx-border-color: #6d3684;
     -fx-border-width: 0 0 1 0;
     box-shadow: inset 1px 2px 4px rgba(0, 0, 0, 0.01), 0px 0px 8px rgba(0, 0, 0, 0.2);
 }
 
 .button:hover {
-    -fx-background-color: linear-gradient(#a14ebf, #8545a0);
+    -fx-background-color: linear-gradient(#6d3684, #522863);
 }
 
 #signUp:hover{
