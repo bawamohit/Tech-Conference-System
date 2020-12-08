@@ -33,7 +33,12 @@ public class AdminSystem extends UserSystem{
                     presenter.printLoggedOut();
                     break label;
                 case "1":
-                    presenter.printAskUsername();
+                    presenter.printAskUsername1();
+                    String username1 = scanner.nextLine();
+
+                    presenter.printAskUsername2();
+                    String username2 = scanner.nextLine();
+
                 case "2":
                     presenter.printDeleteEventMenu();
             }
