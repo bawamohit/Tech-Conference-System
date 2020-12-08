@@ -58,4 +58,8 @@ public class OrganizerPresenter extends UserPresenter {
     public void printEventActionFail(String action) {
         System.out.println("Error! Event not " + action + ".");
     }
+
+    public void printNotASpeaker(){
+        System.out.println("This user is not a speaker");
+    }
 }
