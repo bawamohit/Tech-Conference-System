@@ -266,6 +266,16 @@ public class EventManager {
         return infoList;
     }
 
+    public List<String> sortEvents(){
+        List<String> eventNames = new ArrayList<>();
+        List<Event> eventList = new ArrayList<>(events.values());
+        Collections.sort(eventList);
+        for (Event event: eventList){
+            eventNames.add(event.getEventName());
+        }
+        return eventNames;
+    }
+
     /**
      * Implements modifier, addAttendee, for event in events.
      *

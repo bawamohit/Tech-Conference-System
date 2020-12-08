@@ -12,7 +12,7 @@ import java.util.UUID;
  * This class is one of the entity classes for this program, specifically for event.
  *
  */
-public class Event implements Serializable {
+public class Event implements Serializable, Comparable<Event> {
     private String eventName;
     private List<String> speakers;
     private String organizer;
@@ -176,4 +176,14 @@ public class Event implements Serializable {
      */
     public void setMaxCapacity(int newCap){ this.maxCapacity = newCap; }
 
+    @Override
+    public int compareTo(Event event) {
+        if (this.startTime.isBefore(event.startTime)){
+            return -1;
+        }
+        else if (this.startTime.equals(event.startTime)){
+            return 0;
+        }
+        return 1;
+    }
 }
