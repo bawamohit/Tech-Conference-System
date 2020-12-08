@@ -65,7 +65,7 @@ public class MessageController implements GUIController {
 
     @FXML
     protected void handleNewChatButtonAction(ActionEvent event) {
-        deleteButtons();
+        deleteEmptyChatButtons();
         String user = searchField.getText();
         List<String> allUsers = ManagersStorage.getInstance().getUserManager().getUsernameList();
         List<String> contacts = ManagersStorage.getInstance().getMessageManager().getInboxes(username);
@@ -104,6 +104,12 @@ public class MessageController implements GUIController {
         }
     }
 
+    /**
+     * Boolean function checking if chat button with user already exists on the side chat bar.
+     *
+     * @param user user the logged in user wants to message
+     * @return if chat button already exists
+     */
     private boolean buttonExists(String user){
         List<Button> buttonList = new ArrayList<>();
         for (Node node: chatsContainer.getChildren()){
@@ -119,7 +125,10 @@ public class MessageController implements GUIController {
         return false;
     }
 
-    private void deleteButtons(){
+    /**
+     * This function deletes chat buttons on the side bar if the chat is empty
+     */
+    private void deleteEmptyChatButtons(){
         List<String> contacts = ManagersStorage.getInstance().getMessageManager().getInboxes(username);
         List<Button> buttonList = new ArrayList<>();
         for (Node node: chatsContainer.getChildren()){
@@ -132,7 +141,6 @@ public class MessageController implements GUIController {
             }
         }
     }
-
 
     private void makeButtons(String user){
         Button button = new Button();
