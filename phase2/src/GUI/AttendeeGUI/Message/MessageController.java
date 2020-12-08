@@ -115,7 +115,7 @@ public class MessageController implements GUIController {
             e.printStackTrace();
         }
         if(subScene == null) {
-            subScene = new SubScene(root, 450, 600); //TODO initData maybe
+            subScene = new SubScene(root, 600, 600); //TODO initData maybe
         }else{
             subScene.setRoot(root);
         }
