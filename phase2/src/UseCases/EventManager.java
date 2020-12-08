@@ -266,6 +266,14 @@ public class EventManager {
         return infoList;
     }
 
+    public List<List<String>> getAllEventsInfo(List<UUID> uuidList){
+        List<List<String>> infoList = new ArrayList<>();
+        for (UUID id :uuidList){
+            infoList.add(getEventsInfo(id));
+        }
+        return infoList;
+    }
+
     public List<String> sortEvents(){
         List<String> eventNames = new ArrayList<>();
         List<Event> eventList = new ArrayList<>(events.values());
