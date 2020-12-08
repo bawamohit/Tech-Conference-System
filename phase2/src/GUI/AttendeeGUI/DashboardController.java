@@ -50,15 +50,15 @@ public class DashboardController implements GUIController {
     }
 
     @FXML protected void handleAvailEventButtonAction(ActionEvent event) {
-        loadSubScene("MyEvents");
-    }
-
-    @FXML protected void handleMyEventButtonAction(ActionEvent event) {
         loadSubScene("AvailableEvents");
     }
 
+    @FXML protected void handleMyEventButtonAction(ActionEvent event) {
+        loadSubScene("MyEvents");
+    }
+
     @FXML public void handleLogOutButtonAction(ActionEvent event) throws IOException {
-        mainController.handleLogOutButtonAction(event);
+        mainController.handleLogOutButtonAction(event, true);
     }
 
     private void loadSubScene(String path){
