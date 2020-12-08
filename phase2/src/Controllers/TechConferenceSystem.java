@@ -73,7 +73,7 @@ public class TechConferenceSystem {
 
     public String signUp(Scanner scanner, UserType accountType) {
         presenter.printAskWithBack("username");
-        String username = scanner.nextLine();
+        String username = validInput("[[a-z]|[A-z]|[0-9]]*", "username", scanner);
         if (username.equals("")) return null;
         while(um.isRegistered(username)){
             presenter.printUsernameTaken();

@@ -33,7 +33,7 @@ public class AdminSystem extends UserSystem{
                     presenter.printLoggedOut();
                     break label;
                 case "1":
-                    presenter.printDeleteMessageMenu();
+                    presenter.printAskUsername();
                 case "2":
                     presenter.printDeleteEventMenu();
             }
