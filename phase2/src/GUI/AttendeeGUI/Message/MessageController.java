@@ -111,7 +111,12 @@ public class MessageController implements GUIController {
     }
 
     private void loadSubScene(String path){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(path + ".fxml"));
+        FXMLLoader loader;
+        if(path.equals("Empty")){
+            loader = new FXMLLoader(getClass().getResource("../../Empty.fxml"));
+        }else{
+            loader = new FXMLLoader(getClass().getResource(path + ".fxml"));
+        }
         Parent root = null;
         try {
             root = loader.load();

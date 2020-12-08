@@ -261,11 +261,16 @@ public class EventManager {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy HH:mm");
         String formattedST = event.getStartTime().format(formatter);
         String formattedET = event.getEndTime().format(formatter);
+        infoList.add(eventID.toString());
         infoList.add(getEventName(eventID));
         infoList.add(event.convertSpeakerString());
         infoList.add(formattedST);
         infoList.add(formattedET);
         infoList.add(event.getRoomName());
+        infoList.add(getEventOrganizer(eventID));
+        int capacity = getEventMaxCapacity(eventID);
+        infoList.add(Integer.toString(capacity));
+        infoList.add(Integer.toString(capacity - getEventAttendees(eventID).size()));
         return infoList;
     }
 
