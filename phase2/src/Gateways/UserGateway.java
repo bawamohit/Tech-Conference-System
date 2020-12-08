@@ -22,6 +22,9 @@ public class UserGateway {
 
         UserManager um = new UserManager();
 
+        if (jo.isEmpty())
+            return um;
+
         for (String username : JSONObject.getNames(jo)) {
             JSONObject info = (JSONObject) jo.get(username);
             UserType userType = UserType.valueOf((String) info.get("userType"));
