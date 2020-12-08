@@ -243,6 +243,10 @@ public class OrganizerSystem extends UserSystem {
         if (!isSpeakerOk(speakerName, startTime, endTime, tcs)){
             presenter.printInvalidInput();
         }
+        if (tcs.getEM().getEventMaxCapacity(eventID) == tcs.getRM().getRoomCapacity(tcs.getEM().getEventRoomName(eventID))){
+            presenter.printEventFull();
+            return;
+        }
         tcs.getEM().addSpeaker(eventID, speakerName);
         tcs.getUM().addEventAttending(speakerName, eventID);
         presenter.printSuccess();
