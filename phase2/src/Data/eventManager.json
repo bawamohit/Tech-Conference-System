@@ -1,10 +1,7 @@
 {
     "a952787e-851b-40a2-90ac-c7758aed432e": {
         "organizer": "oscar",
-        "attendees": [
-            "a",
-            "anshul"
-        ],
+        "attendees": [],
         "speakers": ["ernie"],
         "eventName": "event2",
         "maxCapacity": 2,
@@ -14,7 +11,7 @@
     },
     "8b77ec2b-00da-4893-9280-f8fbe1c53e5e": {
         "organizer": "oscar",
-        "attendees": ["anshul"],
+        "attendees": [],
         "speakers": ["ernie"],
         "eventName": "event1",
         "maxCapacity": 1,

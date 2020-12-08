@@ -3,7 +3,7 @@
         "name": "a",
         "password": "a",
         "userType": "ATTENDEE",
-        "eventsAttending": ["a952787e-851b-40a2-90ac-c7758aed432e"],
+        "eventsAttending": [],
         "friends": []
     },
     "oscar": {
@@ -27,10 +27,7 @@
         "name": "Anshul Agrawal",
         "password": "daddy",
         "userType": "ATTENDEE",
-        "eventsAttending": [
-            "8b77ec2b-00da-4893-9280-f8fbe1c53e5e",
-            "a952787e-851b-40a2-90ac-c7758aed432e"
-        ],
+        "eventsAttending": [],
         "friends": []
     },
     "abc": {
