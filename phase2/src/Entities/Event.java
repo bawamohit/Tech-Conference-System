@@ -81,6 +81,14 @@ public class Event implements Serializable {
     }
 
     /**
+     * Converts speaker list to a string format
+     *
+     * @return all speakers in a string
+     */
+    public String convertSpeakerString(){
+        return String.join(", ", this.speakers);
+    }
+    /**
      * Implements Getter, getSender, for sender.
      *
      * @return username of speaker of event
