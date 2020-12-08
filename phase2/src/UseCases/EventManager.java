@@ -2,6 +2,7 @@ package UseCases;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import Entities.Event;
 
@@ -249,6 +250,38 @@ public class EventManager {
             return true;
         }
         return false;
+    }
+
+    public List<String> getEventsInfo(UUID eventID){
+        List<String> infoList = new ArrayList<>();
+        Event event = events.get(eventID);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy HH:mm");
+        String formattedST = event.getStartTime().format(formatter);
+        String formattedET = event.getEndTime().format(formatter);
+        infoList.add(getEventName(eventID));
+        infoList.add(event.convertSpeakerString());
+        infoList.add(formattedST);
+        infoList.add(formattedET);
+        infoList.add(event.getRoomName());
+        return infoList;
+    }
+
+    public List<List<String>> getAllEventsInfo(List<UUID> uuidList){
+        List<List<String>> infoList = new ArrayList<>();
+        for (UUID id :uuidList){
+            infoList.add(getEventsInfo(id));
+        }
+        return infoList;
+    }
+
+    public List<String> sortEvents(){
+        List<String> eventNames = new ArrayList<>();
+        List<Event> eventList = new ArrayList<>(events.values());
+        Collections.sort(eventList);
+        for (Event event: eventList){
+            eventNames.add(event.getEventName());
+        }
+        return eventNames;
     }
 
     /**

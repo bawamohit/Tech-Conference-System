@@ -12,7 +12,7 @@ import java.util.UUID;
  * This class is one of the entity classes for this program, specifically for event.
  *
  */
-public class Event implements Serializable {
+public class Event implements Serializable, Comparable<Event> {
     private String eventName;
     private List<String> speakers;
     private String organizer;
@@ -55,7 +55,7 @@ public class Event implements Serializable {
      */
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM uuuu HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy HH:mm");
         String formattedST = startTime.format(formatter);
         String formattedET = endTime.format(formatter);
         return eventName + ", " + speakers + ", " + formattedST + "~" + formattedET + ", " + roomName;
@@ -80,6 +80,14 @@ public class Event implements Serializable {
         return organizer;
     }
 
+    /**
+     * Converts speaker list to a string format
+     *
+     * @return all speakers in a string
+     */
+    public String convertSpeakerString(){
+        return String.join(", ", this.speakers);
+    }
     /**
      * Implements Getter, getSender, for sender.
      *
@@ -168,4 +176,14 @@ public class Event implements Serializable {
      */
     public void setMaxCapacity(int newCap){ this.maxCapacity = newCap; }
 
+    @Override
+    public int compareTo(Event event) {
+        if (this.startTime.isBefore(event.startTime)){
+            return -1;
+        }
+        else if (this.startTime.equals(event.startTime)){
+            return 0;
+        }
+        return 1;
+    }
 }
