@@ -22,7 +22,7 @@ public class UserGateway {
 
         UserManager um = new UserManager();
 
-        if (JSONObject.getNames(jo) == null)
+        if (jo.isEmpty())
             return um;
 
         for (String username : JSONObject.getNames(jo)) {

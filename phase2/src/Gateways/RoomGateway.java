@@ -21,15 +21,18 @@ public class RoomGateway {
 
         RoomManager rm = new RoomManager();
 
-        if (JSONObject.getNames(jo) == null)
+        if (jo.isEmpty())
             return rm;
 
         for (String roomName : JSONObject.getNames(jo)) {
             JSONObject info = (JSONObject) jo.get(roomName);
 
+            rm.addRoom(roomName, (Integer) info.get("capacity"));
+
             JSONObject schedule = (JSONObject) info.get("schedule");
 
-            rm.addRoom(roomName, (Integer) info.get("capacity"));
+            if (schedule.isEmpty())
+                continue;
 
             for (Object time : schedule.names()) {
                 LocalDateTime startTime = LocalDateTime.parse((CharSequence) time);

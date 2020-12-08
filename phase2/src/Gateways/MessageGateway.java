@@ -23,12 +23,12 @@ public class MessageGateway {
 
         MessageManager mm = new MessageManager();
 
-        if (JSONObject.getNames(jo) == null)
+        if (jo.isEmpty())
             return mm;
 
         for (Object sender : jo.names()) {
             JSONObject jo2 = (JSONObject) jo.get((String) sender);
-            if (jo2.names() == null) continue;
+            if (jo2.isEmpty()) continue;
             for (Object receiver : jo2.names()) {
                 JSONArray messages = jo2.getJSONArray((String) receiver);
                 if (messages == null) continue;

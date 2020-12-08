@@ -23,7 +23,7 @@ public class EventGateway {
 
         EventManager em = new EventManager();
 
-        if (JSONObject.getNames(jo) == null)
+        if (jo.isEmpty())
             return em;
 
         for (String eventId : JSONObject.getNames(jo)) {
