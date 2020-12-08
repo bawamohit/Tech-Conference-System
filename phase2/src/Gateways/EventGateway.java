@@ -23,6 +23,9 @@ public class EventGateway {
 
         EventManager em = new EventManager();
 
+        if (JSONObject.getNames(jo) == null)
+            return em;
+
         for (String eventId : JSONObject.getNames(jo)) {
             JSONObject info = (JSONObject) jo.get(eventId);
             LocalDateTime startTime = LocalDateTime.parse((CharSequence) info.get("startTime"));

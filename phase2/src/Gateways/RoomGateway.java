@@ -21,6 +21,9 @@ public class RoomGateway {
 
         RoomManager rm = new RoomManager();
 
+        if (JSONObject.getNames(jo) == null)
+            return rm;
+
         for (String roomName : JSONObject.getNames(jo)) {
             JSONObject info = (JSONObject) jo.get(roomName);
 

@@ -23,6 +23,9 @@ public class MessageGateway {
 
         MessageManager mm = new MessageManager();
 
+        if (JSONObject.getNames(jo) == null)
+            return mm;
+
         for (Object sender : jo.names()) {
             JSONObject jo2 = (JSONObject) jo.get((String) sender);
             if (jo2.names() == null) continue;
