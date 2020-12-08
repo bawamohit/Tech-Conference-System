@@ -6,6 +6,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
+
 <AnchorPane minHeight="650.0" minWidth="900.0" prefHeight="650.0" prefWidth="920.0" stylesheets="@SignUp2.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SignUp.SignUpController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="394.0" layoutX="281.0" layoutY="195.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="410.0" AnchorPane.bottomAnchor="95.60000000000002" AnchorPane.leftAnchor="256.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="170.0" />

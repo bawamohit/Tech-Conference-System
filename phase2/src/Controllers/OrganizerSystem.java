@@ -118,6 +118,7 @@ public class OrganizerSystem extends UserSystem {
             presenter.printNoEventsAvailable("changing capacity");
             return;
         }
+        presenter.printAvailableEvents(formattedOutput);
         presenter.printAsk("number of the event to change capacity for");
         presenter.printBackToMainMenu();
         String choice = validInput("^[0-" + (openEvents.size() - 1) + "]$|^.{0}$", scanner ,tcs);
@@ -133,11 +134,18 @@ public class OrganizerSystem extends UserSystem {
             presenter.printInvalidInput();
             return;
         }
-        if (!isNewCapacityOk(id, Integer.parseInt(maxCap), tcs)){
+        if (!tcs.getRM().canSetCapacity(tcs.getEM().getEventRoomName(id), Integer.parseInt(maxCap),
+                tcs.getEM().getEventSpeaker(id).size())){
             presenter.printInvalidInput();
             return;
         }
         tcs.getEM().setMaxCapacity(id, Integer.parseInt(maxCap));
+        if (Integer.parseInt(maxCap) < tcs.getEM().getEventAttendees(id).size()){
+            for (String username: tcs.getEM().getEventAttendees(id)){
+                tcs.getEM().removeAttendee(username, id);
+                tcs.getUM().removeEventAttending(username, id);
+            }
+        }
         presenter.printSuccess();
     }
 
@@ -151,16 +159,10 @@ public class OrganizerSystem extends UserSystem {
         }
         LocalDateTime startTime = getTime(scanner, tcs, "event's start time (enter in the format YYYY:MM:DD:HH:MM of " +
                 "a time between 9-16)");
-        if (startTime == null){
-            presenter.printInvalidInput();
-            return;
-        }
+        if (startTime == null) return;
         LocalDateTime endTime = getTime(scanner, tcs, "event's end time (enter in the format YYYY:MM:DD:HH:MM of " +
                 "a time between 9-16)");
-        if (endTime == null) {
-            presenter.printInvalidInput();
-            return;
-        }
+        if (endTime == null) return;
         presenter.printAsk("event's room name (enter room name)");
         presenter.printBackToMainMenu();
         String roomName = scanner.nextLine();
@@ -172,7 +174,7 @@ public class OrganizerSystem extends UserSystem {
             presenter.printInvalidInput();
             return;
         }
-        if (!tcs.getRM().canSetCapacity(roomName, Integer.parseInt(maxCap))) {
+        if (!tcs.getRM().canSetCapacity(roomName, Integer.parseInt(maxCap), 0)) {
             presenter.printInvalidInput();
             return;
         }
@@ -185,7 +187,8 @@ public class OrganizerSystem extends UserSystem {
     private LocalDateTime getTime(Scanner scanner, TechConferenceSystem tcs, String s) {
         presenter.printAsk(s);
         presenter.printBackToMainMenu();
-        String timeStr = validInput("^([0-9][0-9][0-9][0-9]):(0[1-9]|1[0-2]):([0-2][0-9]|3[0-1]):(09|1[0-6]):([0-5][0-9])$", scanner, tcs);
+        String timeStr = validInput("^([0-9][0-9][0-9][0-9]):(0[1-9]|1[0-2]):([0-2][0-9]|3[0-1]):(09|1[0-6]):" +
+                "([0-5][0-9])$|^.{0}$", scanner, tcs);
         if (timeStr.equals("")){
             presenter.printInvalidInput();
             return null;
@@ -282,12 +285,6 @@ public class OrganizerSystem extends UserSystem {
             }
         }
         return true;
-    }
-
-    private boolean isNewCapacityOk(UUID eventID, int newCapacity, TechConferenceSystem tcs){
-        String roomName = tcs.getEM().getEventRoomName(eventID);
-        return tcs.getRM().canSetCapacity(roomName, newCapacity) &&
-                tcs.getEM().canChangeCapacity(eventID, newCapacity);
     }
 
 }

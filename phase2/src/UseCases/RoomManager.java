@@ -91,12 +91,13 @@ public class RoomManager {
      *
      * @param roomName name of room to compare new capacity with
      * @param newCapacity new capacity for a certain event occurring in room
+     * @param numOtherPpl number of people other than attendees in the room
      *
      * @return a boolean indicating if newCapacity can be set
      */
-    public boolean canSetCapacity(String roomName, int newCapacity) {
+    public boolean canSetCapacity(String roomName, int newCapacity, int numOtherPpl) {
         int capacity = getRoomCapacity(roomName);
-        if (newCapacity > capacity) return false;
+        if (newCapacity > (capacity - numOtherPpl)) return false;
         return true;
     }
 

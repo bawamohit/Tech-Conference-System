@@ -18,8 +18,8 @@
         "speakers": ["ernie"],
         "eventName": "event1",
         "maxCapacity": 1,
-        "startTime": "0020-11-26T09:00",
-        "endTime": "0020-11-26T10:00",
+        "startTime": "2020-11-26T09:00",
+        "endTime": "2020-11-26T10:00",
         "roomName": "room1"
     }
 }
