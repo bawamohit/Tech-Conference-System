@@ -35,9 +35,9 @@ public class MyEventsController implements GUIController {
         for(UUID eventid: eventsAttending){
             Button button = new Button(eventManager.getEventName(eventid));
             button.setPrefHeight(50);
-            button.setPrefWidth(100);
+            button.setPrefWidth(200);
             gridPane.add(button, i, j);
-            if(i < 6){
+            if(i < 4){
                 i++;
             }
             else{

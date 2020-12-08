@@ -30,7 +30,7 @@ public class AvailableEventsController implements GUIController {
         for(int p = 0; p < 15; p++) {
             Button button = new Button("event " + p);
             button.setPrefHeight(50);
-            button.setPrefWidth(100);
+            button.setPrefWidth(200);
             gridPane.add(button, i, j);
             if(i < 6){ i++; }else{ i = 0; j++;}
         }
