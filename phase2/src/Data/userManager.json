@@ -1,7 +1,45 @@
 {
-    "spider": {
-        "name": "Spider-Man",
+    "thor": {
+        "name": "Thor",
+        "password": "hammer",
+        "userType": "ORGANIZER",
+        "eventsAttending": [
+            "4eab691f-0d69-4e63-9ffa-4138f5c5ed5e",
+            "c463b726-f5ca-4dd5-b772-7801a421c111",
+            "418b8a42-4844-49ba-8b0b-d200761e635e"
+        ],
+        "friends": []
+    },
+    "ant": {
+        "name": "Ant Man",
         "password": "man",
+        "userType": "ORGANIZER",
+        "eventsAttending": [
+            "0d5912ed-db0c-4373-bf02-71236c720a68",
+            "937b16e8-6cb4-419a-a547-ab1b13bd8d9d"
+        ],
+        "friends": []
+    },
+    "gamora": {
+        "name": "Gamora",
+        "password": "dead",
+        "userType": "SPEAKER",
+        "eventsAttending": [],
+        "friends": []
+    },
+    "black": {
+        "name": "Black Widow",
+        "password": "widow",
+        "userType": "ORGANIZER",
+        "eventsAttending": [
+            "99b5e204-d17c-43cf-ab5f-b5226182760a",
+            "bc5daa43-1a98-4c86-a38c-72548794deab"
+        ],
+        "friends": []
+    },
+    "groot": {
+        "name": "Groot",
+        "password": "groot",
         "userType": "ATTENDEE",
         "eventsAttending": [],
         "friends": []
@@ -13,9 +51,9 @@
         "eventsAttending": [],
         "friends": []
     },
-    "hulk": {
-        "name": "Hulk",
-        "password": "smash",
+    "captain": {
+        "name": "Captain America",
+        "password": "america",
         "userType": "ATTENDEE",
         "eventsAttending": [],
         "friends": []
@@ -27,17 +65,10 @@
         "eventsAttending": [],
         "friends": []
     },
-    "groot": {
-        "name": "Groot",
-        "password": "groot",
-        "userType": "ATTENDEE",
-        "eventsAttending": [],
-        "friends": []
-    },
-    "captain": {
-        "name": "Captain America",
-        "password": "america",
-        "userType": "ATTENDEE",
+    "doctor": {
+        "name": "Doctor Strange",
+        "password": "strange",
+        "userType": "SPEAKER",
         "eventsAttending": [],
         "friends": []
     },
@@ -45,28 +76,12 @@
         "name": "Iron Man",
         "password": "man",
         "userType": "ORGANIZER",
-        "eventsAttending": [],
-        "friends": []
-    },
-    "thor": {
-        "name": "Thor",
-        "password": "hammer",
-        "userType": "ORGANIZER",
-        "eventsAttending": [],
-        "friends": []
-    },
-    "black": {
-        "name": "Black Widow",
-        "password": "widow",
-        "userType": "ORGANIZER",
-        "eventsAttending": [],
-        "friends": []
-    },
-    "ant": {
-        "name": "Ant Man",
-        "password": "man",
-        "userType": "ORGANIZER",
-        "eventsAttending": [],
+        "eventsAttending": [
+            "3f660e58-fa44-4de6-bbe5-2ff5d47c14a0",
+            "949c2021-4bda-4fb3-92ab-0a5bf7e167e5",
+            "0d9a58c0-0503-4073-b6d5-238d357987da",
+            "3b145c56-65da-4ed2-9b53-471687e26b16"
+        ],
         "friends": []
     },
     "panther": {
@@ -76,24 +91,24 @@
         "eventsAttending": [],
         "friends": []
     },
-    "gamora": {
-        "name": "Gamora",
-        "password": "dead",
-        "userType": "SPEAKER",
-        "eventsAttending": [],
-        "friends": []
-    },
-    "doctor": {
-        "name": "Doctor Strange",
-        "password": "strange",
-        "userType": "SPEAKER",
-        "eventsAttending": [],
-        "friends": []
-    },
     "thanos": {
         "name": "Thanos",
         "password": "snap",
         "userType": "ADMIN",
+        "eventsAttending": [],
+        "friends": []
+    },
+    "spider": {
+        "name": "Spider-Man",
+        "password": "man",
+        "userType": "ATTENDEE",
+        "eventsAttending": [],
+        "friends": []
+    },
+    "hulk": {
+        "name": "Hulk",
+        "password": "smash",
+        "userType": "ATTENDEE",
         "eventsAttending": [],
         "friends": []
     }
