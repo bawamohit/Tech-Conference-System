@@ -19,7 +19,7 @@ import java.util.List;
 
 public class ChatController implements GUIController {
     private MessageManager messageManager;
-    private String user;
+    private String username;
     private String collocutor;
     private int index;
 
@@ -33,9 +33,10 @@ public class ChatController implements GUIController {
 
     public void initialize(){
         this.messageManager = ManagersStorage.getInstance().getMessageManager();
-        this.user = UserHolder.getInstance().getUsername();
+        this.username = UserHolder.getInstance().getUsername();
         this.collocutor = CollocutorHolder.getInstance().getUsername();
-        List<List<String>> messages = messageManager.getInboxStringGUI(user, collocutor);
+        if(messageManager.getInboxes(username).isEmpty()) return;
+        List<List<String>> messages = messageManager.getInboxStringGUI(username, collocutor);
         for(List<String> messageInfo: messages) {
             displayMessage(messageInfo);
         }
@@ -43,9 +44,9 @@ public class ChatController implements GUIController {
 
     @FXML private void handleSend(ActionEvent event){
         String content = textField.getText();
-        messageManager.sendMessage(user, collocutor, content);
-        int size = messageManager.getInboxStringGUI(user, collocutor).size();
-        List<String> messageInfo = messageManager.getInboxStringGUI(user, collocutor).get(size - 1);
+        messageManager.sendMessage(username, collocutor, content);
+        int size = messageManager.getInboxStringGUI(username, collocutor).size();
+        List<String> messageInfo = messageManager.getInboxStringGUI(username, collocutor).get(size - 1);
         displayMessage(messageInfo);
         textField.clear();
     }
@@ -55,7 +56,7 @@ public class ChatController implements GUIController {
         label.setId(Integer.toString(index));
         HBox hBox=new HBox();
         hBox.getChildren().add(label);
-        if(messageInfo.get(0).equals(user)){
+        if(messageInfo.get(0).equals(username)){
             label.setTextAlignment(TextAlignment.RIGHT);
             hBox.setAlignment(Pos.BASELINE_RIGHT);
         }else{

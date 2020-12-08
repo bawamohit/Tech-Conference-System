@@ -44,8 +44,7 @@ public class MessageController implements GUIController {
         username = UserHolder.getInstance().getUsername();
         messageManager = ManagersStorage.getInstance().getMessageManager();
         List<String> users = messageManager.getInboxes(username);
-        if(users.isEmpty()) return;
-        CollocutorHolder.getInstance().setUsername(users.get(0));
+        if(!users.isEmpty())CollocutorHolder.getInstance().setUsername(users.get(0));
         loadSubScene("Chat");
         gridPane.add(subScene, 1, 0);
         makeButtons(users);
