@@ -6,6 +6,13 @@
         "eventsAttending": [],
         "friends": []
     },
+    "dead": {
+        "name": "Dead Pool",
+        "password": "pool",
+        "userType": "ATTENDEE",
+        "eventsAttending": [],
+        "friends": []
+    },
     "hulk": {
         "name": "Hulk",
         "password": "smash",
@@ -69,16 +76,16 @@
         "eventsAttending": [],
         "friends": []
     },
-    "dead": {
-        "name": "Dead Pool",
-        "password": "pool",
+    "gamora": {
+        "name": "Gamora",
+        "password": "dead",
         "userType": "SPEAKER",
         "eventsAttending": [],
         "friends": []
     },
-    "gamora": {
-        "name": "Gamora",
-        "password": "dead",
+    "doctor": {
+        "name": "Doctor Strange",
+        "password": "strange",
         "userType": "SPEAKER",
         "eventsAttending": [],
         "friends": []
