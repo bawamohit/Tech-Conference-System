@@ -55,7 +55,7 @@ public class Event implements Serializable {
      */
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM uuuu HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy HH:mm");
         String formattedST = startTime.format(formatter);
         String formattedET = endTime.format(formatter);
         return eventName + ", " + speakers + ", " + formattedST + "~" + formattedET + ", " + roomName;

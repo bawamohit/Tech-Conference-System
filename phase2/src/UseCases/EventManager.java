@@ -255,7 +255,7 @@ public class EventManager {
     public List<String> getEventsInfo(UUID eventID){
         List<String> infoList = new ArrayList<>();
         Event event = events.get(eventID);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM uuuu HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy HH:mm");
         String formattedST = event.getStartTime().format(formatter);
         String formattedET = event.getEndTime().format(formatter);
         infoList.add(getEventName(eventID));
