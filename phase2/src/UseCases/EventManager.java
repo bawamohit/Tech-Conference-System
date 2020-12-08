@@ -128,6 +128,17 @@ public class EventManager {
     }
 
     /**
+     * Implements Getter, getEventAttendeeNums, for an event in events.
+     *
+     * @param eventID ID of the event to retrieve attendee list for
+     *
+     * @return number of attendees in an event, which should not include the speaker
+     */
+    public int getEventAttendeeNums(UUID eventID) {
+        return events.get(eventID).getAttendees().size();
+    }
+
+    /**
      * Implements Getter, getEventStartTime, for an event in events.
      *
      * @param eventID ID of the event to retrieve the start time for
