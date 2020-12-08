@@ -93,11 +93,17 @@ public class OrganizerSystem extends UserSystem {
         presenter.printAsk("new room's name");
         presenter.printBackToMainMenu();
         String roomName = scanner.nextLine();
-        if(roomName.equals("")) return;
+        if(roomName.equals("")) {
+            presenter.printInvalidInput();
+            return;
+        }
         presenter.printAsk("new room's maximum capacity");
         presenter.printBackToMainMenu();
         String roomCap = validInput("^[1-9][0-9]*$|^.{0}$", scanner, tcs);
-        if(roomCap.equals("")) return;
+        if(roomCap.equals("")) {
+            presenter.printInvalidInput();
+            return;
+        }
         if (tcs.getRM().addRoom(roomName, Integer.parseInt(roomCap))) {
             presenter.printSuccess();
         } else {
@@ -115,12 +121,18 @@ public class OrganizerSystem extends UserSystem {
         presenter.printAsk("number of the event to change capacity for");
         presenter.printBackToMainMenu();
         String choice = validInput("^[0-" + (openEvents.size() - 1) + "]$|^.{0}$", scanner ,tcs);
-        if(choice.equals("")) return;
+        if(choice.equals("")) {
+            presenter.printInvalidInput();
+            return;
+        }
         UUID id = openEvents.get(Integer.parseInt(choice));
         presenter.printAsk("new maximum capacity");
         presenter.printBackToMainMenu();
         String maxCap = validInput("^[1-9][0-9]*$|^.{0}$", scanner, tcs);
-        if(maxCap.equals("")) return;
+        if(maxCap.equals("")) {
+            presenter.printInvalidInput();
+            return;
+        }
         if (!isNewCapacityOk(id, Integer.parseInt(maxCap), tcs)){
             presenter.printInvalidInput();
             return;
@@ -133,13 +145,22 @@ public class OrganizerSystem extends UserSystem {
         presenter.printAsk("event's name");
         presenter.printBackToMainMenu();
         String eventName = scanner.nextLine();
-        if(eventName.equals("")) return;
+        if(eventName.equals("")){
+            presenter.printInvalidInput();
+            return;
+        }
         LocalDateTime startTime = getTime(scanner, tcs, "event's start time (enter in the format YYYY:MM:DD:HH:MM of " +
                 "a time between 9-16)");
-        if (startTime == null) return;
+        if (startTime == null){
+            presenter.printInvalidInput();
+            return;
+        }
         LocalDateTime endTime = getTime(scanner, tcs, "event's end time (enter in the format YYYY:MM:DD:HH:MM of " +
                 "a time between 9-16)");
-        if (endTime == null) return;
+        if (endTime == null) {
+            presenter.printInvalidInput();
+            return;
+        }
         presenter.printAsk("event's room name (enter room name)");
         presenter.printBackToMainMenu();
         String roomName = scanner.nextLine();
@@ -147,8 +168,14 @@ public class OrganizerSystem extends UserSystem {
         presenter.printAsk("event's maximum capacity");
         presenter.printBackToMainMenu();
         String maxCap = validInput("^[1-9][0-9]*$|^.{0}$", scanner, tcs);
-        if(maxCap.equals("")) return;
-        if (!tcs.getRM().canSetCapacity(roomName, Integer.parseInt(maxCap))) return;
+        if(maxCap.equals("")) {
+            presenter.printInvalidInput();
+            return;
+        }
+        if (!tcs.getRM().canSetCapacity(roomName, Integer.parseInt(maxCap))) {
+            presenter.printInvalidInput();
+            return;
+        }
         UUID id = tcs.getEM().addEvent(eventName, username, startTime, endTime, roomName, Integer.parseInt(maxCap));
         tcs.getUM().addEventAttending(username, id); //TODO organizer
         tcs.getRM().addEventToSchedule(id, roomName, startTime);
@@ -159,7 +186,10 @@ public class OrganizerSystem extends UserSystem {
         presenter.printAsk(s);
         presenter.printBackToMainMenu();
         String timeStr = validInput("^([0-9][0-9][0-9][0-9]):(0[1-9]|1[0-2]):([0-2][0-9]|3[0-1]):(09|1[0-6]):([0-5][0-9])$", scanner, tcs);
-        if (timeStr.equals("")) return null;
+        if (timeStr.equals("")){
+            presenter.printInvalidInput();
+            return null;
+        }
         int year2 = Integer.parseInt(timeStr.substring(0, 4));
         int month2 = Integer.parseInt(timeStr.substring(5, 7));
         int day2 = Integer.parseInt(timeStr.substring(8, 10));
@@ -176,7 +206,10 @@ public class OrganizerSystem extends UserSystem {
         presenter.printAskRemove();
         presenter.printBackToMainMenu();
         choice = validInput("^[0-" + (openEvents.size() - 1) + "]$|^.{0}$", scanner ,tcs);
-        if(choice.equals("")) return;
+        if(choice.equals("")) {
+            presenter.printInvalidInput();
+            return;
+        }
         UUID id = openEvents.get(Integer.parseInt(choice));
         if (!tcs.getEM().removeEvent(id)) {
             presenter.printDNE(("the event " + tcs.getEM().getEventName(id)));
@@ -197,14 +230,20 @@ public class OrganizerSystem extends UserSystem {
         presenter.printAvailableEvents(formatInfo(eventInfo));
         presenter.printBackToMainMenu();
         String choice = validInput("^[0-" + (availEvents.size() - 1) + "]$|^.{0}$", scanner ,tcs);
-        if(choice.equals("")) return;
+        if(choice.equals("")) {
+            presenter.printInvalidInput();
+            return;
+        }
         UUID eventID = availEvents.get(Integer.parseInt(choice));
         LocalDateTime startTime = tcs.getEM().getEventStartTime(eventID);
         LocalDateTime endTime = tcs.getEM().getEventEndTime(eventID);
         presenter.printAsk("event speaker's username");
         presenter.printBackToMainMenu();
         String speakerName = validInput(".+", scanner, tcs);
-        if(speakerName.equals("")) return;
+        if(speakerName.equals("")) {
+            presenter.printInvalidInput();
+            return;
+        }
         if (!isSpeakerOk(speakerName, startTime, endTime, tcs)){
             presenter.printInvalidInput();
         }
