@@ -8,7 +8,11 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="GUI.AttendeeGUI.AvailableEvents.AvailableEventsController"
-            prefHeight="400.0" prefWidth="600.0">
+            fx:controller="GUI.AttendeeGUI.AvailableEvents.AvailableEventsController">
+
+    <ScrollPane fx:id="container" prefHeight="400" fitToWidth="true">
+        <GridPane fx:id="gridPane">
+        </GridPane>
+    </ScrollPane>
 
 </AnchorPane>

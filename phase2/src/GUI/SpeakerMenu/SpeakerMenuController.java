@@ -20,7 +20,7 @@ public class SpeakerMenuController implements GUIController {
     }
 
     @FXML protected void handleLogOutButtonAction(ActionEvent event) throws IOException {
-        mainController.handleLogOutButtonAction(event);
+        mainController.handleLogOutButtonAction(event, true);
     }
 
     @FXML protected void handleRelaxButtonAction(ActionEvent event) {

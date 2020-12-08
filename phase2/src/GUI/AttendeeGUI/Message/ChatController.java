@@ -53,12 +53,13 @@ public class ChatController implements GUIController {
     private void displayMessage(List<String> messageInfo){
         Label label=new Label(messageInfo.get(0) + "     " + messageInfo.get(1) + "\n" + messageInfo.get(2));
         label.setId(Integer.toString(index));
-        label.setTextAlignment(TextAlignment.RIGHT);
         HBox hBox=new HBox();
         hBox.getChildren().add(label);
         if(messageInfo.get(0).equals(user)){
+            label.setTextAlignment(TextAlignment.RIGHT);
             hBox.setAlignment(Pos.BASELINE_RIGHT);
         }else{
+            label.setTextAlignment(TextAlignment.LEFT);
             hBox.setAlignment(Pos.BASELINE_LEFT);
         }
         chatBox.getChildren().add(hBox);
