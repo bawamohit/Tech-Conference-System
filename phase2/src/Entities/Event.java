@@ -1,6 +1,5 @@
 package Entities;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -12,7 +11,7 @@ import java.util.UUID;
  * This class is one of the entity classes for this program, specifically for event.
  *
  */
-public class Event implements Serializable, Comparable<Event> {
+public class Event implements Comparable<Event> {
     private String eventName;
     private List<String> speakers;
     private String organizer;

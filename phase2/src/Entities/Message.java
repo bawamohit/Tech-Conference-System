@@ -1,13 +1,12 @@
 package Entities;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  * This class is one of the entity classes for this program, specifically for message.
  *
  */
-public class Message implements Serializable {
+public class Message {
     private String sender;
     private String receiver;
     private LocalDateTime time;
