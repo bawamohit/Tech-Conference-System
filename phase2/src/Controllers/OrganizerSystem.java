@@ -13,7 +13,7 @@ import UI.OrganizerPresenter;
  */
 public class OrganizerSystem extends UserSystem {
 
-    private OrganizerPresenter presenter;
+    private final OrganizerPresenter presenter;
 
     public OrganizerSystem(){
         this.presenter = new OrganizerPresenter();
@@ -102,7 +102,6 @@ public class OrganizerSystem extends UserSystem {
             presenter.printSuccess();
         } else {
             presenter.printObjectExists("Room");
-            return;
         }
     }
 
@@ -166,8 +165,7 @@ public class OrganizerSystem extends UserSystem {
         int day2 = Integer.parseInt(timeStr.substring(8, 10));
         int hour2 = Integer.parseInt(timeStr.substring(11, 13));
         int minute2 = Integer.parseInt(timeStr.substring(14, 16));
-        LocalDateTime time = LocalDateTime.of(year2, month2, day2, hour2, minute2);
-        return time;
+        return LocalDateTime.of(year2, month2, day2, hour2, minute2);
     }
 
     private void removeEvent(Scanner scanner, TechConferenceSystem tcs){
@@ -235,7 +233,7 @@ public class OrganizerSystem extends UserSystem {
         }
         HashMap<LocalDateTime, UUID> schedule = tcs.getRM().getRoomSchedule(roomName);
         for (LocalDateTime existingST: schedule.keySet()) {
-            if (!newET.isBefore(existingST) && !newST.isAfter(tcs.getEM().getEventEndTime(schedule.get(existingST)))) {
+            if (newET.isAfter(existingST) && newST.isBefore(tcs.getEM().getEventEndTime(schedule.get(existingST)))) {
                 presenter.printObjUnavailable("room at this time");
                 return false;
             }
@@ -245,9 +243,8 @@ public class OrganizerSystem extends UserSystem {
 
     private boolean isNewCapacityOk(UUID eventID, int newCapacity, TechConferenceSystem tcs){
         String roomName = tcs.getEM().getEventRoomName(eventID);
-        if (!tcs.getRM().canSetCapacity(roomName, newCapacity) ||
-                !tcs.getEM().canChangeCapacity(eventID, newCapacity)){ return false; }
-        return true;
+        return tcs.getRM().canSetCapacity(roomName, newCapacity) &&
+                tcs.getEM().canChangeCapacity(eventID, newCapacity);
     }
 
 }
