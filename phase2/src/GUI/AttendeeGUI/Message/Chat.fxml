@@ -3,9 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AttendeeGUI.Message.ChatController">
+<AnchorPane prefHeight="600" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.AttendeeGUI.Message.ChatController">
     <ScrollPane fx:id="scrollPane" fitToWidth="true" prefHeight="500" snapToPixel="false">
-            <VBox fx:id="chatBox" prefWidth="550">
+            <VBox fx:id="chatBox" prefWidth="500">
             </VBox>
     </ScrollPane>
     <HBox AnchorPane.bottomAnchor="30">

@@ -97,7 +97,7 @@ public class MessageController implements GUIController {
         for (String user: users) {
             Button button = new Button();
             button.setPrefHeight(50);
-            button.setPrefWidth(100);
+            button.setPrefWidth(110);
             button.setText(user + "\n");
             button.setOnAction(new EventHandler<ActionEvent>(){
                 @Override
@@ -119,7 +119,7 @@ public class MessageController implements GUIController {
             e.printStackTrace();
         }
         if(subScene == null) {
-            subScene = new SubScene(root, 600, 600); //TODO initData maybe
+            subScene = new SubScene(root, 550, 600); //TODO initData maybe
         }else{
             subScene.setRoot(root);
         }
