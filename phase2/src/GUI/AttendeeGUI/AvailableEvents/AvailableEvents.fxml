@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="GUI.AttendeeGUI.AvailableEvents.AvailableEventsController">
+<AnchorPane prefHeight="477.0" prefWidth="732.0" snapToPixel="false" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AttendeeGUI.AvailableEvents.AvailableEventsController">
 
-    <ScrollPane fx:id="container" prefHeight="400" fitToWidth="true">
-        <GridPane fx:id="gridPane">
+    <ScrollPane fx:id="container" fitToWidth="true" layoutX="24.0" layoutY="49.0" prefHeight="455.0" prefWidth="672.0">
+        <GridPane fx:id="gridPane" prefWidth="672.0">
         </GridPane>
     </ScrollPane>
 
