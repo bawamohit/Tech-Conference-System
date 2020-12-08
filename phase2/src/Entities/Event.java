@@ -57,7 +57,7 @@ public class Event implements Comparable<Event> {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy HH:mm");
         String formattedST = startTime.format(formatter);
         String formattedET = endTime.format(formatter);
-        return eventName + ", " + speakers + ", " + formattedST + "~" + formattedET + ", " + roomName + ", "
+        return eventName + ", " + speakers + ", " + formattedST + "-" + formattedET + ", " + roomName + ", "
                 + "maximum capacity: " + maxCapacity;
     }
 

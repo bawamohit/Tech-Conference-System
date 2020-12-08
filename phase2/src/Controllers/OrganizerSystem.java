@@ -231,7 +231,7 @@ public class OrganizerSystem extends UserSystem {
         UUID eventID = availEvents.get(Integer.parseInt(choice));
         LocalDateTime startTime = tcs.getEM().getEventStartTime(eventID);
         LocalDateTime endTime = tcs.getEM().getEventEndTime(eventID);
-        presenter.printAsk("event speaker's username");
+        presenter.printAsk("speaker's username");
         presenter.printBackToMainMenu();
         String speakerName = validInput(".+", scanner, tcs);
         if(speakerName.equals("")) {
@@ -243,7 +243,9 @@ public class OrganizerSystem extends UserSystem {
         if (!isSpeakerOk(speakerName, startTime, endTime, tcs)){
             presenter.printInvalidInput();
         }
-        if (tcs.getEM().getEventMaxCapacity(eventID) == tcs.getRM().getRoomCapacity(tcs.getEM().getEventRoomName(eventID))){
+        if (tcs.getEM().getEventMaxCapacity(eventID) ==
+                (tcs.getRM().getRoomCapacity(tcs.getEM().getEventRoomName(eventID)) -
+                        tcs.getEM().getEventSpeaker(eventID).size())){
             presenter.printEventFull();
             return;
         }
