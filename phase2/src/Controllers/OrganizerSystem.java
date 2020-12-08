@@ -169,19 +169,23 @@ public class OrganizerSystem extends UserSystem {
     }
 
     private void removeEvent(Scanner scanner, TechConferenceSystem tcs){
-        presenter.printAsk("ID of the event you would like to remove");
+        String choice;
+        List<UUID> openEvents = tcs.getEM().getAvailableEvents(LocalDateTime.now());
+        List<String> eventInfo = tcs.getEM().getEventsStrings(openEvents);
+        presenter.printAvailableEvents(formatInfo(eventInfo));
+        presenter.printAskRemove();
         presenter.printBackToMainMenu();
-        String ID = validInput("[0-9]+", scanner, tcs);
-        if(ID.equals("")) return;
-        UUID eventID = UUID.fromString(ID);
-        if (!tcs.getEM().removeEvent(eventID)) {
-            presenter.printDNE(("the event " + ID));
+        choice = validInput("^[0-" + (openEvents.size() - 1) + "]$|^.{0}$", scanner ,tcs);
+        if(choice.equals("")) return;
+        UUID id = openEvents.get(Integer.parseInt(choice));
+        if (!tcs.getEM().removeEvent(id)) {
+            presenter.printDNE(("the event " + tcs.getEM().getEventName(id)));
             presenter.printEventActionFail("removed");
             return;
         }
-        tcs.getRM().removeEventFromSchedule(eventID);
+        tcs.getRM().removeEventFromSchedule(id);
         for (String username: tcs.getUM().getUsernameList()){
-            tcs.getUM().removeEventAttending(username, eventID);
+            tcs.getUM().removeEventAttending(username, id);
         }
         presenter.printEventActionSuccess("removed");
     }
