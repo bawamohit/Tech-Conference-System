@@ -1,57 +1,93 @@
 {
-    "a": {
-        "name": "a",
-        "password": "a",
+    "spider": {
+        "name": "Spider-Man",
+        "password": "man",
         "userType": "ATTENDEE",
         "eventsAttending": [],
         "friends": []
     },
-    "oscar": {
-        "name": "Oscar Green",
-        "password": "green",
+    "hulk": {
+        "name": "Hulk",
+        "password": "smash",
+        "userType": "ATTENDEE",
+        "eventsAttending": [],
+        "friends": []
+    },
+    "she_hulk": {
+        "name": "She-Hulk",
+        "password": "she-smash",
+        "userType": "ATTENDEE",
+        "eventsAttending": [],
+        "friends": []
+    },
+    "groot": {
+        "name": "Groot",
+        "password": "groot",
+        "userType": "ATTENDEE",
+        "eventsAttending": [],
+        "friends": []
+    },
+    "captain": {
+        "name": "Captain America",
+        "password": "america",
+        "userType": "ATTENDEE",
+        "eventsAttending": [],
+        "friends": []
+    },
+    "iron": {
+        "name": "Iron Man",
+        "password": "man",
         "userType": "ORGANIZER",
-        "eventsAttending": [
-            "8b77ec2b-00da-4893-9280-f8fbe1c53e5e",
-            "a952787e-851b-40a2-90ac-c7758aed432e"
-        ],
-        "friends": []
-    },
-    "haha": {
-        "name": "haha hehe",
-        "password": "hehe",
-        "userType": "ATTENDEE",
         "eventsAttending": [],
         "friends": []
     },
-    "anshul": {
-        "name": "Anshul Agrawal",
-        "password": "daddy",
-        "userType": "ATTENDEE",
+    "thor": {
+        "name": "Thor",
+        "password": "hammer",
+        "userType": "ORGANIZER",
         "eventsAttending": [],
         "friends": []
     },
-    "abc": {
-        "name": "abc",
-        "password": "abc",
-        "userType": "ATTENDEE",
+    "black": {
+        "name": "Black Widow",
+        "password": "widow",
+        "userType": "ORGANIZER",
         "eventsAttending": [],
         "friends": []
     },
-    "elmo": {
-        "name": "Elmo Red",
-        "password": "red",
-        "userType": "ATTENDEE",
+    "ant": {
+        "name": "Ant Man",
+        "password": "man",
+        "userType": "ORGANIZER",
         "eventsAttending": [],
         "friends": []
     },
-    "ernie": {
-        "name": "Ernie",
-        "password": "orange",
+    "panther": {
+        "name": "Black Panther",
+        "password": "black",
         "userType": "SPEAKER",
-        "eventsAttending": [
-            "8b77ec2b-00da-4893-9280-f8fbe1c53e5e",
-            "a952787e-851b-40a2-90ac-c7758aed432e"
-        ],
+        "eventsAttending": [],
+        "friends": []
+    },
+    "dead": {
+        "name": "Dead Pool",
+        "password": "pool",
+        "userType": "SPEAKER",
+        "eventsAttending": [],
+        "friends": []
+    },
+    "gamora": {
+        "name": "Gamora",
+        "password": "dead",
+        "userType": "SPEAKER",
+        "eventsAttending": [],
+        "friends": []
+    },
+    "thanos": {
+        "name": "Thanos",
+        "password": "snap",
+        "userType": "ADMIN",
+        "eventsAttending": [],
         "friends": []
     }
 }
