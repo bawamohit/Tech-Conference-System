@@ -235,7 +235,7 @@ public class OrganizerSystem extends UserSystem {
         }
         HashMap<LocalDateTime, UUID> schedule = tcs.getRM().getRoomSchedule(roomName);
         for (LocalDateTime existingST: schedule.keySet()) {
-            if (newET.isAfter(existingST) || newST.isBefore(tcs.getEM().getEventEndTime(schedule.get(existingST)))) {
+            if (!newET.isBefore(existingST) && !newST.isAfter(tcs.getEM().getEventEndTime(schedule.get(existingST)))) {
                 presenter.printObjUnavailable("room at this time");
                 return false;
             }
