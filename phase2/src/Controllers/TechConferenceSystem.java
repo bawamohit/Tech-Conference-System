@@ -64,8 +64,10 @@ public class TechConferenceSystem {
                 system = new AttendeeSystem();//TODO excess objects?
             } else if (um.getUserType(loggedInUsername) == UserType.ORGANIZER) {
                 system = new OrganizerSystem();
-            } else {
+            } else if (um.getUserType(loggedInUsername) == UserType.SPEAKER){
                 system = new SpeakerSystem();
+            } else {
+                system = new AdminSystem();
             }
             system.run(loggedInUsername, this);
         }
