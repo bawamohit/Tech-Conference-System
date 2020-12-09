@@ -194,4 +194,9 @@ public class MessageManager {
             sendMessage(sender, user, content);
         }
     }
+
+    public void deleteMutualThread(String username1, String username2){
+        chats.get(username1).remove(username2);
+        chats.get(username2).remove(username1);
+    }
 }

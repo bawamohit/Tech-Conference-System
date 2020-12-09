@@ -33,14 +33,40 @@ public class AdminSystem extends UserSystem{
                     presenter.printLoggedOut();
                     break label;
                 case "1":
-                    presenter.printAskUsername1();
-                    String username1 = scanner.nextLine();
+                    while (true) {
 
-                    presenter.printAskUsername2();
-                    String username2 = scanner.nextLine();
+                        while (true) {
+                            presenter.printAskUsername1();
+                            String username1 = scanner.nextLine();
+                            if (tcs.getUM().isRegistered(username1)) {
+                                break;
+                            } else {
+                                presenter.printUserDoesNotExist();
+                            }
+                        }
+                        while (true) {
+                            presenter.printAskUsername2();
+                            String username2 = scanner.nextLine();
+                            if (tcs.getUM().isRegistered(username2)) {
+                                break;
+                            } else {
+                                presenter.printUserDoesNotExist();
+                            }
+                        }
 
+                        presenter.confirmChatDeletion();
+                        String confirmation = scanner.nextLine();
+
+                        if (confirmation == "yes"){
+
+                            break;
+                        }
+                    }
+
+                    break;
                 case "2":
                     presenter.printDeleteEventMenu();
+
             }
         }
     }
