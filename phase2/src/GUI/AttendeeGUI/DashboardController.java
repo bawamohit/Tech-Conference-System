@@ -25,6 +25,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public class DashboardController implements GUIController {
+    public Button cancelbutton;
     private MainController mainController;
     private String username;
     private SubScene subScene;
@@ -43,6 +44,7 @@ public class DashboardController implements GUIController {
         this.username = UserHolder.getInstance().getUsername();
         profile.setText(username);
         loadSubScene("AvailableEvents");
+        cancelbutton.setVisible(false);
         gridPane.add(subScene, 1, 0);
         this.userManager = ManagersStorage.getInstance().getUserManager();
         this.eventManager = ManagersStorage.getInstance().getEventManager();
@@ -55,14 +57,17 @@ public class DashboardController implements GUIController {
     @FXML
     protected void handleMessageButtonAction(ActionEvent event) {
         loadSubScene("Message");
+        cancelbutton.setVisible(false);
     }
 
     @FXML protected void handleAvailEventButtonAction(ActionEvent event) {
         loadSubScene("AvailableEvents");
+        cancelbutton.setVisible(false);
     }
 
     @FXML protected void handleMyEventButtonAction(ActionEvent event) {
         loadSubScene("MyEvents");
+        cancelbutton.setVisible(true);
     }
 
     @FXML public void handleLogOutButtonAction(ActionEvent event) throws IOException {
