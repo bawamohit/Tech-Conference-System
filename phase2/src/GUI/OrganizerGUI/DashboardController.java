@@ -43,7 +43,7 @@ public class DashboardController implements GUIController {
         this.userManager = ManagersStorage.getInstance().getUserManager();
         this.eventManager = ManagersStorage.getInstance().getEventManager();
         this.roomManager = ManagersStorage.getInstance().getRoomManager();
-        addEventbutton.setVisible(false);
+        addEventbutton.setVisible(true);
     }
 
     public void initData(MainController mainController){
@@ -88,7 +88,10 @@ public class DashboardController implements GUIController {
             try{
                 loader.load();
                 UUID eventID = ((EventInfoController)loader.getController()).eventID;
-                if(eventManager.removeEvent(eventID) && roomManager.removeEventFromSchedule(eventID)){
+                for (String username: eventManager.getEventAttendees(eventID)){
+                    userManager.removeEventAttending(username, eventID);
+                }
+                if (eventManager.removeEvent(eventID) && roomManager.removeEventFromSchedule(eventID)){
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setHeaderText(null);
                     alert.setContentText("Successfully Removed");

@@ -29,6 +29,7 @@ public class AvailableEventsController implements GUIController {
     @FXML private GridPane subGridPane;
 
     public void initialize(){
+        EventHolder.getInstance().setButtonClicked(false);
         this.eventManager = ManagersStorage.getInstance().getEventManager();
         this.user = UserHolder.getInstance().getUsername();
         LocalDateTime currTime = LocalDateTime.now();
