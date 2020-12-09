@@ -86,6 +86,11 @@ public class MainController implements GUIController{
                     loader = new FXMLLoader(getClass().getResource("SpeakerMenu/SpeakerMenu.fxml"));
                     setNewScene(event, loader);
                     break;
+
+                case ADMIN:
+                    loader = new FXMLLoader(getClass().getResource("AdminGUI/Dashboard.fxml"));
+                    setNewScene(event, loader);
+                    break;
             }
         } else{
             prompt.setText("Sign in failed.");

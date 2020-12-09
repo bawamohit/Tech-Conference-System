@@ -17,7 +17,7 @@
     </VBox>
    <Pane prefHeight="120.0" prefWidth="130.0" snapToPixel="false" GridPane.rowIndex="1">
       <children>
-      
+
             <Button fx:id="logOutButton" alignment="BOTTOM_CENTER" layoutY="2.0" mnemonicParsing="false" onAction="#handleLogOutButtonAction" prefHeight="2.0" prefWidth="150.0" text="Log Out" />
       </children>
    </Pane>

@@ -153,5 +153,12 @@
             "c463b726-f5ca-4dd5-b772-7801a421c111"
         ],
         "friends": []
+    },
+    "admin": {
+        "name": "Jenny",
+        "password": "admin",
+        "userType": "ADMIN",
+        "eventsAttending": [],
+        "friends": []
     }
 }
