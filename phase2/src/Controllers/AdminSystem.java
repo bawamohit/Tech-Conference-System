@@ -90,7 +90,7 @@ public class AdminSystem extends UserSystem{
             if (username2.equals("")){
                 return;
             }
-            if (!tcs.getUM().isRegistered(username1)) {
+            if (!tcs.getUM().isRegistered(username2)) {
                 presenter.printUserDoesNotExist();
             } else {
                 break;
