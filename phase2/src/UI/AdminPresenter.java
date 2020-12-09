@@ -18,8 +18,12 @@ public class AdminPresenter extends UserPresenter {
     }
 
     public void confirmChatDeletion(String u1, String u2){
-        System.out.println("Are you sure you'd like to delete the chat between " + u1 + " and " + u2 + " " +
-                "('yes' or 'no')");
+        System.out.println("Are you sure you'd like to delete the chat between " + u1 + " and " + u2 +
+                "? ('yes' or 'no')");
+    }
+
+    public void confirmEventDeletion(String eventNum){
+        System.out.println("Are you sure you'd like to delete event " + eventNum + "? ('yes' or 'no')");
     }
 
     public void printEmptyEvents(String compiled) {
@@ -31,6 +35,6 @@ public class AdminPresenter extends UserPresenter {
     }
 
     public void printDeleteEventMenu(){
-
+        System.out.println("Enter the number associated with an event to delete it:");
     }
 }

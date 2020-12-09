@@ -26,7 +26,6 @@ public class AdminSystem extends UserSystem{
         while (true) {
             presenter.printAdminMenu();
             String choice = scanner.nextLine();
-            List<UUID> emptyEvents = tcs.getEM().getEmptyEvents();
 
             switch (choice){
                 case "0":
@@ -85,6 +84,24 @@ public class AdminSystem extends UserSystem{
                     List<String> emptyEventStrings = tcs.getEM().getEventsStrings(emptyEventsIds);
                     presenter.printEmptyEvents(formatInfo(emptyEventStrings));
 
+                    String eventNum;
+
+                    presenter.printDeleteEventMenu();
+                    presenter.printBackToMainMenu();
+
+                    while (true) {
+                        eventNum = validInput("^[0-" + (emptyEventsIds.size() - 1) + "]$|^.{0}$", scanner ,tcs);
+                        if (eventNum.equals("")){
+                            break;
+                        }
+                        presenter.confirmEventDeletion(eventNum);
+                        String confirmation = scanner.nextLine();
+                        if (confirmation.equals("yes")){
+                            System.out.println("GREAT SUCCESS");
+                        }
+                        break;
+                    }
+                    break;
             }
         }
     }
