@@ -70,8 +70,9 @@ public class AttendeeSystem extends UserSystem{
                         presenter.printEventFull();
                         break;
                     }
-                    if (isAttendeeFree(username, id, tcs) && tcs.getEM().addAttendee(id, username)){
+                    if (isAttendeeFree(username, id, tcs) && !tcs.getEM().isAttending(id, username)){
                         tcs.getUM().addEventAttending(username, id);
+                        tcs.getEM().addAttendee(id, username);
                         presenter.printEventSignUpSuccess();
                     } else{
                         presenter.printAlreadyBookedTime();

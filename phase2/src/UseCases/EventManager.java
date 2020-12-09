@@ -299,15 +299,17 @@ public class EventManager {
      * @param username name of attendee to be added
      * @return a boolean indicating if user was successfully added
      */
-    public boolean addAttendee(UUID eventID, String username){
+    public void addAttendee(UUID eventID, String username){
         Event event = events.get(eventID);
-        List<String> updated_attendees = getEventAttendees(event.getId());
-        if (!event.getAttendees().contains(username)) {
-            updated_attendees.add(username);
-            event.setAttendees(updated_attendees);
-            return true;
-        }
-        return false;
+        List<String> attendees = getEventAttendees(eventID);
+        attendees.add(username);
+        event.setAttendees(attendees);
+    }
+
+    //TODO javadoc, this breaks down the original addAttendee to two simpler functions, also update above function javadoc
+    public boolean isAttending(UUID eventID, String username){
+        Event event = events.get(eventID);
+        return(event.getAttendees().contains(username));
     }
 
     /**
@@ -339,8 +341,21 @@ public class EventManager {
      */
     public boolean scheduleNotOverlap(LocalDateTime existingST, LocalDateTime existingET,
                                       LocalDateTime newST, LocalDateTime newET){
-        return (!(newET.isAfter(existingST)) || !(newST.isBefore(existingET)));
+        return (newET.isAfter(existingST) || newST.isBefore(existingET));
     }
 
+    //TODO Javadoc, also didnt consider what happens when equal someone tell me what method does also the method above is just wrong so delete it i guess
+    public boolean scheduleOverlap(UUID event, List<UUID> schedule){
+        LocalDateTime start1 = getEventStartTime(event);
+        LocalDateTime end1 = getEventStartTime(event);
+        for(UUID otherEvent: schedule) {
+            LocalDateTime start2 = getEventStartTime(otherEvent);
+            LocalDateTime end2 = getEventEndTime(otherEvent);
+            if(!(start1.isBefore(start2) && !end1.isAfter(start2) || start1.isAfter(start2) && end2.isAfter(start1))){
+                return false;
+            }
+        }
+        return true;
+    }
 
 }

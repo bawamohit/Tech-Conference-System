@@ -1,13 +1,10 @@
 package GUI.AttendeeGUI.Message;
 
-import GUI.AttendeeGUI.DashboardController;
 import GUI.GUIController;
 import GUI.MainController;
 import GUI.ManagersStorage;
 import GUI.UserHolder;
 import UseCases.MessageManager;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,12 +13,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.SubScene;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import jdk.nashorn.internal.objects.Global;
-import sun.applet.Main;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -47,7 +40,7 @@ public class MessageController implements GUIController {
         List<String> users = messageManager.getInboxes(username);
         if(!users.isEmpty()){
             for (String user: users){
-                makeButtons(user);
+                makeButton(user);
             }
             CollocutorHolder.getInstance().setUsername(users.get(0));
             loadSubScene("Chat");
@@ -70,15 +63,12 @@ public class MessageController implements GUIController {
         List<String> allUsers = ManagersStorage.getInstance().getUserManager().getUsernameList();
         List<String> contacts = ManagersStorage.getInstance().getMessageManager().getInboxes(username);
         if(contacts.contains(user)){
-            if (!buttonExists(user)){
-                makeButtons(user);
-            }
             CollocutorHolder.getInstance().setUsername(user);
             loadSubScene("Chat");
 
         }else if(allUsers.contains(user)){
             if (!buttonExists(user)){
-                makeButtons(user);
+                makeButton(user);
             }
             CollocutorHolder.getInstance().setUsername(user);
             loadSubScene("Chat");
@@ -142,7 +132,7 @@ public class MessageController implements GUIController {
         }
     }
 
-    private void makeButtons(String user){
+    private void makeButton(String user){
         Button button = new Button();
         button.setPrefHeight(50);
         button.setPrefWidth(110);

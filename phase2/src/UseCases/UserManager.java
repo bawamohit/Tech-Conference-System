@@ -257,6 +257,7 @@ public class UserManager {
      *
      * @return true if existingTime does not overlap with newTime, and false otherwise.
      */
+    //TODO probably delete
     public boolean scheduleNotOverlap(LocalDateTime existingTime, LocalDateTime newTime){
         return (!(newTime.isAfter(existingTime.minusHours(1))) || !(newTime.isBefore(existingTime.plusHours(1))));
     }
