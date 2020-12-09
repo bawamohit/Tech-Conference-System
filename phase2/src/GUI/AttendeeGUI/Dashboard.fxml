@@ -4,28 +4,36 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane fx:id="gridPane" alignment="BASELINE_LEFT"  prefHeight="650" prefWidth="750" vgap="10" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.AttendeeGUI.DashboardController">
-
-    <VBox fillWidth="false" prefHeight="650" prefWidth="150" snapToPixel="false" spacing="50">
+<GridPane fx:id="gridPane" alignment="BASELINE_LEFT" prefHeight="650.0" prefWidth="888.0" snapToPixel="false" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AttendeeGUI.DashboardController">
+    <VBox fillWidth="false" prefHeight="575.0" prefWidth="346.0" snapToPixel="false" spacing="50">
         <Label fx:id="profile" />
-        <VBox prefHeight="534.0" prefWidth="150.0" snapToPixel="false" spacing="400">
+        <VBox prefHeight="535.0" prefWidth="223.0" snapToPixel="false" spacing="400">
             <VBox>
                 <Button fx:id="availEventButton" onAction="#handleAvailEventButtonAction" prefHeight="33.0" prefWidth="155" text="Available Events" />
                 <Button fx:id="myEventButton" onAction="#handleMyEventButtonAction" prefHeight="33.0" prefWidth="150" text="My Events" />
                 <Button fx:id="messageButton" onAction="#handleMessageButtonAction" prefHeight="33.0" prefWidth="150" text="Message" />
             </VBox>
-
-            <Button fx:id="logOutButton" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#handleLogOutButtonAction" prefHeight="33.0" prefWidth="200" text="Log Out" />
         </VBox>
     </VBox>
-
+   <Pane prefHeight="120.0" prefWidth="130.0" snapToPixel="false" GridPane.rowIndex="1">
+      <children>
+      
+            <Button fx:id="logOutButton" alignment="BOTTOM_CENTER" layoutY="2.0" mnemonicParsing="false" onAction="#handleLogOutButtonAction" prefHeight="2.0" prefWidth="150.0" text="Log Out" />
+      </children>
+   </Pane>
+    <Pane prefHeight="93.0" prefWidth="587.0" snapToPixel="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <children>
+          <Button fx:id="cancelbutton" layoutX="543.0" layoutY="2.0" prefHeight="25.0" prefWidth="176.0" onAction="#handleCancelButtonAction" snapToPixel="false" text="Cancel" />
+      </children></Pane>
     <stylesheets>
         <URL value="@Dashboard.css" />
     </stylesheets>
    <columnConstraints>
-      <ColumnConstraints />
+      <ColumnConstraints maxWidth="317.0" minWidth="149.00001525878906" prefWidth="149.00001525878906" />
+      <ColumnConstraints maxWidth="738.9999847412109" minWidth="571.0" prefWidth="738.9999847412109" />
    </columnConstraints>
    <rowConstraints>
+      <RowConstraints />
       <RowConstraints />
    </rowConstraints>
 </GridPane>

@@ -1,8 +1,12 @@
 package GUI.AttendeeGUI;
 
+import GUI.AttendeeGUI.MyEvents.EventInfoController;
 import GUI.GUIController;
 import GUI.MainController;
+import GUI.ManagersStorage;
 import GUI.UserHolder;
+import UseCases.EventManager;
+import UseCases.UserManager;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,20 +14,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.SubScene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.SplitPane;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
+import java.util.UUID;
 
 public class DashboardController implements GUIController {
     private MainController mainController;
     private String username;
-    public SubScene subScene;
+    private SubScene subScene;
+    private UserManager userManager;
+    private EventManager eventManager;
 
     @FXML private AnchorPane anchorPane;
     @FXML private SplitPane splitPane;
@@ -38,6 +44,8 @@ public class DashboardController implements GUIController {
         profile.setText(username);
         loadSubScene("AvailableEvents");
         gridPane.add(subScene, 1, 0);
+        this.userManager = ManagersStorage.getInstance().getUserManager();
+        this.eventManager = ManagersStorage.getInstance().getEventManager();
     }
 
     public void initData(MainController mainController){
@@ -59,6 +67,26 @@ public class DashboardController implements GUIController {
 
     @FXML public void handleLogOutButtonAction(ActionEvent event) throws IOException {
         mainController.handleLogOutButtonAction(event, true);
+    }
+
+    @FXML public void handleCancelButtonAction(ActionEvent event){
+        FXMLLoader loader = new FXMLLoader((getClass().getResource("MyEvents/EventInfo.fxml")));
+        try{
+            loader.load();
+            UUID eventID = ((EventInfoController)loader.getController()).eventID;
+            eventManager.removeAttendee(username, eventID);
+            userManager.removeEventAttending(username, eventID);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("Successfully Cancelled");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent()){
+                loadSubScene("MyEvents");
+            }
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     public void loadSubScene(String path){
