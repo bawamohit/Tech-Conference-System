@@ -1,1 +1,108 @@
-{}
+{
+    "doctor": {"ant": [{
+        "receiver": "doctor",
+        "sender": "ant",
+        "time": "2020-12-08T22:32:32.094",
+        "content": "Hey guys, I figured out a way to beat Thanos!"
+    }]},
+    "thor": {"wolverine": [
+        {
+            "receiver": "wolverine",
+            "sender": "thor",
+            "time": "2020-12-08T22:27:06.877",
+            "content": "Hi Wolverine! My hair's getting long. Can you cut it?"
+        },
+        {
+            "receiver": "thor",
+            "sender": "wolverine",
+            "time": "2020-12-08T22:29:19.573",
+            "content": "Hello Thor. I cannot cut your hair unless you promise to wash it first."
+        }
+    ]},
+    "wolverine": {
+        "thor": [
+            {
+                "receiver": "wolverine",
+                "sender": "thor",
+                "time": "2020-12-08T22:27:06.877",
+                "content": "Hi Wolverine! My hair's getting long. Can you cut it?"
+            },
+            {
+                "receiver": "thor",
+                "sender": "wolverine",
+                "time": "2020-12-08T22:29:19.573",
+                "content": "Hello Thor. I cannot cut your hair unless you promise to wash it first."
+            }
+        ],
+        "ant": [{
+            "receiver": "wolverine",
+            "sender": "ant",
+            "time": "2020-12-08T22:32:32.094",
+            "content": "Hey guys, I figured out a way to beat Thanos!"
+        }]
+    },
+    "ant": {
+        "doctor": [{
+            "receiver": "doctor",
+            "sender": "ant",
+            "time": "2020-12-08T22:32:32.094",
+            "content": "Hey guys, I figured out a way to beat Thanos!"
+        }],
+        "wolverine": [{
+            "receiver": "wolverine",
+            "sender": "ant",
+            "time": "2020-12-08T22:32:32.094",
+            "content": "Hey guys, I figured out a way to beat Thanos!"
+        }],
+        "panther": [{
+            "receiver": "panther",
+            "sender": "ant",
+            "time": "2020-12-08T22:32:32.094",
+            "content": "Hey guys, I figured out a way to beat Thanos!"
+        }],
+        "gamora": [{
+            "receiver": "gamora",
+            "sender": "ant",
+            "time": "2020-12-08T22:32:32.094",
+            "content": "Hey guys, I figured out a way to beat Thanos!"
+        }]
+    },
+    "gamora": {"ant": [{
+        "receiver": "gamora",
+        "sender": "ant",
+        "time": "2020-12-08T22:32:32.094",
+        "content": "Hey guys, I figured out a way to beat Thanos!"
+    }]},
+    "black": {"groot": [{
+        "receiver": "black",
+        "sender": "groot",
+        "time": "2020-12-08T22:33:34.028",
+        "content": "widow"
+    }]},
+    "groot": {"black": [{
+        "receiver": "black",
+        "sender": "groot",
+        "time": "2020-12-08T22:33:34.028",
+        "content": "widow"
+    }]},
+    "panther": {
+        "ant": [{
+            "receiver": "panther",
+            "sender": "ant",
+            "time": "2020-12-08T22:32:32.094",
+            "content": "Hey guys, I figured out a way to beat Thanos!"
+        }],
+        "captain": [{
+            "receiver": "captain",
+            "sender": "panther",
+            "time": "2020-12-08T22:36:16.796",
+            "content": "WAKANDA FOREVER"
+        }]
+    },
+    "captain": {"panther": [{
+        "receiver": "captain",
+        "sender": "panther",
+        "time": "2020-12-08T22:36:16.796",
+        "content": "WAKANDA FOREVER"
+    }]}
+}
