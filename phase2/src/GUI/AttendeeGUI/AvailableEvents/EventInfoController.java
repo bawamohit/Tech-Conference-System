@@ -1,5 +1,6 @@
 package GUI.AttendeeGUI.AvailableEvents;
 
+import GUI.AttendeeGUI.AbstractEventInfoController;
 import GUI.GUIController;
 import GUI.MainController;
 import GUI.ManagersStorage;
@@ -15,12 +16,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-public class EventInfoController implements GUIController {
-    private EventManager eventManager;
-    private UserManager userManager;
-    private String username;
-    private UUID eventID;
-    private List<String> eventInfo;
+public class EventInfoController extends AbstractEventInfoController implements GUIController {
 
     @FXML Label label1;
     @FXML Label label2;
@@ -31,22 +27,6 @@ public class EventInfoController implements GUIController {
     @FXML Label label7;
     @FXML Label label8;
 
-    public void initialize(){
-        this.eventManager = ManagersStorage.getInstance().getEventManager();
-        this.userManager = ManagersStorage.getInstance().getUserManager();
-        this.username = UserHolder.getInstance().getUsername();
-        this.eventID = EventHolder.getInstance().getEventID();
-        this.eventInfo = eventManager.getEventsInfo(eventID);
-
-        label1.setText("Event Name: " + eventInfo.get(1));
-        label2.setText("Start Time: " + eventInfo.get(3));
-        label3.setText("End Time: " + eventInfo.get(4));
-        label4.setText("Speakers: " + eventInfo.get(2));
-        label5.setText("Organizers: " + eventInfo.get(6));
-        label6.setText("Room: " + eventInfo.get(5));
-        label7.setText("Maximum Capacity: " + eventInfo.get(7));
-        label8.setText("Available Spots: " + eventInfo.get(8));
-    }
     @Override
     public void initData(MainController mainController) {
 
