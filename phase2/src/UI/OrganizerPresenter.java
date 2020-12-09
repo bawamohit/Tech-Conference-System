@@ -33,13 +33,16 @@ public class OrganizerPresenter extends UserPresenter {
         System.out.println("Enter the number of the event you would like to register the speaker for:");
     }
 
+    public void printAskRemove() {
+        System.out.println("Enter the number of the event you would like to cancel:");
+    }
     /**
      * Prints a display of all events available for signup and their detailed info.
      *
      * @param compiled formatted string of all the aforementioned events
      */
     public void printAvailableEvents(String compiled) {
-        System.out.println("The events available for sign-up are: \n" + compiled);
+        System.out.println("The events available are: \n" + compiled);
     }
 
     /**
@@ -54,5 +57,9 @@ public class OrganizerPresenter extends UserPresenter {
      */
     public void printEventActionFail(String action) {
         System.out.println("Error! Event not " + action + ".");
+    }
+
+    public void printNotASpeaker(){
+        System.out.println("This user is not a speaker");
     }
 }

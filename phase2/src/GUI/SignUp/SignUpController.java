@@ -75,6 +75,6 @@ public class SignUpController{
     }
 
     @FXML protected void handleBackButtonAction(ActionEvent event) throws IOException {
-        mainController.handleLogOutButtonAction(event);
+        mainController.handleLogOutButtonAction(event, false);
     }
 }

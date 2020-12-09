@@ -1,6 +1,5 @@
 package Entities;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -9,7 +8,7 @@ import java.util.UUID;
  * This class is one of the entity classes for this program, specifically for user.
  *
  */
-public class User implements Serializable {
+public class User {
 
     private String name;
     private String username;

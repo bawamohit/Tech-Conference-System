@@ -1,6 +1,5 @@
 package Entities;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.UUID;
@@ -9,7 +8,7 @@ import java.util.UUID;
  * This class is one of the entity classes for this program, specifically for room.
  *
  */
-public class Room implements Serializable {
+public class Room {
     private String roomName;
     private int capacity;
     private HashMap<LocalDateTime, UUID> schedule;

@@ -1,6 +1,5 @@
 package GUI.OrganizerMenu;
 
-import GUI.AttendeeMenu.AttendeeMenuController;
 import GUI.GUIController;
 import GUI.MainController;
 import UseCases.UserManager;
@@ -30,6 +29,6 @@ public class OrganizerMenuController implements GUIController {
     }
 
     @FXML public void handleLogOutButtonAction(ActionEvent event) throws IOException {
-        mainController.handleLogOutButtonAction(event);
+        mainController.handleLogOutButtonAction(event, true);
     }
 }

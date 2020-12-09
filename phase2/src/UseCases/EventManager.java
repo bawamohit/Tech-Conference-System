@@ -1,6 +1,5 @@
 package UseCases;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -144,17 +143,6 @@ public class EventManager {
     }
 
     /**
-     * Implements Getter, getEventAttendeeNums, for an event in events.
-     *
-     * @param eventID ID of the event to retrieve attendee list for
-     *
-     * @return number of attendees in an event, which should not include the speaker
-     */
-    public int getEventAttendeeNums(UUID eventID) {
-        return events.get(eventID).getAttendees().size();
-    }
-
-    /**
      * Implements Getter, getEventStartTime, for an event in events.
      *
      * @param eventID ID of the event to retrieve the start time for
@@ -273,11 +261,16 @@ public class EventManager {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy HH:mm");
         String formattedST = event.getStartTime().format(formatter);
         String formattedET = event.getEndTime().format(formatter);
+        infoList.add(eventID.toString());
         infoList.add(getEventName(eventID));
         infoList.add(event.convertSpeakerString());
         infoList.add(formattedST);
         infoList.add(formattedET);
         infoList.add(event.getRoomName());
+        infoList.add(getEventOrganizer(eventID));
+        int capacity = getEventMaxCapacity(eventID);
+        infoList.add(Integer.toString(capacity));
+        infoList.add(Integer.toString(capacity - getEventAttendees(eventID).size()));
         return infoList;
     }
 
@@ -289,14 +282,14 @@ public class EventManager {
         return infoList;
     }
 
-    public List<String> sortEvents(){
-        List<String> eventNames = new ArrayList<>();
+    public List<UUID> sortEvents(){
+        List<UUID> eventIDs = new ArrayList<>();
         List<Event> eventList = new ArrayList<>(events.values());
         Collections.sort(eventList);
         for (Event event: eventList){
-            eventNames.add(event.getEventName());
+            eventIDs.add(event.getId());
         }
-        return eventNames;
+        return eventIDs;
     }
 
     /**
@@ -321,7 +314,7 @@ public class EventManager {
      * Implements modifier, removeAttendee, for event in events.
      *
      * @param username attendee username
-     * @param eventID list of event ids
+     * @param eventID ID of event to remove user from
      *
      * @return a boolean indicating if user was successfully removed
      */

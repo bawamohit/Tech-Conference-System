@@ -126,12 +126,12 @@ public class MainController implements GUIController{
         stage.show();
     }
 
-    public void handleLogOutButtonAction(ActionEvent event) throws IOException {
+    public void handleLogOutButtonAction(ActionEvent event, boolean closeStage) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(welcomeFXMLPath));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.hide();
+        if(closeStage) stage.hide();
 
         GUIController controller = loader.getController();
         controller.initData(this);

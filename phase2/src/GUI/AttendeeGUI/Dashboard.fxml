@@ -1,25 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.geometry.Insets?>
-<?import java.net.URL?>
-<GridPane fx:id="gridPane" xmlns="http://javafx.com/javafx"
-          xmlns:fx="http://javafx.com/fxml"
-          fx:controller="GUI.AttendeeGUI.DashboardController"
-          alignment="BASELINE_LEFT" hgap="10" vgap="10" prefHeight="650" prefWidth="750">
+<GridPane fx:id="gridPane" alignment="BASELINE_LEFT"  prefHeight="650" prefWidth="750" vgap="10" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.AttendeeGUI.DashboardController">
 
-    <VBox fillWidth="false" prefHeight="650" prefWidth="125" spacing="50" snapToPixel="false">
-        <Label fx:id="profile"/>
-        <VBox spacing="400">
+    <VBox fillWidth="false" prefHeight="650" prefWidth="150" snapToPixel="false" spacing="50">
+        <Label fx:id="profile" />
+        <VBox prefHeight="534.0" prefWidth="150.0" snapToPixel="false" spacing="400">
             <VBox>
-                <Button fx:id="availEventButton" onAction="#handleAvailEventButtonAction" prefHeight="33.0" prefWidth="200" text="Available Events" />
-                <Button fx:id="myEventButton" onAction="#handleMyEventButtonAction" prefHeight="33.0" prefWidth="200" text="My Events" />
-                <Button fx:id="messageButton" onAction="#handleMessageButtonAction" prefHeight="33.0" prefWidth="200" text="Message" />
+                <Button fx:id="availEventButton" onAction="#handleAvailEventButtonAction" prefHeight="33.0" prefWidth="155" text="Available Events" />
+                <Button fx:id="myEventButton" onAction="#handleMyEventButtonAction" prefHeight="33.0" prefWidth="150" text="My Events" />
+                <Button fx:id="messageButton" onAction="#handleMessageButtonAction" prefHeight="33.0" prefWidth="150" text="Message" />
             </VBox>
 
             <Button fx:id="logOutButton" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#handleLogOutButtonAction" prefHeight="33.0" prefWidth="200" text="Log Out" />
@@ -29,4 +22,10 @@
     <stylesheets>
         <URL value="@Dashboard.css" />
     </stylesheets>
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
 </GridPane>

@@ -1,22 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="GUI.AttendeeGUI.MyEvents.MyEventsController"
-            prefHeight="400.0" prefWidth="600.0">
-    <TextField  GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-    <TextField  GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-    <TextField  GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-    <TextField  GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-    <TextField  GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-    <TextField  GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-    <TextField  GridPane.columnIndex="0" GridPane.rowIndex="6"/>
-    <TextField  GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+<AnchorPane prefHeight="477.0" prefWidth="732.0" snapToPixel="false" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AttendeeGUI.MyEvents.MyEventsController">
 
-</GridPane>
+    <ScrollPane fx:id="container" fitToWidth="true" layoutX="24.0" layoutY="49.0" prefHeight="455.0" prefWidth="672.0">
+        <GridPane fx:id="gridPane" prefWidth="672.0">
+        </GridPane>
+    </ScrollPane>
+
+</AnchorPane>

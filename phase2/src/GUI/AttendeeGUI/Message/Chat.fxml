@@ -3,15 +3,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.AttendeeGUI.Message.ChatController"
-    prefHeight="600">
-    <ScrollPane fx:id="scrollPane" fitToWidth="true" prefHeight="500">
-            <VBox fx:id="chatBox" prefWidth="400">
+<AnchorPane prefHeight="600" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.AttendeeGUI.Message.ChatController">
+    <ScrollPane fx:id="scrollPane" fitToWidth="true" prefHeight="500" snapToPixel="false">
+            <VBox fx:id="chatBox" prefWidth="500">
             </VBox>
     </ScrollPane>
     <HBox AnchorPane.bottomAnchor="30">
-        <TextField fx:id="textField" onAction="#handleSend" prefWidth="380"/>
-        <Button fx:id="sendButton" onAction="#handleSend" text="Send"/>
+        <TextField fx:id="textField" onAction="#handleSend" prefWidth="500" />
+        <Button fx:id="sendButton" onAction="#handleSend" text="Send" />
     </HBox>
 
 </AnchorPane>
