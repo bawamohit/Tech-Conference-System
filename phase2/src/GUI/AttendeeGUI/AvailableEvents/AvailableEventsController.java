@@ -68,7 +68,7 @@ public class AvailableEventsController implements GUIController {
             e.printStackTrace();
         }
         if(subScene == null) {
-            subScene = new SubScene(root, 700, 100); //TODO initData maybe
+            subScene = new SubScene(root, 700, 115); //TODO initData maybe
         }else{
             subScene.setRoot(root);
         }

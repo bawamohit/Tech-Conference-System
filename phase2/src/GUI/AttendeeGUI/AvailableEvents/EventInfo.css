@@ -1,16 +1,7 @@
 .root {
-    -fx-background-image: url("../Images/dashboardbkg.png");
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
-}
-.VBox {
-    -fx-spacing: 30;
-    -fx-padding: 20;
-    -fx-background-color: rgba(108, 145, 191, 0.3);
-}
-
-.grid {
     -fx-background: transparent;
 }
 
