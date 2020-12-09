@@ -32,7 +32,7 @@ public class MyEventsController implements GUIController {
     @FXML private GridPane subGridPane;
 
     public void initialize(){
-        gridPane.getChildren().removeAll();
+        EventHolder.getInstance().setButtonClicked(false);
         this.eventManager = ManagersStorage.getInstance().getEventManager();
         this.userManager = ManagersStorage.getInstance().getUserManager();
         this.username = UserHolder.getInstance().getUsername();
