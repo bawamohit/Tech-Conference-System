@@ -61,8 +61,7 @@ public class AdminSystem extends UserSystem{
                             }
                             if (username1.equals(username2)){
                                 presenter.printDeleteChatError();
-                            }
-                            else if (tcs.getUM().isRegistered(username1) == false) {
+                            } else if (tcs.getUM().isRegistered(username1) == false) {
                                 presenter.printUserDoesNotExist();
                             } else {
                                 break;
@@ -97,7 +96,14 @@ public class AdminSystem extends UserSystem{
                         presenter.confirmEventDeletion(eventNum);
                         String confirmation = scanner.nextLine();
                         if (confirmation.equals("yes")){
-                            System.out.println("GREAT SUCCESS");
+                            UUID id = emptyEventsIds.get(Integer.parseInt(choice));
+                            if (!tcs.getEM().removeEvent(id)) {
+                                presenter.printDNE(("the event " + tcs.getEM().getEventName(id)));
+                                presenter.printEventActionFail("removed");
+                                break;
+                            }
+                            tcs.getRM().removeEventFromSchedule(id);
+                            presenter.printEventActionSuccess("removed");
                         }
                         break;
                     }

@@ -37,4 +37,19 @@ public class AdminPresenter extends UserPresenter {
     public void printDeleteEventMenu(){
         System.out.println("Enter the number associated with an event to delete it:");
     }
+
+    /**
+     * Prints a notification that user has successfully performed an action on an event.
+     */
+    public void printEventActionSuccess(String action) {
+        System.out.println("Event successfully " + action + ".");
+    }
+
+    /**
+     * Prints a notification that user has failed to perform an action on an event.
+     */
+    public void printEventActionFail(String action) {
+        System.out.println("Error! Event not " + action + ".");
+    }
+
 }
