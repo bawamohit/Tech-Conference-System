@@ -47,6 +47,7 @@ public class MyEventsController implements GUIController {
                 @Override
                 public void handle(ActionEvent event) {
                     EventHolder.getInstance().setEvent(UUID.fromString(eventInfo.get(0)));
+                    GUI.AttendeeGUI.EventHolder.getInstance().setButtonClicked(true);
                     loadSubScene("EventInfo");
                 }
             });

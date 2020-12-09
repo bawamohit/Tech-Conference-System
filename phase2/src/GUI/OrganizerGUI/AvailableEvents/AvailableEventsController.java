@@ -1,5 +1,6 @@
 package GUI.OrganizerGUI.AvailableEvents;
 
+import GUI.OrganizerGUI.DashboardController;
 import GUI.OrganizerGUI.EventHolder;
 import GUI.GUIController;
 import GUI.MainController;
@@ -24,7 +25,6 @@ public class AvailableEventsController implements GUIController {
     private EventManager eventManager;
     private String user;
     private SubScene subScene;
-
     @FXML private GridPane gridPane;
     @FXML private GridPane subGridPane;
 
@@ -39,14 +39,16 @@ public class AvailableEventsController implements GUIController {
         for(List<String> eventInfo: eventsInfo) {
             Button button = new Button(eventInfo.get(1) + "\nStarts: " + eventInfo.get(3) + "\nEnds:  " + eventInfo.get(4));
             button.setPrefHeight(75);
-            button.setPrefWidth(200);
+            button.setPrefWidth(200);;
             button.setOnAction(new EventHandler<ActionEvent>(){
                 @Override
                 public void handle(ActionEvent event) {
                     EventHolder.getInstance().setEvent(UUID.fromString(eventInfo.get(0)));
+                    EventHolder.getInstance().setButtonClicked(true);
                     loadSubScene("EventInfo");
                 }
-            });
+            }
+            );
             subGridPane.add(button, i, j);
             if(i < 3){ i++; }else{ i = 0; j++;}
         }

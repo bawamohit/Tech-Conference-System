@@ -4,6 +4,7 @@ import GUI.AttendeeGUI.MyEvents.EventInfoController;
 import GUI.GUIController;
 import GUI.MainController;
 import GUI.ManagersStorage;
+import GUI.AttendeeGUI.EventHolder;
 import GUI.UserHolder;
 import UseCases.EventManager;
 import UseCases.UserManager;
@@ -75,23 +76,36 @@ public class DashboardController implements GUIController {
     }
 
     @FXML public void handleCancelButtonAction(ActionEvent event){
-        FXMLLoader loader = new FXMLLoader((getClass().getResource("MyEvents/EventInfo.fxml")));
-        try{
-            loader.load();
-            UUID eventID = ((EventInfoController)loader.getController()).eventID;
-            eventManager.removeAttendee(username, eventID);
-            userManager.removeEventAttending(username, eventID);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
-            alert.setContentText("Successfully Cancelled");
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.isPresent()){
-                loadSubScene("MyEvents");
+        if (ifEventButtonClicked()){
+            FXMLLoader loader = new FXMLLoader((getClass().getResource("MyEvents/EventInfo.fxml")));
+            try{
+                loader.load();
+                UUID eventID = ((EventInfoController)loader.getController()).eventID;
+                eventManager.removeAttendee(username, eventID);
+                userManager.removeEventAttending(username, eventID);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setContentText("Successfully Cancelled");
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.isPresent()){
+                    loadSubScene("MyEvents");
+                }
+            }
+            catch (IOException e){
+                e.printStackTrace();
             }
         }
-        catch (IOException e){
-            e.printStackTrace();
+        else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("Please click an event you would like to cancel first");
+            alert.showAndWait();
         }
+
+    }
+
+    @FXML private boolean ifEventButtonClicked() {
+        return EventHolder.getInstance().getButtonClicked();
     }
 
     public void loadSubScene(String path){

@@ -1,5 +1,6 @@
 package GUI.OrganizerGUI;
 
+import GUI.OrganizerGUI.AvailableEvents.AvailableEventsController;
 import GUI.OrganizerGUI.AvailableEvents.EventInfoController;
 import GUI.GUIController;
 import GUI.MainController;
@@ -22,6 +23,8 @@ import java.util.UUID;
 
 
 public class DashboardController implements GUIController {
+    public Button addEventbutton;
+    public Button removeEventbutton;
     private MainController mainController;
     private String username;
     private SubScene subScene;
@@ -40,6 +43,7 @@ public class DashboardController implements GUIController {
         this.userManager = ManagersStorage.getInstance().getUserManager();
         this.eventManager = ManagersStorage.getInstance().getEventManager();
         this.roomManager = ManagersStorage.getInstance().getRoomManager();
+        addEventbutton.setVisible(false);
     }
 
     public void initData(MainController mainController){
@@ -48,22 +52,31 @@ public class DashboardController implements GUIController {
 
     @FXML protected void handleAvailEventButtonAction(ActionEvent event) {
         loadSubScene("AvailableEvents");
+        addEventbutton.setVisible(true);
     }
 
     @FXML
     protected void handleMessageButtonAction(ActionEvent event) {
         loadSubScene("Message");
+        removeEventbutton.setVisible(false);
+        addEventbutton.setVisible(false);
     }
 
     @FXML protected void handleCreateSpeakerButtonAction(ActionEvent event){
         //loadSubScene("Speakers");
+        removeEventbutton.setVisible(false);
+        addEventbutton.setVisible(false);
     }
 
     @FXML protected void handleCreateRoomButtonAction(ActionEvent event){
         //loadSubScene("Rooms");
+        removeEventbutton.setVisible(false);
+        addEventbutton.setVisible(false);
     }
     @FXML public void handleLogOutButtonAction(ActionEvent event) throws IOException {
         mainController.handleLogOutButtonAction(event, true);
+        removeEventbutton.setVisible(false);
+        addEventbutton.setVisible(false);
     }
 
     @FXML public void handleAddEventButtonAction(){
@@ -71,22 +84,34 @@ public class DashboardController implements GUIController {
     }
     @FXML public void handleRemoveEventButtonAction(ActionEvent event){
         FXMLLoader loader = new FXMLLoader((getClass().getResource("AvailableEvents/EventInfo.fxml")));
-        try{
-            loader.load();
-            UUID eventID = ((EventInfoController)loader.getController()).eventID;
-            if(eventManager.removeEvent(eventID) && roomManager.removeEventFromSchedule(eventID)){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setContentText("Successfully Removed");
-                Optional<ButtonType> result = alert.showAndWait();
-                if (result.isPresent()){
-                    loadSubScene("AvailableEvents");
+        if (ifEventButtonClicked()) {
+            try{
+                loader.load();
+                UUID eventID = ((EventInfoController)loader.getController()).eventID;
+                if(eventManager.removeEvent(eventID) && roomManager.removeEventFromSchedule(eventID)){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText(null);
+                    alert.setContentText("Successfully Removed");
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.isPresent()){
+                        loadSubScene("AvailableEvents");
+                    }
                 }
             }
+            catch (IOException e){
+                e.printStackTrace();
+            }
         }
-        catch (IOException e){
-            e.printStackTrace();
+        else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("Please click an event you would like to remove first");
+            alert.showAndWait();
         }
+    }
+
+    @FXML private boolean ifEventButtonClicked() {
+        return EventHolder.getInstance().getButtonClicked();
     }
 
     public void loadSubScene(String path){
