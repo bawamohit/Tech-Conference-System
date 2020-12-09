@@ -349,11 +349,11 @@ public class EventManager {
         for(UUID otherEvent: schedule) {
             LocalDateTime start2 = getEventStartTime(otherEvent);
             LocalDateTime end2 = getEventEndTime(otherEvent);
-            if(!(start1.isBefore(start2) && !end1.isAfter(start2) || start1.isAfter(start2) && end2.isAfter(start1))){
-                return false;
+            if(!(start1.isAfter(end2) || end1.isBefore(start2))){
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
 }

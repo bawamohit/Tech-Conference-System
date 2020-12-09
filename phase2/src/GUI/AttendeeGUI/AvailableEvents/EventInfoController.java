@@ -37,7 +37,7 @@ public class EventInfoController extends AbstractEventInfoController implements 
         if(eventManager.scheduleOverlap(eventID, schedule)){
             String startTime = eventManager.getEventStartTime(eventID).toString();
             String endTime = eventManager.getEventEndTime(eventID).toString();
-            alert("You have an event conflict at this time slot, cancel your other events that take place during" +
+            alert("You have an event conflict at this time slot, cancel your other events that take place during " +
                     startTime + " to " + endTime + ", to sign up for this event.");
         }else if(eventManager.isAttending(eventID, username)){
             alert("You're already signed up to the event");

@@ -23,7 +23,7 @@ import java.io.IOException;
 public class DashboardController implements GUIController {
     private MainController mainController;
     private String username;
-    private SubScene subScene;
+    public SubScene subScene;
 
     @FXML private AnchorPane anchorPane;
     @FXML private SplitPane splitPane;
@@ -61,7 +61,7 @@ public class DashboardController implements GUIController {
         mainController.handleLogOutButtonAction(event, true);
     }
 
-    private void loadSubScene(String path){
+    public void loadSubScene(String path){
         FXMLLoader loader = new FXMLLoader(getClass().getResource(path + "/" + path + ".fxml"));
         Parent root = null;
         try {
