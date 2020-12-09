@@ -17,6 +17,10 @@ public class AdminPresenter extends UserPresenter {
         System.out.println("Are you sure you'd like to delete this chat? ('yes' or 'no')");
     }
 
+    public void printAvailableEvents(String compiled) {
+        System.out.println("The events available are: \n" + compiled);
+    }
+
     public void printDeleteEventMenu(){
 
     }

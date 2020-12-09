@@ -32,12 +32,14 @@ public class AdminSystem extends UserSystem{
                 case "0":
                     presenter.printLoggedOut();
                     break label;
-                case "1":
-                    while (true) {
+                case "1": // Delete Chat
+                    String username1;
+                    String username2;
 
+                    while (true) {
                         while (true) {
                             presenter.printAskUsername1();
-                            String username1 = scanner.nextLine();
+                            username1 = scanner.nextLine();
                             if (tcs.getUM().isRegistered(username1)) {
                                 break;
                             } else {
@@ -46,7 +48,7 @@ public class AdminSystem extends UserSystem{
                         }
                         while (true) {
                             presenter.printAskUsername2();
-                            String username2 = scanner.nextLine();
+                            username2 = scanner.nextLine();
                             if (tcs.getUM().isRegistered(username2)) {
                                 break;
                             } else {
@@ -58,15 +60,17 @@ public class AdminSystem extends UserSystem{
                         String confirmation = scanner.nextLine();
 
                         if (confirmation == "yes"){
-
-                            break;
+                            tcs.getMM().deleteMutualThread(username1, username2);
                         }
+                        break;
                     }
-
                     break;
                 case "2":
                     presenter.printDeleteEventMenu();
-
+                    List<UUID> emptyEventsIds = tcs.getEM().getEmptyEvents();
+                    List<String> emptyEventStrings = tcs.getEM().getEventsStrings(emptyEventsIds);
+                    presenter.printAvailableEvents(formatInfo(emptyEventStrings));
+                    
             }
         }
     }
