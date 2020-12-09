@@ -30,10 +30,6 @@ public class AdminPresenter extends UserPresenter {
         System.out.println("The events with zero attendance are: \n" + compiled);
     }
 
-    public void printDeleteChatError(){
-        System.out.println("Error cannot delete chat between the same user");
-    }
-
     public void printDeleteEventMenu(){
         System.out.println("Enter the number associated with an event to delete it:");
     }

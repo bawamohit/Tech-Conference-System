@@ -32,51 +32,8 @@ public class AdminSystem extends UserSystem{
                     presenter.printLoggedOut();
                     break label;
                 case "1": // Delete Chat
-                    String username1;
-                    String username2;
-
-                    inner:
-                    while (true) {
-                        presenter.printDeleteChatMenu();
-                        while (true) {
-                            presenter.printAskUsername1();
-                            presenter.printBackToMainMenu();
-                            username1 = scanner.nextLine();
-                            if (username1.equals("")){
-                                break inner;
-                            }
-                            if (tcs.getUM().isRegistered(username1) == false) {
-                                presenter.printUserDoesNotExist();
-                            } else {
-                                break;
-                            }
-                        }
-
-                        while (true) {
-                            presenter.printAskUsername2();
-                            presenter.printBackToMainMenu();
-                            username2 = scanner.nextLine();
-                            if (username2.equals("")){
-                                break inner;
-                            }
-                            if (username1.equals(username2)){
-                                presenter.printDeleteChatError();
-                            } else if (tcs.getUM().isRegistered(username1) == false) {
-                                presenter.printUserDoesNotExist();
-                            } else {
-                                break;
-                            }
-                        }
-                        presenter.confirmChatDeletion(username1, username2);
-                        String confirmation = scanner.nextLine();
-
-                        if (confirmation == "yes"){
-                            tcs.getMM().deleteMutualThread(username1, username2);
-                        }
-                        break;
-                    }
+                    deleteMessageChat(scanner, tcs);
                     break;
-
                 case "2":
                     presenter.printDeleteEventMenu();
                     List<UUID> emptyEventsIds = tcs.getEM().getEmptyEvents();
@@ -88,27 +45,62 @@ public class AdminSystem extends UserSystem{
                     presenter.printDeleteEventMenu();
                     presenter.printBackToMainMenu();
 
-                    while (true) {
-                        eventNum = validInput("^[0-" + (emptyEventsIds.size() - 1) + "]$|^.{0}$", scanner ,tcs);
-                        if (eventNum.equals("")){
+                    eventNum = validInput("^[0-" + (emptyEventsIds.size() - 1) + "]$|^.{0}$", scanner ,tcs);
+                    if (eventNum.equals("")){
+                        break;
+                    }
+                    presenter.confirmEventDeletion(eventNum);
+                    String confirmation = scanner.nextLine();
+                    if (confirmation.equals("yes")){
+                        UUID id = emptyEventsIds.get(Integer.parseInt(choice));
+                        if (!tcs.getEM().removeEvent(id)) {
+                            presenter.printDNE(("the event " + tcs.getEM().getEventName(id)));
+                            presenter.printEventActionFail("removed");
                             break;
                         }
-                        presenter.confirmEventDeletion(eventNum);
-                        String confirmation = scanner.nextLine();
-                        if (confirmation.equals("yes")){
-                            UUID id = emptyEventsIds.get(Integer.parseInt(choice));
-                            if (!tcs.getEM().removeEvent(id)) {
-                                presenter.printDNE(("the event " + tcs.getEM().getEventName(id)));
-                                presenter.printEventActionFail("removed");
-                                break;
-                            }
-                            tcs.getRM().removeEventFromSchedule(id);
-                            presenter.printEventActionSuccess("removed");
-                        }
-                        break;
+                        tcs.getRM().removeEventFromSchedule(id);
+                        presenter.printEventActionSuccess("removed");
                     }
                     break;
             }
+        }
+    }
+
+    private void deleteMessageChat(Scanner scanner, TechConferenceSystem tcs){
+        String username1;
+        String username2;
+        presenter.printDeleteChatMenu();
+        while (true) {
+            presenter.printAskUsername1();
+            presenter.printBackToMainMenu();
+            username1 = scanner.nextLine();
+            if (username1.equals("")){
+                return;
+            }
+            if (!tcs.getUM().isRegistered(username1)) {
+                presenter.printUserDoesNotExist();
+            } else {
+                break;
+            }
+        }
+        while (true) {
+            presenter.printAskUsername2();
+            presenter.printBackToMainMenu();
+            username2 = scanner.nextLine();
+            if (username2.equals("")){
+                return;
+            }
+            if (!tcs.getUM().isRegistered(username1)) {
+                presenter.printUserDoesNotExist();
+            } else {
+                break;
+            }
+        }
+        presenter.confirmChatDeletion(username1, username2);
+        String confirmation = scanner.nextLine();
+
+        if (confirmation.equals("yes")){
+            tcs.getMM().deleteMutualThread(username1, username2);
         }
     }
 }
