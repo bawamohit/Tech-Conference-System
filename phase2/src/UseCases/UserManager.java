@@ -179,9 +179,10 @@ public class UserManager {
      *
      * @return true if the event id was successfully removed, and false if the event id was not present to begin with
      */
-    //TODO change javadoc
+    //TODO change javadoc accordingly
     public void removeEventAttending(String username, UUID eventId) {
         List<UUID> eventsAttending = usernamesToUsers.get(username).getEventsAttending();
+        eventsAttending.remove(eventId);
         usernamesToUsers.get(username).setEventsAttending(eventsAttending);
     }
 

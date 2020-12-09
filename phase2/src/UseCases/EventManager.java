@@ -324,6 +324,7 @@ public class EventManager {
     public void removeAttendee(String username, UUID eventID){
         Event event = events.get(eventID);
         List<String> updated_event = event.getAttendees();
+        updated_event.remove(username);
         event.setAttendees(updated_event);
     }
 
