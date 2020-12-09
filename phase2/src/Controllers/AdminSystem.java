@@ -52,7 +52,7 @@ public class AdminSystem extends UserSystem{
                     presenter.confirmEventDeletion(eventNum);
                     String confirmation = scanner.nextLine();
                     if (confirmation.equals("yes")){
-                        UUID id = emptyEventsIds.get(Integer.parseInt(choice));
+                        UUID id = emptyEventsIds.get(Integer.parseInt(eventNum));
                         if (!tcs.getEM().removeEvent(id)) {
                             presenter.printDNE(("the event " + tcs.getEM().getEventName(id)));
                             presenter.printEventActionFail("removed");
