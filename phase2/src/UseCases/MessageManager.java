@@ -3,6 +3,7 @@ package UseCases;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import Entities.Message;
@@ -127,7 +128,7 @@ public class MessageManager {
      *
      * @return List of usernames
      */
-    //TODO sort from lastest to oldest
+    //TODO sort from latest to oldest
     public List<String> getUsers() {
         return new ArrayList<>(chats.keySet());
     }
@@ -139,7 +140,8 @@ public class MessageManager {
      */
     public List<String> getInboxes(String user) {
         addSenderChat(user);
-        return new ArrayList<>(chats.get(user).keySet());
+        return sortInbox(user, new ArrayList<>(chats.get(user).keySet()));
+        //return new ArrayList<>(chats.get(user).keySet());
     }
 
     /** Implements Getter for getting the inbox between 2 users
@@ -198,5 +200,41 @@ public class MessageManager {
     public void deleteMutualThread(String username1, String username2){
         chats.get(username1).remove(username2);
         chats.get(username2).remove(username1);
+    }
+
+    /**
+     * @param user User of which we want to sort inbox
+     * @param inboxList Inboxes of user
+     * @return sorted inbox list of User
+     */
+    private List<String> sortInbox(String user, List<String> inboxList) {
+        List<Message> lastMessageList = new ArrayList<>();
+        List<Message> lastMessageListSorted = new ArrayList<>();
+        List<String> lastMessageTimeList = new ArrayList<>();
+        List<String> inboxListSorted = new ArrayList<>();
+        for (String contact : inboxList) {
+            int chatSize = chats.get(user).get(contact).size();
+            Message lastMessage = chats.get(user).get(contact).get(chatSize - 1);
+            lastMessageList.add(lastMessage);
+            if (!lastMessageTimeList.contains(lastMessage.getTime().toString())) {
+                lastMessageTimeList.add(lastMessage.getTime().toString());
+            }
+        }
+        Collections.sort(lastMessageTimeList);
+        for (String time : lastMessageTimeList) {
+            for (Message message : lastMessageList) {
+                if (time.equals(message.getTime().toString())) {
+                    lastMessageListSorted.add(0, message);
+                }
+            }
+        }
+        for (Message message : lastMessageListSorted) {
+            for (String contact : inboxList) {
+                if (chats.get(user).get(contact).contains(message)) {
+                    inboxListSorted.add(contact);
+                }
+            }
+        }
+        return inboxListSorted;
     }
 }
