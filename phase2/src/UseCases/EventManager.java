@@ -320,14 +320,11 @@ public class EventManager {
      *
      * @return a boolean indicating if user was successfully removed
      */
-    public boolean removeAttendee(String username, UUID eventID){
+    //TODO change javadoc accordingly
+    public void removeAttendee(String username, UUID eventID){
         Event event = events.get(eventID);
         List<String> updated_event = event.getAttendees();
-        if (updated_event.remove(username)){
-            event.setAttendees(updated_event);
-            return true;
-        }
-        return false;
+        event.setAttendees(updated_event);
     }
 
     /** Determines whether two time blocks (start time ~ end time) overlap.

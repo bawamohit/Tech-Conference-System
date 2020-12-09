@@ -1,6 +1,4 @@
-package GUI.AttendeeGUI.AvailableEvents;
-
-import GUI.AttendeeGUI.Message.CollocutorHolder;
+package GUI.AttendeeGUI;
 
 import java.util.UUID;
 

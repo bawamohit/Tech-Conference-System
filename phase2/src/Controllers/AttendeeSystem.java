@@ -109,11 +109,9 @@ public class AttendeeSystem extends UserSystem{
             return false;
         }
         UUID id = eventList.get(choice);
-        if (tcs.getUM().removeEventAttending(username, id) && tcs.getEM().removeAttendee(username, id)){
-            return true;
-        }
-        presenter.printNotInEvent();
-        return false;
+        tcs.getEM().removeAttendee(username, id);
+        tcs.getUM().removeEventAttending(username, id);
+        return true;
     }
 
     private boolean isAttendeeFree(String username, UUID newEvent, TechConferenceSystem tcs){

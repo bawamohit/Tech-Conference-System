@@ -1,6 +1,6 @@
 package GUI.AttendeeGUI.AvailableEvents;
 
-import GUI.AttendeeGUI.Message.CollocutorHolder;
+import GUI.AttendeeGUI.EventHolder;
 import GUI.GUIController;
 import GUI.MainController;
 import GUI.ManagersStorage;

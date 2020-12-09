@@ -179,13 +179,10 @@ public class UserManager {
      *
      * @return true if the event id was successfully removed, and false if the event id was not present to begin with
      */
-    public boolean removeEventAttending(String username, UUID eventId) {
+    //TODO change javadoc
+    public void removeEventAttending(String username, UUID eventId) {
         List<UUID> eventsAttending = usernamesToUsers.get(username).getEventsAttending();
-        if (eventsAttending.remove(eventId)) {
-            usernamesToUsers.get(username).setEventsAttending(eventsAttending);
-            return true;
-        }
-        return false;
+        usernamesToUsers.get(username).setEventsAttending(eventsAttending);
     }
 
     /** Adds a friend to the list of friends that a particular user has

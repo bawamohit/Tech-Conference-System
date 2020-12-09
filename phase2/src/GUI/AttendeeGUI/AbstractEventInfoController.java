@@ -1,6 +1,5 @@
 package GUI.AttendeeGUI;
 
-import GUI.AttendeeGUI.AvailableEvents.EventHolder;
 import GUI.ManagersStorage;
 import GUI.UserHolder;
 import UseCases.EventManager;
