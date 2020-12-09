@@ -5,20 +5,29 @@ public class AdminPresenter extends UserPresenter {
         System.out.println("0. Logout\n" +
                 "1. Delete Message Chat Between Two Users\n" + "2. Delete Events");
     }
+    public void printDeleteChatMenu(){
+        System.out.println("Please enter the two usernames associated with the chat you'd like to delete:\n");
+    }
+
     public void printAskUsername1(){
-        System.out.println("Enter username 1");
+        System.out.println("Enter the first username:");
     }
 
     public void printAskUsername2(){
-        System.out.println("Enter username 2");
+        System.out.println("Enter the second username:");
     }
 
-    public void confirmChatDeletion(){
-        System.out.println("Are you sure you'd like to delete this chat? ('yes' or 'no')");
+    public void confirmChatDeletion(String u1, String u2){
+        System.out.println("Are you sure you'd like to delete the chat between " + u1 + " and " + u2 + " " +
+                "('yes' or 'no')");
     }
 
-    public void printAvailableEvents(String compiled) {
-        System.out.println("The events available are: \n" + compiled);
+    public void printEmptyEvents(String compiled) {
+        System.out.println("The events with zero attendance are: \n" + compiled);
+    }
+
+    public void printDeleteChatError(){
+        System.out.println("Error cannot delete chat between the same user");
     }
 
     public void printDeleteEventMenu(){

@@ -36,27 +36,40 @@ public class AdminSystem extends UserSystem{
                     String username1;
                     String username2;
 
+                    inner:
                     while (true) {
+                        presenter.printDeleteChatMenu();
                         while (true) {
                             presenter.printAskUsername1();
+                            presenter.printBackToMainMenu();
                             username1 = scanner.nextLine();
-                            if (tcs.getUM().isRegistered(username1)) {
-                                break;
-                            } else {
-                                presenter.printUserDoesNotExist();
+                            if (username1.equals("")){
+                                break inner;
                             }
-                        }
-                        while (true) {
-                            presenter.printAskUsername2();
-                            username2 = scanner.nextLine();
-                            if (tcs.getUM().isRegistered(username2)) {
-                                break;
-                            } else {
+                            if (tcs.getUM().isRegistered(username1) == false) {
                                 presenter.printUserDoesNotExist();
+                            } else {
+                                break;
                             }
                         }
 
-                        presenter.confirmChatDeletion();
+                        while (true) {
+                            presenter.printAskUsername2();
+                            presenter.printBackToMainMenu();
+                            username2 = scanner.nextLine();
+                            if (username2.equals("")){
+                                break inner;
+                            }
+                            if (username1.equals(username2)){
+                                presenter.printDeleteChatError();
+                            }
+                            else if (tcs.getUM().isRegistered(username1) == false) {
+                                presenter.printUserDoesNotExist();
+                            } else {
+                                break;
+                            }
+                        }
+                        presenter.confirmChatDeletion(username1, username2);
                         String confirmation = scanner.nextLine();
 
                         if (confirmation == "yes"){
@@ -65,12 +78,13 @@ public class AdminSystem extends UserSystem{
                         break;
                     }
                     break;
+
                 case "2":
                     presenter.printDeleteEventMenu();
                     List<UUID> emptyEventsIds = tcs.getEM().getEmptyEvents();
                     List<String> emptyEventStrings = tcs.getEM().getEventsStrings(emptyEventsIds);
-                    presenter.printAvailableEvents(formatInfo(emptyEventStrings));
-                    
+                    presenter.printEmptyEvents(formatInfo(emptyEventStrings));
+
             }
         }
     }
