@@ -6,17 +6,17 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane minHeight="427.0" minWidth="728.0" prefHeight="496.0" prefWidth="743.0" stylesheets="@CreateAccounts.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.OrganizerGUI.CreateAccounts.CreateAccountsController">
+<AnchorPane minHeight="427.0" minWidth="728.0" prefHeight="555.0" prefWidth="734.0" stylesheets="@CreateAccounts.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OrganizerGUI.CreateAccounts.CreateAccountsController">
     <children>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="415.0" layoutX="115.0" layoutY="59.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="503.0" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="59.0" />
-        <VBox alignment="TOP_RIGHT" layoutX="208.0" layoutY="138.0" prefHeight="71.0" prefWidth="351.0" spacing="10.0" AnchorPane.bottomAnchor="287.0" AnchorPane.leftAnchor="208.0" AnchorPane.rightAnchor="184.0" AnchorPane.topAnchor="138.0">
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="415.0" layoutX="115.0" layoutY="82.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="503.0" AnchorPane.bottomAnchor="58.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="116.0" AnchorPane.topAnchor="82.0" />
+        <VBox alignment="TOP_RIGHT" layoutX="187.0" layoutY="173.0" prefHeight="130.0" prefWidth="391.0" spacing="10.0" AnchorPane.bottomAnchor="252.0" AnchorPane.leftAnchor="187.0" AnchorPane.rightAnchor="156.0" AnchorPane.topAnchor="173.0">
             <children>
                 <HBox prefHeight="26.0" prefWidth="208.0">
                     <children>
 
                         <Label graphicTextGap="3.0" lineSpacing="1.0" prefHeight="19.0" prefWidth="207.0" text="username" />
 
-                        <TextField fx:id="usernameField">
+                        <TextField fx:id="usernameField" prefWidth="197.0">
                             <effect>
                                 <Blend />
                             </effect>
@@ -24,17 +24,17 @@
                     </children>
                 </HBox>
                 <HBox prefHeight="100.0" prefWidth="200.0" />
-                <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                <HBox alignment="TOP_RIGHT" prefHeight="26.0" prefWidth="364.0">
                     <children>
 
-                        <Button mnemonicParsing="false" onAction="#handleCheckAvailableButtonAction" prefHeight="26.0" prefWidth="165.0" text="check availability" />
+                        <Button mnemonicParsing="false" onAction="#handleCheckAvailableButtonAction" prefHeight="26.0" prefWidth="148.0" text="check availability" />
                     </children>
                 </HBox>
                 <HBox prefHeight="100.0" prefWidth="200.0">
                     <children>
 
                         <Label graphicTextGap="3.0" lineSpacing="1.0" prefHeight="19.0" prefWidth="206.0" text="password" />
-                        <PasswordField fx:id="passwordField" layoutX="212.0" layoutY="10.0">
+                        <PasswordField fx:id="passwordField" layoutX="212.0" layoutY="10.0" prefHeight="26.0" prefWidth="184.0">
                             <effect>
                                 <Blend />
                             </effect>
@@ -49,18 +49,18 @@
                             </font>
                         </Label>
 
-                        <PasswordField fx:id="passwordFieldRe">
+                        <PasswordField fx:id="passwordFieldRe" prefHeight="26.0" prefWidth="184.0">
                             <effect>
                                 <Blend />
                             </effect>
                         </PasswordField>
                     </children>
                 </HBox>
-                <HBox prefHeight="100.0" prefWidth="200.0">
+                <HBox prefHeight="26.0" prefWidth="377.0">
                     <children>
                         <Label graphicTextGap="3.0" lineSpacing="1.0" prefHeight="19.0" prefWidth="199.0" text="preferred name" />
 
-                        <TextField fx:id="nameField" stylesheets="@CreateAccounts.css" />
+                        <TextField fx:id="nameField" prefHeight="26.0" prefWidth="184.0" stylesheets="@CreateAccounts.css" />
                     </children>
                 </HBox>
 
@@ -73,7 +73,7 @@
                 </Text>
             </children>
         </VBox>
-        <HBox layoutX="195.0" layoutY="349.0" prefHeight="18.0" prefWidth="391.0" snapToPixel="false" spacing="10.0">
+        <HBox layoutX="187.0" layoutY="409.0" prefHeight="18.0" prefWidth="391.0" snapToPixel="false" spacing="10.0">
             <children>
                 <RadioButton fx:id="radioButton3" graphicTextGap="0.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="89.0" text="admin">
                     <toggleGroup>
@@ -96,15 +96,17 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2" />
-      
-              <Text id="signUp" text="sign up" GridPane.rowIndex="1" />
+                <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+               <children>
+            
+                    <Text id="signUp" text="sign up" />
+               </children></HBox>
             </children>
         </GridPane>
-          <HBox layoutX="188.0" layoutY="398.0" prefHeight="26.0" prefWidth="463.0" spacing="250">
+          <HBox layoutX="166.0" layoutY="446.0" prefHeight="26.0" prefWidth="463.0" spacing="250">
               <children>
                   <Button id="back" mnemonicParsing="false" onAction="#handleBackButtonAction" prefHeight="26.0" prefWidth="70.0" snapToPixel="false" stylesheets="@CreateAccounts.css" text="back" />
-                  <Button mnemonicParsing="false" onAction="#handleSignUpButtonAction" prefHeight="26.0" prefWidth="70.0" snapToPixel="false" stylesheets="@CreateAccounts.css" text="sign up" textAlignment="RIGHT" />
+                  <Button mnemonicParsing="false" onAction="#handleSignUpButtonAction" prefHeight="26.0" prefWidth="98.0" snapToPixel="false" stylesheets="@CreateAccounts.css" text="sign up" textAlignment="RIGHT" />
               </children>
           </HBox>
     </children>
