@@ -23,6 +23,7 @@ public abstract class DisplayEventsController extends Observable implements GUIC
     FXMLLoader loader;
 
     public void generateEventButtons(String path, List<List<String>> eventsInfo){
+        EventHolder.getInstance().setButtonClicked(false);
         int i = 0, j = 0;
         for(List<String> eventInfo: eventsInfo) {
             Button button = new Button(eventInfo.get(1) + "\nStarts: " + eventInfo.get(3) + "\nEnds:  " + eventInfo.get(4));
@@ -31,6 +32,7 @@ public abstract class DisplayEventsController extends Observable implements GUIC
             button.setOnAction(new EventHandler<ActionEvent>(){
                 @Override
                 public void handle(ActionEvent event) {
+                    EventHolder.getInstance().setButtonClicked(true);
                     EventHolder.getInstance().setEvent(UUID.fromString(eventInfo.get(0)));
                     loadSubScene(path);
                     if (path == "/GUI/AdminGUI/EventDeleteInfo"){

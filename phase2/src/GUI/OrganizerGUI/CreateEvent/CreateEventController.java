@@ -1,5 +1,6 @@
 package GUI.OrganizerGUI.CreateEvent;
 
+import GUI.EventHolder;
 import GUI.ManagersStorage;
 import GUI.UserHolder;
 import UseCases.EventManager;
@@ -26,36 +27,72 @@ public class CreateEventController {
     private String roomName;
     private int eventCapacity;
     private String username;
-    private boolean roomAvailabilityChecked;
 
     @FXML public void initialize(){
+        EventHolder.getInstance().setRoomAvailabilityChecked(false);
         roomManager  = ManagersStorage.getInstance().getRoomManager();
         eventManager = ManagersStorage.getInstance().getEventManager();
-
-
         username = UserHolder.getInstance().getUsername();
-        roomAvailabilityChecked = false;
     }
 
     @FXML protected void handleCreateButtonAction(ActionEvent event) {
         eventName = eventNameField.getText();
         startTimeString = startTimeField.getText();
         endTimeString = endTimeField.getText();
+        roomName = roomField.getText();
+        if(missingInput()){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("Please fill in all boxes");
+            alert.showAndWait();
+            return;
+        }
         LocalDateTime startTime = getTime(startTimeString);
         LocalDateTime endTime = getTime(endTimeString);
         eventCapacity = eventCapacityFieldToInteger(eventCapacityField.getText());
-        UUID eventID = eventManager.addEvent(eventName, username, startTime, endTime, roomName, eventCapacity);
-        roomManager.addEventToSchedule(eventID, roomName, startTime, endTime);
+        if(roomAvailabilityChecked()){
+            UUID eventID = eventManager.addEvent(eventName, username, startTime, endTime, roomName, eventCapacity);
+            roomManager.addEventToSchedule(eventID, roomName, startTime, endTime);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("Event Created");
+            alert.showAndWait();
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("Please check availability of the room first.");
+            alert.showAndWait();
+        }
 
+    }
+
+    private boolean missingInput(){
+        boolean eventNameEmpty = eventName.isEmpty();
+        boolean startTimeEmpty = startTimeString.isEmpty();
+        boolean endTimeEmpty = endTimeString.isEmpty();
+        boolean eventCapacityEmpty = eventCapacityField.getText().isEmpty();
+        boolean roomNameEmpty = roomField.getText().isEmpty();
+        return(eventNameEmpty || startTimeEmpty || endTimeEmpty || eventCapacityEmpty || roomNameEmpty);
     }
 
     @FXML  protected void handleCheckAvailabilityButtonAction(ActionEvent event) {
         roomName = roomField.getText();
+        String eventCapacityString = eventCapacityField.getText();
+        if(eventCapacityString.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter event capacity");
+            alert.showAndWait();
+            return;
+        }
+        eventCapacity = eventCapacityFieldToInteger(eventCapacityString);
         if(!roomManager.roomExists(roomName)){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
             alert.setContentText("This room does not exist");
             alert.showAndWait();
+            return;
         }
         if (!roomManager.hasSpace(roomName, eventCapacity)){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -64,11 +101,16 @@ public class CreateEventController {
             alert.showAndWait();
             return;
         }
-        roomAvailabilityChecked = true;
+        EventHolder.getInstance().setRoomAvailabilityChecked(true);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
         alert.setContentText("This room can host this event!");
         alert.showAndWait();
+
+    }
+
+    private boolean roomAvailabilityChecked(){
+        return EventHolder.getInstance().getRoomAvailabilityChecked();
     }
 
     private int eventCapacityFieldToInteger(String eventCapacityField){
@@ -81,7 +123,7 @@ public class CreateEventController {
         if (!time.matches(pattern)){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
-            alert.setContentText("Invalid Input");
+            alert.setContentText("Invalid Time Input");
             alert.showAndWait();
         }
         int year2 = Integer.parseInt(time.substring(0, 4));
