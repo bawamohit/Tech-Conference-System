@@ -2,6 +2,7 @@ package Gateways;
 
 import UseCases.RoomManager;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.FileNotFoundException;
@@ -10,6 +11,7 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.UUID;
 
@@ -34,10 +36,12 @@ public class RoomGateway {
             if (schedule.isEmpty())
                 continue;
 
-            for (Object time : schedule.names()) {
-                LocalDateTime startTime = LocalDateTime.parse((CharSequence) time);
-                UUID id = UUID.fromString((String) schedule.get((String) time));
-                rm.addEventToSchedule(id, roomName, startTime);
+            for (Object id : schedule.names()) {
+                UUID eventId = UUID.fromString((String) id);
+                JSONArray timing = (JSONArray) schedule.get((String) id);
+                LocalDateTime startTime = LocalDateTime.parse((timing[0]));
+                LocalDateTime endTime = LocalDateTime.parse((timing[1]));
+                rm.addEventToSchedule(eventId, roomName, startTime, endTime);
             }
         }
 

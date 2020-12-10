@@ -35,7 +35,7 @@ public class TechConferenceSystem {
 
             um = userGateway.readFromFile(userJSONManagerInfo.getPath());
             em = eventGateway.readFromFile(eventJSONManagerInfo.getPath());
-            rm = roomGateway.readFromFile(roomJSONManagerInfo.getPath());
+//            rm = roomGateway.readFromFile(roomJSONManagerInfo.getPath());
             mm = messageGateway.readFromFile(messageJSONManagerInfo.getPath());
         } catch (IOException e){
             e.printStackTrace();
