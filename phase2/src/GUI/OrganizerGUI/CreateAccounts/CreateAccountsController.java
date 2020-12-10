@@ -35,6 +35,9 @@ public class CreateAccountsController {
     @FXML private RadioButton radioButton3;
     @FXML private RadioButton radioButton4;
 
+    /**
+     * Initializes the Create Accounts scene.
+     */
     public void initialize(){
         this.userManager = ManagersStorage.getInstance().getUserManager();
     }
@@ -43,7 +46,11 @@ public class CreateAccountsController {
         this.mainController = mainController;
     }
 
-    @FXML protected void handleSignUpButtonAction(ActionEvent event) {
+
+    /**
+     * Handles action when the signup button is clicked. Signs up the account.
+     */
+    @FXML protected void handleSignUpButtonAction() {
         String username = usernameField.getText();
         String password = passwordField.getText();
         String passwordRe = passwordFieldRe.getText();
@@ -72,7 +79,10 @@ public class CreateAccountsController {
         }
     }
 
-    @FXML protected void handleCheckAvailableButtonAction(ActionEvent event) {
+    /**
+     * Handles action when the check availability button is clicked. Checks if username is available.
+     */
+    @FXML protected void handleCheckAvailableButtonAction() {
         if(userManager.isRegistered(usernameField.getText())) {
             prompt.setText("This username is already registered.");
         }else if(usernameField.getText().isEmpty()){
@@ -82,6 +92,9 @@ public class CreateAccountsController {
         }
     }
 
+    /**
+     * Handles action when the back button is clicked.
+     */
     @FXML protected void handleBackButtonAction(ActionEvent event) throws IOException {
         mainController.handleLogOutButtonAction(event, false);
     }

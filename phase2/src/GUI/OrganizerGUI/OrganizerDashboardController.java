@@ -18,7 +18,7 @@ import java.util.UUID;
 
 
 public class OrganizerDashboardController implements GUIController {
-    public Button removeEventbutton;
+    public Button removeEventButton;
     private MainController mainController;
     private String username;
     private SubScene subScene;
@@ -29,7 +29,10 @@ public class OrganizerDashboardController implements GUIController {
     private RoomManager roomManager;
 
 
-    public void initialize(){
+    /**
+     * Initializes the Dashboard scene.
+     */
+    @FXML public void initialize(){
         this.username = UserHolder.getInstance().getUsername();
         loadSubScene("Message");
         gridPane.add(subScene, 1, 0);
@@ -37,48 +40,80 @@ public class OrganizerDashboardController implements GUIController {
         this.userManager = ManagersStorage.getInstance().getUserManager();
         this.eventManager = ManagersStorage.getInstance().getEventManager();
         this.roomManager = ManagersStorage.getInstance().getRoomManager();
-        removeEventbutton.setVisible(false);
+        removeEventButton.setVisible(false);
     }
 
+    //TODO idk what to write for this javadoc
     public void initData(MainController mainController){
         this.mainController = mainController;
     }
 
+    /**
+     * Handles action of when the create event button is clicked. Loads CreateEvent subscene
+     */
     @FXML protected void handleCreateEventButtonAction(ActionEvent event) {
         loadSubScene("CreateEvent");
-        removeEventbutton.setVisible(false);
+        removeEventButton.setVisible(false);
     }
 
+    /**
+     * Handles action of when the modify event button is clicked. Loads ModifyEvent subscene
+     */
     @FXML protected void handleModifyEventsButtonAction(ActionEvent event) {
         loadSubScene("Events");
-        removeEventbutton.setVisible(true);
+        removeEventButton.setVisible(true);
     }
 
+    /**
+     * Handles action when the message button is clicked. Loads Message subscene
+     */
     @FXML
     protected void handleMessageButtonAction(ActionEvent event) {
         loadSubScene("Message");
-        removeEventbutton.setVisible(false);
+        removeEventButton.setVisible(false);
     }
 
+    /**
+     * Handles action when the create account button is clicked. Loads CreateEvent subscene
+     */
     @FXML protected void handleCreateAccountsButtonAction(ActionEvent event){
         loadSubScene("CreateAccounts");
-        removeEventbutton.setVisible(false);
+        removeEventButton.setVisible(false);
     }
 
+    /**
+     * Handles action when the create room button is clicked. Loads CreateRoom subscene
+     */
     @FXML protected void handleCreateRoomButtonAction(ActionEvent event){
         loadSubScene("CreateRoom");
-        removeEventbutton.setVisible(false);
+        removeEventButton.setVisible(false);
     }
 
+    /**
+     * Handles action when the logout button is clicked. Reverts back to welcome scene.
+     */
     @FXML public void handleLogOutButtonAction(ActionEvent event) throws IOException {
         mainController.handleLogOutButtonAction(event, true);
-        removeEventbutton.setVisible(false);
+        removeEventButton.setVisible(false);
     }
 
+    /**
+     * Handles action when the reschedule event button is clicked.
+     */
     @FXML public void handleRescheduleEventButtonAction(ActionEvent event){
 
     }
 
+    /**
+     * Handles action when the add speaker button is clicked
+     */
+    @FXML public void handleAddSpeakerButtonAction(){
+
+    }
+
+    /**
+     * Handles action when the remove event button is clicked.
+     */
     @FXML public void handleRemoveEventButtonAction(ActionEvent event){
         FXMLLoader loader = new FXMLLoader((getClass().getResource("Events/EventInfo.fxml")));
         if (ifEventButtonClicked()) {
@@ -114,6 +149,12 @@ public class OrganizerDashboardController implements GUIController {
         return EventHolder.getInstance().getButtonClicked();
     }
 
+
+    /**
+     * Loads the subscene of the given path
+     *
+     * @param path path of subscene fxml file
+     */
     public void loadSubScene(String path){
         FXMLLoader loader = new FXMLLoader(getClass().getResource(path + "/" + path + ".fxml"));
         Parent root = null;

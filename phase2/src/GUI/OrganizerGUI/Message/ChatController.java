@@ -17,6 +17,7 @@ import javafx.scene.text.TextAlignment;
 
 import java.util.List;
 
+//TODO javadoc
 public class ChatController implements GUIController {
     private MessageManager messageManager;
     private String username;

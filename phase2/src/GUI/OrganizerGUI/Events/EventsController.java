@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.UUID;
 
 public class EventsController extends DisplayEventsController {
+    /**
+     * Initializes the Modify Event scene.
+     */
     public void initialize(){
         EventManager eventManager = ManagersStorage.getInstance().getEventManager();
         LocalDateTime currTime = LocalDateTime.now();
