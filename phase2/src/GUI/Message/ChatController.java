@@ -1,4 +1,4 @@
-package GUI.AttendeeGUI.Message;
+package GUI.Message;
 
 import GUI.GUIController;
 import GUI.MainController;
@@ -44,11 +44,13 @@ public class ChatController implements GUIController {
 
     @FXML private void handleSend(ActionEvent event){
         String content = textField.getText();
-        messageManager.sendMessage(username, collocutor, content);
-        int size = messageManager.getInboxStringGUI(username, collocutor).size();
-        List<String> messageInfo = messageManager.getInboxStringGUI(username, collocutor).get(size - 1);
-        displayMessage(messageInfo);
-        textField.clear();
+        if(!content.isEmpty()){
+            messageManager.sendMessage(username, collocutor, content);
+            int size = messageManager.getInboxStringGUI(username, collocutor).size();
+            List<String> messageInfo = messageManager.getInboxStringGUI(username, collocutor).get(size - 1);
+            displayMessage(messageInfo);
+            textField.clear();
+        }
     }
 
     private void displayMessage(List<String> messageInfo){

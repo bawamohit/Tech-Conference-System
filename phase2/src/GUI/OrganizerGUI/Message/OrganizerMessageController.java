@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MessageController implements GUIController {
+public class OrganizerMessageController extends GUI.Message.MessageController implements GUIController {
     private MainController mainController;
     private MessageManager messageManager;
     private SubScene subScene;

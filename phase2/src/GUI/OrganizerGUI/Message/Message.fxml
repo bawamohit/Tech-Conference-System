@@ -10,7 +10,7 @@
 <GridPane fx:id="gridPane"
           xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
-          fx:controller="GUI.OrganizerGUI.Message.MessageController">
+          fx:controller="GUI.OrganizerGUI.Message.OrganizerMessageController">
     <VBox>
         <HBox>
             <TextField fx:id="searchField" prefWidth="80"/>
