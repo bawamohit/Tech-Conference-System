@@ -11,13 +11,16 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 
-public class UserDashboardController implements GUIController {
+public abstract class UserDashboardController implements GUIController, Observer {
     private MainController mainController;
     private String username;
     private SubScene subScene;
     private UserManager userManager;
     private EventManager eventManager;
+    private FXMLLoader loader;
 
     @FXML private GridPane gridPane;
     @FXML private Label profile;
@@ -63,12 +66,17 @@ public class UserDashboardController implements GUIController {
         return gridPane;
     }
 
+    public FXMLLoader getLoader() {
+        return loader;
+    }
+
     @FXML public void handleLogOutButtonAction(ActionEvent event) throws IOException {
         mainController.handleLogOutButtonAction(event, true);
     }
 
     public void loadSubScene(String path){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(path + ".fxml"));
+        loader = new FXMLLoader(getClass().getResource(path + ".fxml"));
+
         Parent root = null;
         try {
             root = loader.load();
@@ -81,4 +89,8 @@ public class UserDashboardController implements GUIController {
             subScene.setRoot(root);
         }
     }
+
+    @Override
+    public abstract void update(Observable o, Object arg);
+
 }

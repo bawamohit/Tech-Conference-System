@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.util.Observable;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -68,6 +69,11 @@ public class AttendeeDashboardController extends UserDashboardController {
             alert.setContentText("Please click an event you would like to cancel first");
             alert.showAndWait();
         }
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+
     }
 
     @FXML private boolean ifEventButtonClicked() {
