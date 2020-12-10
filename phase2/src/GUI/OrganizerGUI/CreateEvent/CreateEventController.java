@@ -31,30 +31,26 @@ public class CreateEventController {
     @FXML public void initialize(){
         roomManager  = ManagersStorage.getInstance().getRoomManager();
         eventManager = ManagersStorage.getInstance().getEventManager();
-        eventName = eventNameField.getText();
-        startTimeString = startTimeField.getText();
-        endTimeString = endTimeField.getText();
-        roomName = roomField.getText();
+
+
         username = UserHolder.getInstance().getUsername();
         roomAvailabilityChecked = false;
     }
 
     @FXML protected void handleCreateButtonAction(ActionEvent event) {
-        if (roomAvailabilityChecked){
-            LocalDateTime startTime = getTime(startTimeString);
-            LocalDateTime endTime = getTime(endTimeString);
-            eventCapacity = eventCapacityFieldToInteger(eventCapacityField.getText());
-            UUID eventID = eventManager.addEvent(eventName, username, startTime, endTime, roomName, eventCapacity);
-            roomManager.addEventToSchedule(eventID, roomName, startTime, endTime);
-        }
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText(null);
-        alert.setContentText("Please check the room availability first");
-        alert.showAndWait();
+        eventName = eventNameField.getText();
+        startTimeString = startTimeField.getText();
+        endTimeString = endTimeField.getText();
+        LocalDateTime startTime = getTime(startTimeString);
+        LocalDateTime endTime = getTime(endTimeString);
+        eventCapacity = eventCapacityFieldToInteger(eventCapacityField.getText());
+        UUID eventID = eventManager.addEvent(eventName, username, startTime, endTime, roomName, eventCapacity);
+        roomManager.addEventToSchedule(eventID, roomName, startTime, endTime);
+
     }
 
     @FXML  protected void handleCheckAvailabilityButtonAction(ActionEvent event) {
-        System.out.println(roomName);
+        roomName = roomField.getText();
         if(!roomManager.roomExists(roomName)){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
