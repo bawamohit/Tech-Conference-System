@@ -39,8 +39,8 @@ public class RoomGateway {
             for (Object id : schedule.names()) {
                 UUID eventId = UUID.fromString((String) id);
                 JSONArray timing = (JSONArray) schedule.get((String) id);
-                LocalDateTime startTime = LocalDateTime.parse((timing[0]));
-                LocalDateTime endTime = LocalDateTime.parse((timing[1]));
+                LocalDateTime startTime = LocalDateTime.parse(timing.getString(0));
+                LocalDateTime endTime = LocalDateTime.parse(timing.getString(1));
                 rm.addEventToSchedule(eventId, roomName, startTime, endTime);
             }
         }
