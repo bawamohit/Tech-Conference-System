@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -8,6 +9,9 @@
     <ScrollPane fx:id="container" fitToWidth="true" layoutX="24.0" layoutY="49.0" prefHeight="455.0" prefWidth="672.0" styleClass="viewport" stylesheets="@AvailableEvents.css" GridPane.columnIndex="1" GridPane.rowIndex="0">
         <GridPane fx:id="subGridPane" hgap="10.0" prefWidth="672.0" styleClass="grid" stylesheets="@AvailableEvents.css" vgap="10.0">
         </GridPane>
+      <padding>
+         <Insets top="10.0" />
+      </padding>
     </ScrollPane>
    <columnConstraints>
       <ColumnConstraints minWidth="10.0" prefWidth="35.0" />
@@ -16,5 +20,8 @@
    <rowConstraints>
       <RowConstraints />
    </rowConstraints>
+   <padding>
+      <Insets top="15.0" />
+   </padding>
 
 </GridPane>

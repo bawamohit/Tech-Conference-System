@@ -4,25 +4,25 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane fx:id="gridPane" xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="GUI.AttendeeGUI.AvailableEvents.EventSignUpController">
-    <Label fx:id="label1" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-    <Label fx:id="label2" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-    <Label fx:id="label3" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
-    <Label fx:id="label4" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-    <Label fx:id="label5" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-    <Label fx:id="label6" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-    <Label fx:id="label7" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-    <Label fx:id="label8" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
-    <Button fx:id="button" prefWidth="250"  onAction="#handleSignUpButton"
-            text="Sign Up" GridPane.columnIndex="3" GridPane.rowIndex="4"/>
+<GridPane fx:id="gridPane" stylesheets="@EventInfo.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AttendeeGUI.AvailableEvents.EventSignUpController">
+    <Label fx:id="label1" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+    <Label fx:id="label2" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+    <Label fx:id="label3" prefWidth="250" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+    <Label fx:id="label4" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <Label fx:id="label5" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+    <Label fx:id="label6" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <Label fx:id="label7" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+    <Label fx:id="label8" prefWidth="250" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+    <Button fx:id="button" onAction="#handleSignUpButton" prefWidth="250" text="Sign Up" GridPane.columnIndex="4" GridPane.rowIndex="4">
+      <GridPane.margin>
+         <Insets bottom="20.0" right="10.0" />
+      </GridPane.margin></Button>
    <columnConstraints>
       <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints />
-      <ColumnConstraints />
-      <ColumnConstraints />
-      <ColumnConstraints prefWidth="100.0" />
+      <ColumnConstraints prefWidth="300.0" />
+      <ColumnConstraints prefWidth="275.0" />
+      <ColumnConstraints prefWidth="200.0" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints />
@@ -32,6 +32,6 @@
       <RowConstraints />
    </rowConstraints>
    <padding>
-      <Insets top="10.0" />
+      <Insets bottom="20.0" left="20.0" top="20.0" />
    </padding>
 </GridPane>
