@@ -9,5 +9,5 @@ import java.io.IOException;
 public interface GUIController {
     //TODO MainController mainController = new MainController(); //static variable?
 
-    void initData(MainController mainController);
+    void initData(MainController Controller);
 }

@@ -8,7 +8,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -26,10 +25,10 @@ public class MainController implements GUIController{
     @FXML private TextField usernameField;
     @FXML private TextField passwordField;
 
-    public void initData(MainController mainController){
-        this.welcomeFXMLPath = mainController.getWelcomeFXMLPath();
-        this.userManager = mainController.getUserManager();
-        this.messageManager = mainController.getMessageManager();
+    public void initData(MainController controller){
+        this.welcomeFXMLPath = controller.getWelcomeFXMLPath();
+        this.userManager = controller.getUserManager();
+        this.messageManager = controller.getMessageManager();
         this.username = null;
     }
 
@@ -73,17 +72,22 @@ public class MainController implements GUIController{
             FXMLLoader loader;
             switch (userManager.getUserType(username)){
                 case ATTENDEE:
-                    loader = new FXMLLoader(getClass().getResource("AttendeeGUI/Dashboard.fxml"));
+                    loader = new FXMLLoader(getClass().getResource("AttendeeGUI/AttendeeDashboard.fxml"));
                     setNewScene(event, loader);
                     break;
 
                 case ORGANIZER:
-                    loader = new FXMLLoader(getClass().getResource("OrganizerMenu/OrganizerMenu.fxml"));
+                    loader = new FXMLLoader(getClass().getResource("OrganizerGUI/Dashboard.fxml"));
                     setNewScene(event, loader);
                     break;
 
                 case SPEAKER:
                     loader = new FXMLLoader(getClass().getResource("SpeakerMenu/SpeakerMenu.fxml"));
+                    setNewScene(event, loader);
+                    break;
+
+                case ADMIN:
+                    loader = new FXMLLoader(getClass().getResource("AdminGUI/AdminDashboard.fxml"));
                     setNewScene(event, loader);
                     break;
             }

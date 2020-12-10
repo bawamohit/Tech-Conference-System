@@ -299,15 +299,17 @@ public class EventManager {
      * @param username name of attendee to be added
      * @return a boolean indicating if user was successfully added
      */
-    public boolean addAttendee(UUID eventID, String username){
+    public void addAttendee(UUID eventID, String username){
         Event event = events.get(eventID);
-        List<String> updated_attendees = getEventAttendees(event.getId());
-        if (!event.getAttendees().contains(username)) {
-            updated_attendees.add(username);
-            event.setAttendees(updated_attendees);
-            return true;
-        }
-        return false;
+        List<String> attendees = getEventAttendees(eventID);
+        attendees.add(username);
+        event.setAttendees(attendees);
+    }
+
+    //TODO javadoc, this breaks down the original addAttendee to two simpler functions, also update above function javadoc
+    public boolean isAttending(UUID eventID, String username){
+        Event event = events.get(eventID);
+        return(event.getAttendees().contains(username));
     }
 
     /**
@@ -318,14 +320,12 @@ public class EventManager {
      *
      * @return a boolean indicating if user was successfully removed
      */
-    public boolean removeAttendee(String username, UUID eventID){
+    //TODO change javadoc accordingly
+    public void removeAttendee(String username, UUID eventID){
         Event event = events.get(eventID);
         List<String> updated_event = event.getAttendees();
-        if (updated_event.remove(username)){
-            event.setAttendees(updated_event);
-            return true;
-        }
-        return false;
+        updated_event.remove(username);
+        event.setAttendees(updated_event);
     }
 
     /** Determines whether two time blocks (start time ~ end time) overlap.
@@ -339,8 +339,45 @@ public class EventManager {
      */
     public boolean scheduleNotOverlap(LocalDateTime existingST, LocalDateTime existingET,
                                       LocalDateTime newST, LocalDateTime newET){
-        return (!(newET.isAfter(existingST)) || !(newST.isBefore(existingET)));
+        return (newET.isAfter(existingST) || newST.isBefore(existingET));
     }
 
+    //TODO Javadoc, also didn't consider what happens when equal someone tell me what method does also the method above is just wrong so delete it i guess
+    public boolean scheduleOverlap(UUID event, List<UUID> schedule){
+        LocalDateTime start1 = getEventStartTime(event);
+        LocalDateTime end1 = getEventStartTime(event);
+        for(UUID otherEvent: schedule) {
+            LocalDateTime start2 = getEventStartTime(otherEvent);
+            LocalDateTime end2 = getEventEndTime(otherEvent);
+            if(!(start1.isAfter(end2) || end1.isBefore(start2))){
+                return true;
+            }
+        }
+        return false;
+    }
 
+    /**
+     *
+     * @param eventIDList list of Event IDs to sort
+     * @return sorted list of Event IDs by start time
+     */
+    private List<UUID> sortEventByTime(List<UUID> eventIDList) {
+        List<String> startTimeList = new ArrayList<>();
+        List<UUID> eventIDListSorted = new ArrayList<>();
+        for (UUID id : eventIDList) {
+            String startTime = getEventStartTime(id).toString();
+            if (!startTimeList.contains(startTime)) {
+                startTimeList.add(startTime);
+            }
+        }
+        Collections.sort(startTimeList);
+        for (String time : startTimeList) {
+            for (UUID id : eventIDList) {
+                if (time.equals(getEventStartTime(id).toString())) {
+                    eventIDListSorted.add(id);
+                }
+            }
+        }
+        return eventIDListSorted;
+    }
 }

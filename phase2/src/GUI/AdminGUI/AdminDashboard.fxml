@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane fx:id="gridPane" alignment="BASELINE_LEFT" prefHeight="650.0" prefWidth="888.0" snapToPixel="false" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AdminGUI.AdminDashboardController">
+    <VBox fillWidth="false" prefHeight="575.0" prefWidth="346.0" snapToPixel="false" spacing="50">
+        <Label fx:id="profile" />
+        <VBox prefHeight="535.0" prefWidth="223.0" snapToPixel="false" spacing="400">
+            <VBox>
+                <Button fx:id="deleteEventButton" onAction="#handleDeleteEventButtonAction" prefHeight="33.0" prefWidth="155" text="Delete Events" />
+                <Button fx:id="deleteChatButton" onAction="#handleDeleteChatButtonAction" prefHeight="33.0" prefWidth="150" text="Delete Chats" />
+                <Button fx:id="selfDestructButton" onAction="#handleSelfDestructButtonAction" prefHeight="33.0" prefWidth="150" text="Self Destruct" />
+            </VBox>
+        </VBox>
+    </VBox>
+    <Pane prefHeight="120.0" prefWidth="130.0" snapToPixel="false" GridPane.rowIndex="1">
+        <children>
+
+            <Button fx:id="logOutButton" alignment="BOTTOM_CENTER" layoutY="2.0" mnemonicParsing="false" onAction="#handleLogOutButtonAction" prefHeight="2.0" prefWidth="150.0" text="Log Out" />
+        </children>
+    </Pane>
+    <Pane prefHeight="93.0" prefWidth="587.0" snapToPixel="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <stylesheets>
+        <URL value="@AdminDashboard.css" />
+    </stylesheets>
+    <columnConstraints>
+        <ColumnConstraints maxWidth="320" minWidth="150" prefWidth="150" />
+        <ColumnConstraints maxWidth="740" minWidth="570" prefWidth="740" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+        <RowConstraints />
+    </rowConstraints>
+</GridPane>

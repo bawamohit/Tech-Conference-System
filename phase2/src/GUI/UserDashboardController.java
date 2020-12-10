@@ -1,68 +1,74 @@
-package GUI.AttendeeGUI;
+package GUI;
 
-import GUI.GUIController;
-import GUI.MainController;
-import GUI.UserHolder;
-import javafx.collections.ObservableList;
+import UseCases.EventManager;
+import UseCases.UserManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.SubScene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.SplitPane;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class DashboardController implements GUIController {
+public class UserDashboardController implements GUIController {
     private MainController mainController;
     private String username;
     private SubScene subScene;
+    private UserManager userManager;
+    private EventManager eventManager;
 
-    @FXML private AnchorPane anchorPane;
-    @FXML private SplitPane splitPane;
     @FXML private GridPane gridPane;
     @FXML private Label profile;
-    @FXML private Button availEventButton;
-    @FXML private Button myEventButton;
-    @FXML private Button messageButton;
 
-    public void initialize(){
+    public void initData(String path){
         this.username = UserHolder.getInstance().getUsername();
         profile.setText(username);
-        loadSubScene("AvailableEvents");
+        loadSubScene(path);
         gridPane.add(subScene, 1, 0);
+        this.userManager = ManagersStorage.getInstance().getUserManager();
+        this.eventManager = ManagersStorage.getInstance().getEventManager();
     }
 
     public void initData(MainController mainController){
         this.mainController = mainController;
     }
 
-    @FXML
-    protected void handleMessageButtonAction(ActionEvent event) {
-        loadSubScene("Message");
+    public MainController getMainController() {
+        return mainController;
     }
 
-    @FXML protected void handleAvailEventButtonAction(ActionEvent event) {
-        loadSubScene("AvailableEvents");
+    public String getUsername() {
+        return username;
     }
 
-    @FXML protected void handleMyEventButtonAction(ActionEvent event) {
-        loadSubScene("MyEvents");
+    public SubScene getSubScene() {
+        return subScene;
+    }
+
+    public UserManager getUserManager() {
+        return userManager;
+    }
+
+    public EventManager getEventManager() {
+        return eventManager;
+    }
+
+    public Label getProfile() {
+        return profile;
+    }
+
+    public GridPane getGridPane() {
+        return gridPane;
     }
 
     @FXML public void handleLogOutButtonAction(ActionEvent event) throws IOException {
         mainController.handleLogOutButtonAction(event, true);
     }
 
-    private void loadSubScene(String path){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(path + "/" + path + ".fxml"));
+    public void loadSubScene(String path){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(path + ".fxml"));
         Parent root = null;
         try {
             root = loader.load();

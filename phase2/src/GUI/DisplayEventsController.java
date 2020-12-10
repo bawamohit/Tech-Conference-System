@@ -1,13 +1,7 @@
-package GUI.AttendeeGUI.MyEvents;
+package GUI;
 
-import Entities.Event;
 import GUI.AttendeeGUI.EventHolder;
-import GUI.GUIController;
-import GUI.MainController;
-import GUI.ManagersStorage;
-import GUI.UserHolder;
 import UseCases.EventManager;
-import UseCases.UserManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -22,22 +16,15 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-public class MyEventsController implements GUIController {
-    private MainController mainController;
-    private String username;
-    private EventManager eventManager;
-    private UserManager userManager;
+public abstract class DisplayEventsController implements GUIController{
+    private SubScene subScene;
     @FXML private GridPane gridPane;
-    @FXML private SubScene subScene;
     @FXML private GridPane subGridPane;
 
-    public void initialize(){
-        EventHolder.getInstance().setButtonClicked(false);
-        this.eventManager = ManagersStorage.getInstance().getEventManager();
-        this.userManager = ManagersStorage.getInstance().getUserManager();
-        this.username = UserHolder.getInstance().getUsername();
-        List<UUID> myEventIDs = userManager.getEventsAttending(username);
-        List<List<String>> eventsInfo = eventManager.getAllEventsInfo(myEventIDs); //duplicate
+    public abstract void initialize();
+
+    public void generateEventButtons(List<UUID> eventIds, String path, EventManager em){
+        List<List<String>> eventsInfo = em.getAllEventsInfo(eventIds);
         int i = 0, j = 0;
         for(List<String> eventInfo: eventsInfo) {
             Button button = new Button(eventInfo.get(1) + "\nStarts: " + eventInfo.get(3) + "\nEnds:  " + eventInfo.get(4));
@@ -47,19 +34,17 @@ public class MyEventsController implements GUIController {
                 @Override
                 public void handle(ActionEvent event) {
                     EventHolder.getInstance().setEvent(UUID.fromString(eventInfo.get(0)));
-                    GUI.AttendeeGUI.EventHolder.getInstance().setButtonClicked(true);
-                    loadSubScene("EventInfo");
+                    loadSubScene(path);
                 }
             });
             subGridPane.add(button, i, j);
             if(i < 3){ i++; }else{ i = 0; j++;}
         }
-        loadSubScene("Empty");
+        loadSubScene("/GUI/Empty");
         gridPane.add(subScene, 0, 1);
     }
 
-
-    protected void loadSubScene(String path){ //duplicate
+    private void loadSubScene(String path){
         FXMLLoader loader;
         if(path.equals("Empty")){
             loader = new FXMLLoader(getClass().getResource("../../Empty.fxml"));
@@ -79,9 +64,8 @@ public class MyEventsController implements GUIController {
         }
     }
 
-
     @Override
     public void initData(MainController mainController) {
-        this.mainController = mainController;
+
     }
 }

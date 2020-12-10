@@ -1,11 +1,10 @@
-package GUI.AttendeeGUI.AvailableEvents;
-
-import GUI.AttendeeGUI.Message.CollocutorHolder;
+package GUI.OrganizerGUI;
 
 import java.util.UUID;
 
 public class EventHolder {
     private UUID eventID;
+    private boolean buttonClicked;
     private final static EventHolder INSTANCE = new EventHolder();
 
     private EventHolder(){}
@@ -16,5 +15,12 @@ public class EventHolder {
 
     public UUID getEventID() {
         return eventID;
+    }
+
+    public boolean getButtonClicked(){
+        return buttonClicked;
+    }
+    public void setButtonClicked(boolean trueOrFalse){
+        buttonClicked = trueOrFalse;
     }
 }

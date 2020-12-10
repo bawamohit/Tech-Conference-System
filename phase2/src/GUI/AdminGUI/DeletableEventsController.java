@@ -1,7 +1,8 @@
-package GUI.AttendeeGUI.AvailableEvents;
+package GUI.AdminGUI;
 
-import GUI.*;
 import GUI.AttendeeGUI.EventHolder;
+import GUI.DisplayEventsController;
+import GUI.ManagersStorage;
 import UseCases.EventManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,17 +14,16 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-public class AvailableEventsController extends DisplayEventsController {
+public class DeletableEventsController extends DisplayEventsController {
     private EventManager eventManager;
 
     public void initialize(){
         this.eventManager = ManagersStorage.getInstance().getEventManager();
-        LocalDateTime currTime = LocalDateTime.now();
-        List<UUID> availableEventIDs = eventManager.getAvailableEvents(currTime);
-        generateEventButtons(availableEventIDs, "/AttendeeGUI/AvailableEvents/EventSignUp", this.eventManager);
+        List<UUID> deletableEventIds = eventManager.getEmptyEvents();
+        generateEventButtons(deletableEventIds, "/GUI/AdminGUI/EventDeleteInfo", this.eventManager);
+
     }
 }

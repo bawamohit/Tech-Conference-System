@@ -13,14 +13,14 @@
 
     <Label text="username:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
-    <TextField fx:id="usernameField" styleClass="text-field" stylesheets="@Welcome.css" text="spider" GridPane.columnIndex="1" GridPane.rowIndex="1">
+    <TextField fx:id="usernameField" styleClass="text-field" stylesheets="@Welcome.css" text="admin" GridPane.columnIndex="1" GridPane.rowIndex="1">
       <font>
          <Font size="18.0" />
       </font></TextField>
 
     <Label text="password:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 
-    <PasswordField fx:id="passwordField" text="man" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <PasswordField fx:id="passwordField" text="admin" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="4">
         <Button onAction="#handleSignInButtonAction" stylesheets="@Welcome.css" text="sign in" />

@@ -1,4 +1,4 @@
-package GUI.AttendeeGUI.Message;
+package GUI.OrganizerGUI.Message;
 
 public class CollocutorHolder {
     private String username;
