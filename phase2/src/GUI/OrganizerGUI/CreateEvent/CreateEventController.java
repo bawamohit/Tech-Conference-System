@@ -28,6 +28,10 @@ public class CreateEventController {
     private int eventCapacity;
     private String username;
 
+
+    /**
+     * Initializes the Create Event scene.
+     */
     @FXML public void initialize(){
         EventHolder.getInstance().setRoomAvailabilityChecked(false);
         roomManager  = ManagersStorage.getInstance().getRoomManager();
@@ -35,7 +39,10 @@ public class CreateEventController {
         username = UserHolder.getInstance().getUsername();
     }
 
-    @FXML protected void handleCreateButtonAction(ActionEvent event) {
+    /**
+     * Handles action when the create button is clicked. Creates the event.
+     */
+    @FXML protected void handleCreateButtonAction() {
         eventName = eventNameField.getText();
         startTimeString = startTimeField.getText();
         endTimeString = endTimeField.getText();
@@ -76,6 +83,9 @@ public class CreateEventController {
         return(eventNameEmpty || startTimeEmpty || endTimeEmpty || eventCapacityEmpty || roomNameEmpty);
     }
 
+    /**
+     * Handles action when the check availability button is clicked. Checks if room is available for this event.
+     */
     @FXML  protected void handleCheckAvailabilityButtonAction(ActionEvent event) {
         roomName = roomField.getText();
         String eventCapacityString = eventCapacityField.getText();

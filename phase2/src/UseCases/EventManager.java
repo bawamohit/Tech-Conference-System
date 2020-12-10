@@ -236,6 +236,14 @@ public class EventManager {
         return newEvent.getId();
     }
 
+    /**
+     * Implements modifier, addEvent, for events. (Only to be used for reading from files)
+     *
+     *
+     * @param eventID id of the event
+     * @param newSpeaker username of the new speaker
+     * @return The ID of the new event created
+     */
     public void addSpeaker(UUID eventID, String newSpeaker){
         Event oldEvent = events.get(eventID);
         List<String> speakers = oldEvent.getSpeakers();
@@ -255,6 +263,12 @@ public class EventManager {
         return false;
     }
 
+    /**
+     * Implements getter for all information regarding an event
+     *
+     * @param eventID id of event
+     * @return List of strings with all information regarding the event
+     */
     public List<String> getEventsInfo(UUID eventID){
         List<String> infoList = new ArrayList<>();
         Event event = events.get(eventID);
@@ -274,6 +288,12 @@ public class EventManager {
         return infoList;
     }
 
+    /**
+     * Implements getter for all information regarding of every event in a given list
+     *
+     * @param uuidList list of all eventids
+     * @return List of strings with all information regarding the event for every event in list
+     */
     public List<List<String>> getAllEventsInfo(List<UUID> uuidList){
         uuidList = sortEventByTime(uuidList);
         List<List<String>> infoList = new ArrayList<>();
@@ -281,16 +301,6 @@ public class EventManager {
             infoList.add(getEventsInfo(id));
         }
         return infoList;
-    }
-
-    public List<UUID> sortEvents(){
-        List<UUID> eventIDs = new ArrayList<>();
-        List<Event> eventList = new ArrayList<>(events.values());
-        Collections.sort(eventList);
-        for (Event event: eventList){
-            eventIDs.add(event.getId());
-        }
-        return eventIDs;
     }
 
     /**
@@ -307,21 +317,25 @@ public class EventManager {
         event.setAttendees(attendees);
     }
 
-    //TODO javadoc, this breaks down the original addAttendee to two simpler functions, also update above function javadoc
+    /**
+     * Returns if a user is attending an event
+     *
+     * @param eventID ID of event
+     * @param username name of attendee
+     * @return a boolean indicating if user is registered
+     */
     public boolean isAttending(UUID eventID, String username){
         Event event = events.get(eventID);
         return(event.getAttendees().contains(username));
     }
 
     /**
-     * Implements modifier, removeAttendee, for event in events.
+     * Removes attendee from event
      *
      * @param username attendee username
      * @param eventID ID of event to remove user from
      *
-     * @return a boolean indicating if user was successfully removed
      */
-    //TODO change javadoc accordingly
     public void removeAttendee(String username, UUID eventID){
         Event event = events.get(eventID);
         List<String> updated_event = event.getAttendees();
@@ -332,7 +346,7 @@ public class EventManager {
     /** Determines whether two time blocks (start time ~ end time) overlap.
      *
      * @param existingST A start time that is already occupied.
-     * @param existingST An end time that is already occupied.
+     * @param existingET An end time that is already occupied.
      * @param newST A new start time that will be compared.
      * @param newET A new end time that will be compared.
      *
@@ -343,10 +357,16 @@ public class EventManager {
         return (!newET.isAfter(existingST) && !newST.isBefore(existingET));
     }
 
-    //TODO Javadoc, also didn't consider what happens when equal someone tell me what method does also the method above is just wrong so delete it i guess
-    public boolean scheduleOverlap(UUID event, List<UUID> schedule){
-        LocalDateTime start1 = getEventStartTime(event);
-        LocalDateTime end1 = getEventStartTime(event);
+    /** Determines whether a potential event's time overlaps with the already existing schedule
+     *
+     * @param eventID id of event
+     * @param schedule already existing schedule
+     *
+     * @return a boolean indicating if the new and existing time blocks overlap
+     */
+    public boolean scheduleOverlap(UUID eventID, List<UUID> schedule){
+        LocalDateTime start1 = getEventStartTime(eventID);
+        LocalDateTime end1 = getEventStartTime(eventID);
         for(UUID otherEvent: schedule) {
             LocalDateTime start2 = getEventStartTime(otherEvent);
             LocalDateTime end2 = getEventEndTime(otherEvent);
@@ -357,7 +377,7 @@ public class EventManager {
         return false;
     }
 
-    /**
+    /**Sorts all events from earlist starttime to latest starttime
      *
      * @param eventIDList list of Event IDs to sort
      * @return sorted list of Event IDs by start time

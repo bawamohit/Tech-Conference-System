@@ -156,6 +156,11 @@ public class RoomManager {
         return false;
     }
 
+    /**
+     * Returns if a room has enough space to hold the given event's capacity
+     *
+     * @return a boolean indicating if the room has space for the event's capacity
+     */
     public boolean hasSpace(String roomName, int eventCapacity){
         if (roomExists(roomName)){
             Room room = rooms.get(roomName);

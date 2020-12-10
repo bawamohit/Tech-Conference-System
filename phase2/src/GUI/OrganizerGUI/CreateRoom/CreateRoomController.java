@@ -14,12 +14,18 @@ public class CreateRoomController {
     @FXML TextField maxOccupancyField;
     private RoomManager roomManager;
 
+    /**
+     * Initializes the Create Room scene.
+     */
     @FXML public void initialize(){
         roomManager = ManagersStorage.getInstance().getRoomManager();
         EventHolder.getInstance().setRoomAvailabilityChecked(false);
     }
 
-    @FXML protected void handleCheckNameButtonAction(ActionEvent event) {
+    /**
+     * Handles action when the check name availability button is clicked. Checks whether room name is available.
+     */
+    @FXML protected void handleCheckNameButtonAction() {
         String roomName = roomNameField.getText();
         if(roomManager.roomExists(roomName)){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -43,7 +49,10 @@ public class CreateRoomController {
 
     }
 
-    @FXML protected void handleCreateButtonAction(ActionEvent event) {
+    /**
+     * Handles action when the create button is clicked. Creates the room.
+     */
+    @FXML protected void handleCreateButtonAction() {
         if (missingInput()){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);

@@ -31,6 +31,9 @@ public class OrganizerMessageController extends GUI.Message.MessageController im
     @FXML private VBox chatsContainer;
     @FXML private TextField searchField;
 
+    /**
+     * Initializes Organizer Message scene
+     */
     public void initialize(){
         searchField.textProperty().addListener((obj, oldVal, newVal) -> {
             handleSearchField();
@@ -56,8 +59,12 @@ public class OrganizerMessageController extends GUI.Message.MessageController im
         this.mainController = mainController;
     }
 
+
+    /**
+     * Handles action when the + button is clicked. Creates and loads chat subscene with the new collocutor
+     */
     @FXML
-    protected void handleNewChatButtonAction(ActionEvent event) {
+    protected void handleNewChatButtonAction() {
         deleteEmptyChatButtons();
         String user = searchField.getText();
         List<String> allUsers = ManagersStorage.getInstance().getUserManager().getUsernameList();

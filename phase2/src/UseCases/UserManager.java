@@ -248,15 +248,4 @@ public class UserManager {
         return usernamesToUsers.get(username).getUserType();
     }
 
-    /** Determines whether two times overlap.
-     *
-     * @param existingTime A time that is already occupied.
-     * @param newTime A new time that will be compared.
-     *
-     * @return true if existingTime does not overlap with newTime, and false otherwise.
-     */
-    //TODO probably delete
-    public boolean scheduleNotOverlap(LocalDateTime existingTime, LocalDateTime newTime){
-        return (!(newTime.isAfter(existingTime.minusHours(1))) || !(newTime.isBefore(existingTime.plusHours(1))));
-    }
 }

@@ -1,5 +1,6 @@
 package GUI.OrganizerGUI.Message;
 
+//TODO javadoc
 public class CollocutorHolder {
     private String username;
     private final static CollocutorHolder INSTANCE = new CollocutorHolder();
