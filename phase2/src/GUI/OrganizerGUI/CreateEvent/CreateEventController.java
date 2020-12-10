@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.UUID;
 
 public class CreateEventController {
@@ -56,6 +57,13 @@ public class CreateEventController {
         }
         LocalDateTime startTime = getTime(startTimeString);
         LocalDateTime endTime = getTime(endTimeString);
+        if(startTime == null || endTime == null){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("Invalid Time Input");
+            alert.showAndWait();
+            return;
+        }
         eventCapacity = eventCapacityFieldToInteger(eventCapacityField.getText());
         if(roomAvailabilityChecked()){
             UUID eventID = eventManager.addEvent(eventName, username, startTime, endTime, roomName, eventCapacity);
@@ -130,18 +138,15 @@ public class CreateEventController {
     private LocalDateTime getTime(String time) {
         String pattern = "^([0-9][0-9][0-9][0-9])-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1]) (09|1[0-6]):([0-5][0-9])$|^.{0}$";
 
-        if (!time.matches(pattern)){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
-            alert.setContentText("Invalid Time Input");
-            alert.showAndWait();
+        if (!time.matches(pattern)) {
+            return null;
+        } else {
+            int year = Integer.parseInt(time.substring(0, 4));
+            int month = Integer.parseInt(time.substring(5, 7));
+            int day = Integer.parseInt(time.substring(8, 10));
+            int hour = Integer.parseInt(time.substring(11, 13));
+            int minute = Integer.parseInt(time.substring(14, 16));
+            return LocalDateTime.of(year, month, day, hour, minute);
         }
-        int year2 = Integer.parseInt(time.substring(0, 4));
-        int month2 = Integer.parseInt(time.substring(5, 7));
-        int day2 = Integer.parseInt(time.substring(8, 10));
-        int hour2 = Integer.parseInt(time.substring(11, 13));
-        int minute2 = Integer.parseInt(time.substring(14, 16));
-        return LocalDateTime.of(year2, month2, day2, hour2, minute2);
     }
-
 }
