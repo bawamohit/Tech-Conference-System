@@ -11,7 +11,6 @@
             <VBox>
                 <Button fx:id="messageButton" onAction="#handleMessageButtonAction" prefHeight="33.0" prefWidth="150" text="Message" />
                 <Button fx:id="modifyEventButton" onAction="#handleModifyEventsButtonAction" prefHeight="33.0" prefWidth="155" text="Modify Events" />
-                <Button fx:id="createEventButton" onAction="#handleCreateEventButtonAction" prefHeight="33.0" prefWidth="155" text="Create Events" />
                 <Button fx:id="createSpeaker" onAction="#handleCreateAccountsButtonAction" prefHeight="33.0" prefWidth="150" text="Create Accounts" />
                 <Button fx:id="createRoom" onAction="#handleCreateRoomButtonAction" prefHeight="33.0" prefWidth="150" text="Create Room" />
             </VBox>
@@ -26,7 +25,7 @@
     <Pane prefHeight="93.0" prefWidth="587.0" snapToPixel="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
     <children>
         <Button fx:id="removeEventbutton" layoutX="543.0" layoutY="2.0" onAction="#handleRemoveEventButtonAction" prefHeight="25.0" prefWidth="176.0" snapToPixel="false" text="Remove Event" />
-        <Button fx:id="addEventbutton" layoutX="367.0" layoutY="2.0" onAction="#handleAddEventButtonAction" prefHeight="25.0" prefWidth="176.0" snapToPixel="false" text="Add Event" />
+        <Button fx:id="addEventbutton" layoutX="367.0" layoutY="2.0" onAction="#handleCreateEventButtonAction" prefHeight="25.0" prefWidth="176.0" snapToPixel="false" text="Create Event" />
     </children></Pane>
     <stylesheets>
         <URL value="@Dashboard.css" />
