@@ -18,8 +18,6 @@ public class AttendeeDashboardController extends UserDashboardController {
 
     @FXML private AnchorPane anchorPane;
     @FXML private SplitPane splitPane;
-    @FXML private GridPane gridPane;
-    @FXML private Label profile;
     @FXML private Button availEventButton;
     @FXML private Button myEventButton;
     @FXML private Button messageButton;
