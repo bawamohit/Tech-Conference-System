@@ -1,19 +1,20 @@
 package GUI.AdminGUI;
 
-import GUI.GUIController;
-import GUI.MainController;
+import GUI.*;
+import UseCases.EventManager;
+import UseCases.UserManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.SubScene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
 
-public class DashboardController implements GUIController {
+public class AdminDashboardController extends UserDashboardController {
 
-
-    @Override
-    public void initData(MainController mainController) {
-
-    }
+    @FXML public Button cancelButton;
 
     public void handleDeleteEventButtonAction(ActionEvent actionEvent) {
     }
@@ -22,9 +23,6 @@ public class DashboardController implements GUIController {
     }
 
     public void handleSelfDestructButtonAction(ActionEvent actionEvent) {
-    }
-
-    public void handleLogOutButtonAction(ActionEvent actionEvent) {
     }
 
     public void handleCancelButtonAction(ActionEvent actionEvent) {

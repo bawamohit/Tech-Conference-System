@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane fx:id="gridPane" alignment="BASELINE_LEFT" prefHeight="650.0" prefWidth="888.0" snapToPixel="false" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AdminGUI.DashboardController">
+<GridPane fx:id="gridPane" alignment="BASELINE_LEFT" prefHeight="650.0" prefWidth="888.0" snapToPixel="false" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AdminGUI.AdminDashboardController">
     <VBox fillWidth="false" prefHeight="575.0" prefWidth="346.0" snapToPixel="false" spacing="50">
         <Label fx:id="profile" />
         <VBox prefHeight="535.0" prefWidth="223.0" snapToPixel="false" spacing="400">

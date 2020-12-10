@@ -70,14 +70,14 @@
             "time": "2020-12-08T22:32:32.094",
             "content": "Hey guys, I figured out a way to beat Thanos!"
         }],
-        "wolverine": [{
-            "receiver": "wolverine",
+        "panther": [{
+            "receiver": "panther",
             "sender": "ant",
             "time": "2020-12-08T22:32:32.094",
             "content": "Hey guys, I figured out a way to beat Thanos!"
         }],
-        "panther": [{
-            "receiver": "panther",
+        "wolverine": [{
+            "receiver": "wolverine",
             "sender": "ant",
             "time": "2020-12-08T22:32:32.094",
             "content": "Hey guys, I figured out a way to beat Thanos!"
