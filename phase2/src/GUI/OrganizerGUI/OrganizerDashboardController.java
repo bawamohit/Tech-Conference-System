@@ -18,7 +18,6 @@ import java.util.UUID;
 
 
 public class OrganizerDashboardController implements GUIController {
-    public Button addEventbutton;
     public Button removeEventbutton;
     private MainController mainController;
     private String username;
@@ -38,8 +37,7 @@ public class OrganizerDashboardController implements GUIController {
         this.userManager = ManagersStorage.getInstance().getUserManager();
         this.eventManager = ManagersStorage.getInstance().getEventManager();
         this.roomManager = ManagersStorage.getInstance().getRoomManager();
-        addEventbutton.setVisible(true);
-        removeEventbutton.setVisible(true);
+        removeEventbutton.setVisible(false);
     }
 
     public void initData(MainController mainController){
@@ -48,13 +46,11 @@ public class OrganizerDashboardController implements GUIController {
 
     @FXML protected void handleCreateEventButtonAction(ActionEvent event) {
         loadSubScene("CreateEvent");
-        addEventbutton.setVisible(true);
-        removeEventbutton.setVisible(true);
+        removeEventbutton.setVisible(false);
     }
 
     @FXML protected void handleModifyEventsButtonAction(ActionEvent event) {
         loadSubScene("Events");
-        addEventbutton.setVisible(true);
         removeEventbutton.setVisible(true);
     }
 
@@ -62,25 +58,25 @@ public class OrganizerDashboardController implements GUIController {
     protected void handleMessageButtonAction(ActionEvent event) {
         loadSubScene("Message");
         removeEventbutton.setVisible(false);
-        addEventbutton.setVisible(false);
     }
 
     @FXML protected void handleCreateAccountsButtonAction(ActionEvent event){
         loadSubScene("CreateAccounts");
         removeEventbutton.setVisible(false);
-        addEventbutton.setVisible(false);
     }
 
     @FXML protected void handleCreateRoomButtonAction(ActionEvent event){
         loadSubScene("CreateRoom");
         removeEventbutton.setVisible(false);
-        addEventbutton.setVisible(false);
     }
 
     @FXML public void handleLogOutButtonAction(ActionEvent event) throws IOException {
         mainController.handleLogOutButtonAction(event, true);
         removeEventbutton.setVisible(false);
-        addEventbutton.setVisible(false);
+    }
+
+    @FXML public void handleRescheduleEventButtonAction(ActionEvent event){
+
     }
 
     @FXML public void handleRemoveEventButtonAction(ActionEvent event){
