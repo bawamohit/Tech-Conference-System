@@ -40,7 +40,7 @@ public abstract class DisplayEventsController implements GUIController{
             subGridPane.add(button, i, j);
             if(i < 3){ i++; }else{ i = 0; j++;}
         }
-        loadSubScene("Empty");
+        loadSubScene("/GUI/Empty");
         gridPane.add(subScene, 0, 1);
     }
 
