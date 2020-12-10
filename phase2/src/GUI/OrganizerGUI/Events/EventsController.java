@@ -1,20 +1,19 @@
-package GUI.AttendeeGUI.AvailableEvents;
+package GUI.OrganizerGUI.Events;
 
-import GUI.*;
+import GUI.DisplayEventsController;
+import GUI.ManagersStorage;
 import UseCases.EventManager;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-public class AvailableEventsController extends DisplayEventsController {
-    private EventManager eventManager;
-
+public class EventsController extends DisplayEventsController {
     public void initialize(){
-        this.eventManager = ManagersStorage.getInstance().getEventManager();
+        EventManager eventManager = ManagersStorage.getInstance().getEventManager();
         LocalDateTime currTime = LocalDateTime.now();
         List<UUID> availableEventIDs = eventManager.getAvailableEvents(currTime);
         List<List<String>> eventsInfo = eventManager.getAllEventsInfo(availableEventIDs);
-        generateEventButtons("EventSignUp", eventsInfo);
+        generateEventButtons("EventInfo", eventsInfo);
     }
 }

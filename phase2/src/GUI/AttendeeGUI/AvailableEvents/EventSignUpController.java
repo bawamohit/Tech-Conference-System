@@ -1,22 +1,15 @@
 package GUI.AttendeeGUI.AvailableEvents;
 
-import GUI.AttendeeGUI.AbstractEventInfoController;
-import GUI.GUIController;
-import GUI.MainController;
-import GUI.ManagersStorage;
-import GUI.UserHolder;
-import UseCases.EventManager;
-import UseCases.UserManager;
+import GUI.EventInfoController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-public class EventSignUpController extends AbstractEventInfoController{
+public class EventSignUpController extends EventInfoController {
     
     @FXML public void handleSignUpButton(ActionEvent event){
         List<UUID> schedule = getUserManager().getEventsAttending(getUsername());

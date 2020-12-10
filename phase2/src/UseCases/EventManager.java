@@ -113,7 +113,7 @@ public class EventManager {
                     availableEvents.add(id);
                 }
         }
-        return availableEvents;
+        return sortEventByTime(availableEvents);
     }
 
     /**
@@ -128,7 +128,7 @@ public class EventManager {
                emptyEvents.add(id);
             }
         }
-        return emptyEvents;
+        return sortEventByTime(emptyEvents);
     }
 
     /**
@@ -275,6 +275,7 @@ public class EventManager {
     }
 
     public List<List<String>> getAllEventsInfo(List<UUID> uuidList){
+        uuidList = sortEventByTime(uuidList);
         List<List<String>> infoList = new ArrayList<>();
         for (UUID id :uuidList){
             infoList.add(getEventsInfo(id));
@@ -337,9 +338,9 @@ public class EventManager {
      *
      * @return a boolean indicating if the new and existing time blocks overlap
      */
-    public boolean scheduleNotOverlap(LocalDateTime existingST, LocalDateTime existingET,
-                                      LocalDateTime newST, LocalDateTime newET){
-        return (newET.isAfter(existingST) || newST.isBefore(existingET));
+    public boolean scheduleOverlap(LocalDateTime existingST, LocalDateTime existingET,
+                                   LocalDateTime newST, LocalDateTime newET){
+        return (!newET.isAfter(existingST) && !newST.isBefore(existingET));
     }
 
     //TODO Javadoc, also didn't consider what happens when equal someone tell me what method does also the method above is just wrong so delete it i guess

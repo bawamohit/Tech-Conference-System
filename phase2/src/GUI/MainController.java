@@ -77,7 +77,7 @@ public class MainController implements GUIController{
                     break;
 
                 case ORGANIZER:
-                    loader = new FXMLLoader(getClass().getResource("OrganizerGUI/Dashboard.fxml"));
+                    loader = new FXMLLoader(getClass().getResource("OrganizerGUI/OrganizerDashboard.fxml"));
                     setNewScene(event, loader);
                     break;
 

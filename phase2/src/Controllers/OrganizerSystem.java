@@ -267,7 +267,7 @@ public class OrganizerSystem extends UserSystem {
         for (UUID id: speakers_events){
             LocalDateTime existingST = tcs.getEM().getEventStartTime(id);
             LocalDateTime existingET = tcs.getEM().getEventEndTime(id);
-            if (!tcs.getEM().scheduleNotOverlap(existingST, existingET, newST, newET)){
+            if (tcs.getEM().scheduleOverlap(existingST, existingET, newST, newET)){
                 presenter.printObjUnavailable("speaker");
                 return false;
             }

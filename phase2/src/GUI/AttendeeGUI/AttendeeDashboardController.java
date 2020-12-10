@@ -1,13 +1,11 @@
 package GUI.AttendeeGUI;
 
 import GUI.*;
-import GUI.AttendeeGUI.MyEvents.EventInfoController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -29,7 +27,7 @@ public class AttendeeDashboardController extends UserDashboardController {
 
     @FXML
     protected void handleMessageButtonAction(ActionEvent event) {
-        loadSubScene("/GUI/AttendeeGUI/Message/Message");
+        loadSubScene("/GUI/Message/Message");
         cancelButton.setVisible(false);
     }
 
@@ -48,7 +46,7 @@ public class AttendeeDashboardController extends UserDashboardController {
             FXMLLoader loader = new FXMLLoader((getClass().getResource("MyEvents/EventInfo.fxml")));
             try{
                 loader.load();
-                UUID eventID = ((EventInfoController)loader.getController()).eventID;
+                UUID eventID = EventHolder.getInstance().getEventID();
                 getEventManager().removeAttendee(getUsername(), eventID);
                 getUserManager().removeEventAttending(getUsername(), eventID);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);

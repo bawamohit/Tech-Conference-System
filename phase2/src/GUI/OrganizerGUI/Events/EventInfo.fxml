@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+
 <GridPane fx:id="gridPane" xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
-          fx:controller="GUI.OrganizerGUI.AvailableEvents.EventInfoController">
+          fx:controller="GUI.EventInfoController">
     <Label fx:id="label1" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
     <Label fx:id="label2" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
     <Label fx:id="label3" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="0"/>

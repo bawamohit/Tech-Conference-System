@@ -1,7 +1,6 @@
 package GUI.AttendeeGUI.MyEvents;
 
-import Entities.Event;
-import GUI.AttendeeGUI.EventHolder;
+import GUI.EventHolder;
 import GUI.GUIController;
 import GUI.MainController;
 import GUI.ManagersStorage;
@@ -18,7 +17,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -47,7 +45,7 @@ public class MyEventsController implements GUIController {
                 @Override
                 public void handle(ActionEvent event) {
                     EventHolder.getInstance().setEvent(UUID.fromString(eventInfo.get(0)));
-                    GUI.AttendeeGUI.EventHolder.getInstance().setButtonClicked(true);
+                    EventHolder.getInstance().setButtonClicked(true);
                     loadSubScene("EventInfo");
                 }
             });
