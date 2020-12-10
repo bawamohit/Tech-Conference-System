@@ -84,7 +84,7 @@ public class OrganizerDashboardController implements GUIController {
     }
 
     @FXML public void handleRemoveEventButtonAction(ActionEvent event){
-        FXMLLoader loader = new FXMLLoader((getClass().getResource("AvailableEvents/EventInfo.fxml")));
+        FXMLLoader loader = new FXMLLoader((getClass().getResource("Events/EventInfo.fxml")));
         if (ifEventButtonClicked()) {
             try{
                 loader.load();
@@ -98,7 +98,7 @@ public class OrganizerDashboardController implements GUIController {
                     alert.setContentText("Successfully Removed");
                     Optional<ButtonType> result = alert.showAndWait();
                     if (result.isPresent()){
-                        loadSubScene("AvailableEvents");
+                        loadSubScene("Events");
                     }
                 }
             }

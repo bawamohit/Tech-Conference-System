@@ -5,6 +5,7 @@ import java.util.UUID;
 public class EventHolder {
     private UUID eventID;
     private boolean buttonClicked;
+    private boolean roomAvailabilityChecked;
 
     private final static EventHolder INSTANCE = new EventHolder();
 
@@ -22,6 +23,13 @@ public class EventHolder {
         return buttonClicked;
     }
 
+    public boolean getRoomAvailabilityChecked() {
+        return roomAvailabilityChecked;
+    }
+
+    public void setRoomAvailabilityChecked(boolean trueOrFalse){
+        roomAvailabilityChecked = trueOrFalse;
+    }
     public void setButtonClicked(boolean trueOrFalse){
         buttonClicked = trueOrFalse;
     }
