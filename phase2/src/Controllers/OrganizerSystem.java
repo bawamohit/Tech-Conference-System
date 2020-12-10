@@ -59,6 +59,10 @@ public class OrganizerSystem extends UserSystem {
                 case "7": //add speaker
                     addSpeakerToEvent(tcs, scanner);
                     break;
+                case "8": //create attendee
+                    tcs.signUp(scanner, UserType.ATTENDEE);
+                    presenter.printSuccess();
+                    break;
                 default:
                     presenter.printInvalidInput();
                     break;
