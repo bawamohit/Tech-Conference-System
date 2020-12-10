@@ -12,7 +12,7 @@ import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
 
-public class UserDashboardController {
+public class UserDashboardController implements GUIController {
     private MainController mainController;
     private String username;
     private SubScene subScene;
