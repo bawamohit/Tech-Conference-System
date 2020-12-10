@@ -1,4 +1,4 @@
-package GUI.AttendeeGUI.Message;
+package GUI.Message;
 
 import GUI.GUIController;
 import GUI.MainController;

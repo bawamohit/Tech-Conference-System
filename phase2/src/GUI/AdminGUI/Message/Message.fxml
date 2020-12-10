@@ -6,11 +6,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.geometry.Insets?>
 <GridPane fx:id="gridPane"
           xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
-          fx:controller="GUI.OrganizerGUI.Message.OrganizerMessageController">
+          fx:controller="GUI.Message.MessageController">
     <VBox>
         <HBox>
             <TextField fx:id="searchField" prefWidth="80"/>
