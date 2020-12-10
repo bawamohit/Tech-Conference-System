@@ -1,8 +1,6 @@
 package GUI.OrganizerGUI;
 
 import GUI.*;
-import GUI.OrganizerGUI.AvailableEvents.AvailableEventsController;
-import GUI.OrganizerGUI.AvailableEvents.EventInfoController;
 import UseCases.EventManager;
 import UseCases.RoomManager;
 import UseCases.UserManager;
@@ -34,7 +32,7 @@ public class OrganizerDashboardController implements GUIController {
 
     public void initialize(){
         this.username = UserHolder.getInstance().getUsername();
-        loadSubScene("AvailableEvents");
+        loadSubScene("Message");
         gridPane.add(subScene, 1, 0);
         profile.setText(username);
         this.userManager = ManagersStorage.getInstance().getUserManager();
@@ -48,8 +46,14 @@ public class OrganizerDashboardController implements GUIController {
         this.mainController = mainController;
     }
 
-    @FXML protected void handleAvailEventButtonAction(ActionEvent event) {
-        loadSubScene("AvailableEvents");
+    @FXML protected void handleCreateEventButtonAction(ActionEvent event) {
+        loadSubScene("CreateEvent");
+        addEventbutton.setVisible(false);
+        removeEventbutton.setVisible(false);
+    }
+
+    @FXML protected void handleModifyEventsButtonAction(ActionEvent event) {
+        loadSubScene("Events");
         addEventbutton.setVisible(true);
         removeEventbutton.setVisible(true);
     }
@@ -68,10 +72,11 @@ public class OrganizerDashboardController implements GUIController {
     }
 
     @FXML protected void handleCreateRoomButtonAction(ActionEvent event){
-        //loadSubScene("Rooms");
+        loadSubScene("CreateRoom");
         removeEventbutton.setVisible(false);
         addEventbutton.setVisible(false);
     }
+
     @FXML public void handleLogOutButtonAction(ActionEvent event) throws IOException {
         mainController.handleLogOutButtonAction(event, true);
         removeEventbutton.setVisible(false);
@@ -86,7 +91,7 @@ public class OrganizerDashboardController implements GUIController {
         if (ifEventButtonClicked()) {
             try{
                 loader.load();
-                UUID eventID = ((EventInfoController)loader.getController()).eventID;
+                UUID eventID = EventHolder.getInstance().getEventID();
                 for (String username: eventManager.getEventAttendees(eventID)){
                     userManager.removeEventAttending(username, eventID);
                 }

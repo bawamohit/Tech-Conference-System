@@ -9,8 +9,9 @@
         <Label fx:id="profile" />
         <VBox prefHeight="535.0" prefWidth="223.0" snapToPixel="false" spacing="400">
             <VBox>
-                <Button fx:id="availEventButton" onAction="#handleAvailEventButtonAction" prefHeight="33.0" prefWidth="155" text="Available Events" />
                 <Button fx:id="messageButton" onAction="#handleMessageButtonAction" prefHeight="33.0" prefWidth="150" text="Message" />
+                <Button fx:id="modifyEventButton" onAction="#handleModifyEventsButtonAction" prefHeight="33.0" prefWidth="155" text="Modify Events" />
+                <Button fx:id="createEventButton" onAction="#handleCreateEventButtonAction" prefHeight="33.0" prefWidth="155" text="Create Events" />
                 <Button fx:id="createSpeaker" onAction="#handleCreateAccountsButtonAction" prefHeight="33.0" prefWidth="150" text="Create Accounts" />
                 <Button fx:id="createRoom" onAction="#handleCreateRoomButtonAction" prefHeight="33.0" prefWidth="150" text="Create Room" />
             </VBox>

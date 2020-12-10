@@ -338,9 +338,9 @@ public class EventManager {
      *
      * @return a boolean indicating if the new and existing time blocks overlap
      */
-    public boolean scheduleNotOverlap(LocalDateTime existingST, LocalDateTime existingET,
-                                      LocalDateTime newST, LocalDateTime newET){
-        return (newET.isAfter(existingST) || newST.isBefore(existingET));
+    public boolean scheduleOverlap(LocalDateTime existingST, LocalDateTime existingET,
+                                   LocalDateTime newST, LocalDateTime newET){
+        return (!newET.isAfter(existingST) && !newST.isBefore(existingET));
     }
 
     //TODO Javadoc, also didn't consider what happens when equal someone tell me what method does also the method above is just wrong so delete it i guess

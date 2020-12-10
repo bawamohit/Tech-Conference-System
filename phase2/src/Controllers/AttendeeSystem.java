@@ -117,7 +117,7 @@ public class AttendeeSystem extends UserSystem{
     private boolean isAttendeeFree(String username, UUID newEvent, TechConferenceSystem tcs){
         List<UUID> userEvents = tcs.getUM().getEventsAttending(username);
         for (UUID id :userEvents){
-            if (!tcs.getEM().scheduleNotOverlap(tcs.getEM().getEventStartTime(id), tcs.getEM().getEventEndTime(id),
+            if (tcs.getEM().scheduleOverlap(tcs.getEM().getEventStartTime(id), tcs.getEM().getEventEndTime(id),
                     tcs.getEM().getEventStartTime(newEvent), tcs.getEM().getEventEndTime(newEvent))){
                 return false;
             }
