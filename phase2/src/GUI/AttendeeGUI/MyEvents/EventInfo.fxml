@@ -8,6 +8,7 @@
 
 <GridPane fx:id="gridPane" xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
+          stylesheets="@../EventInfo.css"
           fx:controller="GUI.EventInfoController">
     <Label fx:id="label1" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
     <Label fx:id="label2" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="0"/>

@@ -7,17 +7,21 @@
 
 .scroll-pane > .viewport  {
     -fx-background-color: transparent;
+    -padding-top: 10px;
 }
 
 .scroll-pane {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-color: rgba(94, 94, 94, 0.3);
+    -padding-top: 10px;
 }
 
 .grid {
     -fx-background: transparent;
     -fx-border-color: transparent;
+    -fx-hgap: 10;
+    -fx-vgap: 10;
 }
 
 

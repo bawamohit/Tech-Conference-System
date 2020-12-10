@@ -23,7 +23,7 @@
 }
 
 .button:focused {
-    -fx-background-color: rgba(95, 176, 183, 0.8);
+    -fx-background-color: rgba(95, 176, 183, 0.6);
     -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
 }
