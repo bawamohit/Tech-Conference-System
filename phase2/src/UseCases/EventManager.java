@@ -237,18 +237,32 @@ public class EventManager {
     }
 
     /**
-     * Implements modifier, addEvent, for events. (Only to be used for reading from files)
+     * Implements modifier, addSpeaker, for events.
      *
      *
      * @param eventID id of the event
      * @param newSpeaker username of the new speaker
-     * @return The ID of the new event created
      */
     public void addSpeaker(UUID eventID, String newSpeaker){
-        Event oldEvent = events.get(eventID);
-        List<String> speakers = oldEvent.getSpeakers();
+        Event event = events.get(eventID);
+        List<String> speakers = event.getSpeakers();
         speakers.add(newSpeaker);
     }
+
+    /**
+     * Implements modifier, removeSpeaker, for events.
+     *
+     *
+     * @param eventID id of the event
+     * @param oldSpeaker username of the old speaker
+     */
+    public void removeSpeaker(UUID eventID, String oldSpeaker){
+        Event event = events.get(eventID);
+        List<String> speakers = event.getSpeakers();
+        speakers.remove(oldSpeaker);
+        event.setSpeakers(speakers);
+    }
+
 
     /**
      * Implements modifier, removeEvent, for events.

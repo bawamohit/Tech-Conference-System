@@ -25,8 +25,8 @@
     </Pane>
     <Pane prefHeight="93.0" prefWidth="587.0" snapToPixel="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
     <children>
-        <Button fx:id="addSpeakerButton" layoutX="316.0" layoutY="2.0" onAction="#handleAddSpeakerButtonAction" prefHeight="25.0" prefWidth="106.0" snapToPixel="false" text="Add Speaker" />
-        <Button fx:id="rescheduleEventButton" layoutX="422.0" layoutY="2.0" onAction="#handleRescheduleEventButtonAction" prefHeight="25.0" prefWidth="121.0" snapToPixel="false" text="Reschedule Event" />
+        <Button fx:id="modifySpeakerButton" layoutX="256.0" layoutY="2.0" onAction="#handleModifySpeakerButtonAction" prefHeight="25.0" prefWidth="150.0" snapToPixel="false" text="Modify Speaker" />
+        <Button fx:id="rescheduleEventButton" layoutX="406.0" layoutY="2.0" onAction="#handleRescheduleEventButtonAction" prefHeight="25.0" prefWidth="137.0" snapToPixel="false" text="Reschedule Event" />
         <Button fx:id="removeEventButton" layoutX="543.0" layoutY="2.0" onAction="#handleRemoveEventButtonAction" prefHeight="25.0" prefWidth="176.0" snapToPixel="false" text="Remove Event" />
 
     </children></Pane>

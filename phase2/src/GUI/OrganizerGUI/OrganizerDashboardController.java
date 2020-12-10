@@ -18,7 +18,9 @@ import java.util.UUID;
 
 
 public class OrganizerDashboardController implements GUIController {
-    public Button removeEventButton;
+    @FXML public Button removeEventButton;
+    @FXML public Button modifySpeakerButton;
+    @FXML public Button rescheduleEventButton;
     private MainController mainController;
     private String username;
     private SubScene subScene;
@@ -41,6 +43,8 @@ public class OrganizerDashboardController implements GUIController {
         this.eventManager = ManagersStorage.getInstance().getEventManager();
         this.roomManager = ManagersStorage.getInstance().getRoomManager();
         removeEventButton.setVisible(false);
+        modifySpeakerButton.setVisible(false);
+        rescheduleEventButton.setVisible(false);
     }
 
     //TODO idk what to write for this javadoc
@@ -54,6 +58,8 @@ public class OrganizerDashboardController implements GUIController {
     @FXML protected void handleCreateEventButtonAction(ActionEvent event) {
         loadSubScene("CreateEvent");
         removeEventButton.setVisible(false);
+        modifySpeakerButton.setVisible(false);
+        rescheduleEventButton.setVisible(false);
     }
 
     /**
@@ -62,6 +68,8 @@ public class OrganizerDashboardController implements GUIController {
     @FXML protected void handleModifyEventsButtonAction(ActionEvent event) {
         loadSubScene("Events");
         removeEventButton.setVisible(true);
+        modifySpeakerButton.setVisible(true);
+        rescheduleEventButton.setVisible(true);
     }
 
     /**
@@ -71,6 +79,8 @@ public class OrganizerDashboardController implements GUIController {
     protected void handleMessageButtonAction(ActionEvent event) {
         loadSubScene("Message");
         removeEventButton.setVisible(false);
+        modifySpeakerButton.setVisible(false);
+        rescheduleEventButton.setVisible(false);
     }
 
     /**
@@ -79,6 +89,8 @@ public class OrganizerDashboardController implements GUIController {
     @FXML protected void handleCreateAccountsButtonAction(ActionEvent event){
         loadSubScene("CreateAccounts");
         removeEventButton.setVisible(false);
+        modifySpeakerButton.setVisible(false);
+        rescheduleEventButton.setVisible(false);
     }
 
     /**
@@ -87,6 +99,8 @@ public class OrganizerDashboardController implements GUIController {
     @FXML protected void handleCreateRoomButtonAction(ActionEvent event){
         loadSubScene("CreateRoom");
         removeEventButton.setVisible(false);
+        modifySpeakerButton.setVisible(false);
+        rescheduleEventButton.setVisible(false);
     }
 
     /**
@@ -95,6 +109,8 @@ public class OrganizerDashboardController implements GUIController {
     @FXML public void handleLogOutButtonAction(ActionEvent event) throws IOException {
         mainController.handleLogOutButtonAction(event, true);
         removeEventButton.setVisible(false);
+        modifySpeakerButton.setVisible(false);
+        rescheduleEventButton.setVisible(false);
     }
 
     /**
@@ -107,8 +123,8 @@ public class OrganizerDashboardController implements GUIController {
     /**
      * Handles action when the add speaker button is clicked
      */
-    @FXML public void handleAddSpeakerButtonAction(){
-
+    @FXML public void handleModifySpeakerButtonAction(){
+        loadSubScene("ModifySpeaker");
     }
 
     /**
