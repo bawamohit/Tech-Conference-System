@@ -78,6 +78,15 @@ public class CreateEventController {
 
     @FXML  protected void handleCheckAvailabilityButtonAction(ActionEvent event) {
         roomName = roomField.getText();
+        String eventCapacityString = eventCapacityField.getText();
+        if(eventCapacityString.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter event capacity");
+            alert.showAndWait();
+            return;
+        }
+        eventCapacity = eventCapacityFieldToInteger(eventCapacityString);
         if(!roomManager.roomExists(roomName)){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
