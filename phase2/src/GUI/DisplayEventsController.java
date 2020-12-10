@@ -16,16 +16,15 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-public class DisplayEventsController implements GUIController{
-    private EventManager eventManager;
-    private String user;
+public abstract class DisplayEventsController implements GUIController{
     private SubScene subScene;
-
     @FXML private GridPane gridPane;
     @FXML private GridPane subGridPane;
 
-    public void generateEventButtons(List<UUID> eventIds, String path){
-        List<List<String>> eventsInfo = eventManager.getAllEventsInfo(eventIds);
+    public abstract void initialize();
+
+    public void generateEventButtons(List<UUID> eventIds, String path, EventManager em){
+        List<List<String>> eventsInfo = em.getAllEventsInfo(eventIds);
         int i = 0, j = 0;
         for(List<String> eventInfo: eventsInfo) {
             Button button = new Button(eventInfo.get(1) + "\nStarts: " + eventInfo.get(3) + "\nEnds:  " + eventInfo.get(4));

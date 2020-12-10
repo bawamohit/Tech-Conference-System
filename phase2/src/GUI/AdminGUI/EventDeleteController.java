@@ -1,12 +1,8 @@
-package GUI.AttendeeGUI.AvailableEvents;
+package GUI.AdminGUI;
 
 import GUI.AttendeeGUI.AbstractEventInfoController;
 import GUI.GUIController;
 import GUI.MainController;
-import GUI.ManagersStorage;
-import GUI.UserHolder;
-import UseCases.EventManager;
-import UseCases.UserManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -16,7 +12,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-public class EventInfoController extends AbstractEventInfoController implements GUIController {
+public class EventDeleteController extends AbstractEventInfoController implements GUIController {
 
     @FXML Label label1;
     @FXML Label label2;
@@ -32,7 +28,7 @@ public class EventInfoController extends AbstractEventInfoController implements 
 
     }
     
-    @FXML public void handleSignUpButton(ActionEvent event){
+    @FXML public void handleDeleteButton(ActionEvent event){
         List<UUID> schedule = userManager.getEventsAttending(username);
         if(eventManager.scheduleOverlap(eventID, schedule)){
             String startTime = eventManager.getEventStartTime(eventID).toString();

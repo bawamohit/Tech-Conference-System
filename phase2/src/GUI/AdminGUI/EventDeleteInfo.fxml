@@ -8,7 +8,7 @@
 
 <GridPane fx:id="gridPane" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="GUI.AttendeeGUI.AvailableEvents.EventInfoController">
+            fx:controller="GUI.AdminGUI.EventDeleteController">
     <Label fx:id="label1" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
     <Label fx:id="label2" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
     <Label fx:id="label3" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
@@ -17,6 +17,6 @@
     <Label fx:id="label6" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
     <Label fx:id="label7" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
     <Label fx:id="label8" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
-    <Button fx:id="button" prefWidth="250"  onAction="#handleSignUpButton"
-            text="Sign Up" GridPane.columnIndex="3" GridPane.rowIndex="4"/>
+    <Button fx:id="button" prefWidth="250"  onAction="#handleDeleteButton"
+            text="Delete" GridPane.columnIndex="3" GridPane.rowIndex="4"/>
 </GridPane>

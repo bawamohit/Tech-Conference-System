@@ -1,0 +1,53 @@
+package GUI.AttendeeGUI.AvailableEvents;
+
+import GUI.AttendeeGUI.AbstractEventInfoController;
+import GUI.GUIController;
+import GUI.MainController;
+import GUI.ManagersStorage;
+import GUI.UserHolder;
+import UseCases.EventManager;
+import UseCases.UserManager;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.UUID;
+
+public class EventSignUpController extends AbstractEventInfoController{
+    
+    @FXML public void handleSignUpButton(ActionEvent event){
+        List<UUID> schedule = userManager.getEventsAttending(username);
+        if(eventManager.scheduleOverlap(eventID, schedule)){
+            String startTime = eventManager.getEventStartTime(eventID).toString();
+            String endTime = eventManager.getEventEndTime(eventID).toString();
+            alert("You have an event conflict at this time slot, cancel your other events that take place during " +
+                    startTime + " to " + endTime + ", to sign up for this event.");
+        }else if(eventManager.isAttending(eventID, username)){
+            alert("You're already signed up to the event");
+        }else if(eventManager.isFull(eventID)){
+            alert("Sorry, this event is fully booked. And no, you are not special enough to warrant an exception.");
+        }else if(eventManager.getEventStartTime(eventID).isBefore(LocalDateTime.now())){
+            alert("Sorry, this event is no longer available for sign up.");
+        }else {
+            eventManager.addAttendee(eventID, username);
+            userManager.addEventAttending(username, eventID);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("Signed Up!");
+
+            alert.showAndWait();
+        }
+    }
+
+    private void alert(String message){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Sign Up Failed");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+
+        alert.showAndWait();
+    }
+}

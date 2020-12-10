@@ -1,5 +1,7 @@
 package GUI.AttendeeGUI;
 
+import GUI.GUIController;
+import GUI.MainController;
 import GUI.ManagersStorage;
 import GUI.UserHolder;
 import UseCases.EventManager;
@@ -10,15 +12,14 @@ import javafx.scene.control.Label;
 import java.util.List;
 import java.util.UUID;
 
-public class AbstractEventInfoController {
+public class AbstractEventInfoController implements GUIController {
     protected EventManager eventManager;
     protected UserManager userManager;
     protected String username;
     protected UUID eventID;
     protected List<String> eventInfo;
 
-    @FXML
-    Label label1;
+    @FXML Label label1;
     @FXML Label label2;
     @FXML Label label3;
     @FXML Label label4;
@@ -27,6 +28,10 @@ public class AbstractEventInfoController {
     @FXML Label label7;
     @FXML Label label8;
 
+    @Override
+    public void initData(MainController mainController) {
+
+    }
     public void initialize(){
         this.eventManager = ManagersStorage.getInstance().getEventManager();
         this.userManager = ManagersStorage.getInstance().getUserManager();

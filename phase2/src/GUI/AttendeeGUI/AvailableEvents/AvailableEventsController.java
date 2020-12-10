@@ -19,14 +19,11 @@ import java.util.UUID;
 
 public class AvailableEventsController extends DisplayEventsController {
     private EventManager eventManager;
-    private String user;
-    private SubScene subScene;
 
     public void initialize(){
         this.eventManager = ManagersStorage.getInstance().getEventManager();
-        this.user = UserHolder.getInstance().getUsername();
         LocalDateTime currTime = LocalDateTime.now();
         List<UUID> availableEventIDs = eventManager.getAvailableEvents(currTime);
-        generateEventButtons(availableEventIDs, "EventInfo");
+        generateEventButtons(availableEventIDs, "EventSignUp", this.eventManager);
     }
 }
