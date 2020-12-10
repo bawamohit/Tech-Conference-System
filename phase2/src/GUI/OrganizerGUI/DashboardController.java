@@ -44,6 +44,7 @@ public class DashboardController implements GUIController {
         this.eventManager = ManagersStorage.getInstance().getEventManager();
         this.roomManager = ManagersStorage.getInstance().getRoomManager();
         addEventbutton.setVisible(true);
+        removeEventbutton.setVisible(true);
     }
 
     public void initData(MainController mainController){
@@ -53,6 +54,7 @@ public class DashboardController implements GUIController {
     @FXML protected void handleAvailEventButtonAction(ActionEvent event) {
         loadSubScene("AvailableEvents");
         addEventbutton.setVisible(true);
+        removeEventbutton.setVisible(true);
     }
 
     @FXML
@@ -62,8 +64,8 @@ public class DashboardController implements GUIController {
         addEventbutton.setVisible(false);
     }
 
-    @FXML protected void handleCreateSpeakerButtonAction(ActionEvent event){
-        //loadSubScene("Speakers");
+    @FXML protected void handleCreateAccountsButtonAction(ActionEvent event){
+        loadSubScene("CreateAccounts");
         removeEventbutton.setVisible(false);
         addEventbutton.setVisible(false);
     }

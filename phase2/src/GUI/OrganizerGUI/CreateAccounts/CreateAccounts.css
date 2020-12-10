@@ -1,0 +1,67 @@
+.root {
+
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+#signUp {
+    -fx-font-size: 28px;
+    -fx-font-weight: normal;
+    -fx-font-family: "Arial Black";
+    -fx-fill: #0c637d;
+}
+
+.button {
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-background-color: #6c91bfff;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(#6c91bfff, lightgrey);
+}
+
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #0b718f;
+}
+
+.radio-button{
+    -fx-text-fill: #064659;
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+}
+
+.text-field {
+    -fx-border-color: #6c91bfff;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 ;
+}
+.text-field:focused {
+    -fx-background-color: -fx-focus-color, -fx-background ;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(whitesmoke, lightgrey);
+}
+
+#signUp{
+    -fx-text-fill: #6c91bfff;
+    -fx-font-size: 28px;
+    -fx-font-weight: normal;
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+}
+
+#signUp:hover{
+    -fx-underline: true;
+}
+
+/* CSS HEX */
+/*--dark-orchid: #af2bbfff;*/
+/*--purple-plum: #a14ebfff;*/
+/*--blue-gray: #6c91bfff;*/
+/*--verdigris: #5fb0b7ff;*/
+/*--ocean-green: #5bc8afff; */
