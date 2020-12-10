@@ -35,7 +35,7 @@ public abstract class DisplayEventsController extends Observable implements GUIC
                     EventHolder.getInstance().setButtonClicked(true);
                     EventHolder.getInstance().setEvent(UUID.fromString(eventInfo.get(0)));
                     loadSubScene(path);
-                    if (path == "/GUI/AdminGUI/EventDeleteInfo"){
+                    if (path.equals("/GUI/AdminGUI/EventDeleteInfo")){
                         observeEventDelete();
                     }
                 }
