@@ -21,10 +21,7 @@
             <Button fx:id="logOutButton" alignment="BOTTOM_CENTER" layoutY="2.0" mnemonicParsing="false" onAction="#handleLogOutButtonAction" prefHeight="2.0" prefWidth="150.0" text="Log Out" />
         </children>
     </Pane>
-    <Pane prefHeight="93.0" prefWidth="587.0" snapToPixel="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
-        <children>
-            <Button fx:id="cancelButton" layoutX="543.0" layoutY="2.0" onAction="#handleCancelButtonAction" prefHeight="25.0" prefWidth="176.0" snapToPixel="false" text="Cancel Registration" />
-        </children></Pane>
+    <Pane prefHeight="93.0" prefWidth="587.0" snapToPixel="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
     <stylesheets>
         <URL value="@AdminDashboard.css" />
     </stylesheets>

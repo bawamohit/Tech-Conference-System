@@ -24,6 +24,6 @@ public class AvailableEventsController extends DisplayEventsController {
         this.eventManager = ManagersStorage.getInstance().getEventManager();
         LocalDateTime currTime = LocalDateTime.now();
         List<UUID> availableEventIDs = eventManager.getAvailableEvents(currTime);
-        generateEventButtons(availableEventIDs, "EventSignUp", this.eventManager);
+        generateEventButtons(availableEventIDs, "/AttendeeGUI/AvailableEvents/EventSignUp", this.eventManager);
     }
 }

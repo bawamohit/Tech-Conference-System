@@ -24,22 +24,22 @@ public class AttendeeDashboardController extends UserDashboardController {
 
     public void initialize(){
         this.cancelButton.setVisible(false);
-        super.initData("AvailableEvents");
+        super.initData("/GUI/AttendeeGUI/AvailableEvents/AvailableEvents");
     }
 
     @FXML
     protected void handleMessageButtonAction(ActionEvent event) {
-        loadSubScene("Message");
+        loadSubScene("/GUI/AttendeeGUI/Message/Message");
         cancelButton.setVisible(false);
     }
 
     @FXML protected void handleAvailEventButtonAction(ActionEvent event) {
-        loadSubScene("AvailableEvents");
+        loadSubScene("/GUI/AttendeeGUI/AvailableEvents/AvailableEvents");
         cancelButton.setVisible(false);
     }
 
     @FXML protected void handleMyEventButtonAction(ActionEvent event) {
-        loadSubScene("MyEvents");
+        loadSubScene("/GUI/AttendeeGUI/MyEvents/MyEvents");
         cancelButton.setVisible(true);
     }
 
@@ -56,7 +56,7 @@ public class AttendeeDashboardController extends UserDashboardController {
                 alert.setContentText("Successfully Cancelled");
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.isPresent()){
-                    loadSubScene("MyEvents");
+                    loadSubScene("/GUI/AttendeeGUI/MyEvents/MyEvents");
                 }
             }
             catch (IOException e){

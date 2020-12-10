@@ -68,7 +68,7 @@ public class UserDashboardController implements GUIController {
     }
 
     public void loadSubScene(String path){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(path + "/" + path + ".fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(path + ".fxml"));
         Parent root = null;
         try {
             root = loader.load();
