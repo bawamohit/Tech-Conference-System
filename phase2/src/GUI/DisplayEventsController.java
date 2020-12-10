@@ -21,10 +21,7 @@ public abstract class DisplayEventsController implements GUIController{
     @FXML private GridPane gridPane;
     @FXML private GridPane subGridPane;
 
-    public abstract void initialize();
-
-    public void generateEventButtons(List<UUID> eventIds, String path, EventManager em){
-        List<List<String>> eventsInfo = em.getAllEventsInfo(eventIds);
+    public void generateEventButtons(String path, List<List<String>> eventsInfo){
         int i = 0, j = 0;
         for(List<String> eventInfo: eventsInfo) {
             Button button = new Button(eventInfo.get(1) + "\nStarts: " + eventInfo.get(3) + "\nEnds:  " + eventInfo.get(4));
@@ -45,12 +42,8 @@ public abstract class DisplayEventsController implements GUIController{
     }
 
     private void loadSubScene(String path){
-        FXMLLoader loader;
-        if(path.equals("Empty")){
-            loader = new FXMLLoader(getClass().getResource("../../Empty.fxml"));
-        }else{
-            loader = new FXMLLoader(getClass().getResource(path + ".fxml"));
-        }
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(path + ".fxml"));
+
         Parent root = null;
         try {
             root = loader.load();

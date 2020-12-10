@@ -53,17 +53,13 @@ public class AvailableEventsController implements GUIController {
             subGridPane.add(button, i, j);
             if(i < 3){ i++; }else{ i = 0; j++;}
         }
-        loadSubScene("Empty");
+        loadSubScene("../../Empty");
         gridPane.add(subScene, 0, 1);
     }
 
     private void loadSubScene(String path){
         FXMLLoader loader;
-        if(path.equals("Empty")){
-            loader = new FXMLLoader(getClass().getResource("../../Empty.fxml"));
-        }else{
-            loader = new FXMLLoader(getClass().getResource(path + ".fxml"));
-        }
+        loader = new FXMLLoader(getClass().getResource(path + ".fxml"));
         Parent root = null;
         try {
             root = loader.load();

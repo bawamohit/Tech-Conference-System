@@ -113,7 +113,7 @@ public class EventManager {
                     availableEvents.add(id);
                 }
         }
-        return availableEvents;
+        return sortEventByTime(availableEvents);
     }
 
     /**
@@ -128,7 +128,7 @@ public class EventManager {
                emptyEvents.add(id);
             }
         }
-        return emptyEvents;
+        return sortEventByTime(emptyEvents);
     }
 
     /**

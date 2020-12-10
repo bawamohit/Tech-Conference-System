@@ -29,7 +29,7 @@ public class AttendeeDashboardController extends UserDashboardController {
 
     @FXML
     protected void handleMessageButtonAction(ActionEvent event) {
-        loadSubScene("/GUI/AttendeeGUI/Message/Message");
+        loadSubScene("/GUI/Message/Message");
         cancelButton.setVisible(false);
     }
 
