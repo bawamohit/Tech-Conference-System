@@ -54,6 +54,13 @@
         "eventsAttending": ["99b5e204-d17c-43cf-ab5f-b5226182760a"],
         "friends": []
     },
+    "admin": {
+        "name": "Jenny",
+        "password": "admin",
+        "userType": "ADMIN",
+        "eventsAttending": [],
+        "friends": []
+    },
     "dead": {
         "name": "Dead Pool",
         "password": "pool",
@@ -152,13 +159,6 @@
             "3b145c56-65da-4ed2-9b53-471687e26b16",
             "c463b726-f5ca-4dd5-b772-7801a421c111"
         ],
-        "friends": []
-    },
-    "admin": {
-        "name": "Jenny",
-        "password": "admin",
-        "userType": "ADMIN",
-        "eventsAttending": [],
         "friends": []
     }
 }
