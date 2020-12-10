@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.Message.ChatController">
-    <ScrollPane fx:id="scrollPane" fitToWidth="true" prefHeight="500" snapToPixel="false">
-            <VBox fx:id="chatBox" prefWidth="500">
-            </VBox>
+<AnchorPane prefHeight="600" styleClass="anchor-pane" stylesheets="@Chat.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Message.ChatController">
+    <ScrollPane fx:id="scrollPane" fitToWidth="true" prefHeight="500.0" prefWidth="500.0" snapToPixel="false" styleClass="viewport" stylesheets="@Chat.css">
+            <VBox fx:id="chatBox" prefWidth="500" stylesheets="@Chat.css">
+         <padding>
+            <Insets left="15.0" top="15.0" />
+         </padding></VBox>
     </ScrollPane>
-    <HBox AnchorPane.bottomAnchor="30">
-        <TextField fx:id="textField" onAction="#handleSend" prefWidth="500" />
+    <HBox spacing="10.0" styleClass="hbox" stylesheets="@Chat.css" AnchorPane.bottomAnchor="30" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+        <TextField fx:id="textField" onAction="#handleSend" prefHeight="26.0" prefWidth="414.0" />
         <Button fx:id="sendButton" onAction="#handleSend" text="Send" />
+      <padding>
+         <Insets left="15.0" right="15.0" />
+      </padding>
     </HBox>
 
 </AnchorPane>

@@ -1,6 +1,7 @@
 package GUI.AdminGUI;
 
 import GUI.DisplayEventsController;
+import GUI.EventInfoController;
 import GUI.ManagersStorage;
 import UseCases.EventManager;
 
@@ -15,6 +16,6 @@ public class DeletableEventsController extends DisplayEventsController {
         List<UUID> deletableEventIds = eventManager.getEmptyEvents();
         List<List<String>> eventsInfo = eventManager.getAllEventsInfo(deletableEventIds);
         generateEventButtons("/GUI/AdminGUI/EventDeleteInfo", eventsInfo);
-
     }
+
 }

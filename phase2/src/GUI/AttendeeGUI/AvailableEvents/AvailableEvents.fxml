@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane fx:id="gridPane" prefHeight="477.0" prefWidth="732.0" snapToPixel="false" styleClass="root" stylesheets="@AvailableEvents.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AttendeeGUI.AvailableEvents.AvailableEventsController">
+<GridPane fx:id="gridPane" prefHeight="477.0" prefWidth="732.0" snapToPixel="false" styleClass="root" stylesheets="@AvailableEvents.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AttendeeGUI.AvailableEvents.AvailableEventsController">
 
     <ScrollPane fx:id="container" fitToWidth="true" layoutX="24.0" layoutY="49.0" prefHeight="455.0" prefWidth="672.0" styleClass="viewport" stylesheets="@AvailableEvents.css" GridPane.columnIndex="1" GridPane.rowIndex="0">
         <GridPane fx:id="subGridPane" hgap="10.0" prefWidth="672.0" styleClass="grid" stylesheets="@AvailableEvents.css" vgap="10.0">

@@ -11,14 +11,17 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
+import java.util.Observable;
 
 public class AdminDashboardController extends UserDashboardController {
 
     public void initialize(){
         super.initData("/GUI/AdminGUI/DeletableEvents");
+        observeDisplayEvents();
     }
 
     public void handleDeleteEventButtonAction(ActionEvent actionEvent) {
+        loadSubScene("/GUI/AdminGUI/DeletableEvents");
     }
 
     public void handleDeleteChatButtonAction(ActionEvent actionEvent) {
@@ -28,5 +31,15 @@ public class AdminDashboardController extends UserDashboardController {
     }
 
     public void handleCancelButtonAction(ActionEvent actionEvent) {
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        loadSubScene("/GUI/AdminGUI/DeletableEvents");
+    }
+
+    public void observeDisplayEvents(){
+        DisplayEventsController controller = getLoader().getController();
+        controller.addObserver(this);
     }
 }

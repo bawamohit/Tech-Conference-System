@@ -24,8 +24,10 @@ public class EventDeleteController extends EventInfoController implements GUICon
             getRoomManager().removeEventFromSchedule(getEventID());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Successfully Deleted!");
+            alert.showAndWait();
+
         }
-
-
+        setChanged();
+        notifyObservers();
     }
 }

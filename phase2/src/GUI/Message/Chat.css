@@ -1,0 +1,96 @@
+.root {
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background: transparent;
+}
+
+.anchor-pane > .viewport  {
+    -fx-background-color: transparent;
+    -padding-top: 10px;
+}
+
+.anchor-pane {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -padding-top: 10px;
+    /*this sets whole chat bkg color*/
+}
+
+.scroll-pane > .viewport  {
+    -fx-background-color: transparent;
+    -padding-top: 10px;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-color: rgba(94, 94, 94, 1.0);
+    -padding-top: 10px;
+}
+
+.grid {
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+}
+
+.hbox {
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+}
+
+.vbox {
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+}
+
+.button {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-background-color: rgba(108, 145, 191, 0.8);
+    /*-fx-white-space: normal; //TODO fix whitespace*/
+    -fx-width: 134px;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(#6C91BF, #537094);
+    -fx-text-fill: #ffffff;
+}
+
+
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+}
+
+.radio-button{
+    -fx-text-fill: #6d3684;
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+}
+
+.text-field {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-border-color: transparent;
+    -fx-background-color: rgba(133, 133, 133, 1.0);
+    -fx-background-radius: 0 ;
+}
+.text-field:focused {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-border-color: transparent;
+    -fx-background-color: rgba(133, 133, 133, 0.6);
+    -box-shadow: inset 1px 2px 4px rgba(0, 0, 0, 0.01), 0px 0px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
+/* CSS HEX */
+/*--dark-orchid: #af2bbfff;*/
+/*--purple-plum: #a14ebfff;*/
+/*--blue-gray: #6c91bfff;*/
+/*--verdigris: #5fb0b7ff;*/
+/*--ocean-green: #5bc8afff; */

@@ -3,13 +3,16 @@ package GUI;
 import UseCases.EventManager;
 import UseCases.RoomManager;
 import UseCases.UserManager;
+import javafx.beans.InvalidationListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.UUID;
 
-public class EventInfoController implements GUIController {
+public class EventInfoController extends Observable implements GUIController {
     private EventManager eventManager;
     private UserManager userManager;
     private RoomManager roomManager;
