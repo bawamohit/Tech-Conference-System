@@ -23,7 +23,8 @@ public class AttendeeDashboardController extends UserDashboardController {
     @FXML private Button messageButton;
 
     public void initialize(){
-        super.initialize("AvailableEvents");
+        this.cancelButton.setVisible(false);
+        super.initData("AvailableEvents");
     }
 
     @FXML

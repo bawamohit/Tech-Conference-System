@@ -22,7 +22,7 @@ public class UserDashboardController implements GUIController {
     @FXML private GridPane gridPane;
     @FXML private Label profile;
 
-    public void initialize(String path){
+    public void initData(String path){
         this.username = UserHolder.getInstance().getUsername();
         profile.setText(username);
         loadSubScene(path);
