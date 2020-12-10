@@ -25,10 +25,10 @@ public class MainController implements GUIController{
     @FXML private TextField usernameField;
     @FXML private TextField passwordField;
 
-    public void initData(MainController mainController){
-        this.welcomeFXMLPath = mainController.getWelcomeFXMLPath();
-        this.userManager = mainController.getUserManager();
-        this.messageManager = mainController.getMessageManager();
+    public void initData(MainController controller){
+        this.welcomeFXMLPath = controller.getWelcomeFXMLPath();
+        this.userManager = controller.getUserManager();
+        this.messageManager = controller.getMessageManager();
         this.username = null;
     }
 

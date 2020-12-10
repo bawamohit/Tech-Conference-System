@@ -5,6 +5,7 @@ import GUI.MainController;
 import GUI.ManagersStorage;
 import GUI.UserHolder;
 import UseCases.EventManager;
+import UseCases.RoomManager;
 import UseCases.UserManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -13,11 +14,12 @@ import java.util.List;
 import java.util.UUID;
 
 public class AbstractEventInfoController implements GUIController {
-    protected EventManager eventManager;
-    protected UserManager userManager;
-    protected String username;
+    private EventManager eventManager;
+    private UserManager userManager;
+    private RoomManager roomManager;
+    private String username;
     protected UUID eventID;
-    protected List<String> eventInfo;
+    private List<String> eventInfo;
 
     @FXML Label label1;
     @FXML Label label2;
@@ -29,12 +31,12 @@ public class AbstractEventInfoController implements GUIController {
     @FXML Label label8;
 
     @Override
-    public void initData(MainController mainController) {
+    public void initData(MainController mainController) { }
 
-    }
     public void initialize(){
         this.eventManager = ManagersStorage.getInstance().getEventManager();
         this.userManager = ManagersStorage.getInstance().getUserManager();
+        this.roomManager = ManagersStorage.getInstance().getRoomManager();
         this.username = UserHolder.getInstance().getUsername();
         this.eventID = EventHolder.getInstance().getEventID();
         this.eventInfo = eventManager.getEventsInfo(eventID);
@@ -48,4 +50,25 @@ public class AbstractEventInfoController implements GUIController {
         label7.setText("Maximum Capacity: " + eventInfo.get(7));
         label8.setText("Available Spots: " + eventInfo.get(8));
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public UserManager getUserManager() {
+        return userManager;
+    }
+
+    public EventManager getEventManager() {
+        return eventManager;
+    }
+
+    public UUID getEventID() {
+        return eventID;
+    }
+
+    public RoomManager getRoomManager() {
+        return roomManager;
+    }
+
 }

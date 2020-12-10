@@ -17,7 +17,7 @@ public class AdminDashboardController extends UserDashboardController {
     @FXML public Button cancelButton;
 
     public void initialize(){
-        //super.initData("");
+        super.initData("DeletableEvents");
     }
 
     public void handleDeleteEventButtonAction(ActionEvent actionEvent) {
