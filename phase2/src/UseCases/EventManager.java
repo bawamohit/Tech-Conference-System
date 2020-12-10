@@ -342,7 +342,7 @@ public class EventManager {
         return (newET.isAfter(existingST) || newST.isBefore(existingET));
     }
 
-    //TODO Javadoc, also didnt consider what happens when equal someone tell me what method does also the method above is just wrong so delete it i guess
+    //TODO Javadoc, also didn't consider what happens when equal someone tell me what method does also the method above is just wrong so delete it i guess
     public boolean scheduleOverlap(UUID event, List<UUID> schedule){
         LocalDateTime start1 = getEventStartTime(event);
         LocalDateTime end1 = getEventStartTime(event);
@@ -356,4 +356,28 @@ public class EventManager {
         return false;
     }
 
+    /**
+     *
+     * @param eventIDList list of Event IDs to sort
+     * @return sorted list of Event IDs by start time
+     */
+    private List<UUID> sortEventByTime(List<UUID> eventIDList) {
+        List<String> startTimeList = new ArrayList<>();
+        List<UUID> eventIDListSorted = new ArrayList<>();
+        for (UUID id : eventIDList) {
+            String startTime = getEventStartTime(id).toString();
+            if (!startTimeList.contains(startTime)) {
+                startTimeList.add(startTime);
+            }
+        }
+        Collections.sort(startTimeList);
+        for (String time : startTimeList) {
+            for (UUID id : eventIDList) {
+                if (time.equals(getEventStartTime(id).toString())) {
+                    eventIDListSorted.add(id);
+                }
+            }
+        }
+        return eventIDListSorted;
+    }
 }
