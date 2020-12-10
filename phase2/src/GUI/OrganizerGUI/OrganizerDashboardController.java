@@ -48,8 +48,8 @@ public class OrganizerDashboardController implements GUIController {
 
     @FXML protected void handleCreateEventButtonAction(ActionEvent event) {
         loadSubScene("CreateEvent");
-        addEventbutton.setVisible(false);
-        removeEventbutton.setVisible(false);
+        addEventbutton.setVisible(true);
+        removeEventbutton.setVisible(true);
     }
 
     @FXML protected void handleModifyEventsButtonAction(ActionEvent event) {
@@ -83,9 +83,6 @@ public class OrganizerDashboardController implements GUIController {
         addEventbutton.setVisible(false);
     }
 
-    @FXML public void handleAddEventButtonAction(){
-
-    }
     @FXML public void handleRemoveEventButtonAction(ActionEvent event){
         FXMLLoader loader = new FXMLLoader((getClass().getResource("AvailableEvents/EventInfo.fxml")));
         if (ifEventButtonClicked()) {

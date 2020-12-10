@@ -120,8 +120,7 @@ public class RoomManager {
      * @return a boolean indicating if roomName exists already
      */
     public boolean roomExists(String roomName) {
-        if (rooms.containsKey(roomName)) return true;
-        return false;
+        return rooms.containsKey(roomName);
     }
 
     /**
@@ -157,4 +156,11 @@ public class RoomManager {
         return false;
     }
 
+    public boolean hasSpace(String roomName, int eventCapacity){
+        if (roomExists(roomName)){
+            Room room = rooms.get(roomName);
+            return room.getCapacity() >= eventCapacity;
+        }
+        return false;
+    }
 }
