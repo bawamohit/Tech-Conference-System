@@ -11,7 +11,7 @@
             <VBox>
                 <Button fx:id="availEventButton" onAction="#handleAvailEventButtonAction" prefHeight="33.0" prefWidth="155" text="Available Events" />
                 <Button fx:id="messageButton" onAction="#handleMessageButtonAction" prefHeight="33.0" prefWidth="150" text="Message" />
-                <Button fx:id="createSpeaker" onAction="#handleCreateSpeakerButtonAction" prefHeight="33.0" prefWidth="150" text="Create Speaker" />
+                <Button fx:id="createSpeaker" onAction="#handleCreateAccountsButtonAction" prefHeight="33.0" prefWidth="150" text="Create Accounts" />
                 <Button fx:id="createRoom" onAction="#handleCreateRoomButtonAction" prefHeight="33.0" prefWidth="150" text="Create Room" />
             </VBox>
         </VBox>
