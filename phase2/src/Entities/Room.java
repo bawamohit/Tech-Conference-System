@@ -1,7 +1,9 @@
 package Entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -11,7 +13,7 @@ import java.util.UUID;
 public class Room {
     private String roomName;
     private int capacity;
-    private HashMap<LocalDateTime, UUID> schedule;
+    private HashMap<UUID, List<LocalDateTime>> schedule;
 
     /**
      * The constructor takes name and maximum capacity of attendees allowed of a room and assigns each variable.
@@ -47,11 +49,22 @@ public class Room {
     }
 
     /**
+     * Implements Getter, getRoomEventIDs, for keys of schedule.
+     *
+     * @return list of events (identified by ID) occurring in the room
+     */
+    public List<UUID> getRoomEventIDs(){
+        List<UUID> eventIDs = new ArrayList<UUID>();
+        eventIDs.addAll(schedule.keySet());
+        return eventIDs;
+    }
+
+    /**
      * Implements Getter, getSchedule, for schedule.
      *
      * @return schedule for room
      */
-    public HashMap<LocalDateTime, UUID> getSchedule(){
+    public HashMap<UUID, List<LocalDateTime>> getSchedule(){
         return schedule;
     }
 
@@ -67,7 +80,7 @@ public class Room {
      *
      * @param schedule updated schedule of room
      */
-    public void setRoomSchedule(HashMap<LocalDateTime, UUID> schedule){
+    public void setRoomSchedule(HashMap<UUID, List<LocalDateTime>> schedule){
         this.schedule = schedule;
     }
 

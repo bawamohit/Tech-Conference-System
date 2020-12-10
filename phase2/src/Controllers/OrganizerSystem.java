@@ -178,7 +178,7 @@ public class OrganizerSystem extends UserSystem {
         }
         UUID id = tcs.getEM().addEvent(eventName, username, startTime, endTime, roomName, Integer.parseInt(maxCap));
         tcs.getUM().addEventAttending(username, id); //TODO organizer
-        tcs.getRM().addEventToSchedule(id, roomName, startTime);
+        tcs.getRM().addEventToSchedule(id, roomName, startTime, endTime);
         presenter.printEventActionSuccess("created");
     }
 
@@ -276,17 +276,21 @@ public class OrganizerSystem extends UserSystem {
     }
 
     private boolean isRoomOk(String roomName, LocalDateTime newST, LocalDateTime newET, TechConferenceSystem tcs){
-        if (!tcs.getRM().getRooms().contains(roomName)) {
+        if (!tcs.getRM().roomExists(roomName)) {
             presenter.printDNE("room");
             return false;
         }
-        HashMap<LocalDateTime, UUID> schedule = tcs.getRM().getRoomSchedule(roomName);
-        for (LocalDateTime existingST: schedule.keySet()) {
-            if (newET.isAfter(existingST) && newST.isBefore(tcs.getEM().getEventEndTime(schedule.get(existingST)))) {
-                presenter.printObjUnavailable("room at this time");
-                return false;
-            }
+        if (!tcs.getRM().canAddEvent(roomName, newST, newET)){
+            presenter.printObjUnavailable("room at this time");
+            return false;
         }
+//        HashMap<LocalDateTime, UUID> schedule = tcs.getRM().getRoomSchedule(roomName);
+//        for (LocalDateTime existingST: schedule.keySet()) {
+//            if (newET.isAfter(existingST) && newST.isBefore(tcs.getEM().getEventEndTime(schedule.get(existingST)))) {
+//                presenter.printObjUnavailable("room at this time");
+//                return false;
+//            }
+//        }
         return true;
     }
 
