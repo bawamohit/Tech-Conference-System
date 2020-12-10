@@ -1,12 +1,11 @@
 package GUI.AttendeeGUI.MyEvents;
 
-import GUI.AttendeeGUI.AbstractEventInfoController;
 import GUI.GUIController;
 import GUI.MainController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class EventInfoController extends AbstractEventInfoController implements GUIController {
+public class EventInfoController extends GUI.EventInfoController implements GUIController {
 
     @FXML
     Label label1;

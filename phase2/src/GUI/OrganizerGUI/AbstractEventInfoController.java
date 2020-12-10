@@ -3,6 +3,7 @@ package GUI.OrganizerGUI;
 
 import GUI.ManagersStorage;
 import GUI.UserHolder;
+import GUI.EventHolder;
 import UseCases.EventManager;
 import UseCases.UserManager;
 import javafx.fxml.FXML;

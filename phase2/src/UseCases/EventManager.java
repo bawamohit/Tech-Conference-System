@@ -275,6 +275,7 @@ public class EventManager {
     }
 
     public List<List<String>> getAllEventsInfo(List<UUID> uuidList){
+        uuidList = sortEventByTime(uuidList);
         List<List<String>> infoList = new ArrayList<>();
         for (UUID id :uuidList){
             infoList.add(getEventsInfo(id));

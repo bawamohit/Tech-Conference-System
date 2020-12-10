@@ -1,11 +1,8 @@
 package GUI.OrganizerGUI;
 
+import GUI.*;
 import GUI.OrganizerGUI.AvailableEvents.AvailableEventsController;
 import GUI.OrganizerGUI.AvailableEvents.EventInfoController;
-import GUI.GUIController;
-import GUI.MainController;
-import GUI.ManagersStorage;
-import GUI.UserHolder;
 import UseCases.EventManager;
 import UseCases.RoomManager;
 import UseCases.UserManager;
@@ -22,7 +19,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 
-public class DashboardController implements GUIController {
+public class OrganizerDashboardController implements GUIController {
     public Button addEventbutton;
     public Button removeEventbutton;
     private MainController mainController;

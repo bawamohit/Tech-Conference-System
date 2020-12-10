@@ -1,18 +1,8 @@
 package GUI.AttendeeGUI.AvailableEvents;
 
 import GUI.*;
-import GUI.AttendeeGUI.EventHolder;
 import UseCases.EventManager;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.SubScene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;

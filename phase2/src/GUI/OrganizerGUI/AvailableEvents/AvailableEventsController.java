@@ -1,11 +1,6 @@
 package GUI.OrganizerGUI.AvailableEvents;
 
-import GUI.OrganizerGUI.DashboardController;
-import GUI.OrganizerGUI.EventHolder;
-import GUI.GUIController;
-import GUI.MainController;
-import GUI.ManagersStorage;
-import GUI.UserHolder;
+import GUI.*;
 import UseCases.EventManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
