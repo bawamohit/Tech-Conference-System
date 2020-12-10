@@ -13,7 +13,8 @@ public class OrganizerPresenter extends UserPresenter {
                         "4. Remove Event\n" +
                         "5. Create Speaker Account\n" +
                         "6. Create Room\n" +
-                        "7. Add Speaker to Event"
+                        "7. Add Speaker to Event" +
+                        "8. Create Attendee Account"
         );
     }
 
