@@ -22,6 +22,10 @@ public class AttendeeDashboardController extends UserDashboardController {
     @FXML private Button myEventButton;
     @FXML private Button messageButton;
 
+    public void initialize(){
+        super.initialize("AvailableEvents");
+    }
+
     @FXML
     protected void handleMessageButtonAction(ActionEvent event) {
         loadSubScene("Message");

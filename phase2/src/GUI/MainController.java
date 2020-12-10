@@ -8,7 +8,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -73,7 +72,7 @@ public class MainController implements GUIController{
             FXMLLoader loader;
             switch (userManager.getUserType(username)){
                 case ATTENDEE:
-                    loader = new FXMLLoader(getClass().getResource("AttendeeGUI/Dashboard.fxml"));
+                    loader = new FXMLLoader(getClass().getResource("AttendeeGUI/AttendeeDashboard.fxml"));
                     setNewScene(event, loader);
                     break;
 
@@ -88,7 +87,7 @@ public class MainController implements GUIController{
                     break;
 
                 case ADMIN:
-                    loader = new FXMLLoader(getClass().getResource("AdminGUI/Dashboard.fxml"));
+                    loader = new FXMLLoader(getClass().getResource("AdminGUI/AdminDashboard.fxml"));
                     setNewScene(event, loader);
                     break;
             }

@@ -22,10 +22,10 @@ public class UserDashboardController implements GUIController {
     @FXML private GridPane gridPane;
     @FXML private Label profile;
 
-    public void initialize(){
+    public void initialize(String path){
         this.username = UserHolder.getInstance().getUsername();
         profile.setText(username);
-        loadSubScene("AvailableEvents");
+        loadSubScene(path);
         gridPane.add(subScene, 1, 0);
         this.userManager = ManagersStorage.getInstance().getUserManager();
         this.eventManager = ManagersStorage.getInstance().getEventManager();

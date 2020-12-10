@@ -26,7 +26,7 @@
           <Button fx:id="cancelbutton" layoutX="543.0" layoutY="2.0" prefHeight="25.0" prefWidth="176.0" onAction="#handleCancelButtonAction" snapToPixel="false" text="Cancel Registration" />
       </children></Pane>
     <stylesheets>
-        <URL value="@Dashboard.css" />
+        <URL value="@AttendeeDashboard.css" />
     </stylesheets>
    <columnConstraints>
       <ColumnConstraints maxWidth="320" minWidth="150" prefWidth="150" />
