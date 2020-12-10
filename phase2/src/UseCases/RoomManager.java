@@ -1,5 +1,6 @@
 package UseCases;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 import Entities.Room;
@@ -46,7 +47,7 @@ public class RoomManager {
      *
      * @return the room's schedule
      */
-    public HashMap<LocalDateTime, UUID> getRoomSchedule(String roomName) {
+    public HashMap<UUID, List<LocalDateTime>> getRoomSchedule(String roomName) {
         return rooms.get(roomName).getSchedule();
     }
 
@@ -59,7 +60,7 @@ public class RoomManager {
      * @return a boolean indicating if room was successfully added
      */
     public boolean addRoom(String roomName, int capacity) {
-        if (rooms.containsKey(roomName)) {
+        if (roomExists(roomName)) {
             return false;
         } else {
             Room new_room = new Room(roomName, capacity);
@@ -72,18 +73,28 @@ public class RoomManager {
      * Implements checker, canAddEvent, for a room in rooms.
      *
      * @param roomName name of room to add an event to
-     * @param newTime start time of potential event to be added
+     * @param newST start time of potential event to be added
+     * @param newET end time of potential event to be added
      *
-     * @return a boolean indicating if an event with room name roomName and start time start can be successfully added
+     * @return a boolean indicating if an event with room name roomName, start time newST, end time newET
+     * can be successfully added
      */
-    public boolean canAddEvent(String roomName, LocalDateTime newTime) {
-        Room room = rooms.get(roomName);
-        for (LocalDateTime time : room.getSchedule().keySet()) {
-            if (newTime.isAfter(time.minusHours(1)) && newTime.isBefore(time.plusHours(1))) {
-                    return false;
+    public boolean canAddEvent(String roomName, LocalDateTime newST, LocalDateTime newET) {
+        HashMap<UUID, List<LocalDateTime>> schedule = getRoomSchedule(roomName);
+        for (UUID event: schedule.keySet()){
+            List<LocalDateTime> timeSlot= schedule.get(event);
+            if (newET.isAfter(timeSlot.get(0)) && newST.isBefore(timeSlot.get(1))){
+                return false;
             }
         }
         return true;
+//        for (LocalDateTime existingST: schedule.keySet()) {
+//            if (newET.isAfter(existingST) && newST.isBefore(tcs.getEM().getEventEndTime(schedule.get(existingST)))) {
+//                presenter.printObjUnavailable("room at this time");
+//                return false;
+//            }
+//        }
+//        return true;
     }
 
     /**
@@ -102,16 +113,29 @@ public class RoomManager {
     }
 
     /**
+     * Implements checker, roomExists, for roomName
+     *
+     * @param roomName name of room to check if exists
+     *
+     * @return a boolean indicating if roomName exists already
+     */
+    public boolean roomExists(String roomName) {
+        if (rooms.containsKey(roomName)) return true;
+        return false;
+    }
+
+    /**
      * Implements modifier, addEventToSchedule, for event in a room.
      *
      * @param eventId id of the event to be added to a room's schedule
      * @param roomName name of room to modify schedule for
      * @param start start time of event to be added
      */
-    public void addEventToSchedule(UUID eventId, String roomName, LocalDateTime start) {
+    public void addEventToSchedule(UUID eventId, String roomName, LocalDateTime start, LocalDateTime end) {
         Room room = rooms.get(roomName);
-        HashMap<LocalDateTime, UUID> updated_room = room.getSchedule();
-        updated_room.put(start, eventId);
+        HashMap<UUID, List<LocalDateTime>> updated_room = room.getSchedule();
+        List<LocalDateTime> timeSlot = Arrays.asList(start, end);
+        updated_room.put(eventId, timeSlot);
         room.setRoomSchedule(updated_room);
     }
 
@@ -123,13 +147,11 @@ public class RoomManager {
     public boolean removeEventFromSchedule(UUID eventID) {
         for (String name : rooms.keySet()) {
             Room r = rooms.get(name);
-            HashMap<LocalDateTime, UUID> schedule = r.getSchedule();
-            for (LocalDateTime time : schedule.keySet()) {
-                if (schedule.get(time).equals(eventID)) {
-                    schedule.remove(time);
-                    r.setRoomSchedule(schedule);
-                    return true;
-                }
+            HashMap<UUID, List<LocalDateTime>> schedule = r.getSchedule();
+            if (r.getRoomEventIDs().contains(eventID)){
+                schedule.remove(eventID);
+                r.setRoomSchedule(schedule);
+                return true;
             }
         }
         return false;
