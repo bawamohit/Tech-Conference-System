@@ -5,20 +5,41 @@
     -fx-background: transparent;
 }
 
-#signUp {
-    -fx-font-size: 28px;
-    -fx-font-weight: normal;
-    -fx-font-family: "Arial Black";
-    -fx-fill: #6d3684;
-    -fx-border-color: transparent;
+.scroll-pane > .viewport  {
     -fx-background-color: transparent;
+    -padding-top: 10px;
 }
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-color: rgba(94, 94, 94, 0.3);
+    -padding-top: 10px;
+}
+
+.grid {
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+}
+
 
 .button {
     -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-background-color: transparent;
+    /*-fx-white-space: normal; //TODO fix whitespace*/
+    -fx-width: 134px;
+}
+
+.button:hover {
+    -fx-background-color: rgba(247, 247, 247, 0.3);
+    -fx-text-fill: #ffffff;
+}
+
+.button:focused {
+    -fx-background-color: rgba(161, 78, 191, 0.6);
+    -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
-    -fx-background-color: #6d3684;
-    -fx-background-radius: 10px;
 }
 
 .label {
@@ -45,13 +66,7 @@
     box-shadow: inset 1px 2px 4px rgba(0, 0, 0, 0.01), 0px 0px 8px rgba(0, 0, 0, 0.2);
 }
 
-.button:hover {
-    -fx-background-color: linear-gradient(#6d3684, #522863);
-}
 
-#signUp:hover{
-    -fx-underline: true;
-}
 
 /* CSS HEX */
 /*--dark-orchid: #af2bbfff;*/

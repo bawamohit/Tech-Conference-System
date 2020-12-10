@@ -1,0 +1,48 @@
+.root {
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background: rgba(247, 247, 247, 0.3);
+    -fx-border-color: #5fb0b7ff;
+    -fx-border-width: 1 1 1 1;
+    -fx-background-radius: 5px;
+}
+
+.button {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-background-color: transparent;
+    /*-fx-white-space: normal; //TODO fix whitespace*/
+    -fx-width: 134px;
+    -fx-background-radius: 5px;
+}
+
+.button:hover {
+    -fx-background-color: rgba(247, 247, 247, 0.3);
+    -fx-text-fill: #ffffff;
+}
+
+.button:focused {
+    -fx-background-color: rgba(95, 176, 183, 0.6);
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+}
+
+.radio-button{
+    -fx-text-fill: #6d3684;
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+}
+
+
+/* CSS HEX */
+/*--dark-orchid: #af2bbfff;*/
+/*--purple-plum: #a14ebfff;*/
+/*--blue-gray: #6c91bfff;*/
+/*--verdigris: #5fb0b7ff;*/
+/*--ocean-green: #5bc8afff; */
