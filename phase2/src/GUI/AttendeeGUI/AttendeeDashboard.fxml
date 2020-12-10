@@ -46,7 +46,6 @@
                   </image>
                </ImageView>
             </graphic></Button>
-         <Pane prefHeight="200.0" prefWidth="200.0" styleClass="VBox" stylesheets="@AttendeeDashboard.css" />
       </children>
       <GridPane.margin>
          <Insets />
