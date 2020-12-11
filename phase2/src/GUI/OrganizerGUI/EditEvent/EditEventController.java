@@ -63,7 +63,6 @@ public class EditEventController {
                 e.printStackTrace();
             }
         }
-        createAlertMessage("Please click an event you would like to change first");
     }
 
     private void changeRoom(){
@@ -96,7 +95,6 @@ public class EditEventController {
                 e.printStackTrace();
             }
         }
-        createAlertMessage("Please click an event you would like to change first");
     }
 
     @FXML private void handleChangeCapacityButtonAction(){

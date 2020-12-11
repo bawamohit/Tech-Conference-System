@@ -117,14 +117,32 @@ public class OrganizerDashboardController implements GUIController {
      * Handles action when the reschedule event button is clicked.
      */
     @FXML public void handleEditEventButtonAction(ActionEvent event){
-        loadSubScene("EditEvent");
+        if(ifEventButtonClicked()){
+            loadSubScene("EditEvent");
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("Please click an event you would like to edit first");
+            alert.showAndWait();
+        }
+
     }
 
     /**
      * Handles action when the add speaker button is clicked
      */
     @FXML public void handleModifySpeakerButtonAction(){
-        loadSubScene("ModifySpeaker");
+        if(ifEventButtonClicked()){
+            loadSubScene("ModifySpeaker");
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("Please click an event you would like to modify speakers to first");
+            alert.showAndWait();
+        }
+
     }
 
     /**

@@ -66,9 +66,6 @@ public class ModifySpeakerController {
                 e.printStackTrace();
             }
         }
-        else{
-            createAlertMessage("Please click an event you would like to add a speaker to first");
-        }
     }
 
     private void removeSpeakerHelper(){
@@ -89,9 +86,6 @@ public class ModifySpeakerController {
             catch (IOException e){
                 e.printStackTrace();
             }
-        }
-        else{
-            createAlertMessage("Please click an event you would like to remove a speaker from to first");
         }
     }
 
