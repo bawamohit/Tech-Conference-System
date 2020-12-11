@@ -11,7 +11,6 @@
             <VBox>
                 <Button fx:id="deleteEventButton" onAction="#handleDeleteEventButtonAction" prefHeight="33.0" prefWidth="155" text="Delete Events" />
                 <Button fx:id="deleteChatButton" onAction="#handleDeleteChatButtonAction" prefHeight="33.0" prefWidth="150" text="Delete Chats" />
-                <Button fx:id="selfDestructButton" onAction="#handleSelfDestructButtonAction" prefHeight="33.0" prefWidth="150" text="Self Destruct" />
             </VBox>
         </VBox>
     </VBox>

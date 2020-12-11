@@ -29,9 +29,6 @@ public class AdminDashboardController extends UserDashboardController {
         loadSubScene("/GUI/AdminGUI/DeleteChat");
     }
 
-    public void handleSelfDestructButtonAction(ActionEvent actionEvent) {
-    }
-
     @Override
     public void update(Observable o, Object arg) {
         loadSubScene("/GUI/AdminGUI/DeletableEvents");
