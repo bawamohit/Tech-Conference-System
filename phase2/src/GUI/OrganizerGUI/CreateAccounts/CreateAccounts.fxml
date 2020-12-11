@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane minHeight="427.0" minWidth="728.0" prefHeight="555.0" prefWidth="734.0" stylesheets="@CreateAccounts.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OrganizerGUI.CreateAccounts.CreateAccountsController">
+<AnchorPane minHeight="427.0" minWidth="728.0" prefHeight="555.0" prefWidth="734.0" stylesheets="@CreateAccounts.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.OrganizerGUI.CreateAccounts.CreateAccountsController">
     <children>
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="415.0" layoutX="115.0" layoutY="82.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="503.0" AnchorPane.bottomAnchor="58.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="116.0" AnchorPane.topAnchor="82.0" />
         <VBox alignment="TOP_RIGHT" layoutX="187.0" layoutY="173.0" prefHeight="130.0" prefWidth="391.0" spacing="10.0" AnchorPane.bottomAnchor="252.0" AnchorPane.leftAnchor="187.0" AnchorPane.rightAnchor="156.0" AnchorPane.topAnchor="173.0">

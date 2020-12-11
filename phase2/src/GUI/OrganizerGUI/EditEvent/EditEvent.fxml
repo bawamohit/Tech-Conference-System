@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane alignment="center" hgap="10" prefHeight="650.0" prefWidth="900.0" styleClass="root" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OrganizerGUI.EditEvent.EditEventController">
+    <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
+
+    <Text id="title" text="Edit Event" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
+
+    <HBox layoutX="187.0" layoutY="409.0" prefHeight="18.0" prefWidth="391.0" snapToPixel="false" spacing="10.0" GridPane.rowIndex="1">
+        <children>
+            <RadioButton fx:id="capacityRadioButton" graphicTextGap="0.0" mnemonicParsing="false" text="change capacity" onAction="#handleChangeCapacityButtonAction">
+                <toggleGroup>
+                    <ToggleGroup fx:id="group" />
+                </toggleGroup></RadioButton>
+            <RadioButton fx:id="roomRadioButton" graphicTextGap="0.0" mnemonicParsing="false" text="change room" toggleGroup="$group" onAction="#handleChangeRoomButtonAction"/>
+        </children></HBox>
+
+
+    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
+        <Button onAction="#handleChangeButtonAction" text="Change" />
+    </HBox>
+   <HBox prefHeight="16.0" prefWidth="391.0" GridPane.rowIndex="5">
+      <children>
+      
+          <Label fx:id="text" />
+      
+          <TextField fx:id="textField" prefHeight="26.0" prefWidth="286.0" visible="false"/>
+      </children>
+   </HBox>
+
+    <columnConstraints>
+        <ColumnConstraints />
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+    </rowConstraints>
+
+</GridPane>

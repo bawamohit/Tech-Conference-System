@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane alignment="center" hgap="10" prefHeight="650.0" prefWidth="900.0" styleClass="root" vgap="10" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.OrganizerGUI.ModifySpeaker.ModifySpeakerController">
+    <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
+
+    <Text id="title" text="Modify Speakers" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
+
+    <Label text="Speaker username:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+
+    <TextField fx:id="speakerNameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <HBox layoutX="187.0" layoutY="409.0" prefHeight="18.0" prefWidth="391.0" snapToPixel="false" spacing="10.0" GridPane.rowIndex="5">
+      <children>
+          <RadioButton fx:id="addRadioButton" graphicTextGap="0.0" mnemonicParsing="false" text="add">
+              <toggleGroup>
+                  <ToggleGroup fx:id="group" />
+              </toggleGroup></RadioButton>
+            <RadioButton fx:id="removeRadioButton" graphicTextGap="0.0" mnemonicParsing="false" text="remove" toggleGroup="$group"/>
+      </children></HBox>
+
+    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
+        <Button onAction="#handleModifyButtonAction" text="Add" />
+    </HBox>
+
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+
+</GridPane>

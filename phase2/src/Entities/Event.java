@@ -89,12 +89,21 @@ public class Event implements Comparable<Event> {
         return String.join(", ", this.speakers);
     }
     /**
-     * Implements Getter, getSender, for sender.
+     * Implements Getter, getSpeaker, for speaker
      *
      * @return username of speaker of event
      */
     public List<String> getSpeakers(){ //phase 2
         return speakers;
+    }
+
+    /**
+     * Implements Setter, setSpeaker, for speaker
+     *
+     * @param newSpeakers new speaker list
+     */
+    public void setSpeakers(List<String> newSpeakers){ //phase 2
+        this.speakers = newSpeakers;
     }
 
     /**
@@ -131,6 +140,15 @@ public class Event implements Comparable<Event> {
      */
     public String getRoomName(){
         return roomName;
+    }
+
+    /**
+     * Implements Setter, setRoomName, for roomName.
+     *
+     * @param roomName new room name
+     */
+    public void setRoomName(String roomName){
+        this.roomName = roomName;
     }
 
     /**

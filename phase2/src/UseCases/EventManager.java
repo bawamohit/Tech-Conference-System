@@ -76,6 +76,17 @@ public class EventManager {
     }
 
     /**
+     * Implements setter for event room name of a particular event.
+     *
+     * @param id The id of the particular event.
+     * @param roomName new room
+     */
+    public void setEventRoomName(UUID id, String roomName) {
+        Event event = events.get(id);
+        event.setRoomName(roomName);
+    }
+
+    /**
      * Implements getter for event maximum capacity of a particular event.
      *
      * @param id The id of the particular event.
@@ -237,18 +248,32 @@ public class EventManager {
     }
 
     /**
-     * Implements modifier, addEvent, for events. (Only to be used for reading from files)
+     * Implements modifier, addSpeaker, for events.
      *
      *
      * @param eventID id of the event
      * @param newSpeaker username of the new speaker
-     * @return The ID of the new event created
      */
     public void addSpeaker(UUID eventID, String newSpeaker){
-        Event oldEvent = events.get(eventID);
-        List<String> speakers = oldEvent.getSpeakers();
+        Event event = events.get(eventID);
+        List<String> speakers = event.getSpeakers();
         speakers.add(newSpeaker);
     }
+
+    /**
+     * Implements modifier, removeSpeaker, for events.
+     *
+     *
+     * @param eventID id of the event
+     * @param oldSpeaker username of the old speaker
+     */
+    public void removeSpeaker(UUID eventID, String oldSpeaker){
+        Event event = events.get(eventID);
+        List<String> speakers = event.getSpeakers();
+        speakers.remove(oldSpeaker);
+        event.setSpeakers(speakers);
+    }
+
 
     /**
      * Implements modifier, removeEvent, for events.
