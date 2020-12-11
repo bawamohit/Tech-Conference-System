@@ -143,6 +143,15 @@ public class Event implements Comparable<Event> {
     }
 
     /**
+     * Implements Setter, setRoomName, for roomName.
+     *
+     * @param roomName new room name
+     */
+    public void setRoomName(String roomName){
+        this.roomName = roomName;
+    }
+
+    /**
      * Implements Getter, getMaxCapacity, for max_capacity.
      *
      * @return the event's maximum capacity

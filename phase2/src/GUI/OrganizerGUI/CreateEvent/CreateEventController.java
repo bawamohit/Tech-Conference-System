@@ -44,40 +44,30 @@ public class CreateEventController {
      * Handles action when the create button is clicked. Creates the event.
      */
     @FXML protected void handleCreateButtonAction() {
+        if(missingInput()){
+            createAlertMessage("Please fill in all boxes");
+            return;
+        }
         eventName = eventNameField.getText();
         startTimeString = startTimeField.getText();
         endTimeString = endTimeField.getText();
         roomName = roomField.getText();
-        if(missingInput()){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
-            alert.setContentText("Please fill in all boxes");
-            alert.showAndWait();
+
+        if(!validTime(startTimeString) || !validTime(endTimeString)){
+            createAlertMessage("Invalid Time Input");
             return;
         }
         LocalDateTime startTime = getTime(startTimeString);
         LocalDateTime endTime = getTime(endTimeString);
-        if(startTime == null || endTime == null){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
-            alert.setContentText("Invalid Time Input");
-            alert.showAndWait();
-            return;
-        }
+
         eventCapacity = eventCapacityFieldToInteger(eventCapacityField.getText());
         if(roomAvailabilityChecked()){
             UUID eventID = eventManager.addEvent(eventName, username, startTime, endTime, roomName, eventCapacity);
             roomManager.addEventToSchedule(eventID, roomName, startTime, endTime);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
-            alert.setContentText("Event Created");
-            alert.showAndWait();
+            createAlertMessage("Event Created");
         }
         else{
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
-            alert.setContentText("Please check availability of the room first.");
-            alert.showAndWait();
+            createAlertMessage("Please check availability of the room first.");
         }
 
     }
@@ -97,33 +87,39 @@ public class CreateEventController {
     @FXML  protected void handleCheckAvailabilityButtonAction(ActionEvent event) {
         roomName = roomField.getText();
         String eventCapacityString = eventCapacityField.getText();
+        startTimeString = startTimeField.getText();
+        endTimeString = endTimeField.getText();
+
+        if(startTimeString.isEmpty()||endTimeString.isEmpty()){
+            createAlertMessage("Please enter time");
+            return;
+        }
         if(eventCapacityString.isEmpty()){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
-            alert.setContentText("Please enter event capacity");
-            alert.showAndWait();
+            createAlertMessage("Please enter event capacity");
             return;
         }
         eventCapacity = eventCapacityFieldToInteger(eventCapacityString);
         if(!roomManager.roomExists(roomName)){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
-            alert.setContentText("This room does not exist");
-            alert.showAndWait();
+            createAlertMessage("This room does not exist");
             return;
         }
         if (!roomManager.hasSpace(roomName, eventCapacity)){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
-            alert.setContentText("This event capacity exceeds the room capacity. Please choose another room");
-            alert.showAndWait();
+            createAlertMessage("This event capacity exceeds the room capacity. Please choose another room");
+            return;
+        }
+        if(!validTime(startTimeString) || !validTime(endTimeString)){
+            createAlertMessage("Invalid Time Input");
+            return;
+        }
+        LocalDateTime startTime = getTime(startTimeString);
+        LocalDateTime endTime = getTime(endTimeString);
+
+        if(!roomManager.canAddEvent(roomName, startTime, endTime)){
+            createAlertMessage("This room is not available at this time");
             return;
         }
         EventHolder.getInstance().setRoomAvailabilityChecked(true);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText(null);
-        alert.setContentText("This room can host this event!");
-        alert.showAndWait();
+        createAlertMessage("This room can host this event!");
 
     }
 
@@ -135,18 +131,24 @@ public class CreateEventController {
         return Integer.parseInt(eventCapacityField);
     }
 
-    private LocalDateTime getTime(String time) {
+    private boolean validTime(String time){
         String pattern = "^([0-9][0-9][0-9][0-9])-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1]) (09|1[0-6]):([0-5][0-9])$|^.{0}$";
 
-        if (!time.matches(pattern)) {
-            return null;
-        } else {
-            int year = Integer.parseInt(time.substring(0, 4));
-            int month = Integer.parseInt(time.substring(5, 7));
-            int day = Integer.parseInt(time.substring(8, 10));
-            int hour = Integer.parseInt(time.substring(11, 13));
-            int minute = Integer.parseInt(time.substring(14, 16));
-            return LocalDateTime.of(year, month, day, hour, minute);
-        }
+        return time.matches(pattern);
+    }
+
+    private LocalDateTime getTime(String time) {
+        int year = Integer.parseInt(time.substring(0, 4));
+        int month = Integer.parseInt(time.substring(5, 7));
+        int day = Integer.parseInt(time.substring(8, 10));
+        int hour = Integer.parseInt(time.substring(11, 13));
+        int minute = Integer.parseInt(time.substring(14, 16));
+        return LocalDateTime.of(year, month, day, hour, minute);
+    }
+    private void createAlertMessage(String message){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

@@ -76,6 +76,17 @@ public class EventManager {
     }
 
     /**
+     * Implements setter for event room name of a particular event.
+     *
+     * @param id The id of the particular event.
+     * @param roomName new room
+     */
+    public void setEventRoomName(UUID id, String roomName) {
+        Event event = events.get(id);
+        event.setRoomName(roomName);
+    }
+
+    /**
      * Implements getter for event maximum capacity of a particular event.
      *
      * @param id The id of the particular event.

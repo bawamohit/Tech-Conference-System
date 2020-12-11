@@ -116,8 +116,8 @@ public class OrganizerDashboardController implements GUIController {
     /**
      * Handles action when the reschedule event button is clicked.
      */
-    @FXML public void handleRescheduleEventButtonAction(ActionEvent event){
-
+    @FXML public void handleEditEventButtonAction(ActionEvent event){
+        loadSubScene("EditEvent");
     }
 
     /**
