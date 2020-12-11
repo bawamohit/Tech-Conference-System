@@ -13,17 +13,14 @@ public class EventInfoCancelController extends EventInfoController implements GU
         super.initialize();
     }
 
-    @FXML public void handleDeleteButton(ActionEvent event){
+    @FXML public void handleCancelButton(ActionEvent event){
+        getEventManager().removeAttendee(getUsername(), getEventID());
+        getUserManager().removeEventAttending(getUsername(), getEventID());
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        if (!getEventManager().removeEvent(getEventID())){
-            alert.setTitle("Deletion Error:");
-            alert.setContentText("Sorry this event has already been deleted or modified");
-        }
-        else {
-            getRoomManager().removeEventFromSchedule(getEventID());
-            alert.setTitle("Successfully Deleted!");
-        }
+        alert.setContentText("Registration Successfully Canceled");
         alert.showAndWait();
+
         setChanged();
         notifyObservers();
     }

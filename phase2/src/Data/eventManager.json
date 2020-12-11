@@ -3,8 +3,7 @@
         "organizer": "thor",
         "attendees": [
             "she_hulk",
-            "hulk",
-            "spider"
+            "hulk"
         ],
         "speakers": ["doctor"],
         "eventName": "Ragnarok",
@@ -15,7 +14,10 @@
     },
     "949c2021-4bda-4fb3-92ab-0a5bf7e167e5": {
         "organizer": "iron",
-        "attendees": ["captain"],
+        "attendees": [
+            "captain",
+            "spider"
+        ],
         "speakers": ["panther"],
         "eventName": "The Civil War",
         "maxCapacity": 10,
@@ -77,10 +79,7 @@
     },
     "418b8a42-4844-49ba-8b0b-d200761e635e": {
         "organizer": "thor",
-        "attendees": [
-            "hulk",
-            "spider"
-        ],
+        "attendees": ["hulk"],
         "speakers": [],
         "eventName": "Captain Marvel",
         "maxCapacity": 8,

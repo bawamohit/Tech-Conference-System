@@ -93,4 +93,9 @@ public abstract class UserDashboardController implements GUIController, Observer
     @Override
     public abstract void update(Observable o, Object arg);
 
+    public void observeDisplayEvents(){
+        DisplayEventsController controller = loader.getController();
+        controller.addObserver(this);
+    }
+
 }

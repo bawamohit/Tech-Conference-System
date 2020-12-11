@@ -16,12 +16,12 @@ import java.util.Observable;
 public class AdminDashboardController extends UserDashboardController {
 
     public void initialize(){
-        super.initData("/GUI/AdminGUI/DeletableEvents");
+        super.initData("/GUI/AdminGUI/DisplayDeletableEvents");
         observeDisplayEvents();
     }
 
     public void handleDeleteEventButtonAction(ActionEvent actionEvent) {
-        loadSubScene("/GUI/AdminGUI/DeletableEvents");
+        loadSubScene("/GUI/AdminGUI/DisplayDeletableEvents");
         observeDisplayEvents();
     }
 
@@ -31,12 +31,7 @@ public class AdminDashboardController extends UserDashboardController {
 
     @Override
     public void update(Observable o, Object arg) {
-        loadSubScene("/GUI/AdminGUI/DeletableEvents");
+        loadSubScene("/GUI/AdminGUI/DisplayDeletableEvents");
         observeDisplayEvents();
-    }
-
-    public void observeDisplayEvents(){
-        DisplayEventsController controller = getLoader().getController();
-        controller.addObserver(this);
     }
 }

@@ -51,10 +51,7 @@
          <Insets />
       </GridPane.margin>
    </Pane>
-    <Pane prefHeight="93.0" prefWidth="587.0" snapToPixel="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
-      <children>
-          <Button fx:id="cancelButton" layoutX="543.0" layoutY="2.0" onAction="#handleCancelButtonAction" prefHeight="25.0" prefWidth="176.0" snapToPixel="false" stylesheets="@AttendeeDashboard.css" text="Cancel Registration" />
-      </children></Pane>
+    <Pane prefHeight="93.0" prefWidth="587.0" snapToPixel="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
     <stylesheets>
         <URL value="@AttendeeDashboard.css" />
     </stylesheets>
