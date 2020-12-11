@@ -26,12 +26,12 @@ public abstract class UserDashboardController implements GUIController, Observer
     @FXML private Label profile;
 
     public void initData(String path){
-        this.username = UserHolder.getInstance().getUsername();
-        profile.setText(username);
-        loadSubScene(path);
-        gridPane.add(subScene, 1, 0);
         this.userManager = ManagersStorage.getInstance().getUserManager();
         this.eventManager = ManagersStorage.getInstance().getEventManager();
+        this.username = UserHolder.getInstance().getUsername();
+        profile.setText(userManager.getName(username));
+        loadSubScene(path);
+        gridPane.add(subScene, 1, 0);
     }
 
     public void initData(MainController mainController){
