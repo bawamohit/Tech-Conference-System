@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600" styleClass="anchor-pane" stylesheets="@Chat.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Message.ChatController">
+<AnchorPane prefHeight="600" styleClass="anchor-pane" stylesheets="@Chat.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.Message.ChatController">
     <ScrollPane fx:id="scrollPane" fitToWidth="true" prefHeight="500.0" prefWidth="500.0" snapToPixel="false" styleClass="viewport" stylesheets="@Chat.css">
             <VBox fx:id="chatBox" prefWidth="500" stylesheets="@Chat.css">
          <padding>

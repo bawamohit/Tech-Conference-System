@@ -13,7 +13,7 @@
 
     <Label text="username:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
-    <TextField fx:id="usernameField" styleClass="text-field" onAction="#handleSignInButtonAction" stylesheets="@Welcome.css" text="ant" GridPane.columnIndex="1" GridPane.rowIndex="1">
+    <TextField fx:id="usernameField" styleClass="text-field" onAction="#handleSignInButtonAction" stylesheets="@Welcome.css" text="spider" GridPane.columnIndex="1" GridPane.rowIndex="1">
       <font>
          <Font size="18.0" />
       </font></TextField>
