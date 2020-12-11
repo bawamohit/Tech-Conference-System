@@ -3,6 +3,6 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane styleClass="root" stylesheets="@Empty.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane styleClass="root" stylesheets="@Empty.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 
 </AnchorPane>
