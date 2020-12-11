@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane fx:id="gridPane" stylesheets="@EventInfoCancel.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AttendeeGUI.MyEvents.EventInfoCancelController">
+<GridPane fx:id="gridPane" styleClass="root2" stylesheets="@EventInfoCancel.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AttendeeGUI.MyEvents.EventInfoCancelController">
 <Label fx:id="label1" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="0" />
 <Label fx:id="label2" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 <Label fx:id="label3" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="0" />
@@ -13,7 +13,7 @@
 <Label fx:id="label6" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 <Label fx:id="label7" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 <Label fx:id="label8" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-<Button fx:id="button" onAction="#handleCancelButton" prefWidth="250" text="cancel registration" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+<Button fx:id="button" onAction="#handleCancelButton" prefWidth="250" styleClass="button2" stylesheets="@EventInfoCancel.css" text="cancel registration" GridPane.columnIndex="3" GridPane.rowIndex="4" />
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints />
