@@ -27,6 +27,12 @@ public class SpeakerDashboardController extends UserDashboardController {
         loadSubScene("/GUI/SpeakerGUI/Message/SpeakerMessage");
     }
 
+    @FXML
+    protected void handleMessageTalkButtonAction(ActionEvent event) {
+        loadSubScene("/GUI/SpeakerGUI/MyEvents/MyEvents");
+        observeDisplayEvents();
+    }
+
     @FXML protected void handleMyEventButtonAction(ActionEvent event) {
         loadSubScene("/GUI/SpeakerGUI/MyEvents/MyEvents");
         observeDisplayEvents();

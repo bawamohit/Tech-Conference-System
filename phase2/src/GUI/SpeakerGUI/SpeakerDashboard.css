@@ -31,9 +31,17 @@
 .button {
     -fx-text-fill: #ffffff;
     -fx-font-size: 14px;
+    -fx-pref-width: 66px;
+    -fx-pref-width: 134px;
+    -fx-margin: 20px;
     -fx-background-color: transparent;
-    /*-fx-white-space: normal; //TODO fix whitespace*/
-    -fx-width: 134px;
+    -fx-wrap-text: true;
+    -fx-text-align: center;
+}
+
+.button .label{
+    -fx-wrap-text: true;
+    -fx-text-align: center;
 }
 
 .button:hover {
