@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 
 <GridPane fx:id="gridPane" alignment="BASELINE_LEFT" hgap="20.0" prefHeight="650.0" prefWidth="900.0" snapToPixel="false" styleClass="root" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AttendeeGUI.AttendeeDashboardController">
-    <VBox fillWidth="false" prefHeight="575.0" prefWidth="346.0" snapToPixel="false" spacing="50" styleClass="VBox" stylesheets="@AttendeeDashboard.css">
+    <VBox fillWidth="false" prefHeight="575.0" prefWidth="150.0" snapToPixel="false" spacing="50" styleClass="VBox" stylesheets="@AttendeeDashboard.css">
         <Label fx:id="profile" contentDisplay="CENTER" textAlignment="CENTER" />
         <VBox prefHeight="535.0" prefWidth="223.0" snapToPixel="false" spacing="400">
             <VBox spacing="30.0">
@@ -48,7 +48,7 @@
             </graphic></Button>
       </children>
       <GridPane.margin>
-         <Insets />
+         <Insets bottom="20.0" />
       </GridPane.margin>
    </Pane>
     <Pane prefHeight="93.0" prefWidth="587.0" snapToPixel="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -60,7 +60,10 @@
       <ColumnConstraints maxWidth="740" minWidth="570" prefWidth="740" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints />
+      <RowConstraints prefHeight="575.0" />
       <RowConstraints />
    </rowConstraints>
+   <padding>
+      <Insets top="20.0" />
+   </padding>
 </GridPane>
