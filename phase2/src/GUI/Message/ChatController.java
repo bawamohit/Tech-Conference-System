@@ -69,7 +69,7 @@ public class ChatController implements GUIController {
         content.setWrapText(true);
         content.setMaxWidth(335);
         content.setStyle("-fx-font-size: 14px;-fx-font-weight: normal; -fx-text-fill: #ffffff; -fx-padding: 5px;" +
-                "-fx-background-color: rgba(83,150,156,0.6); -fx-background-radius: 10 10 10 10;");
+                "-fx-background-color: rgba(108, 145, 191, 0.6); -fx-background-radius: 10 10 10 10;");
         HBox hBox2 = new HBox();
         hBox2.getChildren().add(content);
         hBox2.setStyle("-fx-wrap-text: true; " +
