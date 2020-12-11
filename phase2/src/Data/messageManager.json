@@ -18,18 +18,6 @@
                 "sender": "spider",
                 "time": "2020-12-10T01:45:11.231",
                 "content": "Help me"
-            },
-            {
-                "receiver": "doctor",
-                "sender": "spider",
-                "time": "2020-12-10T22:21:36.698",
-                "content": "pls"
-            },
-            {
-                "receiver": "doctor",
-                "sender": "spider",
-                "time": "2020-12-10T22:21:38.287",
-                "content": "help"
             }
         ],
         "ant": [{
@@ -166,18 +154,6 @@
                 "sender": "spider",
                 "time": "2020-12-10T01:45:11.231",
                 "content": "Help me"
-            },
-            {
-                "receiver": "doctor",
-                "sender": "spider",
-                "time": "2020-12-10T22:21:36.698",
-                "content": "pls"
-            },
-            {
-                "receiver": "doctor",
-                "sender": "spider",
-                "time": "2020-12-10T22:21:38.287",
-                "content": "help"
             }
         ],
         "captain": [{
