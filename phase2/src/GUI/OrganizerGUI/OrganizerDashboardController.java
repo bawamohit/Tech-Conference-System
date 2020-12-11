@@ -15,7 +15,7 @@ public class OrganizerDashboardController extends UserDashboardController implem
      * Initializes the Dashboard scene.
      */
     @FXML public void initialize(){
-        super.initData("/GUI/OrganizerGUI/Message/Message");
+        super.initData("/GUI/OrganizerGUI/ModifyEvent/DisplayModifiableEvents");
     }
 
     /**
@@ -38,7 +38,7 @@ public class OrganizerDashboardController extends UserDashboardController implem
      */
     @FXML
     protected void handleMessageButtonAction(ActionEvent event) {
-        loadSubScene("/GUI/OrganizerGUI/Message/Message");
+        loadSubScene("/GUI/OrganizerGUI/Message/OrganizerMessage");
     }
 
     /**

@@ -22,14 +22,14 @@ import java.util.List;
 
 public class MessageController implements GUIController {
     private MainController mainController;
-    private MessageManager messageManager;
-    private SubScene subScene;
-    private String username;
+    protected MessageManager messageManager;
+    protected SubScene subScene;
+    protected String username;
 
     @FXML private SplitPane splitPane;
-    @FXML private GridPane gridPane;
-    @FXML private VBox chatsContainer;
-    @FXML private TextField searchField;
+    @FXML protected GridPane gridPane;
+    @FXML protected VBox chatsContainer;
+    @FXML protected TextField searchField;
 
     public void initialize(){
         searchField.textProperty().addListener((obj, oldVal, newVal) -> {
@@ -43,9 +43,9 @@ public class MessageController implements GUIController {
                 makeButton(user);
             }
             CollocutorHolder.getInstance().setUsername(users.get(0));
-            loadSubScene("Chat");
+            loadSubScene("/GUI/Message/Chat");
         }else{
-            loadSubScene("Empty");
+            loadSubScene("/GUI/Empty");
         }
         gridPane.add(subScene, 1, 0);
     }
@@ -64,14 +64,14 @@ public class MessageController implements GUIController {
         List<String> contacts = ManagersStorage.getInstance().getMessageManager().getInboxes(username);
         if(contacts.contains(user)){
             CollocutorHolder.getInstance().setUsername(user);
-            loadSubScene("Chat");
+            loadSubScene("/GUI/Message/Chat");
 
         }else if(allUsers.contains(user)){
             if (!buttonExists(user)){
                 makeButton(user);
             }
             CollocutorHolder.getInstance().setUsername(user);
-            loadSubScene("Chat");
+            loadSubScene("/GUI/Message/Chat");
         }else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle(null);
@@ -83,7 +83,7 @@ public class MessageController implements GUIController {
     }
 
 
-    private void handleSearchField(){
+    protected void handleSearchField(){
         String prefix = searchField.getText();
         List<String> allUsers = messageManager.getInboxes(username);
         List<String> searchedUsers = new ArrayList<>();
@@ -92,6 +92,8 @@ public class MessageController implements GUIController {
                 searchedUsers.add(user);
             }
         }
+        chatsContainer.getChildren().clear();
+        makeButtons(searchedUsers);
     }
 
     /**
@@ -100,7 +102,7 @@ public class MessageController implements GUIController {
      * @param user user the logged in user wants to message
      * @return if chat button already exists
      */
-    private boolean buttonExists(String user){
+    protected boolean buttonExists(String user){
         List<Button> buttonList = new ArrayList<>();
         for (Node node: chatsContainer.getChildren()){
             if (node instanceof Button) {
@@ -118,7 +120,7 @@ public class MessageController implements GUIController {
     /**
      * This function deletes chat buttons on the side bar if the chat is empty
      */
-    private void deleteEmptyChatButtons(){
+    protected void deleteEmptyChatButtons(){
         List<String> contacts = ManagersStorage.getInstance().getMessageManager().getInboxes(username);
         List<Button> buttonList = new ArrayList<>();
         for (Node node: chatsContainer.getChildren()){
@@ -132,7 +134,7 @@ public class MessageController implements GUIController {
         }
     }
 
-    private void makeButton(String user){
+    protected void makeButton(String user){
         Button button = new Button();
         button.setPrefHeight(50);
         button.setPrefWidth(110);
@@ -141,20 +143,22 @@ public class MessageController implements GUIController {
             @Override
             public void handle(ActionEvent event) {
                 CollocutorHolder.getInstance().setUsername(user);
-                loadSubScene("Chat");
+                loadSubScene("/GUI/Message/Chat");
             }
         });
         chatsContainer.getChildren().add(0, button);
     }
 
-
-    private void loadSubScene(String path){
-        FXMLLoader loader;
-        if(path.equals("Empty")){
-            loader = new FXMLLoader(getClass().getResource("../../Empty.fxml"));
-        }else{
-            loader = new FXMLLoader(getClass().getResource(path + ".fxml"));
+    protected void makeButtons(List<String> users){
+        for (String user: users) {
+            makeButton(user);
         }
+    }
+
+    protected void loadSubScene(String path){
+        FXMLLoader loader;
+        loader = new FXMLLoader(getClass().getResource(path + ".fxml"));
+
         Parent root = null;
         try {
             root = loader.load();

@@ -13,7 +13,7 @@
 
     <Label text="username:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
-    <TextField fx:id="usernameField" styleClass="text-field" onAction="#handleSignInButtonAction" stylesheets="@Welcome.css" text="spider" GridPane.columnIndex="1" GridPane.rowIndex="1">
+    <TextField fx:id="usernameField" text="ant" styleClass="text-field" onAction="#handleSignInButtonAction" stylesheets="@Welcome.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
       <font>
          <Font size="18.0" />
       </font></TextField>
@@ -27,7 +27,7 @@
     </HBox>
 
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="6">
-        <Button id="signUp" onAction="#handleSignUpButtonAction" text="don't have an account?" />
+        <Button id="signUp" onAction="#handleSignUpButtonAction" text="Don't have an account?" />
     </HBox>
 
     <Text fx:id="prompt" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
