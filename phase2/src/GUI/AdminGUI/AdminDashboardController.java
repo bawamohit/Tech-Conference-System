@@ -22,15 +22,14 @@ public class AdminDashboardController extends UserDashboardController {
 
     public void handleDeleteEventButtonAction(ActionEvent actionEvent) {
         loadSubScene("/GUI/AdminGUI/DeletableEvents");
+        observeDisplayEvents();
     }
 
     public void handleDeleteChatButtonAction(ActionEvent actionEvent) {
+        loadSubScene("/GUI/AdminGUI/DeleteChat");
     }
 
     public void handleSelfDestructButtonAction(ActionEvent actionEvent) {
-    }
-
-    public void handleCancelButtonAction(ActionEvent actionEvent) {
     }
 
     @Override

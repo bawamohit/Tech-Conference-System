@@ -66,6 +66,10 @@ public abstract class DisplayEventsController extends Observable implements GUIC
     @Override
     public void update(Observable o, Object arg) {
         setChanged();
+        int x = countObservers();
+        Alert a = new Alert(Alert.AlertType.INFORMATION);
+        a.setContentText("I have " + x + "observers");
+        a.showAndWait();
         notifyObservers();
     }
 

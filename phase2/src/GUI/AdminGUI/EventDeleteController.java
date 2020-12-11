@@ -14,19 +14,17 @@ public class EventDeleteController extends EventInfoController implements GUICon
     }
 
     @FXML public void handleDeleteButton(ActionEvent event){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         if (!getEventManager().removeEvent(getEventID())){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Deletion Error:");
             alert.setContentText("Sorry this event has already been deleted or modified");
-            alert.showAndWait();
         }
         else {
+            int x = countObservers();
             getRoomManager().removeEventFromSchedule(getEventID());
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Successfully Deleted!");
-            alert.showAndWait();
-
+            alert.setTitle("Successfully Deleted!" + x);
         }
+        alert.showAndWait();
         setChanged();
         notifyObservers();
     }
