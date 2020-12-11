@@ -23,7 +23,7 @@
                             <Image url="@../Images/Icons/view_w.png" />
                         </ImageView>
                     </graphic></Button>
-                <MenuButton id="menu-button" graphicTextGap="0.0" prefHeight="33.0" prefWidth="150.0" styleClass="button" stylesheets="@SpeakerDashboard.css" text="Message">
+                <MenuButton id="menu-button" graphicTextGap="0.0" prefHeight="33.0" prefWidth="150.0" text="Message">
                     <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                             <Image url="@../Images/Icons/conversation_w.png" />
