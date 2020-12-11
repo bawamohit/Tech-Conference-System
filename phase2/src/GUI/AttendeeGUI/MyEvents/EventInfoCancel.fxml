@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane fx:id="gridPane" stylesheets="@EventInfoCancel.css" xmlns="http://javafx.com/javafx"
-          xmlns:fx="http://javafx.com/fxml"
-          fx:controller="GUI.AttendeeGUI.MyEvents.EventInfoCancelController">
-<Label fx:id="label1" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-<Label fx:id="label2" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-<Label fx:id="label3" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
-<Label fx:id="label4" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-<Label fx:id="label5" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-<Label fx:id="label6" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-<Label fx:id="label7" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-<Label fx:id="label8" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
-<Button fx:id="button" prefWidth="250"  onAction="#handleCancelButton"
-        text="Cancel Registration" GridPane.columnIndex="3" GridPane.rowIndex="4"/>
+<GridPane fx:id="gridPane" styleClass="root2" stylesheets="@EventInfoCancel.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AttendeeGUI.MyEvents.EventInfoCancelController">
+<Label fx:id="label1" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+<Label fx:id="label2" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+<Label fx:id="label3" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+<Label fx:id="label4" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+<Label fx:id="label5" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+<Label fx:id="label6" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+<Label fx:id="label7" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+<Label fx:id="label8" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+<Button fx:id="button" onAction="#handleCancelButton" prefWidth="250" styleClass="button2" stylesheets="@EventInfoCancel.css" text="cancel registration" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints prefWidth="250.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
 </GridPane>

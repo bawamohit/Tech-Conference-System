@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane fx:id="gridPane" stylesheets="@../MyEvents/EventInfoCancel.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.AttendeeGUI.AvailableEvents.EventInfoSignUpController">
+<GridPane fx:id="gridPane" stylesheets="@../MyEvents/EventInfoCancel.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AttendeeGUI.AvailableEvents.EventInfoSignUpController">
     <Label fx:id="label1" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="0" />
     <Label fx:id="label2" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="0" />
     <Label fx:id="label3" prefWidth="250" GridPane.columnIndex="3" GridPane.rowIndex="0" />
@@ -13,7 +13,7 @@
     <Label fx:id="label6" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="2" />
     <Label fx:id="label7" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="2" />
     <Label fx:id="label8" prefWidth="250" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-    <Button fx:id="button" onAction="#handleSignUpButton" prefWidth="250" text="Sign Up" GridPane.columnIndex="4" GridPane.rowIndex="4">
+    <Button fx:id="button" onAction="#handleSignUpButton" prefWidth="250" text="sign up" GridPane.columnIndex="4" GridPane.rowIndex="4">
       <GridPane.margin>
          <Insets bottom="20.0" right="10.0" />
       </GridPane.margin></Button>
@@ -32,6 +32,6 @@
       <RowConstraints />
    </rowConstraints>
    <padding>
-      <Insets bottom="20.0" left="20.0" top="20.0" />
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
 </GridPane>

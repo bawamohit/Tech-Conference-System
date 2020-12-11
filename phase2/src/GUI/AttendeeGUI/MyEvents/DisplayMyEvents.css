@@ -17,6 +17,28 @@
     -padding-top: 10px;
 }
 
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:rgba(94, 94, 94, 0.6);
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: rgba(247, 247, 247, 0.7);
+    -fx-background-radius: 5em;
+}
+
 .grid {
     -fx-background: transparent;
     -fx-border-color: transparent;

@@ -60,15 +60,20 @@ public class ChatController implements GUIController {
     private void displayMessage(List<String> messageInfo){
         String name = userManager.getName(messageInfo.get(0));
         Label label = new Label( name + "     " + messageInfo.get(1));
+        label.setStyle("-fx-font-size: 14px;-fx-font-weight: bold; -fx-text-fill: #ffffff;");
         HBox hBox1 = new HBox();
         hBox1.getChildren().add(label);
 
         Label content = new Label(messageInfo.get(2));
         content.setId(Integer.toString(index));
         content.setWrapText(true);
-        content.setPrefWidth(335);
+        content.setMaxWidth(335);
+        content.setStyle("-fx-font-size: 14px;-fx-font-weight: normal; -fx-text-fill: #ffffff; -fx-padding: 5px;" +
+                "-fx-background-color: rgba(108, 145, 191, 0.6); -fx-background-radius: 10 10 10 10;");
         HBox hBox2 = new HBox();
         hBox2.getChildren().add(content);
+        hBox2.setStyle("-fx-wrap-text: true; " +
+                "-fx-text-align: right;");
 
         if(messageInfo.get(0).equals(username)){
             if(messageInfo.get(2).length() <= 50) {
@@ -82,6 +87,7 @@ public class ChatController implements GUIController {
         }
 
         VBox vBox = new VBox();
+        vBox.setSpacing(5);
         vBox.getChildren().add(hBox1);
         vBox.getChildren().add(hBox2);
         chatBox.getChildren().add(vBox);

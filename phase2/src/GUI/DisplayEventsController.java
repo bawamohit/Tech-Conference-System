@@ -64,7 +64,7 @@ public abstract class DisplayEventsController extends Observable implements GUIC
             e.printStackTrace();
         }
         if(subScene == null) {
-            subScene = new SubScene(root, 700, 200); //TODO initData maybe
+            subScene = new SubScene(root, 700, 125); //TODO initData maybe
         }else{
             subScene.setRoot(root);
         }

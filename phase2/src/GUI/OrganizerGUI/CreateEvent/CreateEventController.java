@@ -10,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import java.time.LocalDateTime;
-import java.util.Optional;
 import java.util.UUID;
 
 public class CreateEventController {
@@ -80,11 +79,21 @@ public class CreateEventController {
         startTimeString = startTimeField.getText();
         endTimeString = endTimeField.getText();
 
-        roomAvailablilityChecker(startTimeString, endTimeString, eventCapacityString,roomName);
+        if(!roomAvailabilityChecker(startTimeString, endTimeString, eventCapacityString,roomName)){
+            return;
+        }
 
         LocalDateTime startTime = getTime(startTimeString);
         LocalDateTime endTime = getTime(endTimeString);
 
+        if(startTime.isBefore(LocalDateTime.now())){
+            createAlertMessage("The time you chose for this event has already passed. Please choose a future time.");
+            return;
+        }
+        if(!endTime.isAfter(startTime)){
+            createAlertMessage("Please choose an end time later than the start time.");
+            return;
+        }
         if(!roomManager.canAddEvent(roomName, startTime, endTime)){
             createAlertMessage("This room is not available at this time");
             return;
@@ -103,27 +112,29 @@ public class CreateEventController {
         return(eventNameEmpty || startTimeEmpty || endTimeEmpty || eventCapacityEmpty || roomNameEmpty);
     }
 
-    private void roomAvailablilityChecker(String startTimeString, String endTimeString, String eventCapacityString, String roomName){
+    private boolean roomAvailabilityChecker(String startTimeString, String endTimeString, String eventCapacityString, String roomName){
         if(startTimeString.isEmpty()||endTimeString.isEmpty()){
             createAlertMessage("Please enter time");
-            return;
+            return false;
         }
         if(eventCapacityString.isEmpty()){
             createAlertMessage("Please enter event capacity");
-            return;
+            return false;
         }
         if(!roomManager.roomExists(roomName)){
             createAlertMessage("This room does not exist");
-            return;
+            return false;
         }
         eventCapacity = eventCapacityFieldToInteger(eventCapacityString);
         if (!roomManager.hasSpace(roomName, eventCapacity)){
             createAlertMessage("This event capacity exceeds the room capacity. Please choose another room");
-            return;
+            return false;
         }
         if(!validTime(startTimeString) || !validTime(endTimeString)){
             createAlertMessage("Invalid Time Input");
+            return false;
         }
+        return true;
     }
 
     private boolean roomAvailabilityChecked(){
@@ -135,7 +146,7 @@ public class CreateEventController {
     }
 
     private boolean validTime(String time){
-        String pattern = "^([0-9][0-9][0-9][0-9])-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1]) (09|1[0-6]):([0-5][0-9])$|^.{0}$";
+        String pattern = "^([0-9][0-9][0-9][0-9])-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1]) (0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$|^.{0}$";
 
         return time.matches(pattern);
     }

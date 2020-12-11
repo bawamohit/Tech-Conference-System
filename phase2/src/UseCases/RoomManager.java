@@ -108,8 +108,7 @@ public class RoomManager {
      */
     public boolean canSetCapacity(String roomName, int newCapacity, int numOtherPpl) {
         int capacity = getRoomCapacity(roomName);
-        if (newCapacity > (capacity - numOtherPpl)) return false;
-        return true;
+        return newCapacity <= capacity - numOtherPpl;
     }
 
     /**

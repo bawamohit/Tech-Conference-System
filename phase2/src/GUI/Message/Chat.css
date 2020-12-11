@@ -29,6 +29,28 @@
     -padding-top: 10px;
 }
 
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:rgba(94, 94, 94, 0.6);
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: rgba(247, 247, 247, 0.7);
+    -fx-background-radius: 5em;
+}
+
 .grid {
     -fx-background: transparent;
     -fx-border-color: transparent;
@@ -52,6 +74,7 @@
     -fx-background-color: rgba(108, 145, 191, 0.8);
     /*-fx-white-space: normal; //TODO fix whitespace*/
     -fx-width: 134px;
+    -fx-background-radius: 10px;
 }
 
 .button:hover {
@@ -76,7 +99,7 @@
     -fx-font-size: 14px;
     -fx-border-color: transparent;
     -fx-background-color: rgba(133, 133, 133, 1.0);
-    -fx-background-radius: 0 ;
+    -fx-background-radius: 10px ;
 }
 .text-field:focused {
     -fx-text-fill: #ffffff;
