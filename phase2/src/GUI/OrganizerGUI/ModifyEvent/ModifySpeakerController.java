@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Observable;
 import java.util.UUID;
@@ -75,6 +76,11 @@ public class ModifySpeakerController extends Observable {
             createAlertMessage("The room capacity is full and cannot add a speaker to the event");
             return;
         }
+
+        if(!speakerAvailable(speakerUsername, eventManager.getEventStartTime(eventID), eventManager.getEventEndTime(eventID))){
+            createAlertMessage("This speaker is not available at the time of this event.");
+            return;
+        }
         eventManager.addSpeaker(eventID, speakerUsername);
         userManager.addEventAttending(speakerUsername, eventID);
         createAlertMessage("Speaker Added!");
@@ -106,6 +112,17 @@ public class ModifySpeakerController extends Observable {
         return roomCapacity > (attendeeSize + speakerSize);
     }
 
+    private boolean speakerAvailable(String speaker, LocalDateTime newST, LocalDateTime newET){
+        List<UUID> speakers_events = userManager.getEventsAttending(speaker);
+        for (UUID id: speakers_events){
+            LocalDateTime existingST = eventManager.getEventStartTime(id);
+            LocalDateTime existingET = eventManager.getEventEndTime(id);
+            if (eventManager.scheduleOverlap(existingST, existingET, newST, newET)){
+                return false;
+            }
+        }
+        return true;
+    }
     @FXML private boolean ifEventButtonClicked() {
         return EventHolder.getInstance().getButtonClicked();
     }

@@ -81,7 +81,7 @@ public class EditEventController extends Observable {
             return;
         }
         if(!roomAllowsEvent(eventID)){
-            createAlertMessage("The number of registered people of this event exceeds the new room's capacity, thus cannot change room.");
+            createAlertMessage("The capacity of this event exceeds the new room's capacity, thus cannot change room.");
             return;
         }
         LocalDateTime start = eventManager.getEventStartTime(eventID);
@@ -116,9 +116,9 @@ public class EditEventController extends Observable {
     }
     private boolean roomAllowsEvent(UUID eventID){
         int roomCapacity = roomManager.getRoomCapacity(eventManager.getEventRoomName(eventID));
-        int attendeeSize = eventManager.getEventAttendees(eventID).size();
+        int eventCapacity = eventManager.getEventMaxCapacity(eventID);
         int speakerSize = eventManager.getEventSpeaker(eventID).size();
-        return roomCapacity > (attendeeSize + speakerSize);
+        return roomCapacity > (eventCapacity + speakerSize);
     }
 
     public void handleBackButtonAction(ActionEvent actionEvent) {

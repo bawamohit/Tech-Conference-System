@@ -379,7 +379,7 @@ public class EventManager {
      */
     public boolean scheduleOverlap(LocalDateTime existingST, LocalDateTime existingET,
                                    LocalDateTime newST, LocalDateTime newET){
-        return (!newET.isAfter(existingST) && !newST.isBefore(existingET));
+        return (!(newET.isBefore(existingST) || newST.isAfter(existingET)));
     }
 
     /** Determines whether a potential event's time overlaps with the already existing schedule
