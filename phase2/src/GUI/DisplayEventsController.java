@@ -42,6 +42,9 @@ public abstract class DisplayEventsController extends Observable implements GUIC
                     if (path.equals("EventInfoCancel")){
                         observeEventInfoCancel();
                     }
+                    if (path.equals("EventInfoModify")){
+                        observeEventInfoModify();
+                    }
                 }
             });
             subGridPane.add(button, i, j);
@@ -61,7 +64,7 @@ public abstract class DisplayEventsController extends Observable implements GUIC
             e.printStackTrace();
         }
         if(subScene == null) {
-            subScene = new SubScene(root, 700, 100); //TODO initData maybe
+            subScene = new SubScene(root, 700, 200); //TODO initData maybe
         }else{
             subScene.setRoot(root);
         }
@@ -70,7 +73,7 @@ public abstract class DisplayEventsController extends Observable implements GUIC
     @Override
     public void update(Observable o, Object arg) {
         setChanged();
-        notifyObservers();
+        notifyObservers(arg);
     }
 
     @Override
@@ -84,6 +87,11 @@ public abstract class DisplayEventsController extends Observable implements GUIC
     }
 
     public void observeEventInfoCancel(){
+        EventInfoController controller = loader.getController();
+        controller.addObserver(this);
+    }
+
+    public void observeEventInfoModify(){
         EventInfoController controller = loader.getController();
         controller.addObserver(this);
     }

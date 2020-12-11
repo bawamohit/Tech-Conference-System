@@ -1,5 +1,7 @@
 package GUI;
 
+import GUI.OrganizerGUI.ModifyEvent.EditEventController;
+import GUI.OrganizerGUI.ModifyEvent.ModifySpeakerController;
 import UseCases.EventManager;
 import UseCases.UserManager;
 import javafx.event.ActionEvent;
@@ -70,10 +72,18 @@ public abstract class UserDashboardController implements GUIController, Observer
         return loader;
     }
 
+    /**
+     * Handles action when the logout button is clicked. Reverts back to welcome scene.
+     */
     @FXML public void handleLogOutButtonAction(ActionEvent event) throws IOException {
         mainController.handleLogOutButtonAction(event, true);
     }
 
+    /**
+     * Loads the subscene of the given path
+     *
+     * @param path path of subscene fxml file
+     */
     public void loadSubScene(String path){
         loader = new FXMLLoader(getClass().getResource(path + ".fxml"));
 
@@ -98,4 +108,13 @@ public abstract class UserDashboardController implements GUIController, Observer
         controller.addObserver(this);
     }
 
+    public void observeModifySpeaker(){
+        ModifySpeakerController controller = loader.getController();
+        controller.addObserver(this);
+    }
+
+    public void observeEditEvent(){
+        EditEventController controller = loader.getController();
+        controller.addObserver(this);
+    }
 }

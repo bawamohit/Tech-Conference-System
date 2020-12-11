@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <GridPane fx:id="gridPane" xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
-          fx:controller="GUI.EventInfoController">
+          fx:controller="GUI.OrganizerGUI.ModifyEvent.EventInfoModifyController">
     <Label fx:id="label1" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
     <Label fx:id="label2" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
     <Label fx:id="label3" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
@@ -17,5 +14,10 @@
     <Label fx:id="label6" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
     <Label fx:id="label7" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
     <Label fx:id="label8" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
-
+    <Button fx:id="modifySpeakerButton" prefWidth="250"  onAction="#handleModifySpeakerButton"
+            text="Modify Speaker" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+    <Button fx:id="editEventButton" prefWidth="250"  onAction="#handleEditEventButton"
+            text="Edit Event" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+    <Button fx:id="removeEventButton" prefWidth="250"  onAction="#handleRemoveEventButton"
+            text="Remove Event" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
 </GridPane>
