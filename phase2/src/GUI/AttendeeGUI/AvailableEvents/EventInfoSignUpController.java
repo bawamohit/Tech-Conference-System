@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-public class EventSignUpController extends EventInfoController {
+public class EventInfoSignUpController extends EventInfoController {
     
     @FXML public void handleSignUpButton(ActionEvent event){
         List<UUID> schedule = getUserManager().getEventsAttending(getUsername());

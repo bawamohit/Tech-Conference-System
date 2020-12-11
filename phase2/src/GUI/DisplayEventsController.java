@@ -21,6 +21,7 @@ public abstract class DisplayEventsController extends Observable implements GUIC
     @FXML private GridPane gridPane;
     @FXML private GridPane subGridPane;
     FXMLLoader loader;
+    private MainController mainController;
 
     public void generateEventButtons(String path, List<List<String>> eventsInfo){
         EventHolder.getInstance().setButtonClicked(false);
@@ -71,7 +72,7 @@ public abstract class DisplayEventsController extends Observable implements GUIC
 
     @Override
     public void initData(MainController mainController) {
-
+        this.mainController = mainController;
     }
 
     public void observeEventDelete(){

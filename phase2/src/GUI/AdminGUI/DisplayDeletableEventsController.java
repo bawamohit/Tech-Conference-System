@@ -8,7 +8,7 @@ import UseCases.EventManager;
 import java.util.List;
 import java.util.UUID;
 
-public class DeletableEventsController extends DisplayEventsController {
+public class DisplayDeletableEventsController extends DisplayEventsController {
     private EventManager eventManager;
 
     public void initialize(){

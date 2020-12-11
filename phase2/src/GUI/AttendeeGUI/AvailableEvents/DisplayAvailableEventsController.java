@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-public class AvailableEventsController extends DisplayEventsController {
+public class DisplayAvailableEventsController extends DisplayEventsController {
     private EventManager eventManager;
 
     public void initialize(){
@@ -15,6 +15,6 @@ public class AvailableEventsController extends DisplayEventsController {
         LocalDateTime currTime = LocalDateTime.now();
         List<UUID> availableEventIDs = eventManager.getAvailableEvents(currTime);
         List<List<String>> eventsInfo = eventManager.getAllEventsInfo(availableEventIDs);
-        generateEventButtons("EventSignUp", eventsInfo);
+        generateEventButtons("EventInfoSignUp", eventsInfo);
     }
 }

@@ -8,7 +8,7 @@
 
 <GridPane fx:id="gridPane" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="GUI.AdminGUI.EventDeleteController">
+            fx:controller="GUI.AdminGUI.EventInfoDeleteController">
     <Label fx:id="label1" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
     <Label fx:id="label2" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
     <Label fx:id="label3" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
