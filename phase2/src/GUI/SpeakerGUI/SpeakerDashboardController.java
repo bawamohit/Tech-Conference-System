@@ -15,17 +15,17 @@ public class SpeakerDashboardController extends UserDashboardController {
     @FXML private SplitPane splitPane;
     @FXML private Button availEventButton;
     @FXML private Button myEventButton;
-    @FXML private MenuItem messageButton;
+    @FXML private Button inboxButton;
+    @FXML private Button messageTalkButton;
 
     public void initialize(){
         super.initData("/GUI/SpeakerGUI/MyEvents/MyEvents");
     }
 
     @FXML
-    protected void handleMessageButtonAction(ActionEvent event) {
-        loadSubScene("/GUI/Message/Message");
+    protected void handleInboxButtonAction(ActionEvent event) {
+        loadSubScene("/GUI/SpeakerGUI/Message/SpeakerMessage");
     }
-
 
     @FXML protected void handleMyEventButtonAction(ActionEvent event) {
         loadSubScene("/GUI/SpeakerGUI/MyEvents/MyEvents");

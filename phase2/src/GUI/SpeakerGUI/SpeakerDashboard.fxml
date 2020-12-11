@@ -17,17 +17,20 @@
                             <Image url="@../Images/Icons/view_w.png" />
                         </ImageView>
                     </graphic></Button>
-                <MenuButton id="menu-button" graphicTextGap="0.0" prefHeight="33.0" prefWidth="150.0" text="Message">
+                <Button fx:id="inboxButton" onAction="#handleInboxButtonAction" graphicTextGap="0.0" prefHeight="33.0" prefWidth="150" text="Inbox">
+                        <graphic>
+                            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                <Image url="@../Images/Icons/conversation_w.png" />
+                            </ImageView>
+                        </graphic>
+                </Button>
+                <Button fx:id="messageTalkButton" graphicTextGap="0.0" prefHeight="33.0" prefWidth="150" text="Message Talk(s)">
                     <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                             <Image url="@../Images/Icons/conversation_w.png" />
                         </ImageView>
                     </graphic>
-                <items>
-                    <MenuItem fx:id="messageButton" onAction="#handleMessageButtonAction" mnemonicParsing="false" text="Inbox" />
-                    <MenuItem mnemonicParsing="false" text="Message Talk(s)" />
-                </items>
-                </MenuButton>
+                </Button>
             </VBox>
         </VBox>
     </VBox>
