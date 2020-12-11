@@ -44,15 +44,14 @@ public class CreateEventController {
      * Handles action when the create button is clicked. Creates the event.
      */
     @FXML protected void handleCreateButtonAction() {
-        if(missingInput()){
-            createAlertMessage("Please fill in all boxes");
-            return;
-        }
         eventName = eventNameField.getText();
         startTimeString = startTimeField.getText();
         endTimeString = endTimeField.getText();
         roomName = roomField.getText();
-
+        if(missingInput()){
+            createAlertMessage("Please fill in all boxes");
+            return;
+        }
         if(!validTime(startTimeString) || !validTime(endTimeString)){
             createAlertMessage("Invalid Time Input");
             return;
@@ -81,27 +80,8 @@ public class CreateEventController {
         startTimeString = startTimeField.getText();
         endTimeString = endTimeField.getText();
 
-        if(startTimeString.isEmpty()||endTimeString.isEmpty()){
-            createAlertMessage("Please enter time");
-            return;
-        }
-        if(eventCapacityString.isEmpty()){
-            createAlertMessage("Please enter event capacity");
-            return;
-        }
-        eventCapacity = eventCapacityFieldToInteger(eventCapacityString);
-        if(!roomManager.roomExists(roomName)){
-            createAlertMessage("This room does not exist");
-            return;
-        }
-        if (!roomManager.hasSpace(roomName, eventCapacity)){
-            createAlertMessage("This event capacity exceeds the room capacity. Please choose another room");
-            return;
-        }
-        if(!validTime(startTimeString) || !validTime(endTimeString)){
-            createAlertMessage("Invalid Time Input");
-            return;
-        }
+        roomAvailablilityChecker(startTimeString, endTimeString, eventCapacityString,roomName);
+
         LocalDateTime startTime = getTime(startTimeString);
         LocalDateTime endTime = getTime(endTimeString);
 
@@ -121,6 +101,29 @@ public class CreateEventController {
         boolean eventCapacityEmpty = eventCapacityField.getText().isEmpty();
         boolean roomNameEmpty = roomField.getText().isEmpty();
         return(eventNameEmpty || startTimeEmpty || endTimeEmpty || eventCapacityEmpty || roomNameEmpty);
+    }
+
+    private void roomAvailablilityChecker(String startTimeString, String endTimeString, String eventCapacityString, String roomName){
+        if(startTimeString.isEmpty()||endTimeString.isEmpty()){
+            createAlertMessage("Please enter time");
+            return;
+        }
+        if(eventCapacityString.isEmpty()){
+            createAlertMessage("Please enter event capacity");
+            return;
+        }
+        if(!roomManager.roomExists(roomName)){
+            createAlertMessage("This room does not exist");
+            return;
+        }
+        eventCapacity = eventCapacityFieldToInteger(eventCapacityString);
+        if (!roomManager.hasSpace(roomName, eventCapacity)){
+            createAlertMessage("This event capacity exceeds the room capacity. Please choose another room");
+            return;
+        }
+        if(!validTime(startTimeString) || !validTime(endTimeString)){
+            createAlertMessage("Invalid Time Input");
+        }
     }
 
     private boolean roomAvailabilityChecked(){
