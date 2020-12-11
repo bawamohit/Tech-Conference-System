@@ -48,10 +48,15 @@
 }
 
 .menu-button {
-    -fx-text-fill: #000000;
+    -fx-background-color: transparent;
+    -fx-font-weight: normal;
+}
+
+.menu-button .label{
+    -fx-text-fill: #ffffff;
     -fx-font-size: 14px;
     -fx-background-color: transparent;
-    -fx-font-weight: light;
+    -fx-font-weight: normal;
     -fx-width: 134px;
 }
 
@@ -64,6 +69,20 @@
     -fx-background-color: rgba(94, 94, 94, 0.3);
     -fx-text-fill: #5fb0b7ff;
     -fx-font-weight: bold;
+}
+
+.menu-item {
+    -fx-background-color: transparent;
+}
+
+.menu-item .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-weight: normal;
+}
+
+.context-menu {
+    -fx-background-color: transparent;
 }
 
 .label {

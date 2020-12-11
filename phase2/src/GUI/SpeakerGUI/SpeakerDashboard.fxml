@@ -31,8 +31,8 @@
                         </ImageView>
                     </graphic>
                 <items>
-                    <MenuItem mnemonicParsing="false" text="Inbox" />
-                    <MenuItem mnemonicParsing="false" text="Message Talk" />
+                    <MenuItem fx:id="messageButton" onAction="#handleMessageButtonAction" mnemonicParsing="false" text="Inbox" />
+                    <MenuItem mnemonicParsing="false" text="Message Talk(s)" />
                 </items>
                 </MenuButton>
             </VBox>

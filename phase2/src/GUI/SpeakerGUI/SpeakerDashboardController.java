@@ -3,7 +3,7 @@ package GUI.SpeakerGUI;
 import GUI.UserDashboardController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.Button;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
@@ -15,7 +15,7 @@ public class SpeakerDashboardController extends UserDashboardController {
     @FXML private SplitPane splitPane;
     @FXML private Button availEventButton;
     @FXML private Button myEventButton;
-    @FXML private MenuButton messageButton;
+    @FXML private MenuItem messageButton;
 
     public void initialize(){
         super.initData("/GUI/AttendeeGUI/AvailableEvents/DisplayAvailableEvents");
