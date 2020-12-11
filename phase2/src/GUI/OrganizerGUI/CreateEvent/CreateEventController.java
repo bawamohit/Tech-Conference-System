@@ -1,6 +1,5 @@
 package GUI.OrganizerGUI.CreateEvent;
 
-import Entities.Event;
 import GUI.EventHolder;
 import GUI.ManagersStorage;
 import GUI.UserHolder;

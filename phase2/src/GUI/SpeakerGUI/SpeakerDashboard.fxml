@@ -6,18 +6,12 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane fx:id="gridPane" alignment="BASELINE_LEFT" prefHeight="650.0" prefWidth="900.0" snapToPixel="false" styleClass="root" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SpeakerGUI.SpeakerDashboardController">
+<GridPane fx:id="gridPane" alignment="BASELINE_LEFT" prefHeight="650.0" prefWidth="900.0" snapToPixel="false" styleClass="root" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.SpeakerGUI.SpeakerDashboardController">
     <VBox fillWidth="false" prefHeight="575.0" prefWidth="346.0" snapToPixel="false" spacing="50" styleClass="VBox" stylesheets="@SpeakerDashboard.css">
         <Label fx:id="profile" contentDisplay="CENTER" textAlignment="CENTER" />
         <VBox prefHeight="535.0" prefWidth="223.0" snapToPixel="false" spacing="400">
             <VBox spacing="30.0">
-                <Button fx:id="availEventButton" onAction="#handleAvailEventButtonAction" prefHeight="33.0" prefWidth="134.0" text="Available Events">
-                    <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                            <Image url="@../Images/Icons/event_w.png" />
-                        </ImageView>
-                    </graphic></Button>
-                <Button fx:id="myEventButton" graphicTextGap="0.0" onAction="#handleMyEventButtonAction" prefHeight="33.0" prefWidth="150" text="My Events">
+                <Button fx:id="myEventButton" graphicTextGap="0.0" onAction="#handleMyEventButtonAction" prefHeight="33.0" prefWidth="150" text="My Talks">
                     <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                             <Image url="@../Images/Icons/view_w.png" />

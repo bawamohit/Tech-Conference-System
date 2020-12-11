@@ -18,7 +18,7 @@ public class SpeakerDashboardController extends UserDashboardController {
     @FXML private MenuItem messageButton;
 
     public void initialize(){
-        super.initData("/GUI/AttendeeGUI/AvailableEvents/DisplayAvailableEvents");
+        super.initData("/GUI/SpeakerGUI/MyEvents/MyEvents");
     }
 
     @FXML
@@ -26,18 +26,15 @@ public class SpeakerDashboardController extends UserDashboardController {
         loadSubScene("/GUI/Message/Message");
     }
 
-    @FXML protected void handleAvailEventButtonAction(ActionEvent event) {
-        loadSubScene("/GUI/AttendeeGUI/AvailableEvents/DisplayAvailableEvents");
-    }
 
     @FXML protected void handleMyEventButtonAction(ActionEvent event) {
-        loadSubScene("/GUI/AttendeeGUI/MyEvents/DisplayMyEvents");
+        loadSubScene("/GUI/SpeakerGUI/MyEvents/MyEvents");
         observeDisplayEvents();
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        loadSubScene("/GUI/AttendeeGUI/MyEvents/DisplayMyEvents");
+        loadSubScene("/GUI/SpeakerGUI/MyEvents/MyEvents");
         observeDisplayEvents();
     }
 }
