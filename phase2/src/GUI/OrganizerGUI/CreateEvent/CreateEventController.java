@@ -72,15 +72,6 @@ public class CreateEventController {
 
     }
 
-    private boolean missingInput(){
-        boolean eventNameEmpty = eventName.isEmpty();
-        boolean startTimeEmpty = startTimeString.isEmpty();
-        boolean endTimeEmpty = endTimeString.isEmpty();
-        boolean eventCapacityEmpty = eventCapacityField.getText().isEmpty();
-        boolean roomNameEmpty = roomField.getText().isEmpty();
-        return(eventNameEmpty || startTimeEmpty || endTimeEmpty || eventCapacityEmpty || roomNameEmpty);
-    }
-
     /**
      * Handles action when the check availability button is clicked. Checks if room is available for this event.
      */
@@ -121,6 +112,15 @@ public class CreateEventController {
         EventHolder.getInstance().setRoomAvailabilityChecked(true);
         createAlertMessage("This room can host this event!");
 
+    }
+
+    private boolean missingInput(){
+        boolean eventNameEmpty = eventName.isEmpty();
+        boolean startTimeEmpty = startTimeString.isEmpty();
+        boolean endTimeEmpty = endTimeString.isEmpty();
+        boolean eventCapacityEmpty = eventCapacityField.getText().isEmpty();
+        boolean roomNameEmpty = roomField.getText().isEmpty();
+        return(eventNameEmpty || startTimeEmpty || endTimeEmpty || eventCapacityEmpty || roomNameEmpty);
     }
 
     private boolean roomAvailabilityChecked(){

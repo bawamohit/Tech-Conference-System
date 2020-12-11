@@ -28,7 +28,7 @@
       
           <Label fx:id="text" />
       
-          <TextField fx:id="textField" prefHeight="26.0" prefWidth="286.0" />
+          <TextField fx:id="textField" prefHeight="26.0" prefWidth="286.0" visible="false"/>
       </children>
    </HBox>
 

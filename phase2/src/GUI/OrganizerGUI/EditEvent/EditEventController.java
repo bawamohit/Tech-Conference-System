@@ -23,7 +23,6 @@ public class EditEventController {
     @FXML private RadioButton capacityRadioButton;
     @FXML private RadioButton roomRadioButton;
     private EventManager eventManager = ManagersStorage.getInstance().getEventManager();
-    private UserManager userManager = ManagersStorage.getInstance().getUserManager();
     private RoomManager roomManager = ManagersStorage.getInstance().getRoomManager();
 
     @FXML public void handleChangeButtonAction(){
@@ -99,6 +98,7 @@ public class EditEventController {
 
     @FXML private void handleChangeCapacityButtonAction(){
         text.setText("New Capacity:  ");
+        textField.setVisible(true);
     }
 
     @FXML private void createAlertMessage(String message){
@@ -113,6 +113,7 @@ public class EditEventController {
 
     @FXML private void handleChangeRoomButtonAction(){
         text.setText("New Room:  ");
+        textField.setVisible(true);
     }
     private boolean roomAllowsEvent(UUID eventID){
         int roomCapacity = roomManager.getRoomCapacity(eventManager.getEventRoomName(eventID));
