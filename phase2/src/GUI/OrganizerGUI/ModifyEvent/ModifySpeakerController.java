@@ -1,27 +1,44 @@
-package GUI.OrganizerGUI.ModifySpeaker;
+package GUI.OrganizerGUI.ModifyEvent;
 
 import Entities.UserType;
 import GUI.EventHolder;
+import GUI.EventInfoController;
 import GUI.ManagersStorage;
+import GUI.UserHolder;
 import UseCases.EventManager;
 import UseCases.RoomManager;
 import UseCases.UserManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Observable;
 import java.util.UUID;
 
-public class ModifySpeakerController {
+public class ModifySpeakerController extends Observable {
     @FXML private RadioButton removeRadioButton;
     @FXML private RadioButton addRadioButton;
     @FXML private TextField speakerNameField;
-    private EventManager eventManager = ManagersStorage.getInstance().getEventManager();
-    private UserManager userManager = ManagersStorage.getInstance().getUserManager();
-    private RoomManager roomManager = ManagersStorage.getInstance().getRoomManager();
+    @FXML Label label1;
+    @FXML Label label2;
+
+    private EventManager eventManager;
+    private UserManager userManager;
+    private RoomManager roomManager;
+    private UUID eventID;
+
+    public void initialize() {
+        this.eventManager = ManagersStorage.getInstance().getEventManager();
+        this.userManager = ManagersStorage.getInstance().getUserManager();
+        this.roomManager = ManagersStorage.getInstance().getRoomManager();
+        this.eventID = EventHolder.getInstance().getEventID();
+        List<String> eventInfo = eventManager.getEventsInfo(eventID);
+        label1.setText("Event Name: " + eventInfo.get(1));
+        label2.setText("Speakers: " + eventInfo.get(2));
+    }
 
     /**
      * Handles action when the add button is clicked. Adds speaker to selected event.
@@ -29,9 +46,13 @@ public class ModifySpeakerController {
     @FXML protected void handleModifyButtonAction() {
         if (addRadioButton.isSelected()) {
             addSpeakerInputChecksSuccess();
-            }
+            setChanged();
+            notifyObservers("ModifySpeaker");
+        }
         else if (removeRadioButton.isSelected()) {
             removeSpeakerHelper();
+            setChanged();
+            notifyObservers("ModifySpeaker");
         }
     }
 
@@ -49,44 +70,26 @@ public class ModifySpeakerController {
             createAlertMessage("This user is not a speaker.");
             return;
         }
-        FXMLLoader loader = new FXMLLoader((getClass().getResource("../Events/EventInfo.fxml")));
-        if (ifEventButtonClicked()) {
-            try{
-                loader.load();
-                UUID eventID = EventHolder.getInstance().getEventID();
-                if (!roomAllowsSpeaker(eventID)){
-                    createAlertMessage("The room capacity is full and cannot add a speaker to the event");
-                    return;
-                }
-                eventManager.addSpeaker(eventID, speakerUsername);
-                userManager.addEventAttending(speakerUsername, eventID);
-                createAlertMessage("Speaker Added!");
-            }
-            catch (IOException e){
-                e.printStackTrace();
-            }
+
+        if (!roomAllowsSpeaker(eventID)){
+            createAlertMessage("The room capacity is full and cannot add a speaker to the event");
+            return;
         }
+        eventManager.addSpeaker(eventID, speakerUsername);
+        userManager.addEventAttending(speakerUsername, eventID);
+        createAlertMessage("Speaker Added!");
     }
 
     private void removeSpeakerHelper(){
         String speakerUsername = speakerNameField.getText();
-        FXMLLoader loader = new FXMLLoader((getClass().getResource("../Events/EventInfo.fxml")));
-        if (ifEventButtonClicked()) {
-            try{
-                loader.load();
-                UUID eventID = EventHolder.getInstance().getEventID();
-                if (!eventManager.getEventSpeaker(eventID).contains(speakerUsername)){
-                    createAlertMessage("This username is not a speaker at this event. Please input a valid speaker username");
-                    return;
-                }
-                eventManager.removeSpeaker(eventID, speakerUsername);
-                userManager.removeEventAttending(speakerUsername, eventID);
-                createAlertMessage("Speaker Removed");
-            }
-            catch (IOException e){
-                e.printStackTrace();
-            }
+
+        if (!eventManager.getEventSpeaker(eventID).contains(speakerUsername)){
+            createAlertMessage("This username is not a speaker at this event. Please input a valid speaker username");
+            return;
         }
+        eventManager.removeSpeaker(eventID, speakerUsername);
+        userManager.removeEventAttending(speakerUsername, eventID);
+        createAlertMessage("Speaker Removed");
     }
 
     private void createAlertMessage(String message){
@@ -95,6 +98,7 @@ public class ModifySpeakerController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
     private boolean roomAllowsSpeaker(UUID eventID){
         int roomCapacity = roomManager.getRoomCapacity(eventManager.getEventRoomName(eventID));
         int attendeeSize = eventManager.getEventAttendees(eventID).size();
@@ -104,6 +108,11 @@ public class ModifySpeakerController {
 
     @FXML private boolean ifEventButtonClicked() {
         return EventHolder.getInstance().getButtonClicked();
+    }
+
+    public void handleBackButtonAction(ActionEvent actionEvent) {
+        setChanged();
+        notifyObservers("ModifyEvent");
     }
 }
 

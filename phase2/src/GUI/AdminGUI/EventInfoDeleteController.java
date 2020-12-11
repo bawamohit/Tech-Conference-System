@@ -8,11 +8,6 @@ import javafx.scene.control.Alert;
 
 public class EventInfoDeleteController extends EventInfoController implements GUIController {
 
-    @Override
-    public void initialize() {
-        super.initialize();
-    }
-
     @FXML public void handleDeleteButton(ActionEvent event){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         if (!getEventManager().removeEvent(getEventID())){
