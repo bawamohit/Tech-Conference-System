@@ -20,9 +20,8 @@ public class EventDeleteController extends EventInfoController implements GUICon
             alert.setContentText("Sorry this event has already been deleted or modified");
         }
         else {
-            int x = countObservers();
             getRoomManager().removeEventFromSchedule(getEventID());
-            alert.setTitle("Successfully Deleted!" + x);
+            alert.setTitle("Successfully Deleted!");
         }
         alert.showAndWait();
         setChanged();

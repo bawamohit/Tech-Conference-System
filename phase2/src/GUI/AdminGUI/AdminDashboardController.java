@@ -35,6 +35,7 @@ public class AdminDashboardController extends UserDashboardController {
     @Override
     public void update(Observable o, Object arg) {
         loadSubScene("/GUI/AdminGUI/DeletableEvents");
+        observeDisplayEvents();
     }
 
     public void observeDisplayEvents(){
