@@ -82,7 +82,7 @@ public class MainController implements GUIController{
                     break;
 
                 case SPEAKER:
-                    loader = new FXMLLoader(getClass().getResource("SpeakerMenu/SpeakerMenu.fxml"));
+                    loader = new FXMLLoader(getClass().getResource("SpeakerGUI/SpeakerDashboard.fxml"));
                     setNewScene(event, loader);
                     break;
 
