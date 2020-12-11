@@ -1,5 +1,6 @@
 package GUI.OrganizerGUI.CreateEvent;
 
+import Entities.Event;
 import GUI.EventHolder;
 import GUI.ManagersStorage;
 import GUI.UserHolder;
@@ -37,6 +38,18 @@ public class CreateEventController {
         roomManager  = ManagersStorage.getInstance().getRoomManager();
         eventManager = ManagersStorage.getInstance().getEventManager();
         username = UserHolder.getInstance().getUsername();
+        roomField.textProperty().addListener((obs, oldText, newText) -> {
+            EventHolder.getInstance().setRoomAvailabilityChecked(false);
+        });
+        eventCapacityField.textProperty().addListener((obs, oldText, newText) -> {
+            EventHolder.getInstance().setRoomAvailabilityChecked(false);
+        });
+        startTimeField.textProperty().addListener((obs, oldText, newText) -> {
+            EventHolder.getInstance().setRoomAvailabilityChecked(false);
+        });
+        endTimeField.textProperty().addListener((obs, oldText, newText) -> {
+            EventHolder.getInstance().setRoomAvailabilityChecked(false);
+        });
     }
 
     /**
