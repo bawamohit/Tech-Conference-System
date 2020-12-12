@@ -22,12 +22,16 @@
 .button {
     -fx-text-fill: #ffffff;
     -fx-font-size: 14px;
-    -fx-pref-width: 66px;
-    -fx-pref-width: 134px;
-    -fx-margin: 20px;
+    -fx-margin: auto;
+    -fx-margin-left: auto;
+    -fx-margin-right: auto;
     -fx-background-color: transparent;
     -fx-wrap-text: true;
     -fx-text-align: center;
+    -fx-display: grid;
+    -fx-padding: 0px;
+    -fx-pref-width: 134px;
+
 }
 
 .button.label {

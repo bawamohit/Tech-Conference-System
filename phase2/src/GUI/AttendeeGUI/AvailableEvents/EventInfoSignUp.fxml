@@ -4,16 +4,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane fx:id="gridPane" stylesheets="@../MyEvents/EventInfoCancel.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AttendeeGUI.AvailableEvents.EventInfoSignUpController">
-    <Label fx:id="label1" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.columnSpan="4"/>
-    <Label fx:id="label2" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-    <Label fx:id="label3" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-    <Label fx:id="label4" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-    <Label fx:id="label5" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-    <Label fx:id="label6" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-    <Label fx:id="label7" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-    <Label fx:id="label8" prefWidth="250" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-    <Button fx:id="button" onAction="#handleSignUpButton" prefWidth="250" text="sign up" GridPane.columnIndex="4" GridPane.rowIndex="4">
+<GridPane fx:id="gridPane" alignment="CENTER" stylesheets="@../../EventInfo.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AttendeeGUI.AvailableEvents.EventInfoSignUpController">
+    <Label fx:id="label1" prefWidth="250" GridPane.rowIndex="0" />
+    <Label fx:id="label2" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+    <Label fx:id="label3" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+    <Label fx:id="label4" prefWidth="250" GridPane.rowIndex="1" />
+    <Label fx:id="label5" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <Label fx:id="label6" prefWidth="250" GridPane.rowIndex="2" />
+    <Label fx:id="label7" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <Label fx:id="label8" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+    <Button fx:id="button" onAction="#handleSignUpButton" prefWidth="250" text="sign up" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="4">
       <GridPane.margin>
          <Insets bottom="20.0" right="10.0" />
       </GridPane.margin></Button>
