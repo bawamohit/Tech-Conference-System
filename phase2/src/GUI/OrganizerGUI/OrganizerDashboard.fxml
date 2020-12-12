@@ -4,12 +4,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane fx:id="gridPane" alignment="BASELINE_LEFT" prefHeight="650.0" prefWidth="888.0" snapToPixel="false" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OrganizerGUI.OrganizerDashboardController">
+<GridPane fx:id="gridPane" alignment="BASELINE_LEFT" prefHeight="650.0" prefWidth="888.0" snapToPixel="false" vgap="10" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.OrganizerGUI.OrganizerDashboardController">
     <VBox fillWidth="false" prefHeight="575.0" prefWidth="346.0" snapToPixel="false" spacing="50">
         <Label fx:id="profile" />
         <VBox prefHeight="535.0" prefWidth="223.0" snapToPixel="false" spacing="400">
             <VBox>
                 <Button fx:id="modifyEventButton" onAction="#handleModifyEventsButtonAction" prefHeight="33.0" prefWidth="155" text="Modify Events" />
+                <Button fx:id="announcementsButton" onAction="#handleAnnouncementsButtonAction" prefHeight="33.0" prefWidth="150" text="Announcements" />
                 <Button fx:id="messageButton" onAction="#handleMessageButtonAction" prefHeight="33.0" prefWidth="150" text="Message" />
                 <Button fx:id="addEventbutton" onAction="#handleCreateEventButtonAction" prefHeight="33.0" prefWidth="155" text="Create Event" />
                 <Button fx:id="createSpeaker" onAction="#handleCreateAccountsButtonAction" prefHeight="33.0" prefWidth="150" text="Create Accounts" />

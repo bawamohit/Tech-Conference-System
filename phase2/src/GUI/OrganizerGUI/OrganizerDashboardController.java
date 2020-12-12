@@ -42,6 +42,14 @@ public class OrganizerDashboardController extends UserDashboardController implem
     }
 
     /**
+     * Handles action when the announcements button is clicked. Loads Announcements subscene
+     */
+    @FXML
+    protected void handleAnnouncementsButtonAction(ActionEvent event) {
+        loadSubScene("/GUI/OrganizerGUI/Announcements/Announcements");
+    }
+
+    /**
      * Handles action when the create account button is clicked. Loads CreateEvent subscene
      */
     @FXML protected void handleCreateAccountsButtonAction(ActionEvent event){

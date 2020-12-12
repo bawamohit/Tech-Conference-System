@@ -34,6 +34,14 @@ public class MessageManager {
         }
     }
 
+    //TODO javadoc
+    public void sendAnnouncement(String sender, List<String> receivers, String content){
+        content = "Announcement:\n" + content;
+        for(String receiver: receivers) {
+            addMessage(receiver, sender, new Message(sender, receiver, content));
+        }
+    }
+
     /** Adds a Message from sender to receiver with the content, at the set time, and only records in sender's chat
      *
      * @param sender Sender of Message
@@ -128,7 +136,6 @@ public class MessageManager {
      *
      * @return List of usernames
      */
-    //TODO sort from latest to oldest
     public List<String> getUsers() {
         return new ArrayList<>(chats.keySet());
     }
@@ -197,6 +204,7 @@ public class MessageManager {
         }
     }
 
+    //TODO javadoc
     public void deleteMutualThread(String username1, String username2){
         chats.get(username1).remove(username2);
         chats.get(username2).remove(username1);
