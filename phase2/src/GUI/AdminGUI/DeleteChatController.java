@@ -8,6 +8,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
+/**
+ * Delete Chat subscene for admin
+ */
 public class DeleteChatController {
     @FXML private TextField username1Field;
     @FXML private TextField username2Field;
@@ -15,11 +18,18 @@ public class DeleteChatController {
     private UserManager userManager;
     private MessageManager messageManager;
 
+    /**
+     * Initializes the Delete Chat subscene
+     */
     public void initialize(){
         userManager = ManagersStorage.getInstance().getUserManager();
         messageManager = ManagersStorage.getInstance().getMessageManager();
     }
 
+    /**
+     * Handles the action when the Delete Chat button is clicked. Takes in two usernames from the TextFields and deletes
+     * the chat between those 2 Users. Gives an error if usernames are invalid.
+     */
     public void handleDeleteChatButtonAction(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
