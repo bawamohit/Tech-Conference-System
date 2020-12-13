@@ -1,4 +1,4 @@
-package GUI.Message;
+package GUI.DataHolders;
 
 public class CollocutorHolder {
     private String username;

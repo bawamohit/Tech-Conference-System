@@ -1,7 +1,6 @@
 package GUI.AdminGUI;
 
-import GUI.ManagersStorage;
-import UseCases.EventManager;
+import GUI.DataHolders.ManagersStorage;
 import UseCases.MessageManager;
 import UseCases.UserManager;
 import javafx.event.ActionEvent;

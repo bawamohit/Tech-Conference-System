@@ -1,4 +1,4 @@
-package GUI;
+package GUI.DataHolders;
 
 import Gateways.EventGateway;
 import Gateways.MessageGateway;

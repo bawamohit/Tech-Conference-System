@@ -1,18 +1,16 @@
 package GUI.OrganizerGUI.ModifyEvent;
 
-import GUI.EventHolder;
-import GUI.ManagersStorage;
+import GUI.DataHolders.EventHolder;
+import GUI.DataHolders.ManagersStorage;
 import UseCases.EventManager;
 import UseCases.RoomManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Observable;

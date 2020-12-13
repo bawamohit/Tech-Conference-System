@@ -1,16 +1,8 @@
 package GUI.AdminGUI;
 
-import GUI.*;
-import UseCases.EventManager;
-import UseCases.UserManager;
+import GUI.SceneParents.UserDashboardController;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.SubScene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 
-import java.io.IOException;
 import java.util.Observable;
 
 public class AdminDashboardController extends UserDashboardController {

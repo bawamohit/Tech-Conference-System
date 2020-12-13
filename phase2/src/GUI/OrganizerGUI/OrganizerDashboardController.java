@@ -1,10 +1,9 @@
 package GUI.OrganizerGUI;
 
 import GUI.*;
-import GUI.OrganizerGUI.ModifyEvent.ModifySpeakerController;
+import GUI.SceneParents.UserDashboardController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 
 import java.util.Observable;
 
@@ -16,6 +15,7 @@ public class OrganizerDashboardController extends UserDashboardController implem
      */
     @FXML public void initialize(){
         super.initData("/GUI/OrganizerGUI/ModifyEvent/DisplayModifiableEvents");
+        observeDisplayEvents();
     }
 
     /**

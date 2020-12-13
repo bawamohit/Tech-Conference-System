@@ -1,4 +1,4 @@
-package GUI;
+package GUI.DataHolders;
 
 import java.util.UUID;
 

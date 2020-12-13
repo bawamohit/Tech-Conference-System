@@ -1,8 +1,7 @@
 package GUI.AdminGUI;
 
-import GUI.DisplayEventsController;
-import GUI.EventInfoController;
-import GUI.ManagersStorage;
+import GUI.SceneParents.DisplayEventsController;
+import GUI.DataHolders.ManagersStorage;
 import UseCases.EventManager;
 
 import java.util.List;

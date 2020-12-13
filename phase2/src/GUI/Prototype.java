@@ -1,6 +1,6 @@
 package GUI;
 
-import Entities.Message;
+import GUI.DataHolders.ManagersStorage;
 import Gateways.EventGateway;
 import Gateways.MessageGateway;
 import Gateways.UserGateway;

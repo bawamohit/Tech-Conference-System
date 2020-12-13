@@ -1,16 +1,12 @@
 package GUI.AttendeeGUI;
 
-import GUI.*;
+import GUI.SceneParents.UserDashboardController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
-import java.io.IOException;
 import java.util.Observable;
-import java.util.Optional;
-import java.util.UUID;
 
 public class AttendeeDashboardController extends UserDashboardController {
     @FXML private AnchorPane anchorPane;

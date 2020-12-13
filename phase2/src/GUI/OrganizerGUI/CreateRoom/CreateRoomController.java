@@ -1,10 +1,8 @@
 package GUI.OrganizerGUI.CreateRoom;
 
-import Entities.Event;
-import GUI.EventHolder;
-import GUI.ManagersStorage;
+import GUI.DataHolders.EventHolder;
+import GUI.DataHolders.ManagersStorage;
 import UseCases.RoomManager;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;

@@ -1,6 +1,10 @@
 package GUI.SpeakerGUI.MyEvents;
 
 import GUI.*;
+import GUI.DataHolders.EventHolder;
+import GUI.DataHolders.ManagersStorage;
+import GUI.DataHolders.UserHolder;
+import GUI.SceneParents.DisplayEventsController;
 import UseCases.EventManager;
 import UseCases.UserManager;
 

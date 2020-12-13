@@ -1,9 +1,10 @@
 package GUI.Message;
 
+import GUI.DataHolders.CollocutorHolder;
 import GUI.GUIController;
 import GUI.MainController;
-import GUI.ManagersStorage;
-import GUI.UserHolder;
+import GUI.DataHolders.ManagersStorage;
+import GUI.DataHolders.UserHolder;
 import UseCases.MessageManager;
 import UseCases.UserManager;
 import javafx.event.ActionEvent;
@@ -14,8 +15,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.TextAlignment;
 
 import java.util.List;
 

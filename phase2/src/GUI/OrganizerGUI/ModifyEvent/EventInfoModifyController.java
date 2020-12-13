@@ -1,7 +1,7 @@
 package GUI.OrganizerGUI.ModifyEvent;
 
-import GUI.EventHolder;
-import GUI.EventInfoController;
+import GUI.DataHolders.EventHolder;
+import GUI.SceneParents.EventInfoController;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 

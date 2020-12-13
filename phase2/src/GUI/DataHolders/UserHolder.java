@@ -1,4 +1,4 @@
-package GUI;
+package GUI.DataHolders;
 
 public final class UserHolder {
     private String username;

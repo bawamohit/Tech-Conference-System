@@ -1,18 +1,4 @@
 {
-    "c463b726-f5ca-4dd5-b772-7801a421c111": {
-        "organizer": "thor",
-        "attendees": [
-            "she_hulk",
-            "hulk",
-            "spider"
-        ],
-        "speakers": ["doctor"],
-        "eventName": "Ragnarok",
-        "maxCapacity": 3,
-        "startTime": "2021-06-10T13:00",
-        "endTime": "2021-06-10T15:15",
-        "roomName": "Asgard"
-    },
     "949c2021-4bda-4fb3-92ab-0a5bf7e167e5": {
         "organizer": "iron",
         "attendees": ["captain"],
@@ -35,19 +21,6 @@
         "startTime": "2021-06-06T12:00",
         "endTime": "2021-06-06T13:00",
         "roomName": "Avengers Mansion"
-    },
-    "bc5daa43-1a98-4c86-a38c-72548794deab": {
-        "organizer": "black",
-        "attendees": [
-            "captain",
-            "she_hulk"
-        ],
-        "speakers": ["doctor"],
-        "eventName": "Endgame",
-        "maxCapacity": 5,
-        "startTime": "2021-06-07T11:00",
-        "endTime": "2021-06-07T12:45",
-        "roomName": "Wakanda"
     },
     "3f660e58-fa44-4de6-bbe5-2ff5d47c14a0": {
         "organizer": "iron",
@@ -77,10 +50,7 @@
     },
     "418b8a42-4844-49ba-8b0b-d200761e635e": {
         "organizer": "thor",
-        "attendees": [
-            "hulk",
-            "spider"
-        ],
+        "attendees": ["hulk"],
         "speakers": [],
         "eventName": "Captain Marvel",
         "maxCapacity": 8,

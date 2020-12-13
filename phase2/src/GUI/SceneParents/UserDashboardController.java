@@ -1,7 +1,11 @@
-package GUI;
+package GUI.SceneParents;
 
+import GUI.GUIController;
+import GUI.MainController;
+import GUI.DataHolders.ManagersStorage;
 import GUI.OrganizerGUI.ModifyEvent.EditEventController;
 import GUI.OrganizerGUI.ModifyEvent.ModifySpeakerController;
+import GUI.DataHolders.UserHolder;
 import UseCases.EventManager;
 import UseCases.UserManager;
 import javafx.event.ActionEvent;

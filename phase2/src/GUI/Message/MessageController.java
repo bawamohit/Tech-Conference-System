@@ -1,9 +1,10 @@
 package GUI.Message;
 
+import GUI.DataHolders.CollocutorHolder;
 import GUI.GUIController;
 import GUI.MainController;
-import GUI.ManagersStorage;
-import GUI.UserHolder;
+import GUI.DataHolders.ManagersStorage;
+import GUI.DataHolders.UserHolder;
 import UseCases.MessageManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

@@ -1,8 +1,8 @@
 package GUI.OrganizerGUI.CreateEvent;
 
-import GUI.EventHolder;
-import GUI.ManagersStorage;
-import GUI.UserHolder;
+import GUI.DataHolders.EventHolder;
+import GUI.DataHolders.ManagersStorage;
+import GUI.DataHolders.UserHolder;
 import UseCases.EventManager;
 import UseCases.RoomManager;
 import javafx.event.ActionEvent;

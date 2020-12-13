@@ -1,6 +1,6 @@
 package GUI.AttendeeGUI.AvailableEvents;
 
-import GUI.EventInfoController;
+import GUI.SceneParents.EventInfoController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;

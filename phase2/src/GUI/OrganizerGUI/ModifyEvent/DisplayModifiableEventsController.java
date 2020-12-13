@@ -1,7 +1,7 @@
 package GUI.OrganizerGUI.ModifyEvent;
 
-import GUI.DisplayEventsController;
-import GUI.ManagersStorage;
+import GUI.SceneParents.DisplayEventsController;
+import GUI.DataHolders.ManagersStorage;
 import UseCases.EventManager;
 
 import java.time.LocalDateTime;

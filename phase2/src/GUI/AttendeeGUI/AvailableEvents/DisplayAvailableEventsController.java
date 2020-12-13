@@ -1,6 +1,7 @@
 package GUI.AttendeeGUI.AvailableEvents;
 
-import GUI.*;
+import GUI.DataHolders.ManagersStorage;
+import GUI.SceneParents.DisplayEventsController;
 import UseCases.EventManager;
 
 import java.time.LocalDateTime;

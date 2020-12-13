@@ -1,12 +1,14 @@
-package GUI;
+package GUI.SceneParents;
 
+import GUI.DataHolders.EventHolder;
+import GUI.GUIController;
+import GUI.MainController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.SubScene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
