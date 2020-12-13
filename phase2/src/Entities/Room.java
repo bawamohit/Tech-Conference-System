@@ -29,7 +29,6 @@ public class Room {
         schedule = new HashMap<>();
     }
 
-// for phase 2
     /**
      * Implements Getter, getRoomName for roomName.
      *
@@ -54,9 +53,7 @@ public class Room {
      * @return list of events (identified by ID) occurring in the room
      */
     public List<UUID> getRoomEventIDs(){
-        List<UUID> eventIDs = new ArrayList<UUID>();
-        eventIDs.addAll(schedule.keySet());
-        return eventIDs;
+        return new ArrayList<>(schedule.keySet());
     }
 
     /**
@@ -67,13 +64,6 @@ public class Room {
     public HashMap<UUID, List<LocalDateTime>> getSchedule(){
         return schedule;
     }
-
-//    /**
-//     * Implements Getter, getRoomEvents, for events in this room's schedule.
-//     *
-//     * @return list of all the events occurring in this room
-//     */
-//    public List<UUID> getRoomEvents(){ return new ArrayList(schedule.values()); } //constructor with param collection
 
     /**
      * Implements Setter, setRoomSchedule, for this room.

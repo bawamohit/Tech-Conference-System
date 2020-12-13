@@ -6,10 +6,6 @@ import Entities.Room;
 
 public class RoomManager {
     private HashMap<String, Room> rooms;
-    // what we need:
-    // attributes: all the room name and their Room object,
-    // methods: add room, remove room?, add event to room schedule, remove event from room schedule, create room,
-    // check room capacity(or does this go in Room?),
 
     /**
      * The constructor takes rooms and assigns the variable an appropriate value.
@@ -55,8 +51,6 @@ public class RoomManager {
      *
      * @param roomName name of room to be added
      * @param capacity maximum capacity of this new room
-     *
-     * @return a boolean indicating if room was successfully added
      */
     public void addRoom(String roomName, int capacity) {
         Room newRoom = new Room(roomName, capacity);

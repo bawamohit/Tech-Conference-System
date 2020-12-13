@@ -15,8 +15,17 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Reading and writing to JSON files for the MessageManager
+ */
 public class MessageGateway {
 
+    /** Returns a MessageManager object after reading from the message manager JSON file
+     *
+     * @param filepath The filepath of the message manager JSON file
+     * @return MessageManager created from the data in the JSON file
+     * @throws IOException Throws exception if problems reading from file
+     */
     public MessageManager readFromFile(String filepath) throws IOException {
         String content = new String(Files.readAllBytes(Paths.get(filepath)));
         JSONObject jo = new JSONObject(content);
@@ -55,6 +64,12 @@ public class MessageGateway {
         return mm;
     }
 
+    /** Saves a the data in the MessageManager in a JSON file
+     *
+     * @param filePath The filepath where we want to save the JSON file
+     * @param messageManager The MessageManager that we want to save
+     * @throws FileNotFoundException Error when creating or opening the JSON file at the filepath
+     */
     public void saveToFile(String filePath, MessageManager messageManager) throws FileNotFoundException {
         JSONObject jo = new JSONObject();
         List<String> users = messageManager.getUsers();
