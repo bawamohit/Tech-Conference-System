@@ -51,7 +51,7 @@ public class EventInfoController extends Observable {
         label3.setText("Ends: " + eventInfo.get(3));
         speakers.setText("Speakers: ");
         label4.setText(eventInfo.get(4));
-        label5.setText("Organizers: " + eventInfo.get(5));
+        label5.setText("Organizer: " + eventInfo.get(5));
         label6.setText("Room: " + eventInfo.get(6));
         label7.setText("Maximum Capacity: " + eventInfo.get(7));
         label8.setText("Available Spots: " + eventInfo.get(8));

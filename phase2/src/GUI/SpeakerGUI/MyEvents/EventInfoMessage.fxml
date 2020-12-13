@@ -5,14 +5,17 @@
 <?import javafx.scene.layout.*?>
 
 <GridPane fx:id="gridPane" prefHeight="79.0" prefWidth="855.0" snapToPixel="false" styleClass="root2" stylesheets="@EventInfoMessage.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.SpeakerGUI.MyEvents.EventInfoMessageController">
-<Label fx:id="label1" prefWidth="250" GridPane.rowIndex="1" />
-<Label fx:id="label2" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-<Label fx:id="label3" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-<Label fx:id="label4" prefWidth="250" GridPane.rowIndex="2" />
-<Label fx:id="label5" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-<Label fx:id="label6" prefWidth="250" GridPane.rowIndex="3" />
-<Label fx:id="label7" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-<Label fx:id="label8" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+   <Label fx:id="label1" prefWidth="250" GridPane.rowIndex="1" />
+   <Label fx:id="label2" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+   <Label fx:id="label3" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+   <HBox GridPane.rowIndex="2">
+      <Button fx:id="speakers" onAction="#handleDetailedSpeakersButtonAction"/>
+      <Label fx:id="label4" prefWidth="250"/>
+   </HBox>
+   <Label fx:id="label5" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+   <Label fx:id="label6" prefWidth="250" GridPane.rowIndex="3" />
+   <Label fx:id="label7" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+   <Label fx:id="label8" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="3" />
    <Button fx:id="messageButton" mnemonicParsing="false" onAction="#handleMessageButton" prefHeight="30.0" prefWidth="200" text="Message Attendees" GridPane.columnIndex="3" GridPane.rowIndex="4" />
    <TextField fx:id="textField" prefHeight="31.0" prefWidth="613.0" GridPane.columnSpan="3" GridPane.rowIndex="4" />
    <columnConstraints>
