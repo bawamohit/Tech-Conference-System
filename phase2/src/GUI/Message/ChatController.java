@@ -2,7 +2,7 @@ package GUI.Message;
 
 import GUI.DataHolders.CollocutorHolder;
 import GUI.GUIController;
-import GUI.MainController;
+import GUI.WelcomeController;
 import GUI.DataHolders.ManagersStorage;
 import GUI.DataHolders.UserHolder;
 import UseCases.MessageManager;
@@ -30,7 +30,7 @@ public class ChatController implements GUIController {
     @FXML private VBox chatBox;
 
     @Override
-    public void initData(MainController mainController) {
+    public void initData(WelcomeController welcomeController) {
     }
 
     public void initialize(){

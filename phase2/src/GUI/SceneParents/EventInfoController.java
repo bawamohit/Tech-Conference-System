@@ -34,7 +34,7 @@ public class EventInfoController extends Observable implements GUIController {
     @FXML Label label8;
 
     @Override
-    public void initData(MainController mainController) { }
+    public void initData(WelcomeController welcomeController) { }
 
     public void initialize(){
         this.eventManager = ManagersStorage.getInstance().getEventManager();

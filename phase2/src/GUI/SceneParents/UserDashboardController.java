@@ -1,7 +1,7 @@
 package GUI.SceneParents;
 
 import GUI.GUIController;
-import GUI.MainController;
+import GUI.WelcomeController;
 import GUI.DataHolders.ManagersStorage;
 import GUI.OrganizerGUI.ModifyEvent.EditEventController;
 import GUI.OrganizerGUI.ModifyEvent.ModifySpeakerController;
@@ -11,17 +11,20 @@ import UseCases.UserManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.SubScene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
 public abstract class UserDashboardController implements GUIController, Observer {
-    private MainController mainController;
+    private WelcomeController welcomeController;
     private String username;
     private SubScene subScene;
     private UserManager userManager;
@@ -40,12 +43,12 @@ public abstract class UserDashboardController implements GUIController, Observer
         gridPane.add(subScene, 1, 0);
     }
 
-    public void initData(MainController mainController){
-        this.mainController = mainController;
+    public void initData(WelcomeController welcomeController){
+        this.welcomeController = welcomeController;
     }
 
-    public MainController getMainController() {
-        return mainController;
+    public WelcomeController getMainController() {
+        return welcomeController;
     }
 
     public String getUsername() {
@@ -80,7 +83,14 @@ public abstract class UserDashboardController implements GUIController, Observer
      * Handles action when the logout button is clicked. Reverts back to welcome scene.
      */
     @FXML public void handleLogOutButtonAction(ActionEvent event) throws IOException {
-        mainController.handleLogOutButtonAction(event, true);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Welcome.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.hide();
+
+        stage.setScene(scene);
+        stage.show();
     }
 
     /**

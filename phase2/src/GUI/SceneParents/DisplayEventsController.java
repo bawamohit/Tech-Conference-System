@@ -2,7 +2,7 @@ package GUI.SceneParents;
 
 import GUI.DataHolders.EventHolder;
 import GUI.GUIController;
-import GUI.MainController;
+import GUI.WelcomeController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -23,7 +23,7 @@ public abstract class DisplayEventsController extends Observable implements GUIC
     @FXML private GridPane gridPane;
     @FXML private GridPane subGridPane;
     FXMLLoader loader;
-    private MainController mainController;
+    private WelcomeController welcomeController;
 
     public void generateEventButtons(String path, List<List<String>> eventsInfo){
         EventHolder.getInstance().setButtonClicked(false);
@@ -79,8 +79,8 @@ public abstract class DisplayEventsController extends Observable implements GUIC
     }
 
     @Override
-    public void initData(MainController mainController) {
-        this.mainController = mainController;
+    public void initData(WelcomeController welcomeController) {
+        this.welcomeController = welcomeController;
     }
 
     public void observeEventInfoDelete(){

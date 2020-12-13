@@ -1,20 +1,25 @@
 package GUI.SignUp;
 
 import Entities.UserType;
-import GUI.MainController;
+import GUI.WelcomeController;
 import GUI.DataHolders.ManagersStorage;
 import UseCases.UserManager;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class SignUpController{
-    private MainController mainController;
+    private WelcomeController welcomeController;
     private UserManager userManager;
 
     @FXML private TextField usernameField;
@@ -30,8 +35,8 @@ public class SignUpController{
         this.userManager = ManagersStorage.getInstance().getUserManager();
     }
 
-    public void initData(MainController mainController){
-        this.mainController = mainController;
+    public void initData(WelcomeController welcomeController){
+        this.welcomeController = welcomeController;
     }
 
     @FXML protected void handleSignUpButtonAction(ActionEvent event) {
@@ -68,6 +73,12 @@ public class SignUpController{
     }
 
     @FXML protected void handleBackButtonAction(ActionEvent event) throws IOException {
-        mainController.handleLogOutButtonAction(event, false);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Welcome.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        stage.setScene(scene);
+        stage.show();
     }
 }

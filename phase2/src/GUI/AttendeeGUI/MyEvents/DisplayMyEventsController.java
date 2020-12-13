@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class DisplayMyEventsController extends DisplayEventsController implements GUIController {
-    private MainController mainController;
+    private WelcomeController welcomeController;
     private String username;
     private EventManager eventManager;
     private UserManager userManager;

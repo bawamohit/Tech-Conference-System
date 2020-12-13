@@ -1,7 +1,7 @@
 package GUI.OrganizerGUI.CreateAccounts;
 
 import Entities.UserType;
-import GUI.MainController;
+import GUI.WelcomeController;
 import GUI.DataHolders.ManagersStorage;
 import UseCases.UserManager;
 import javafx.fxml.FXML;
@@ -9,12 +9,9 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 import javafx.scene.control.TextField;
-import javafx.event.ActionEvent;
-
-import java.io.IOException;
 
 public class CreateAccountsController {
-    private MainController mainController;
+    private WelcomeController welcomeController;
     private UserManager userManager;
 
     @FXML private TextField usernameField;
@@ -35,8 +32,8 @@ public class CreateAccountsController {
         this.userManager = ManagersStorage.getInstance().getUserManager();
     }
 
-    public void initData(MainController mainController){
-        this.mainController = mainController;
+    public void initData(WelcomeController welcomeController){
+        this.welcomeController = welcomeController;
     }
 
 

@@ -16,8 +16,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MainController implements GUIController{
-    private String welcomeFXMLPath;
+public class WelcomeController implements GUIController{
+    private String welcomeFXMLPath = "Welcome.fxml";
     private UserManager userManager;
     private EventManager eventManager;
     private MessageManager messageManager;
@@ -27,27 +27,16 @@ public class MainController implements GUIController{
     @FXML private TextField usernameField;
     @FXML private TextField passwordField;
 
-    public void initData(MainController controller){
-        this.welcomeFXMLPath = controller.getWelcomeFXMLPath();
-        this.userManager = controller.getUserManager();
-        this.messageManager = controller.getMessageManager();
+    public void initialize(){
+        this.userManager = ManagersStorage.getInstance().getUserManager();
+        this.messageManager = ManagersStorage.getInstance().getMessageManager();
         this.username = null;
     }
 
-    public void initData(String welcomeFXMLPath) {
-        this.welcomeFXMLPath = welcomeFXMLPath;
+    public void initData(WelcomeController controller){
         this.userManager = ManagersStorage.getInstance().getUserManager();
-        this.eventManager = ManagersStorage.getInstance().getEventManager();
         this.messageManager = ManagersStorage.getInstance().getMessageManager();
-//        Font.loadFont(getClass().getResourceAsStream("/Resources/MontserratBlack.ttf"), 14);
-//        Font.loadFont(getClass().getResourceAsStream("/Resources/MontserratBold.ttf"), 14);
-//        Font.loadFont(getClass().getResourceAsStream("/Resources/MontserratExtrabold.ttf"), 14);
-//        Font.loadFont(getClass().getResourceAsStream("/Resources/MontserratMed.ttf"), 14);
-//        Font.loadFont(getClass().getResourceAsStream("/Resources/MontserratReg.ttf"), 14);
-    }
-
-    public String getWelcomeFXMLPath(){
-        return welcomeFXMLPath;
+        this.username = null;
     }
 
     public UserManager getUserManager(){
@@ -116,7 +105,6 @@ public class MainController implements GUIController{
     }
 
     public void setNewScene(ActionEvent event, FXMLLoader loader) {
-        //TODO new FXMLLoader(getClass().getResource("")); //relative or absolute?
         Parent root = null;
         try {
             root = loader.load();
@@ -125,23 +113,6 @@ public class MainController implements GUIController{
         }
         Scene scene = new Scene(root);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-
-        stage.setScene(scene);
-        GUIController controller = loader.getController();
-        controller.initData(this);
-        stage.show();
-    }
-
-    public void handleLogOutButtonAction(ActionEvent event, boolean closeStage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(welcomeFXMLPath));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        if(closeStage) stage.hide();
-
-        GUIController controller = loader.getController();
-        controller.initData(this);
-        UserHolder.getInstance().setUsername(null);
 
         stage.setScene(scene);
         stage.show();

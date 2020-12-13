@@ -2,7 +2,7 @@ package GUI.Message;
 
 import GUI.DataHolders.CollocutorHolder;
 import GUI.GUIController;
-import GUI.MainController;
+import GUI.WelcomeController;
 import GUI.DataHolders.ManagersStorage;
 import GUI.DataHolders.UserHolder;
 import UseCases.MessageManager;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MessageController implements GUIController {
-    private MainController mainController;
+    private WelcomeController welcomeController;
     protected MessageManager messageManager;
     protected SubScene subScene;
     protected String username;
@@ -53,8 +53,8 @@ public class MessageController implements GUIController {
 
 
     @Override
-    public void initData(MainController mainController) {
-        this.mainController = mainController;
+    public void initData(WelcomeController welcomeController) {
+        this.welcomeController = welcomeController;
     }
 
     @FXML
