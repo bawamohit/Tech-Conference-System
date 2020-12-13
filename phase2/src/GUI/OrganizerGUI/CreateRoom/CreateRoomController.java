@@ -7,6 +7,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
+/**
+ * The subscene where organizers can create rooms
+ */
 public class CreateRoomController {
     @FXML TextField roomNameField;
     @FXML TextField maxOccupancyField;

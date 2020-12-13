@@ -13,6 +13,9 @@ import javafx.scene.control.TextArea;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The subscene where organizers can make announcements
+ */
 public class AnnouncementsController {
     @FXML private TextArea textArea;
     @FXML private CheckBox adminCheckBox;
@@ -20,6 +23,10 @@ public class AnnouncementsController {
     @FXML private CheckBox speakerCheckBox;
     @FXML private CheckBox attendeeCheckBox;
 
+
+    /**
+     * Handles action when the send button is clicked. Sends the announcement.
+     */
     @FXML
     protected void handleSendButtonAction(ActionEvent event){
         UserManager userManager = ManagersStorage.getInstance().getUserManager();

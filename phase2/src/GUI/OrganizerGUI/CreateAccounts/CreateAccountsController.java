@@ -10,6 +10,9 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 import javafx.scene.control.TextField;
 
+/**
+ * The subscene where organizers can create accounts
+ */
 public class CreateAccountsController {
     private WelcomeController welcomeController;
     private UserManager userManager;
