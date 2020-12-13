@@ -10,9 +10,11 @@ import UseCases.RoomManager;
 import UseCases.UserManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Border;
 
 import java.util.List;
 import java.util.Observable;
@@ -56,6 +58,8 @@ public class EventInfoController extends Observable {
         label2.setText("Starts: " + eventInfo.get(2));
         label3.setText("Ends: " + eventInfo.get(3));
         speakers.setText("Speakers: ");
+        speakers.setPadding(Insets.EMPTY);
+        speakers.setTranslateX(-1);
         label4.setText(eventInfo.get(4));
         label5.setText("Organizer: " + eventInfo.get(5));
         label6.setText("Room: " + eventInfo.get(6));
