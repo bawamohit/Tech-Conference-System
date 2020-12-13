@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane fx:id="gridPane" hgap="50" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.OrganizerGUI.Message.OrganizerMessageController">
+<GridPane fx:id="gridPane" stylesheets="@OrganizerMessage.css" hgap="50" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.OrganizerGUI.Message.OrganizerMessageController">
     <VBox>
         <HBox spacing="10.0">
             <TextField fx:id="searchField" prefWidth="80" />

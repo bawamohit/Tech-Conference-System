@@ -11,7 +11,7 @@ import UseCases.UserManager;
 import java.util.List;
 import java.util.UUID;
 
-public class MyEventsController extends DisplayEventsController implements GUIController {
+public class DisplayTalksController extends DisplayEventsController implements GUIController {
     private MainController mainController;
     private String username;
     private EventManager eventManager;
