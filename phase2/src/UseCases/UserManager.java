@@ -1,6 +1,5 @@
 package UseCases;
 
-import java.time.LocalDateTime;
 import java.util.*;
 import Entities.User;
 import Entities.UserType;
@@ -24,20 +23,6 @@ public class UserManager {
     public List<String> getUsernameList() {
         Collection<String> users = usernamesToUsers.keySet();
         return new ArrayList<>(users);
-    }
-
-    /**
-     * Creates a list of names of all registered users and returns it.
-     *
-     * @return List of names
-     */
-    public List<String> getNameList() {
-        Collection<User> users = usernamesToUsers.values();
-        List<String> nameList = new ArrayList<>();
-        for (User user : users) {
-            nameList.add(user.getName());
-        }
-        return nameList;
     }
 
     //TODO javadoc
@@ -74,8 +59,6 @@ public class UserManager {
      * @param name The name of the user to be created.
      * @param username The username of the user to be created
      * @param password The pass of the user to be created.
-     *
-     * @return true if the user was successfully registered, and false if the username was taken.
      */
     public void registerUser(UserType userType, String name, String username, String password) {
         usernamesToUsers.put(username, new User(userType, name, username, password));
@@ -110,21 +93,19 @@ public class UserManager {
         return false;
     }
 
-//    For Phase 2
-
-//    /** Determines whether the given username is registered in this userManager
-//     *
-//     * @param username A string object that represents the username to be checked
-//     *
-//     * @return true if the username is registered, and false otherwise
-//     */
-//    public boolean updatePassword(String username, String newPassword) {
-//        if (isRegistered(username)) {
-//            usernamesToUsers.get(username).setPassword(newPassword);
-//            return true;
-//        }
-//        return false;
-//    }
+    /** Changes the password of the user
+     *
+     * @param username Username of the user whose password is to be changed
+     * @param newPassword The new password of the user
+     * @return true if the password is changed successfully
+     */
+    public boolean updatePassword(String username, String newPassword) {
+        if (isRegistered(username)) {
+            usernamesToUsers.get(username).setPassword(newPassword);
+            return true;
+        }
+        return false;
+    }
 
     /** Adds an event id to a desired user's list of events that they are signed up for.
      *
@@ -141,8 +122,6 @@ public class UserManager {
      *
      * @param username The username of the user who is removing this event.
      * @param eventId The id of the event that is being removed.
-     *
-     * @return true if the event id was successfully removed, and false if the event id was not present to begin with
      */
     //TODO change javadoc accordingly
     public void removeEventAttending(String username, UUID eventId) {
