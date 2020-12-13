@@ -18,7 +18,7 @@ public class SpeakerDashboardController extends UserDashboardController {
     @FXML private Button messageTalkButton;
 
     public void initialize(){
-        super.initData("/GUI/SpeakerGUI/MyEvents/MyEvents");
+        super.initData("/GUI/SpeakerGUI/MyEvents/DisplayTalks");
     }
 
     @FXML
