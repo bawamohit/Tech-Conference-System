@@ -11,7 +11,7 @@
         <Label fx:id="profile" prefWidth="150.0" textAlignment="CENTER" />
         <VBox prefHeight="535.0" prefWidth="223.0" snapToPixel="false" spacing="400">
             <VBox prefHeight="650.0" spacing="30.0">
-                <Button fx:id="deleteEventButton" onAction="#handleDeleteEventButtonAction" prefWidth="150.0" text="Delete Events">
+                <Button fx:id="deleteEventButton" onAction="#handleDeleteEventButtonAction" prefHeight="40.0" prefWidth="150.0" text="Delete Events">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -19,7 +19,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-                <Button fx:id="deleteChatButton" onAction="#handleDeleteChatButtonAction" prefWidth="150" text="Delete Chats">
+                <Button fx:id="deleteChatButton" onAction="#handleDeleteChatButtonAction" prefHeight="40.0" prefWidth="110.0" text="Delete Chats">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -27,7 +27,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-                <Button fx:id="messageButton" onAction="#handleMessageButtonAction" prefHeight="33.0" prefWidth="155" text="Message">
+                <Button fx:id="messageButton" onAction="#handleMessageButtonAction" prefHeight="40.0" prefWidth="155" text="Message">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
