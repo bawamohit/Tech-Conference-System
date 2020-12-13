@@ -37,6 +37,7 @@
     -fx-border-width: 0 0 1 0;
     -fx-background-color: transparent;
     -fx-background-radius: 0 ;
+    -fx-text-fill: black;
 }
 .text-field:focused {
     -fx-background-color: transparent ;

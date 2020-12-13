@@ -13,11 +13,11 @@
     <Label fx:id="label6" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="3" />
     <Label fx:id="label7" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="3" />
     <Label fx:id="label8" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-    <Button fx:id="button" onAction="#handleDeleteButton" text="Delete" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+    <Button fx:id="button" onAction="#handleDeleteButton" styleClass="button2" stylesheets="@../SceneParents/EventInfo.css" text="Delete" GridPane.columnIndex="3" GridPane.rowIndex="4" />
    <columnConstraints>
-      <ColumnConstraints />
-      <ColumnConstraints />
-      <ColumnConstraints />
+      <ColumnConstraints prefWidth="280.0" />
+      <ColumnConstraints prefWidth="280.0" />
+      <ColumnConstraints prefWidth="235.0" />
       <ColumnConstraints prefWidth="85.0" />
    </columnConstraints>
    <rowConstraints>

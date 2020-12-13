@@ -4,28 +4,28 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="center" hgap="10" prefHeight="680.0" prefWidth="900.0" styleClass="root" stylesheets="@../CreateStuff.css" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OrganizerGUI.CreateEvent.CreateEventController">
+<GridPane alignment="CENTER" hgap="15.0" prefHeight="680.0" prefWidth="900.0" styleClass="root" stylesheets="@../CreateStuff.css" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OrganizerGUI.CreateEvent.CreateEventController">
     <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
 
     <Label id="create" styleClass="label2" stylesheets="@../CreateStuff.css" text="Create Event" />
 
     <Label text="Event Name:" GridPane.rowIndex="1" />
-    <TextField fx:id="eventNameField" prefWidth="300" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <TextField fx:id="eventNameField" prefWidth="300" styleClass="text-field1" stylesheets="@../CreateStuff.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
     <Label text="Start Time:" GridPane.rowIndex="2" />
-    <TextField fx:id="startTimeField" promptText="YYYY-MM-DD HH:MM" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <TextField fx:id="startTimeField" promptText="YYYY-MM-DD HH:MM" styleClass="text-field1" stylesheets="@../CreateStuff.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
     <Label text="End Time:" GridPane.rowIndex="3" />
-    <TextField fx:id="endTimeField" promptText="YYYY-MM-DD HH:MM" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    <TextField fx:id="endTimeField" promptText="YYYY-MM-DD HH:MM" styleClass="text-field1" stylesheets="@../CreateStuff.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
     <Label text="Event Capacity" GridPane.rowIndex="4" />
-    <TextField fx:id="eventCapacityField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+    <TextField fx:id="eventCapacityField" styleClass="text-field1" stylesheets="@../CreateStuff.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
     <Label text="Speakers(optional)" GridPane.rowIndex="5" />
-    <TextField fx:id="speakersField" promptText="Speaker1,Speaker2,..." GridPane.columnIndex="1" GridPane.rowIndex="5" />
+    <TextField fx:id="speakersField" promptText="Speaker1,Speaker2,..." styleClass="text-field1" stylesheets="@../CreateStuff.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
     <Label text="Room:" GridPane.rowIndex="6" />
-    <TextField fx:id="roomNameField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+    <TextField fx:id="roomNameField" styleClass="text-field1" stylesheets="@../CreateStuff.css" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="7">
         <Button onAction="#handleCreateEventButtonAction" text="Create" />

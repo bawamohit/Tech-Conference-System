@@ -8,9 +8,9 @@
 
 <GridPane fx:id="gridPane" alignment="BASELINE_LEFT" hgap="20.0" prefHeight="803" prefWidth="1111.0" snapToPixel="false" styleClass="root" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OrganizerGUI.OrganizerDashboardController">
     <VBox fillWidth="false" maxWidth="151.0" minWidth="151.0" prefHeight="575.0" prefWidth="151.0" snapToPixel="false" spacing="50">
-        <Label fx:id="profile" prefHeight="46.0" prefWidth="150.0" />
+        <Label fx:id="profile" prefWidth="150.0" />
         <VBox maxWidth="151.0" minWidth="151.0" prefHeight="535.0" prefWidth="151.0" snapToPixel="false" spacing="400">
-            <VBox>
+            <VBox spacing="30.0">
                 <Button fx:id="modifyEventButton" maxWidth="151.0" minWidth="151.0" onAction="#handleModifyEventsButtonAction" prefHeight="34.0" prefWidth="151.0" text="Modify Events">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">

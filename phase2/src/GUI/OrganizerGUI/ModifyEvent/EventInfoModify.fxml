@@ -4,8 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane fx:id="gridPane" styleClass="root" stylesheets="@../../SceneParents/EventInfo.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.OrganizerGUI.ModifyEvent.EventInfoModifyController">
-    <Label fx:id="label1" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="4"/>
+<GridPane fx:id="gridPane" styleClass="root" stylesheets="@../../SceneParents/EventInfo.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OrganizerGUI.ModifyEvent.EventInfoModifyController">
+    <Label fx:id="label1" prefWidth="250" GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.rowIndex="0" />
     <Label fx:id="label2" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="1" />
     <Label fx:id="label3" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1" />
     <Label fx:id="label4" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="2" />
@@ -13,14 +13,14 @@
     <Label fx:id="label6" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="3" />
     <Label fx:id="label7" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="3" />
     <Label fx:id="label8" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-    <Button fx:id="modifySpeakerButton" onAction="#handleModifySpeakerButton" prefHeight="26.0" prefWidth="183.0" text="Modify Speaker" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-    <Button fx:id="editEventButton" onAction="#handleEditEventButton" prefHeight="26.0" prefWidth="181.0" text="Edit Event" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-    <Button fx:id="removeEventButton" onAction="#handleRemoveEventButton" prefWidth="250" text="Remove Event" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+    <Button fx:id="modifySpeakerButton" onAction="#handleModifySpeakerButton" prefHeight="26.0" text="Modify Speaker" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+    <Button fx:id="editEventButton" onAction="#handleEditEventButton" prefHeight="26.0" text="Edit Event" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+    <Button fx:id="removeEventButton" onAction="#handleRemoveEventButton" text="Remove Event" GridPane.columnIndex="3" GridPane.rowIndex="3" />
    <columnConstraints>
-      <ColumnConstraints />
-      <ColumnConstraints />
-      <ColumnConstraints />
-      <ColumnConstraints />
+      <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="250.0" />
+      <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="250.0" />
+      <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="228.0" />
+      <ColumnConstraints halignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="152.0" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints />
