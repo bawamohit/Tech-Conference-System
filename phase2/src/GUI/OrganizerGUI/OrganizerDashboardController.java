@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 import java.util.Observable;
 
 
-public class OrganizerDashboardController extends UserDashboardController implements GUIController {
+public class OrganizerDashboardController extends UserDashboardController{
 
     /**
      * Initializes the Dashboard scene.

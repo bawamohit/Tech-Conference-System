@@ -1,7 +1,6 @@
 package GUI.Message;
 
 import GUI.DataHolders.CollocutorHolder;
-import GUI.GUIController;
 import GUI.WelcomeController;
 import GUI.DataHolders.ManagersStorage;
 import GUI.DataHolders.UserHolder;
@@ -21,7 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MessageController implements GUIController {
+public class MessageController {
     private WelcomeController welcomeController;
     protected MessageManager messageManager;
     protected SubScene subScene;
@@ -49,12 +48,6 @@ public class MessageController implements GUIController {
             loadSubScene("/GUI/Empty");
         }
         gridPane.add(subScene, 1, 0);
-    }
-
-
-    @Override
-    public void initData(WelcomeController welcomeController) {
-        this.welcomeController = welcomeController;
     }
 
     @FXML

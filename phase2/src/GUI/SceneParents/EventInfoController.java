@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.UUID;
 
-public class EventInfoController extends Observable implements GUIController {
+public class EventInfoController extends Observable {
     private EventManager eventManager;
     private UserManager userManager;
     private RoomManager roomManager;
@@ -32,9 +32,6 @@ public class EventInfoController extends Observable implements GUIController {
     @FXML Label label6;
     @FXML Label label7;
     @FXML Label label8;
-
-    @Override
-    public void initData(WelcomeController welcomeController) { }
 
     public void initialize(){
         this.eventManager = ManagersStorage.getInstance().getEventManager();

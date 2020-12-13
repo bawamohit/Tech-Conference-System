@@ -1,15 +1,12 @@
 package GUI.SpeakerGUI.MyEvents;
 
-import GUI.GUIController;
 import GUI.SceneParents.EventInfoController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import java.util.List;
 
-public class EventInfoMessageController extends EventInfoController implements GUIController {
+public class EventInfoMessageController extends EventInfoController {
 
     @FXML Button messageButton;
     @FXML TextField textField;

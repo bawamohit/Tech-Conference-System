@@ -1,6 +1,5 @@
 package GUI.SceneParents;
 
-import GUI.GUIController;
 import GUI.WelcomeController;
 import GUI.DataHolders.ManagersStorage;
 import GUI.OrganizerGUI.ModifyEvent.EditEventController;
@@ -23,7 +22,7 @@ import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
-public abstract class UserDashboardController implements GUIController, Observer {
+public abstract class UserDashboardController implements Observer {
     private WelcomeController welcomeController;
     private String username;
     private SubScene subScene;
@@ -41,10 +40,6 @@ public abstract class UserDashboardController implements GUIController, Observer
         profile.setText(userManager.getName(username));
         loadSubScene(path);
         gridPane.add(subScene, 1, 0);
-    }
-
-    public void initData(WelcomeController welcomeController){
-        this.welcomeController = welcomeController;
     }
 
     public WelcomeController getMainController() {

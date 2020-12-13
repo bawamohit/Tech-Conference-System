@@ -1,12 +1,11 @@
 package GUI.AttendeeGUI.MyEvents;
 
 import GUI.SceneParents.EventInfoController;
-import GUI.GUIController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 
-public class EventInfoCancelController extends EventInfoController implements GUIController {
+public class EventInfoCancelController extends EventInfoController {
 
     @Override
     public void initialize() {

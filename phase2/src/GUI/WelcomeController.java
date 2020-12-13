@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class WelcomeController implements GUIController{
+public class WelcomeController{
     private String welcomeFXMLPath = "Welcome.fxml";
     private UserManager userManager;
     private EventManager eventManager;
@@ -28,12 +28,6 @@ public class WelcomeController implements GUIController{
     @FXML private TextField passwordField;
 
     public void initialize(){
-        this.userManager = ManagersStorage.getInstance().getUserManager();
-        this.messageManager = ManagersStorage.getInstance().getMessageManager();
-        this.username = null;
-    }
-
-    public void initData(WelcomeController controller){
         this.userManager = ManagersStorage.getInstance().getUserManager();
         this.messageManager = ManagersStorage.getInstance().getMessageManager();
         this.username = null;

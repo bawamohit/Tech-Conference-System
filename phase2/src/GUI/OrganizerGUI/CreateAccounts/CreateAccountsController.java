@@ -32,11 +32,6 @@ public class CreateAccountsController {
         this.userManager = ManagersStorage.getInstance().getUserManager();
     }
 
-    public void initData(WelcomeController welcomeController){
-        this.welcomeController = welcomeController;
-    }
-
-
     /**
      * Handles action when the signup button is clicked. Signs up the account.
      */

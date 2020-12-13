@@ -1,7 +1,6 @@
 package GUI.SceneParents;
 
 import GUI.DataHolders.EventHolder;
-import GUI.GUIController;
 import GUI.WelcomeController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -18,12 +17,11 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.UUID;
 
-public abstract class DisplayEventsController extends Observable implements GUIController, Observer {
+public abstract class DisplayEventsController extends Observable implements Observer {
     private SubScene subScene;
     @FXML private GridPane gridPane;
     @FXML private GridPane subGridPane;
     FXMLLoader loader;
-    private WelcomeController welcomeController;
 
     public void generateEventButtons(String path, List<List<String>> eventsInfo){
         EventHolder.getInstance().setButtonClicked(false);
@@ -76,11 +74,6 @@ public abstract class DisplayEventsController extends Observable implements GUIC
     public void update(Observable o, Object arg) {
         setChanged();
         notifyObservers(arg);
-    }
-
-    @Override
-    public void initData(WelcomeController welcomeController) {
-        this.welcomeController = welcomeController;
     }
 
     public void observeEventInfoDelete(){

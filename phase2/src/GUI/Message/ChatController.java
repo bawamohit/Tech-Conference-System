@@ -1,7 +1,6 @@
 package GUI.Message;
 
 import GUI.DataHolders.CollocutorHolder;
-import GUI.GUIController;
 import GUI.WelcomeController;
 import GUI.DataHolders.ManagersStorage;
 import GUI.DataHolders.UserHolder;
@@ -18,7 +17,7 @@ import javafx.scene.layout.VBox;
 
 import java.util.List;
 
-public class ChatController implements GUIController {
+public class ChatController {
     private MessageManager messageManager;
     private UserManager userManager;
     private String username;
@@ -28,10 +27,6 @@ public class ChatController implements GUIController {
     @FXML private ScrollPane scrollPane;
     @FXML private TextField textField;
     @FXML private VBox chatBox;
-
-    @Override
-    public void initData(WelcomeController welcomeController) {
-    }
 
     public void initialize(){
         this.messageManager = ManagersStorage.getInstance().getMessageManager();

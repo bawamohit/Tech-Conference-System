@@ -1,12 +1,11 @@
 package GUI.AdminGUI;
 
 import GUI.SceneParents.EventInfoController;
-import GUI.GUIController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 
-public class EventInfoDeleteController extends EventInfoController implements GUIController {
+public class EventInfoDeleteController extends EventInfoController {
 
     @FXML public void handleDeleteButton(ActionEvent event){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
