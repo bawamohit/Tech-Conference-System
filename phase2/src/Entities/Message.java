@@ -7,10 +7,10 @@ import java.time.LocalDateTime;
  *
  */
 public class Message {
-    private String sender;
-    private String receiver;
-    private LocalDateTime time;
-    private String content;
+    private final String sender;
+    private final String receiver;
+    private final LocalDateTime time;
+    private final String content;
 
     /** Creates an instance of Message
      *

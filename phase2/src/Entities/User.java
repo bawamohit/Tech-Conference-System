@@ -11,9 +11,9 @@ import java.util.UUID;
 public class User {
 
     private String name;
-    private String username;
+    private final String username;
     private String password;
-    private UserType userType;
+    private final UserType userType;
     private List<UUID> eventsAttending;
     private List<String> friends;
 
