@@ -17,9 +17,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class WelcomeController{
-    private String welcomeFXMLPath = "Welcome.fxml";
     private UserManager userManager;
-    private EventManager eventManager;
     private MessageManager messageManager;
     private String username;
 
@@ -35,10 +33,6 @@ public class WelcomeController{
 
     public UserManager getUserManager(){
         return userManager;
-    }
-
-    public EventManager getEventManager() {
-        return eventManager;
     }
 
     public MessageManager getMessageManager() { return messageManager; }

@@ -1,5 +1,3 @@
-package GUI;
-
 import GUI.DataHolders.ManagersStorage;
 import Gateways.EventGateway;
 import Gateways.MessageGateway;
@@ -16,11 +14,11 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 
-public class Prototype extends Application{
+public class GUIApplication extends javafx.application.Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Welcome.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Welcome.fxml"));
 
         Parent root = loader.load();
         Scene scene = new Scene(root);
