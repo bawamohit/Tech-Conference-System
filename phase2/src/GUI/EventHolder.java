@@ -19,10 +19,6 @@ public class EventHolder {
         return eventID;
     }
 
-    public boolean getButtonClicked(){
-        return buttonClicked;
-    }
-
     public boolean getRoomAvailabilityChecked() {
         return roomAvailabilityChecked;
     }

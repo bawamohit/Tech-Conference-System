@@ -123,9 +123,6 @@ public class ModifySpeakerController extends Observable {
         }
         return true;
     }
-    @FXML private boolean ifEventButtonClicked() {
-        return EventHolder.getInstance().getButtonClicked();
-    }
 
     public void handleBackButtonAction(ActionEvent actionEvent) {
         setChanged();
