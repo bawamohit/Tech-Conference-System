@@ -1,17 +1,9 @@
 import GUI.DataHolders.ManagersStorage;
-import Gateways.EventGateway;
-import Gateways.MessageGateway;
-import Gateways.UserGateway;
-import UseCases.EventManager;
-import UseCases.MessageManager;
-import UseCases.UserManager;
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 
 /**
