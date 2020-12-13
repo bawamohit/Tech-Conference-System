@@ -22,7 +22,7 @@
    </HBox>
 
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="7">
-        <Button fx:id="backButton" onAction="#handleBackButtonAction" text="Go Back" />
+        <Button fx:id="backButton" onAction="#handleBackButtonAction" text="Back" />
     </HBox>
 
     <HBox alignment="top_left" spacing="10" GridPane.rowIndex="1" />
