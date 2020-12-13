@@ -21,7 +21,7 @@
           GridPane.columnIndex="0" GridPane.rowIndex="0"
           GridPane.columnSpan="2"/>
 
-    <Label text="username:"
+    <Label text="Username:"
            GridPane.columnIndex="0" GridPane.rowIndex="1"/>
 
     <TextField fx:id="usernameField"
@@ -29,22 +29,22 @@
 
     <HBox spacing="10" alignment="bottom_right"
           GridPane.columnIndex="1" GridPane.rowIndex="2">
-        <Button text="check availability"
+        <Button text="Check Availability"
                 onAction="#handleCheckAvailableButtonAction"/>
     </HBox>
 
-    <Label text="password:"
+    <Label text="Password:"
            GridPane.columnIndex="0" GridPane.rowIndex="3"/>
 
     <PasswordField fx:id="passwordField"
                    GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-    <Label text="re-enter password:"
+    <Label text="Re-enter Password:"
            GridPane.columnIndex="0" GridPane.rowIndex="4"/>
 
     <PasswordField fx:id="passwordFieldRe"
                    GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
-    <Label text="preferred name:"
+    <Label text="Preferred name:"
            GridPane.columnIndex="0" GridPane.rowIndex="5"/>
 
     <TextField fx:id="nameField"
@@ -55,19 +55,19 @@
         <fx:define>
             <ToggleGroup fx:id="group" />
         </fx:define>
-        <RadioButton fx:id="radioButton" text="attendee" toggleGroup="$group" selected="true"/>
-        <RadioButton fx:id="radioButton2" text="organizer" toggleGroup="$group"/>
+        <RadioButton fx:id="radioButton" text="Attendee" toggleGroup="$group" selected="true"/>
+        <RadioButton fx:id="radioButton2" text="Organizer" toggleGroup="$group"/>
     </HBox>
 <!--    <HBox  spacing="6" alignment="bottom_right" GridPane.columnIndex="0" GridPane.rowIndex="8" />-->
     <HBox spacing="10" alignment="bottom_right"
           GridPane.columnIndex="1" GridPane.rowIndex="9">
-        <Button text="sign up"
+        <Button text="Sign Up"
                 onAction="#handleSignUpButtonAction"/>
     </HBox>
 
     <HBox spacing="10" alignment="bottom_left"
           GridPane.columnIndex="0" GridPane.rowIndex="9">
-        <Button text="back"
+        <Button text="Back"
                 onAction="#handleBackButtonAction"/>
     </HBox>
 

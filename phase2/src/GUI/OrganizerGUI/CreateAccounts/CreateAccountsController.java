@@ -84,11 +84,4 @@ public class CreateAccountsController {
             prompt.setText("This username is available!");
         }
     }
-
-    /**
-     * Handles action when the back button is clicked.
-     */
-    @FXML protected void handleBackButtonAction(ActionEvent event) throws IOException {
-        mainController.handleLogOutButtonAction(event, false);
-    }
 }

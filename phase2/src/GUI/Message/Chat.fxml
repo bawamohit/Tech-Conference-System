@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="675.0" prefWidth="755.0" styleClass="anchor-pane" stylesheets="@Chat.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Message.ChatController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="675.0" prefWidth="755.0" styleClass="anchor-pane" stylesheets="@Chat.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.Message.ChatController">
     <ScrollPane fx:id="scrollPane" fitToWidth="true" layoutX="17.0" layoutY="21.0" prefHeight="545.0" prefWidth="706.0" snapToPixel="false" styleClass="viewport" stylesheets="@Chat.css" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="10.0">
             <VBox fx:id="chatBox" stylesheets="@Chat.css">
          <padding>
