@@ -2,19 +2,62 @@
 
 <?import java.net.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane fx:id="gridPane" alignment="BASELINE_LEFT" prefHeight="803" prefWidth="1111" snapToPixel="false" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OrganizerGUI.OrganizerDashboardController">
+<GridPane fx:id="gridPane" alignment="BASELINE_LEFT" prefHeight="803" prefWidth="1111.0" snapToPixel="false" vgap="10" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OrganizerGUI.OrganizerDashboardController">
     <VBox fillWidth="false" prefHeight="575.0" prefWidth="346.0" snapToPixel="false" spacing="50">
         <Label fx:id="profile" prefHeight="46.0" prefWidth="150.0" />
         <VBox prefHeight="535.0" prefWidth="223.0" snapToPixel="false" spacing="400">
             <VBox>
-                <Button fx:id="modifyEventButton" onAction="#handleModifyEventsButtonAction" prefHeight="33.0" prefWidth="155" text="Modify Events" />
-                <Button fx:id="announcementsButton" onAction="#handleAnnouncementsButtonAction" prefHeight="33.0" prefWidth="150" text="Announcements" />
-                <Button fx:id="messageButton" onAction="#handleMessageButtonAction" prefHeight="33.0" prefWidth="150" text="Message" />
-                <Button fx:id="addEventbutton" onAction="#handleCreateEventButtonAction" prefHeight="33.0" prefWidth="155" text="Create Event" />
-                <Button fx:id="createSpeaker" onAction="#handleCreateAccountsButtonAction" prefHeight="33.0" prefWidth="150" text="Create Accounts" />
-                <Button fx:id="createRoom" onAction="#handleCreateRoomButtonAction" prefHeight="33.0" prefWidth="150" text="Create Room" />
+                <Button fx:id="modifyEventButton" maxWidth="164.0" minWidth="164.0" onAction="#handleModifyEventsButtonAction" prefHeight="34.0" prefWidth="164.0" text="Modify Events">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/Icons/modify_w.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+                <Button fx:id="announcementsButton" maxWidth="164.0" onAction="#handleAnnouncementsButtonAction" prefHeight="33.0" prefWidth="164.0" text="Announcements">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/Icons/announcement_w.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+                <Button fx:id="messageButton" maxWidth="164.0" minWidth="164.0" onAction="#handleMessageButtonAction" prefHeight="33.0" prefWidth="164.0" text="Message">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/Icons/conversation_w.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+                <Button fx:id="addEventbutton" minWidth="164.0" onAction="#handleCreateEventButtonAction" prefHeight="33.0" prefWidth="164.0" text="Create Event">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/Icons/modify_w.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+                <Button fx:id="createSpeaker" minWidth="164.0" onAction="#handleCreateAccountsButtonAction" prefHeight="33.0" prefWidth="164.0" text="Create Accounts">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/Icons/createacc_w.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+                <Button fx:id="createRoom" minWidth="164.0" onAction="#handleCreateRoomButtonAction" prefHeight="33.0" prefWidth="164.0" text="Create Room">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/Icons/room_w.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             </VBox>
         </VBox>
     </VBox>
