@@ -7,7 +7,9 @@ import javafx.fxml.FXML;
 
 import java.util.Observable;
 
-
+/**
+ * The dashboard for organizers
+ */
 public class OrganizerDashboardController extends UserDashboardController{
 
     /**

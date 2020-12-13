@@ -14,7 +14,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Observable;
 import java.util.UUID;
-
+/**
+ * The subscene where organizers can modify speakers
+ */
 public class ModifySpeakerController extends Observable {
     @FXML private RadioButton removeRadioButton;
     @FXML private RadioButton addRadioButton;
@@ -27,6 +29,9 @@ public class ModifySpeakerController extends Observable {
     private RoomManager roomManager;
     private UUID eventID;
 
+    /**
+     * Initializes the Modify Speaker scene.
+     */
     public void initialize() {
         this.eventManager = ManagersStorage.getInstance().getEventManager();
         this.userManager = ManagersStorage.getInstance().getUserManager();
@@ -52,6 +57,14 @@ public class ModifySpeakerController extends Observable {
             setChanged();
             notifyObservers("ModifySpeaker");
         }
+    }
+
+    /**
+     * Handles action when the back button is clicked. Switches scene to Modify Event scene.
+     */
+    public void handleBackButtonAction(ActionEvent actionEvent) {
+        setChanged();
+        notifyObservers("ModifyEvent");
     }
 
     private void addSpeakerInputChecksSuccess(){
@@ -121,9 +134,5 @@ public class ModifySpeakerController extends Observable {
         return true;
     }
 
-    public void handleBackButtonAction(ActionEvent actionEvent) {
-        setChanged();
-        notifyObservers("ModifyEvent");
-    }
 }
 

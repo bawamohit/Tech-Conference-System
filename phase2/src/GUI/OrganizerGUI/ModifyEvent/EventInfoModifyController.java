@@ -7,18 +7,30 @@ import javafx.scene.control.Alert;
 
 import java.util.UUID;
 
+/**
+ * The subscene where event infomation is shown
+ */
 public class EventInfoModifyController extends EventInfoController {
 
+    /**
+     * Handles action of when the modify speaker button is clicked. Loads ModifySpeaker subscene
+     */
     public void handleModifySpeakerButton(ActionEvent actionEvent) {
         setChanged();
         notifyObservers("ModifySpeaker");
     }
 
+    /**
+     * Handles action of when the edit event button is clicked. Loads EditEvent subscene
+     */
     public void handleEditEventButton(ActionEvent actionEvent) {
         setChanged();
         notifyObservers("EditEvent");
     }
 
+    /**
+     * Handles action of when the remove event button is clicked. Cancels an event.
+     */
     public void handleRemoveEventButton(ActionEvent actionEvent) {
         UUID eventID = EventHolder.getInstance().getEventID();
         for (String username: getEventManager().getEventAttendees(eventID)){
