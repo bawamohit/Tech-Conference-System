@@ -24,13 +24,6 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button fx:id="messageTalkButton" graphicTextGap="0.0" onAction="#handleMessageTalkButtonAction" prefHeight="33.0" prefWidth="150" text="Message Talk(s)">
-                    <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                            <Image url="@../Images/Icons/conversation_w.png" />
-                        </ImageView>
-                    </graphic>
-                </Button>
             </VBox>
         </VBox>
     </VBox>

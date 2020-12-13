@@ -1,0 +1,73 @@
+.root {
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background: rgba(95, 176, 183, 0.4);
+}
+
+.root2 {
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background: rgba(161, 78, 191, 0.4);
+}
+
+.button {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-color: rgba(94, 94, 94, 0.3);
+    -fx-width: 134px;
+    -fx-border-radius: 10px;
+}
+
+.button:hover {
+    -fx-background-color: rgba(94, 94, 94, 0.6);
+    -fx-text-fill: #ffffff;
+    -fx-border-color: transparent;
+}
+
+.button:focused {
+    -fx-background-color: rgba(95, 176, 183, 0.8);
+    -fx-text-fill: #ffffff;
+    -fx-border-color: transparent;
+}
+
+.button2:focused {
+    -fx-background-color: rgba(161, 78, 191, 0.8);
+    -fx-text-fill: #ffffff;
+    -fx-border-color: transparent;
+}
+
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+}
+
+.radio-button{
+    -fx-text-fill: #6d3684;
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+}
+
+.text-field {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-border-color: transparent;
+    -fx-background-color: rgba(59, 58, 58, 0.8);
+    -fx-background-radius: 10px ;
+}
+.text-field:focused {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-border-color: transparent;
+    -fx-background-color: rgba(59, 58, 58, 0.6);
+    -box-shadow: inset 1px 2px 4px rgba(0, 0, 0, 0.01), 0px 0px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* CSS HEX */
+/*--dark-orchid: #af2bbfff;*/
+/*--purple-plum: #a14ebfff;*/
+/*--blue-gray: #6c91bfff;*/
+/*--verdigris: #5fb0b7ff;*/
+/*--ocean-green: #5bc8afff; */

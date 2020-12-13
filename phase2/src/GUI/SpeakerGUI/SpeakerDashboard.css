@@ -31,16 +31,18 @@
 .button {
     -fx-text-fill: #ffffff;
     -fx-font-size: 14px;
-    -fx-pref-width: 66px;
-    -fx-pref-width: 134px;
-    -fx-margin: 20px;
+    -fx-margin: auto;
+    -fx-margin-left: auto;
+    -fx-margin-right: auto;
     -fx-background-color: transparent;
     -fx-wrap-text: true;
     -fx-text-align: center;
+    -fx-display: grid;
+    -fx-padding: 0px;
+    -fx-pref-width: 134px;
 }
 
 .button .label{
-    -fx-wrap-text: true;
     -fx-text-align: center;
 }
 
@@ -53,44 +55,6 @@
     -fx-background-color: rgba(94, 94, 94, 0.3);
     -fx-text-fill: #5fb0b7ff;
     -fx-font-weight: bold;
-}
-
-.menu-button {
-    -fx-background-color: transparent;
-    -fx-font-weight: normal;
-}
-
-.menu-button .label{
-    -fx-text-fill: #ffffff;
-    -fx-font-size: 14px;
-    -fx-background-color: transparent;
-    -fx-font-weight: normal;
-    -fx-width: 134px;
-}
-
-.menu-button:hover {
-    -fx-background-color: rgba(247, 247, 247, 0.3);
-    -fx-text-fill: #ffffff;
-}
-
-.menu-button:focused {
-    -fx-background-color: rgba(94, 94, 94, 0.3);
-    -fx-text-fill: #5fb0b7ff;
-    -fx-font-weight: bold;
-}
-
-.menu-item {
-    -fx-background-color: transparent;
-}
-
-.menu-item .label{
-    -fx-background-color: transparent;
-    -fx-text-fill: white;
-    -fx-font-weight: normal;
-}
-
-.context-menu {
-    -fx-background-color: transparent;
 }
 
 .label {
