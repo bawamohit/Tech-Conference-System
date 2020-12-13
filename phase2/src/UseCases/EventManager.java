@@ -237,14 +237,12 @@ public class EventManager {
      * @param maxCapacity the maximum capacity of this event excluding the speaker; this should not exceed the maximum
      *                     capacity of the room
      * @param id id of the new event
-     * @return The ID of the new event created
      */
-    public UUID addEvent(String eventName, String organizer, LocalDateTime startTime, LocalDateTime endTime,
+    public void addEvent(String eventName, String organizer, LocalDateTime startTime, LocalDateTime endTime,
                          String roomName, int maxCapacity, UUID id){
         Event newEvent = new Event(eventName, organizer, startTime, endTime, roomName, maxCapacity);
         newEvent.setId(id);
         events.put(newEvent.getId(), newEvent);
-        return newEvent.getId();
     }
 
     /**
@@ -323,7 +321,7 @@ public class EventManager {
     /**
      * Implements getter for all information regarding of every event in a given list
      *
-     * @param uuidList list of all eventids
+     * @param uuidList list of all eventIds
      * @return List of strings with all information regarding the event for every event in list
      */
     public List<List<String>> getAllEventsInfo(List<UUID> uuidList){
@@ -340,7 +338,6 @@ public class EventManager {
      *
      * @param eventID ID of event to add attendee to
      * @param username name of attendee to be added
-     * @return a boolean indicating if user was successfully added
      */
     public void addAttendee(UUID eventID, String username){
         Event event = events.get(eventID);
@@ -409,7 +406,7 @@ public class EventManager {
         return false;
     }
 
-    /**Sorts all events from earlist starttime to latest starttime
+    /**Sorts all events from earliest startTime to latest startTime
      *
      * @param eventIDList list of Event IDs to sort
      * @return sorted list of Event IDs by start time
