@@ -1,1 +1,65 @@
+.root {
+    -fx-background-image: url("../Images/dashboardbkg.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
 
+.VBox {
+    -fx-spacing: 30;
+    -fx-padding: 8;
+}
+
+.grid {
+    -fx-background: transparent;
+}
+
+.pane {
+    -fx-background: transparent;
+    -fx-spacing: 30;
+    -fx-padding: 8;
+}
+
+.button {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-margin: auto;
+    -fx-margin-left: auto;
+    -fx-margin-right: auto;
+    -fx-background-color: transparent;
+    -fx-wrap-text: true;
+    -fx-text-align: center;
+    -fx-display: grid;
+    -fx-padding: 0px;
+    -fx-pref-width: 134px;
+}
+
+.button.label {
+    -fx-text-align: center;
+}
+
+.button:hover {
+    -fx-background-color: rgba(247, 247, 247, 0.3);
+    -fx-text-fill: #ffffff;
+}
+
+.button:focused {
+    -fx-background-color: rgba(94, 94, 94, 0.3);
+    -fx-text-fill: #5fb0b7ff;
+    -fx-font-weight: bold;
+}
+
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+/* CSS HEX */
+/*--dark-orchid: #af2bbfff;*/
+/*--purple-plum: #a14ebfff;*/
+/*--blue-gray: #6c91bfff;*/
+/*--verdigris: #5fb0b7ff;*/
+/*--dark-grey: #5e5e5e;*/
+/*--off-white: #f7f7f7;*/
+/*--ocean-green: #5bc8afff; */
