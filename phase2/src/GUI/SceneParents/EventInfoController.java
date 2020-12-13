@@ -46,11 +46,11 @@ public class EventInfoController extends Observable implements GUIController {
         this.eventInfo = eventManager.getEventsInfo(eventID);
 
         label1.setText("Event Name: " + eventInfo.get(1));
-        label2.setText("Starts: " + eventInfo.get(3));
-        label3.setText("Ends: " + eventInfo.get(4));
-        label4.setText("Speakers: " + eventInfo.get(2));
-        label5.setText("Organizers: " + eventInfo.get(6));
-        label6.setText("Room: " + eventInfo.get(5));
+        label2.setText("Starts: " + eventInfo.get(2));
+        label3.setText("Ends: " + eventInfo.get(3));
+        label4.setText("Speakers: " + eventInfo.get(4));
+        label5.setText("Organizers: " + eventInfo.get(5));
+        label6.setText("Room: " + eventInfo.get(6));
         label7.setText("Maximum Capacity: " + eventInfo.get(7));
         label8.setText("Available Spots: " + eventInfo.get(8));
     }

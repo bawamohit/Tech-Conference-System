@@ -13,7 +13,7 @@
 <Label fx:id="label6" prefWidth="250" GridPane.rowIndex="3" />
 <Label fx:id="label7" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 <Label fx:id="label8" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-   <Button fx:id="messageButton" mnemonicParsing="false" onAction="#handleMessageButton" prefHeight="30.0" prefWidth="98.0" text="Message" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+   <Button fx:id="messageButton" mnemonicParsing="false" onAction="#handleMessageButton" prefHeight="30.0" prefWidth="200" text="Message Attendees" GridPane.columnIndex="3" GridPane.rowIndex="4" />
    <TextField fx:id="textField" prefHeight="31.0" prefWidth="613.0" GridPane.columnSpan="3" GridPane.rowIndex="4" />
    <columnConstraints>
       <ColumnConstraints maxWidth="272.40000000000003" minWidth="211.4000152587891" prefWidth="225.4000152587891" />

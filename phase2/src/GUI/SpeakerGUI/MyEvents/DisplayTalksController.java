@@ -24,6 +24,6 @@ public class DisplayTalksController extends DisplayEventsController implements G
         this.username = UserHolder.getInstance().getUsername();
         List<UUID> myEventIDs = userManager.getEventsAttending(username);
         List<List<String>> eventsInfo = eventManager.getAllEventsInfo(myEventIDs); //duplicate
-        generateEventButtons("DisplayEventInfo", eventsInfo);
+        generateEventButtons("EventInfoMessage", eventsInfo);
     }
 }
