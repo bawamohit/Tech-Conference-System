@@ -16,6 +16,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * The subscene where organizers can create events
+ */
 public class CreateEventController {
     private UserManager userManager;
     private RoomManager roomManager;
@@ -29,6 +32,9 @@ public class CreateEventController {
     @FXML private TextField roomNameField;
     @FXML private TextField speakersField;
 
+    /**
+     * Initializes the Create Events scene.
+     */
     public void initialize(){
         this.userManager = ManagersStorage.getInstance().getUserManager();
         this.roomManager  = ManagersStorage.getInstance().getRoomManager();
@@ -36,6 +42,9 @@ public class CreateEventController {
         this.username = UserHolder.getInstance().getUsername();
     }
 
+    /**
+     * Handles action when the create event button is clicked. Creates the account.
+     */
     @FXML  protected void handleCreateEventButtonAction(ActionEvent event) {
         String eventName = eventNameField.getText();
         String startTimeString = startTimeField.getText();

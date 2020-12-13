@@ -194,6 +194,11 @@ public class Event implements Comparable<Event> {
      */
     public void setMaxCapacity(int newCap){ this.maxCapacity = newCap; }
 
+    /**
+     * Overrides the compareTo method, now allowing events to be sorted from earliest to latest start times
+     *
+     * @param event event we are comparing this event with
+     */
     @Override
     public int compareTo(Event event) {
         if (this.startTime.isBefore(event.startTime)){

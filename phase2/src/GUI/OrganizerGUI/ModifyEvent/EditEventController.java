@@ -46,6 +46,9 @@ public class EditEventController extends Observable {
         label3.setText("Maximum Capacity: " + eventInfo.get(7));
     }
 
+    /**
+     * Handles action when the change button is clicked. Changes the capacity, or room (depending on the user choice).
+     */
     @FXML public void handleChangeButtonAction(){
         if(capacityRadioButton.isSelected()){
             changeCapacity();
@@ -56,6 +59,14 @@ public class EditEventController extends Observable {
         else{
             createAlertMessage("Please select either to change event capacity or room");
         }
+    }
+
+    /**
+     * Handles action when the back button is clicked. Switches display back to the Modify event scene.
+     */
+    public void handleBackButtonAction(ActionEvent actionEvent) {
+        setChanged();
+        notifyObservers("ModifyEvent");
     }
 
     private void changeCapacity(){
@@ -125,8 +136,4 @@ public class EditEventController extends Observable {
         return roomCapacity > (eventCapacity + speakerSize);
     }
 
-    public void handleBackButtonAction(ActionEvent actionEvent) {
-        setChanged();
-        notifyObservers("ModifyEvent");
-    }
 }

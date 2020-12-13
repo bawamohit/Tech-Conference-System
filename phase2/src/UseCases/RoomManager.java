@@ -4,6 +4,11 @@ import java.time.LocalDateTime;
 import java.util.*;
 import Entities.Room;
 
+
+/**
+ * This class is one of the use cases classes for this program, specifically for manipulating the Room entity class.
+ * It stores a map of all room names to its room object.
+ */
 public class RoomManager {
     private HashMap<String, Room> rooms;
 
