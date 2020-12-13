@@ -1,0 +1,98 @@
+.root {
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background: transparent;
+}
+
+.scroll-pane > .viewport  {
+    -fx-background-color: transparent;
+    -padding-top: 10px;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-color: rgba(94, 94, 94, 0.3);
+    -padding-top: 10px;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:rgba(94, 94, 94, 0.6);
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: rgba(247, 247, 247, 0.7);
+    -fx-background-radius: 5em;
+}
+
+.grid {
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+}
+
+
+.button {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-background-color: transparent;
+    /*-fx-white-space: normal; //TODO fix whitespace*/
+    -fx-width: 134px;
+}
+
+.button:hover {
+    -fx-background-color: rgba(247, 247, 247, 0.3);
+    -fx-text-fill: #ffffff;
+}
+
+.button:focused {
+    -fx-background-color: rgba(161, 78, 191, 0.6);
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #6d3684;
+}
+
+.radio-button{
+    -fx-text-fill: #6d3684;
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+}
+
+.text-field {
+    -fx-border-color: #6d3684;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 ;
+}
+.text-field:focused {
+    -fx-background-color: transparent ;
+    -fx-border-color: #6d3684;
+    -fx-border-width: 0 0 1 0;
+    box-shadow: inset 1px 2px 4px rgba(0, 0, 0, 0.01), 0px 0px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
+/* CSS HEX */
+/*--dark-orchid: #af2bbfff;*/
+/*--purple-plum: #a14ebfff;*/
+/*--blue-gray: #6c91bfff;*/
+/*--verdigris: #5fb0b7ff;*/
+/*--ocean-green: #5bc8afff; */

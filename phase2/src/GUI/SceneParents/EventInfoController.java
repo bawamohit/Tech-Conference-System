@@ -5,6 +5,7 @@ import GUI.DataHolders.EventHolder;
 import GUI.DataHolders.ManagersStorage;
 import GUI.DataHolders.UserHolder;
 import UseCases.EventManager;
+import UseCases.MessageManager;
 import UseCases.RoomManager;
 import UseCases.UserManager;
 import javafx.fxml.FXML;
@@ -18,6 +19,7 @@ public class EventInfoController extends Observable implements GUIController {
     private EventManager eventManager;
     private UserManager userManager;
     private RoomManager roomManager;
+    private MessageManager messageManager;
     private String username;
     private UUID eventID;
     private List<String> eventInfo;
@@ -38,6 +40,7 @@ public class EventInfoController extends Observable implements GUIController {
         this.eventManager = ManagersStorage.getInstance().getEventManager();
         this.userManager = ManagersStorage.getInstance().getUserManager();
         this.roomManager = ManagersStorage.getInstance().getRoomManager();
+        this.messageManager = ManagersStorage.getInstance().getMessageManager();
         this.username = UserHolder.getInstance().getUsername();
         this.eventID = EventHolder.getInstance().getEventID();
         this.eventInfo = eventManager.getEventsInfo(eventID);
@@ -71,5 +74,7 @@ public class EventInfoController extends Observable implements GUIController {
     public RoomManager getRoomManager() {
         return roomManager;
     }
+
+    public MessageManager getMessageManager() { return messageManager; }
 
 }
