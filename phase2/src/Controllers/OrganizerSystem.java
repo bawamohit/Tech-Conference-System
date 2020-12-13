@@ -84,10 +84,10 @@ public class OrganizerSystem extends UserSystem {
         presenter.printAsk("message");
         String content = scanner.nextLine();
         if (choice.equals("4")) {
-            List<String> speakers = tcs.getUM().getSpeakerList();
+            List<String> speakers = tcs.getUM().getUserList(UserType.SPEAKER);
             tcs.getMM().messageAll(username, speakers, content);
         } else {
-            List<String> attendees = tcs.getUM().getAttendeeList();
+            List<String> attendees = tcs.getUM().getUserList(UserType.ATTENDEE);
             tcs.getMM().messageAll(username, attendees, content);
         }
         presenter.printSuccess();
