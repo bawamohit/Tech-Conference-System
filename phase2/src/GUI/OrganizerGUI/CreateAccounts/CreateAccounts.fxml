@@ -98,7 +98,7 @@
             <children>
                 <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                <children>
-            
+
                     <Text id="signUp" text="Sign Up" />
                </children></HBox>
             </children>

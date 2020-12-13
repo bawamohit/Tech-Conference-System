@@ -1,50 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.text.Text?>
-<?import javafx.geometry.Insets?>
-<GridPane xmlns="http://javafx.com/javafx"
-          xmlns:fx="http://javafx.com/fxml"
-          fx:controller="GUI.OrganizerGUI.CreateRoom.CreateRoomController"
-          alignment="center" hgap="10" vgap="10"
-          prefHeight="650.0" prefWidth="900.0"
-          styleClass="root">
-    <padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
-
-    <Text id="create" text="Create Room"
-          GridPane.columnIndex="0" GridPane.rowIndex="0"
-          GridPane.columnSpan="2"/>
-
-    <Label text="Room Name:"
-           GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-
-    <TextField fx:id="roomNameField"
-               GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-
-    <HBox spacing="10" alignment="bottom_right"
-          GridPane.columnIndex="1" GridPane.rowIndex="2">
-        <Button text="Check Name Availability"
-                onAction="#handleCheckNameButtonAction"/>
-    </HBox>
-
-    <Label text="Maximum Occupancy"
-           GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-
-    <TextField fx:id="maxOccupancyField"
-               GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-
-    <HBox  spacing="10" alignment="bottom_right" GridPane.columnIndex="0" GridPane.rowIndex="4" />
-
-    <HBox spacing="10" alignment="bottom_right"
-          GridPane.columnIndex="1" GridPane.rowIndex="5">
-        <Button text="Create"
-                onAction="#handleCreateButtonAction"/>
-    </HBox>
-
-    <Text fx:id="prompt"
-          GridPane.columnIndex="0" GridPane.columnSpan="2"
-          GridPane.halignment="RIGHT" GridPane.rowIndex="6"/>
-
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="947.0" styleClass="root" stylesheets="@../CreateStuff.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OrganizerGUI.CreateRoom.CreateRoomController">
+   <columnConstraints>
+      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="947.0" minWidth="947.0" prefWidth="947.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="700.0" minHeight="700.0" prefHeight="700.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <GridPane alignment="CENTER" hgap="10" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" styleClass="grid" stylesheets="@../CreateStuff.css" vgap="10">
+          <padding>
+            <Insets bottom="10" left="25" right="25" top="25" />
+         </padding>
+         <Label styleClass="label2" stylesheets="@../CreateStuff.css" text="Create Room" />
+      
+          <Label stylesheets="@../CreateStuff.css" text="Room Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+      
+          <TextField fx:id="roomNameField" styleClass="text-field" stylesheets="@../CreateStuff.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      
+          <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="2">
+              <Button onAction="#handleCheckNameButtonAction" stylesheets="@../CreateStuff.css" text="Check Name Availability" />
+          </HBox>
+      
+          <Label stylesheets="@../CreateStuff.css" text="Maximum Occupancy" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+      
+          <TextField fx:id="maxOccupancyField" styleClass="text-field" stylesheets="@../CreateStuff.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      
+          <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+      
+          <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
+              <Button onAction="#handleCreateButtonAction" text="Create" />
+          </HBox>
+      
+          <Text fx:id="prompt" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
+      
+      </GridPane>
+   </children>
 </GridPane>
