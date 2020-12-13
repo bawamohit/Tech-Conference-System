@@ -9,16 +9,16 @@
     <Label fx:id="label2" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="1" />
     <Label fx:id="label3" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1" />
     <HBox GridPane.rowIndex="2">
-        <Button fx:id="speakers" onAction="#handleDetailedSpeakersButtonAction"/>
-        <Label fx:id="label4" prefWidth="250"/>
+        <Button fx:id="speakers" onAction="#handleDetailedSpeakersButtonAction" />
+        <Label fx:id="label4" prefWidth="250" />
     </HBox>
     <Label fx:id="label5" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="2" />
     <Label fx:id="label6" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="3" />
     <Label fx:id="label7" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="3" />
     <Label fx:id="label8" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="3" />
     <Button fx:id="modifySpeakerButton" onAction="#handleModifySpeakerButton" prefHeight="26.0" text="Modify Speaker" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-    <Button fx:id="editEventButton" onAction="#handleEditEventButton" prefHeight="26.0" text="Edit Event" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-    <Button fx:id="removeEventButton" onAction="#handleRemoveEventButton" text="Remove Event" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+    <Button fx:id="editEventButton" onAction="#handleEditEventButton" prefHeight="26.0" prefWidth="132.0" text="Edit Event" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+    <Button fx:id="removeEventButton" onAction="#handleRemoveEventButton" prefWidth="132.0" text="Remove Event" GridPane.columnIndex="3" GridPane.rowIndex="3" />
    <columnConstraints>
       <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="250.0" />
       <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="250.0" />
