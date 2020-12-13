@@ -11,6 +11,7 @@ import UseCases.UserManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 import java.util.List;
@@ -29,6 +30,7 @@ public class EventInfoController extends Observable {
     @FXML Label label1;
     @FXML Label label2;
     @FXML Label label3;
+    @FXML Button speakers;
     @FXML Label label4;
     @FXML Label label5;
     @FXML Label label6;
@@ -47,7 +49,8 @@ public class EventInfoController extends Observable {
         label1.setText("Event Name: " + eventInfo.get(1));
         label2.setText("Starts: " + eventInfo.get(2));
         label3.setText("Ends: " + eventInfo.get(3));
-        label4.setText("Speakers: " + eventInfo.get(4));
+        speakers.setText("Speakers: ");
+        label4.setText(eventInfo.get(4));
         label5.setText("Organizers: " + eventInfo.get(5));
         label6.setText("Room: " + eventInfo.get(6));
         label7.setText("Maximum Capacity: " + eventInfo.get(7));
@@ -77,15 +80,8 @@ public class EventInfoController extends Observable {
     public MessageManager getMessageManager() { return messageManager; }
 
     @FXML protected void handleDetailedSpeakersButtonAction(ActionEvent event) {
-        String message = "Speakers for this event: " + eventInfo.get(5);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-
-    @FXML protected void handleDetailedOrganizerButtonAction(ActionEvent event) {
         String message = "Speakers for this event: " + eventInfo.get(4);
+        if(eventInfo.get(4).isEmpty()){message = "This event has no speakers.";}
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
         alert.setContentText(message);
