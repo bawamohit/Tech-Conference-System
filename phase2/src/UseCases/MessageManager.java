@@ -59,7 +59,12 @@ public class MessageManager {
         }
     }
 
-    //TODO javadoc
+    /** Sends a message from the sender to all the receivers as an announcement
+     *
+     * @param sender The sender of the announcement
+     * @param receivers The list of receivers of the announcements
+     * @param content The content of the announcements
+     */
     public void sendAnnouncement(String sender, List<String> receivers, String content){
         content = "Announcement:\n" + content;
         for(String receiver: receivers) {

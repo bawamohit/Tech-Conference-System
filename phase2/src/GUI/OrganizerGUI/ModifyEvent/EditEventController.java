@@ -16,6 +16,9 @@ import java.util.List;
 import java.util.Observable;
 import java.util.UUID;
 
+/**
+ * The subscene where organizers can edit events
+ */
 public class EditEventController extends Observable {
 
     @FXML private TextField textField;
@@ -30,6 +33,9 @@ public class EditEventController extends Observable {
     private RoomManager roomManager;
     private UUID eventID;
 
+    /**
+     * Initializes the edit event scene.
+     */
     public void initialize() {
         this.eventManager = ManagersStorage.getInstance().getEventManager();
         this.roomManager = ManagersStorage.getInstance().getRoomManager();
@@ -85,7 +91,7 @@ public class EditEventController extends Observable {
             return;
         }
         eventManager.setEventRoomName(eventID, roomName);
-        roomManager.removeEventFromRoom(eventID, roomName);
+        roomManager.removeEventFromSchedule(eventID);
         roomManager.addEventToSchedule(eventID, roomName, start, end);
         createAlertMessage("Room Changed!");
         setChanged();

@@ -8,6 +8,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * The subscene where modifiable events are displayed
+ */
 public class DisplayModifiableEventsController extends DisplayEventsController {
     /**
      * Initializes the Modify Event scene.
