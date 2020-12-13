@@ -49,10 +49,10 @@
     </stylesheets>
     <columnConstraints>
         <ColumnConstraints maxWidth="320" minWidth="150" prefWidth="150" />
-        <ColumnConstraints maxWidth="900.0" minWidth="900.0" prefWidth="900.0" />
+        <ColumnConstraints maxWidth="947.0" minWidth="947.0" prefWidth="947.0" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints />
+        <RowConstraints maxHeight="680.0" minHeight="680.0" prefHeight="680.0" />
         <RowConstraints />
     </rowConstraints>
    <padding>

@@ -8,9 +8,9 @@
     <Label fx:id="label1" prefWidth="250" GridPane.rowIndex="0" />
     <Label fx:id="label2" prefWidth="250" GridPane.rowIndex="1" />
     <Label fx:id="label3" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-    <HBox GridPane.rowIndex="2">
-        <Button fx:id="speakers" onAction="#handleDetailedSpeakersButtonAction"/>
-        <Label fx:id="label4" prefWidth="250"/>
+    <HBox GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+        <Button fx:id="speakers" maxHeight="-Infinity" minHeight="-Infinity" onAction="#handleDetailedSpeakersButtonAction" prefHeight="25.0" styleClass="button3" stylesheets="@../../SceneParents/EventInfo.css" />
+        <Label fx:id="label4" maxHeight="-Infinity" maxWidth="300.0" minHeight="-Infinity" prefHeight="25.0" text=" " />
     </HBox>
     <Label fx:id="label5" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="2" />
     <Label fx:id="label6" prefWidth="250" GridPane.rowIndex="3" />
@@ -19,16 +19,16 @@
     <Button fx:id="button" onAction="#handleSignUpButton" text="Sign Up" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="5">
 </Button>
    <columnConstraints>
-      <ColumnConstraints minWidth="10.0" />
+      <ColumnConstraints minWidth="10.0" prefWidth="300.0" />
       <ColumnConstraints />
       <ColumnConstraints minWidth="150.0" />
       <ColumnConstraints prefWidth="120.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
-      <RowConstraints />
+      <RowConstraints prefHeight="20.0" />
+      <RowConstraints prefHeight="20.0" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" />
+      <RowConstraints prefHeight="20.0" />
       <RowConstraints />
       <RowConstraints />
    </rowConstraints>

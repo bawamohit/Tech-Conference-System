@@ -39,6 +39,28 @@
     -fx-border-color: transparent;
 }
 
+.button3 {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.button3:hover {
+    -fx-underline: true;
+    -fx-font-weight: bold;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.button2:focused {
+    -fx-background-color: rgba(161, 78, 191, 0.8);
+    -fx-text-fill: #ffffff;
+    -fx-border-color: transparent;
+}
+
+
 .label {
     -fx-font-size: 14px;
     -fx-text-fill: #ffffff;

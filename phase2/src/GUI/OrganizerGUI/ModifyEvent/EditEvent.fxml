@@ -3,63 +3,61 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
 <GridPane alignment="center" hgap="10" prefHeight="680.0" prefWidth="900.0" styleClass="root" stylesheets="@ModifyStuff.css" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OrganizerGUI.ModifyEvent.EditEventController">
     <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
-
-    <Text id="title" text="Edit Event" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
-
-    <HBox layoutX="187.0" layoutY="409.0" prefHeight="18.0" prefWidth="391.0" snapToPixel="false" spacing="10.0" GridPane.rowIndex="1">
-        <children>
-            <RadioButton fx:id="capacityRadioButton" graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleChangeCapacityButtonAction" text="change capacity">
-                <toggleGroup>
-                    <ToggleGroup fx:id="group" />
-                </toggleGroup></RadioButton>
-            <RadioButton fx:id="roomRadioButton" graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleChangeRoomButtonAction" text="change room" toggleGroup="$group" />
-        </children></HBox>
+   <Label styleClass="label3" stylesheets="@ModifyStuff.css" text="Edit Event" />
 
 
-    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
+    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="6">
         <Button onAction="#handleChangeButtonAction" text="Change" />
     </HBox>
-   <HBox prefHeight="16.0" prefWidth="391.0" GridPane.rowIndex="5">
+   <HBox prefHeight="16.0" prefWidth="391.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
       <children>
       
           <Label fx:id="text" />
-      
-          <TextField fx:id="textField" prefHeight="26.0" prefWidth="286.0" visible="false" />
+
+          <TextField fx:id="textField" prefHeight="26.0" prefWidth="286.0" styleClass="text-field1" stylesheets="@ModifyStuff.css" visible="false" />
       </children>
    </HBox>
 
-    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="6">
+    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="7">
         <Button fx:id="backButton" onAction="#handleBackButtonAction" text="Go Back" />
     </HBox>
 
-    <HBox alignment="top_left" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="0">
-        <Label fx:id="label1" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+    <HBox alignment="top_left" spacing="10" GridPane.rowIndex="1" />
+
+    <HBox alignment="top_left" spacing="10" GridPane.rowIndex="3">
+        <Label fx:id="label2" prefWidth="250" styleClass="label2" stylesheets="@ModifyStuff.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
     </HBox>
 
-    <HBox alignment="top_left" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="1">
-        <Label fx:id="label2" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <HBox alignment="top_left" spacing="10" GridPane.rowIndex="4">
+        <Label fx:id="label3" prefWidth="250" styleClass="label2" stylesheets="@ModifyStuff.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
     </HBox>
-
-    <HBox alignment="top_left" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="2">
-        <Label fx:id="label3" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-    </HBox>
+     <Label fx:id="label1" prefWidth="250" styleClass="label2" stylesheets="@ModifyStuff.css" GridPane.rowIndex="2" />
+   <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.rowSpan="2">
+      <children>
+            <RadioButton fx:id="capacityRadioButton" graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleChangeCapacityButtonAction" text="Change Capacity">
+                <toggleGroup>
+                    <ToggleGroup fx:id="group" />
+                </toggleGroup></RadioButton>
+            <RadioButton fx:id="roomRadioButton" graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleChangeRoomButtonAction" text="Change Room" toggleGroup="$group" />
+      </children>
+   </VBox>
 
     <columnConstraints>
-        <ColumnConstraints />
-        <ColumnConstraints />
+        <ColumnConstraints prefWidth="300.0" />
+        <ColumnConstraints prefWidth="200.0" />
     </columnConstraints>
     <rowConstraints>
+        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" />
+        <RowConstraints />
+        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" />
         <RowConstraints />
         <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
+        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" />
     </rowConstraints>
 
 </GridPane>

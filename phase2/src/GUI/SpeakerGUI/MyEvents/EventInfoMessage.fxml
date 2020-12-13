@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane fx:id="gridPane" prefHeight="79.0" prefWidth="855.0" snapToPixel="false" styleClass="root2" stylesheets="@EventInfoMessage.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.SpeakerGUI.MyEvents.EventInfoMessageController">
+<GridPane fx:id="gridPane" prefHeight="125.0" prefWidth="900.0" snapToPixel="false" styleClass="root2" stylesheets="@EventInfoMessage.css" vgap="5.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SpeakerGUI.MyEvents.EventInfoMessageController">
 <Label fx:id="label1" prefWidth="250" GridPane.rowIndex="1" />
 <Label fx:id="label2" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 <Label fx:id="label3" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="1" />
@@ -13,18 +13,21 @@
 <Label fx:id="label6" prefWidth="250" GridPane.rowIndex="3" />
 <Label fx:id="label7" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 <Label fx:id="label8" prefWidth="250" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-   <Button fx:id="messageButton" mnemonicParsing="false" onAction="#handleMessageButton" prefHeight="30.0" prefWidth="200" text="Message Attendees" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-   <TextField fx:id="textField" prefHeight="31.0" prefWidth="613.0" GridPane.columnSpan="3" GridPane.rowIndex="4" />
+   <Button fx:id="messageButton" mnemonicParsing="false" onAction="#handleMessageButton" text="Message Attendees" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+   <TextField fx:id="textField" prefHeight="31.0" prefWidth="613.0" GridPane.columnSpan="3" GridPane.rowIndex="4">
+      <padding>
+         <Insets left="10.0" right="10.0" />
+      </padding></TextField>
    <columnConstraints>
-      <ColumnConstraints maxWidth="272.40000000000003" minWidth="211.4000152587891" prefWidth="225.4000152587891" />
-      <ColumnConstraints maxWidth="345.4000152587891" minWidth="256.40003051757816" prefWidth="283.4000152587891" />
-      <ColumnConstraints maxWidth="336.39996948242185" minWidth="110.39996948242185" prefWidth="334.39996948242185" />
-      <ColumnConstraints maxWidth="336.39996948242185" minWidth="110.39996948242185" prefWidth="334.39996948242185" />
+      <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="250.0" />
+      <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="250.0" />
+      <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+      <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="180.0" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints />
-      <RowConstraints maxHeight="18.6" minHeight="9.6" prefHeight="18.200000000000003" />
-      <RowConstraints maxHeight="25.6" minHeight="16.6" prefHeight="17.800000000000004" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="18.0" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="18.0" />
       <RowConstraints />
       <RowConstraints />
       <RowConstraints />
