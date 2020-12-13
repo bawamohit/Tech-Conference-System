@@ -54,7 +54,7 @@
     -fx-border-color: transparent;
 }
 
-.button2:focused {
+.button3:focused {
     -fx-background-color: rgba(161, 78, 191, 0.8);
     -fx-text-fill: #ffffff;
     -fx-border-color: transparent;
