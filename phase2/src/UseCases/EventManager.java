@@ -260,6 +260,13 @@ public class EventManager {
         speakers.add(newSpeaker);
     }
 
+    //TODO replace addSpeaker with this if possible
+    public void addSpeakers(UUID eventID, List<String> newSpeakers){
+        Event event = events.get(eventID);
+        List<String> speakers = event.getSpeakers();
+        speakers.addAll(newSpeakers);
+    }
+
     /**
      * Implements modifier, removeSpeaker, for events.
      *

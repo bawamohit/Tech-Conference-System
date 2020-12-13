@@ -53,6 +53,10 @@ public class UserManager {
         return userList;
     }
 
+    public boolean isNotUserType(String username, UserType userType){
+        return !getUserList(userType).contains(username);
+    }
+
     /** Determines whether the given username is registered in this userManager
      *
      * @param username A string object that represents the username to be checked
@@ -208,5 +212,4 @@ public class UserManager {
     public UserType getUserType(String username){
         return usernamesToUsers.get(username).getUserType();
     }
-
 }

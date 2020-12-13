@@ -42,6 +42,7 @@ public class ModifySpeakerController extends Observable {
      */
     @FXML protected void handleModifyButtonAction() {
         if (addRadioButton.isSelected()) {
+            //TODO check if adding speaker will exceed the room capacity
             addSpeakerInputChecksSuccess();
             setChanged();
             notifyObservers("ModifySpeaker");

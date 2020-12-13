@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+//TODO delete?
 public class CreateEventController {
 
     @FXML private TextField startTimeField;
@@ -106,7 +107,7 @@ public class CreateEventController {
             createAlertMessage("Please choose an end time later than the start time.");
             return;
         }
-        if(!roomManager.canAddEvent(roomName, startTime, endTime)){
+        if(roomManager.cannotAddEvent(roomName, startTime, endTime)){
             createAlertMessage("This room is not available at this time");
             return;
         }
@@ -138,7 +139,7 @@ public class CreateEventController {
             return false;
         }
         eventCapacity = eventCapacityFieldToInteger(eventCapacityString);
-        if (!roomManager.hasSpace(roomName, eventCapacity)){
+        if (roomManager.hasInsufficientSpace(roomName, eventCapacity)){
             createAlertMessage("This event capacity exceeds the room capacity. Please choose another room");
             return false;
         }
@@ -158,7 +159,7 @@ public class CreateEventController {
     }
 
     private boolean validTime(String time){
-        String pattern = "^([0-9][0-9][0-9][0-9])-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1]) (0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$|^.{0}$";
+        String pattern = "^([0-9][0-9][0-9][0-9])-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1]) (0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$";
 
         return time.matches(pattern);
     }
@@ -171,6 +172,7 @@ public class CreateEventController {
         int minute = Integer.parseInt(time.substring(14, 16));
         return LocalDateTime.of(year, month, day, hour, minute);
     }
+
     private void createAlertMessage(String message){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);

@@ -1,6 +1,5 @@
 package UseCases;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 import Entities.Room;
@@ -59,14 +58,9 @@ public class RoomManager {
      *
      * @return a boolean indicating if room was successfully added
      */
-    public boolean addRoom(String roomName, int capacity) {
-        if (roomExists(roomName)) {
-            return false;
-        } else {
-            Room new_room = new Room(roomName, capacity);
-            rooms.put(roomName, new_room);
-            return true;
-        }
+    public void addRoom(String roomName, int capacity) {
+        Room newRoom = new Room(roomName, capacity);
+        rooms.put(roomName, newRoom);
     }
 
     /**
@@ -79,22 +73,15 @@ public class RoomManager {
      * @return a boolean indicating if an event with room name roomName, start time newST, end time newET
      * can be successfully added
      */
-    public boolean canAddEvent(String roomName, LocalDateTime newST, LocalDateTime newET) {
+    public boolean cannotAddEvent(String roomName, LocalDateTime newST, LocalDateTime newET) {
         HashMap<UUID, List<LocalDateTime>> schedule = getRoomSchedule(roomName);
         for (UUID event: schedule.keySet()){
             List<LocalDateTime> timeSlot= schedule.get(event);
             if (newET.isAfter(timeSlot.get(0)) && newST.isBefore(timeSlot.get(1))){
-                return false;
+                return true;
             }
         }
-        return true;
-//        for (LocalDateTime existingST: schedule.keySet()) {
-//            if (newET.isAfter(existingST) && newST.isBefore(tcs.getEM().getEventEndTime(schedule.get(existingST)))) {
-//                presenter.printObjUnavailable("room at this time");
-//                return false;
-//            }
-//        }
-//        return true;
+        return false;
     }
 
     /**
@@ -106,9 +93,9 @@ public class RoomManager {
      *
      * @return a boolean indicating if newCapacity can be set
      */
-    public boolean canSetCapacity(String roomName, int newCapacity, int numOtherPpl) {
+    public boolean cannotSetCapacity(String roomName, int newCapacity, int numOtherPpl) {
         int capacity = getRoomCapacity(roomName);
-        return newCapacity <= capacity - numOtherPpl;
+        return newCapacity > capacity - numOtherPpl;
     }
 
     /**
@@ -142,6 +129,7 @@ public class RoomManager {
      *
      * @return a boolean indicating if event was successfully removed
      */
+    //TODO replace this method with methods below if it does what i think it does
     public boolean removeEventFromSchedule(UUID eventID) {
         for (String name : rooms.keySet()) {
             Room r = rooms.get(name);
@@ -155,16 +143,27 @@ public class RoomManager {
         return false;
     }
 
+    public void removeEventFromRoom(String roomName, UUID eventID){
+        Room room = rooms.get(roomName);
+        HashMap<UUID, List<LocalDateTime>> schedule = room.getSchedule();
+        schedule.remove(eventID);
+        room.setRoomSchedule(schedule);
+    }
+
+    public boolean doesNotContainEvent(String room, UUID eventID){
+        return !rooms.get(room).getRoomEventIDs().contains(eventID);
+    }
+
     /**
      * Returns if a room has enough space to hold the given event's capacity
      *
      * @return a boolean indicating if the room has space for the event's capacity
      */
-    public boolean hasSpace(String roomName, int eventCapacity){
+    public boolean hasInsufficientSpace(String roomName, int capacity){
         if (roomExists(roomName)){
             Room room = rooms.get(roomName);
-            return room.getCapacity() >= eventCapacity;
+            return room.getCapacity() < capacity;
         }
-        return false;
+        return true;
     }
 }

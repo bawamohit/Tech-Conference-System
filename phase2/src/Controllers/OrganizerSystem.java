@@ -1,7 +1,6 @@
 package Controllers;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
@@ -106,7 +105,8 @@ public class OrganizerSystem extends UserSystem {
         if(roomCap.equals("")) {
             return;
         }
-        if (tcs.getRM().addRoom(roomName, Integer.parseInt(roomCap))) {
+        if (tcs.getRM().roomExists(roomName)) {
+            tcs.getRM().addRoom(roomName, Integer.parseInt(roomCap));
             presenter.printSuccess();
         } else {
             presenter.printObjectExists("Room");
@@ -134,7 +134,7 @@ public class OrganizerSystem extends UserSystem {
         if(maxCap.equals("")) {
             return;
         }
-        if (!tcs.getRM().canSetCapacity(tcs.getEM().getEventRoomName(id), Integer.parseInt(maxCap),
+        if (tcs.getRM().cannotSetCapacity(tcs.getEM().getEventRoomName(id), Integer.parseInt(maxCap),
                 tcs.getEM().getEventSpeaker(id).size())){
             presenter.printInvalidInput();
             return;
@@ -172,7 +172,7 @@ public class OrganizerSystem extends UserSystem {
         if(maxCap.equals("")) {
             return;
         }
-        if (!tcs.getRM().canSetCapacity(roomName, Integer.parseInt(maxCap), 0)) {
+        if (tcs.getRM().cannotSetCapacity(roomName, Integer.parseInt(maxCap), 0)) {
             presenter.printInvalidInput();
             return;
         }
@@ -280,7 +280,7 @@ public class OrganizerSystem extends UserSystem {
             presenter.printDNE("room");
             return false;
         }
-        if (!tcs.getRM().canAddEvent(roomName, newST, newET)){
+        if (tcs.getRM().cannotAddEvent(roomName, newST, newET)){
             presenter.printObjUnavailable("room at this time");
             return false;
         }

@@ -57,7 +57,7 @@ public class EditEventController extends Observable {
         int newCapacity = Integer.parseInt(capacityString);
         String roomName = eventManager.getEventRoomName(eventID);
         int speakers = eventManager.getEventSpeaker(eventID).size();
-        if (!roomManager.canSetCapacity(roomName, newCapacity, speakers)){
+        if (roomManager.cannotSetCapacity(roomName, newCapacity, speakers)){
             createAlertMessage("The new capacity exceeds the room capacity. Please choose a lower capacity.");
             return;
         }
@@ -84,7 +84,7 @@ public class EditEventController extends Observable {
         }
         LocalDateTime start = eventManager.getEventStartTime(eventID);
         LocalDateTime end = eventManager.getEventEndTime(eventID);
-        if(!roomManager.canAddEvent(roomName, start,end)){
+        if(roomManager.cannotAddEvent(roomName, start, end)){
             createAlertMessage("This room is not available at this time.");
             return;
         }

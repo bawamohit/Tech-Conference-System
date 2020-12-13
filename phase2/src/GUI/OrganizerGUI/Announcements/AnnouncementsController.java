@@ -44,5 +44,6 @@ public class AnnouncementsController {
 
         messageManager.messageAll(user, userList, content);
         textArea.clear();
+        //TODO prompts？
     }
 }

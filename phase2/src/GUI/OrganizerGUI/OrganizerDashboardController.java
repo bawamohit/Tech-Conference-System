@@ -38,7 +38,7 @@ public class OrganizerDashboardController extends UserDashboardController implem
      */
     @FXML
     protected void handleMessageButtonAction(ActionEvent event) {
-        loadSubScene("/GUI/OrganizerGUI/Message/OrganizerMessage");
+        loadSubScene("/GUI/Message/Message");
     }
 
     /**

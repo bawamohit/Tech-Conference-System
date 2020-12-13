@@ -12,7 +12,7 @@
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           stylesheets="@CreateEvent.css"
-          fx:controller="GUI.OrganizerGUI.CreateEvent.CreateEventController"
+          fx:controller="GUI.OrganizerGUI.CreateEvent.CreateEvent"
           alignment="center" hgap="10" vgap="10"
           prefHeight="650.0" prefWidth="900.0"
           styleClass="root">
@@ -22,51 +22,39 @@
           GridPane.columnIndex="0" GridPane.rowIndex="0"
           GridPane.columnSpan="2"/>
 
-    <Label text="Start Time:"
+    <Label text="Event Name:"
            GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-
-    <TextField fx:id="startTimeField" promptText="YYYY-MM-DD HH:MM"
+    <TextField fx:id="eventNameField" prefWidth="300"
                GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
-    <Label text="End Time:"
+    <Label text="Start Time:"
            GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-
-    <TextField fx:id="endTimeField" promptText="YYYY-MM-DD HH:MM"
+    <TextField fx:id="startTimeField" promptText="YYYY-MM-DD HH:MM"
                GridPane.columnIndex="1" GridPane.rowIndex="2"/>
 
-    <Label text="Room:"
+    <Label text="End Time:"
            GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-
-    <TextField fx:id="roomField"
-                   GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-
-    <HBox spacing="10" alignment="bottom_right"
-          GridPane.columnIndex="1" GridPane.rowIndex="4">
-        <Button text="Check Room Availability"
-                onAction="#handleCheckAvailabilityButtonAction"/>
-    </HBox>
+    <TextField fx:id="endTimeField" promptText="YYYY-MM-DD HH:MM"
+               GridPane.columnIndex="1" GridPane.rowIndex="3"/>
 
     <Label text="Event Capacity"
-           GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-
+           GridPane.columnIndex="0" GridPane.rowIndex="4"/>
     <TextField fx:id="eventCapacityField"
-                   GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                   GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
-    <Label text="Event Name:"
+    <Label text="Speakers(optional)"
+           GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+    <TextField fx:id="speakersField" promptText="Speaker1,Speaker2,..."
+               GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+
+    <Label text="Room:"
            GridPane.columnIndex="0" GridPane.rowIndex="6"/>
-
-    <TextField fx:id="eventNameField"
+    <TextField fx:id="roomNameField"
                GridPane.columnIndex="1" GridPane.rowIndex="6"/>
-    <HBox  spacing="10" alignment="bottom_right" GridPane.columnIndex="0" GridPane.rowIndex="6" />
 
     <HBox spacing="10" alignment="bottom_right"
-          GridPane.columnIndex="1" GridPane.rowIndex="8">
-        <Button text="Create"
-                onAction="#handleCreateButtonAction"/>
+          GridPane.columnIndex="1" GridPane.rowIndex="7">
+        <Button text="Create" onAction="#handleCreateEventButtonAction"/>
     </HBox>
-
-    <Text fx:id="prompt"
-          GridPane.columnIndex="0" GridPane.columnSpan="2"
-          GridPane.halignment="RIGHT" GridPane.rowIndex="7"/>
 
 </GridPane>
