@@ -14,9 +14,17 @@ import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.UUID;
 
-
+/**
+ * Reading and writing to JSON files for the EventManager
+ */
 public class EventGateway {
 
+    /** Returns a EventManager object after reading from the event manager JSON file
+     *
+     * @param filepath The filepath of the event manager JSON file
+     * @return EventManager created from the data in the JSON file
+     * @throws IOException Throws exception if problems reading from file
+     */
     public EventManager readFromFile(String filepath) throws IOException {
         String content = new String(Files.readAllBytes(Paths.get(filepath)));
         JSONObject jo = new JSONObject(content);
@@ -50,6 +58,12 @@ public class EventGateway {
         return em;
     }
 
+    /** Saves a the data in the EventManager in a JSON file
+     *
+     * @param filePath The filepath where we want to save the JSON file
+     * @param eventManager The EventManager that we want to save
+     * @throws FileNotFoundException Error when creating or opening the JSON file at the filepath
+     */
     public void saveToFile(String filePath, EventManager eventManager) throws FileNotFoundException {
         JSONObject jo = new JSONObject();
         for (UUID id : eventManager.getEvents()) {
