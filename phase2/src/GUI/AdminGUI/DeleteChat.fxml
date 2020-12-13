@@ -6,9 +6,9 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane minHeight="427.0" minWidth="728.0" prefHeight="555.0" prefWidth="734.0" stylesheets="@DeleteChat.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.AdminGUI.DeleteChatController">
+<AnchorPane minHeight="427.0" minWidth="728.0" prefHeight="555.0" prefWidth="734.0" stylesheets="@DeleteChat.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AdminGUI.DeleteChatController">
     <children>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="415.0" layoutX="115.0" layoutY="82.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="503.0" AnchorPane.bottomAnchor="58.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="116.0" AnchorPane.topAnchor="82.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="415.0" layoutX="115.0" layoutY="82.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false"  width="503.0" AnchorPane.bottomAnchor="58.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="116.0" AnchorPane.topAnchor="82.0" />
         <VBox alignment="TOP_RIGHT" layoutX="187.0" layoutY="213.0" prefHeight="130.0" prefWidth="391.0" spacing="10.0" AnchorPane.bottomAnchor="212.0" AnchorPane.leftAnchor="187.0" AnchorPane.rightAnchor="156.0" AnchorPane.topAnchor="213.0">
             <children>
                 <HBox prefHeight="26.0" prefWidth="208.0">
@@ -29,7 +29,7 @@
                     <children>
 
                         <Label graphicTextGap="3.0" lineSpacing="1.0" prefHeight="19.0" prefWidth="206.0" text="username 2" />
-                        <TextField fx:id="username2Field" onAction="#handleDeleteChatButtonAction" layoutX="212.0" layoutY="10.0" prefHeight="26.0" prefWidth="196.0">
+                        <TextField fx:id="username2Field" layoutX="212.0" layoutY="10.0" onAction="#handleDeleteChatButtonAction" prefHeight="26.0" prefWidth="196.0">
                             <effect>
                                 <Blend />
                             </effect>
@@ -65,7 +65,7 @@
         </GridPane>
         <HBox layoutX="166.0" layoutY="446.0" prefHeight="26.0" prefWidth="463.0" spacing="250" />
 
-            <Text id="Prompt" layoutX="160.0" layoutY="151.0" text="Enter two usernames to delete their associated chat. This cannot be undone." textAlignment="CENTER" wrappingWidth="414.9883270263672" />
+            <Text styleClass="text-id" layoutX="160.0" layoutY="151.0" text="Enter two usernames to delete their associated chat. This cannot be undone." textAlignment="CENTER" wrappingWidth="414.9883270263672" />
           <Button id="DeleteChatButton" layoutX="434.0" layoutY="382.0" mnemonicParsing="false" onAction="#handleDeleteChatButtonAction" prefHeight="26.0" prefWidth="98.0" snapToPixel="false" stylesheets="@DeleteChat.css" text="Delete Chat" textAlignment="RIGHT" />
     </children>
 </AnchorPane>
