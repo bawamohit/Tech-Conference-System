@@ -12,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -51,7 +52,10 @@ public class CreateEventController {
         String endTimeString = endTimeField.getText();
         String eventCapacityString = eventCapacityField.getText();
         String roomName = roomNameField.getText();
-        List<String> speakers = Arrays.asList(speakersField.getText().split(","));
+        List<String> speakers = new ArrayList<>();
+        if(!speakersField.getText().isEmpty()) {
+            speakers = Arrays.asList(speakersField.getText().split(","));
+        }
 
         if(eventName.isEmpty() || startTimeString.isEmpty() || endTimeString.isEmpty() ||
                 eventCapacityString.isEmpty() || roomName.isEmpty()){
@@ -64,8 +68,8 @@ public class CreateEventController {
             createErrorAlert("Event capacity must be a natural number.");
             return;
         }
-        for(String speaker: speakers){
-            if(userManager.isNotUserType(speaker, UserType.SPEAKER)){
+        for (String speaker : speakers) {
+            if (userManager.isNotUserType(speaker, UserType.SPEAKER)) {
                 createErrorAlert(speaker + " is not a speaker.");
                 return;
             }
@@ -74,8 +78,8 @@ public class CreateEventController {
         LocalDateTime endTime = getTime(endTimeString);
         int eventCapacity = Integer.parseInt(eventCapacityString);
 
-        if(startTime.isAfter(endTime)){
-            createErrorAlert("Start time is after end time");
+        if(!startTime.isBefore(endTime)){
+            createErrorAlert("Start time is equal or after end time");
         }else if(startTime.isBefore(LocalDateTime.now())){
             createErrorAlert("Cannot create event that starts before current time.");
         }else if(!roomManager.roomExists(roomName)){

@@ -18,7 +18,7 @@ public class DisplayDeletableEventsController extends DisplayEventsController {
      */
     public void initialize(){
         this.eventManager = ManagersStorage.getInstance().getEventManager();
-        List<UUID> deletableEventIds = eventManager.getEmptyEvents();
+        List<UUID> deletableEventIds = eventManager.getEvents();
         List<List<String>> eventsInfo = eventManager.getAllEventsInfo(deletableEventIds);
         generateEventButtons("/GUI/AdminGUI/EventInfoDelete", eventsInfo);
     }
