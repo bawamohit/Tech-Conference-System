@@ -20,6 +20,9 @@ import java.util.List;
 import java.util.Observable;
 import java.util.UUID;
 
+/**
+ * The subscene that displays event information
+ */
 public class EventInfoController extends Observable {
     private EventManager eventManager;
     private UserManager userManager;
@@ -39,6 +42,9 @@ public class EventInfoController extends Observable {
     @FXML Label label7;
     @FXML Label label8;
 
+    /**
+     * Initializes the event information scene.
+     */
     public void initialize(){
         this.eventManager = ManagersStorage.getInstance().getEventManager();
         this.userManager = ManagersStorage.getInstance().getUserManager();
@@ -61,29 +67,62 @@ public class EventInfoController extends Observable {
         label8.setText("Available Spots: " + eventInfo.get(8));
     }
 
+    /**
+     * Implements Getter, getUsername, for username.
+     *
+     * @return username
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     * Implements Getter, getUserManager, for userManager.
+     *
+     * @return userManager
+     */
     public UserManager getUserManager() {
         return userManager;
     }
 
+    /**
+     * Implements Getter, getEventManager, for eventManager.
+     *
+     * @return userManager
+     */
     public EventManager getEventManager() {
         return eventManager;
     }
 
+    /**
+     * Implements Getter, getEventID, for eventID.
+     *
+     * @return id of the event
+     */
     public UUID getEventID() {
         return eventID;
     }
 
+    /**
+     * Implements Getter, getRoomManager, for roomManager.
+     *
+     * @return roomManager
+     */
     public RoomManager getRoomManager() {
         return roomManager;
     }
 
+    /**
+     * Implements Getter, getMessageManager, for messageManager.
+     *
+     * @return messageManager
+     */
     public MessageManager getMessageManager() { return messageManager; }
 
-    @FXML protected void handleDetailedSpeakersButtonAction(ActionEvent event) {
+    /**
+     * Handles action of when the detailed speakers button is clicked. Shows enlarged detailed speakers list
+     */
+    @FXML protected void handleDetailedSpeakersButtonAction() {
         String message = "Speakers for this event: " + eventInfo.get(4);
         if(eventInfo.get(4).isEmpty()){message = "This event has no speakers.";}
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

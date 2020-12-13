@@ -21,6 +21,9 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.UUID;
 
+/**
+ * This class is an abstract class for displaying events
+ */
 public abstract class DisplayEventsController extends Observable implements Observer {
     private EventManager eventManager;
     private UserManager userManager;
@@ -32,6 +35,9 @@ public abstract class DisplayEventsController extends Observable implements Obse
     @FXML private GridPane subGridPane;
     FXMLLoader loader;
 
+    /**
+     * Initializes the display events scene.
+     */
     public void initialize(){
         this.eventManager = ManagersStorage.getInstance().getEventManager();
         this.userManager = ManagersStorage.getInstance().getUserManager();
@@ -40,6 +46,12 @@ public abstract class DisplayEventsController extends Observable implements Obse
         this.eventsInfo = eventManager.getAllEventsInfo(myEventIDs);
     }
 
+    /**
+     * Generates event buttons too the given scene path, when given the events information
+     *
+     * @param path scene path
+     * @param eventsInfo information of events user wants to display
+     */
     public void generateEventButtons(String path, List<List<String>> eventsInfo){
         int i = 0, j = 0;
         for(List<String> eventInfo: eventsInfo) {
@@ -108,6 +120,11 @@ public abstract class DisplayEventsController extends Observable implements Obse
         return loader;
     }
 
+    /**
+     * Implements a getter, for the information of all events
+     *
+     * @return events information
+     */
     public List<List<String>> getEventsInfo() {
         return eventsInfo;
     }
