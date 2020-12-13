@@ -18,6 +18,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * The scene for signing up accounts
+ */
 public class SignUpController{
     private WelcomeController welcomeController;
     private UserManager userManager;
@@ -31,14 +34,21 @@ public class SignUpController{
     @FXML private RadioButton radioButton;
     @FXML private RadioButton radioButton2;
 
+    /**
+     * Initializes the Signup scene.
+     */
     public void initialize(){
         this.userManager = ManagersStorage.getInstance().getUserManager();
     }
+
 
     public void initData(WelcomeController welcomeController){
         this.welcomeController = welcomeController;
     }
 
+    /**
+     * Handles action of when the sign up button is clicked. Signups account
+     */
     @FXML protected void handleSignUpButtonAction(ActionEvent event) {
         String username = usernameField.getText();
         String password = passwordField.getText();
@@ -62,6 +72,9 @@ public class SignUpController{
         }
     }
 
+    /**
+     * Handles action of when the check availability button is clicked. Checks if username is available
+     */
     @FXML protected void handleCheckAvailableButtonAction(ActionEvent event) {
         if(userManager.isRegistered(usernameField.getText())) {
             prompt.setText("This username is already registered.");
@@ -72,6 +85,9 @@ public class SignUpController{
         }
     }
 
+    /**
+     * Handles action of when the back button is clicked. Switches display back to Welcome scene
+     */
     @FXML protected void handleBackButtonAction(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Welcome.fxml"));
         Parent root = loader.load();

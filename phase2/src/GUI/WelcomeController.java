@@ -16,6 +16,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * The Welcome scene
+ */
 public class WelcomeController{
     private UserManager userManager;
     private MessageManager messageManager;
@@ -25,22 +28,43 @@ public class WelcomeController{
     @FXML private TextField usernameField;
     @FXML private TextField passwordField;
 
+    /**
+     * Initializes the Signup scene.
+     */
     public void initialize(){
         this.userManager = ManagersStorage.getInstance().getUserManager();
         this.messageManager = ManagersStorage.getInstance().getMessageManager();
         this.username = null;
     }
 
+    /**
+     * Implements getter for the UserManager
+     *
+     * @return UserManager
+     */
     public UserManager getUserManager(){
         return userManager;
     }
 
+    /**
+     * Implements getter for the MessageManager
+     *
+     * @return UserManager
+     */
     public MessageManager getMessageManager() { return messageManager; }
 
+    /**
+     * Implements getter for the user's username
+     *
+     * @return username of user
+     */
     public String getUsername(){
         return username;
     }
 
+    /**
+     * Handles action of when the sign in button is clicked. Logs in the user
+     */
     @FXML protected void handleSignInButtonAction(ActionEvent event) {
         String username = usernameField.getText();
         String pw = passwordField.getText();
@@ -75,6 +99,9 @@ public class WelcomeController{
         }
     }
 
+    /**
+     * Handles action of when the sign up button is clicked. Switches display to the Sign Up scene
+     */
     @FXML protected void handleSignUpButtonAction(ActionEvent event){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("SignUp/SignUp.fxml"));
         Parent root = null;
@@ -92,6 +119,9 @@ public class WelcomeController{
         stage.setScene(scene);
     }
 
+    /**
+     * Creates a new scene and displays that scene.
+     */
     public void setNewScene(ActionEvent event, FXMLLoader loader) {
         Parent root = null;
         try {
