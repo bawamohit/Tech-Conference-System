@@ -4,9 +4,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane fx:id="gridPane" prefHeight="477.0" prefWidth="732.0" snapToPixel="false" styleClass="root" stylesheets="@DisplayMyEvents.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.AttendeeGUI.MyEvents.DisplayMyEventsController">
+<GridPane fx:id="gridPane" hgap="10.0" prefHeight="555.0" prefWidth="900.0" snapToPixel="false" styleClass="root" stylesheets="@DisplayMyEvents.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AttendeeGUI.MyEvents.DisplayMyEventsController">
 
-    <ScrollPane fx:id="container" fitToWidth="true" layoutX="24.0" layoutY="49.0" prefHeight="523.0" prefWidth="732.0" styleClass="viewport" stylesheets="@DisplayMyEvents.css" GridPane.rowIndex="0">
+    <ScrollPane fx:id="container" fitToWidth="true" layoutX="24.0" layoutY="49.0" prefHeight="555.0" prefWidth="900.0" styleClass="viewport" stylesheets="@DisplayMyEvents.css" GridPane.rowIndex="0">
         <GridPane fx:id="subGridPane" hgap="10.0" prefWidth="672.0" styleClass="grid" stylesheets="@DisplayMyEvents.css" vgap="10.0">
         </GridPane>
     </ScrollPane>

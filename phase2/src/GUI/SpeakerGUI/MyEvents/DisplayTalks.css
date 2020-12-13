@@ -3,6 +3,7 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background: transparent;
+    -fx-padding: 20px;
 }
 
 .scroll-pane > .viewport  {

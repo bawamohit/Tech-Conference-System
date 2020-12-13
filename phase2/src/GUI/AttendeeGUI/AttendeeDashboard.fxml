@@ -38,7 +38,7 @@
    <Pane prefHeight="120.0" prefWidth="130.0" snapToPixel="false" styleClass="VBox" stylesheets="@AttendeeDashboard.css" GridPane.rowIndex="1">
       <children>
 
-            <Button fx:id="logOutButton" alignment="BOTTOM_CENTER" layoutX="8.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleLogOutButtonAction" prefHeight="2.0" prefWidth="150.0" stylesheets="@AttendeeDashboard.css" text="Log Out">
+            <Button fx:id="logOutButton" alignment="BOTTOM_CENTER" layoutY="36.0" mnemonicParsing="false" onAction="#handleLogOutButtonAction" prefHeight="2.0" prefWidth="150.0" stylesheets="@AttendeeDashboard.css" text="Log Out">
             <graphic>
                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                   <image>

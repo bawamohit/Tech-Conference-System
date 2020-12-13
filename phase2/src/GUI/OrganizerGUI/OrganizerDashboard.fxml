@@ -65,7 +65,7 @@
     <Pane prefHeight="120.0" prefWidth="130.0" snapToPixel="false" GridPane.rowIndex="1">
         <children>
 
-            <Button fx:id="logOutButton" alignment="BOTTOM_CENTER" layoutY="2.0" mnemonicParsing="false" onAction="#handleLogOutButtonAction" prefHeight="2.0" prefWidth="150.0" text="Log Out">
+            <Button fx:id="logOutButton" alignment="BOTTOM_CENTER" layoutX="8.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleLogOutButtonAction" prefHeight="2.0" prefWidth="150.0" text="Log Out">
             <graphic>
                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -84,7 +84,7 @@
         <ColumnConstraints maxWidth="900.0" minWidth="900.0" prefWidth="900.0" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints maxHeight="700.0" minHeight="700.0" prefHeight="700.0" />
+        <RowConstraints maxHeight="680.0" minHeight="680.0" prefHeight="680.0" />
         <RowConstraints />
     </rowConstraints>
    <padding>

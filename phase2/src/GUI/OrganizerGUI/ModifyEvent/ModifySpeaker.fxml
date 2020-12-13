@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="center" hgap="10" prefHeight="650.0" prefWidth="900.0" styleClass="root" vgap="10" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.OrganizerGUI.ModifyEvent.ModifySpeakerController">
+<GridPane alignment="center" hgap="10" prefHeight="680.0" prefWidth="900.0" styleClass="root" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OrganizerGUI.ModifyEvent.ModifySpeakerController">
     <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
 
     <Text id="title" text="Modify Speakers" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
@@ -19,7 +19,7 @@
               <toggleGroup>
                   <ToggleGroup fx:id="group" />
               </toggleGroup></RadioButton>
-            <RadioButton fx:id="removeRadioButton" graphicTextGap="0.0" mnemonicParsing="false" text="remove" toggleGroup="$group"/>
+            <RadioButton fx:id="removeRadioButton" graphicTextGap="0.0" mnemonicParsing="false" text="remove" toggleGroup="$group" />
       </children></HBox>
 
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
