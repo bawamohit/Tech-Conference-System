@@ -12,7 +12,7 @@
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
           stylesheets="@CreateEvent.css"
-          fx:controller="GUI.OrganizerGUI.CreateEvent.CreateEvent"
+          fx:controller="GUI.OrganizerGUI.CreateEvent.CreateEventController"
           alignment="center" hgap="10" vgap="10"
           prefHeight="650.0" prefWidth="900.0"
           styleClass="root">
