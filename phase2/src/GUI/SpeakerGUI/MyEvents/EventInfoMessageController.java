@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import java.util.List;
 
-public class DisplayEventInfoController extends EventInfoController implements GUIController {
+public class EventInfoMessageController extends EventInfoController implements GUIController {
 
     @FXML Button messageButton;
     @FXML TextField textField;
