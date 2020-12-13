@@ -39,7 +39,7 @@ public class ModifySpeakerController extends Observable {
         this.eventID = EventHolder.getInstance().getEventID();
         List<String> eventInfo = eventManager.getEventsInfo(eventID);
         label1.setText("Event Name: " + eventInfo.get(1));
-        label2.setText("Speakers: " + eventInfo.get(2));
+        label2.setText("Speakers: " + eventInfo.get(4));
     }
 
     /**

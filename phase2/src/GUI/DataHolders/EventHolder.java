@@ -2,7 +2,7 @@ package GUI.DataHolders;
 
 import java.util.UUID;
 
-public class EventHolder {
+public final class EventHolder {
     private UUID eventID;
 
     private final static EventHolder INSTANCE = new EventHolder();
