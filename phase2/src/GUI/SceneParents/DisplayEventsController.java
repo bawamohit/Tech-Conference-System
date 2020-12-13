@@ -45,7 +45,7 @@ public abstract class DisplayEventsController extends Observable implements Obse
         for(List<String> eventInfo: eventsInfo) {
             Button button = new Button(eventInfo.get(1) + "\nStarts: " + eventInfo.get(2) + "\nEnds:  " + eventInfo.get(3));
             button.setPrefHeight(75);
-            button.setPrefWidth(200);
+            button.setPrefWidth(225);
             button.setOnAction(new EventHandler<ActionEvent>(){
                 @Override
                 public void handle(ActionEvent event) {

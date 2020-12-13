@@ -8,7 +8,9 @@ import UseCases.EventManager;
 import UseCases.MessageManager;
 import UseCases.RoomManager;
 import UseCases.UserManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 
 import java.util.List;
@@ -74,4 +76,19 @@ public class EventInfoController extends Observable {
 
     public MessageManager getMessageManager() { return messageManager; }
 
+    @FXML protected void handleDetailedSpeakersButtonAction(ActionEvent event) {
+        String message = "Speakers for this event: " + eventInfo.get(5);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    @FXML protected void handleDetailedOrganizerButtonAction(ActionEvent event) {
+        String message = "Speakers for this event: " + eventInfo.get(4);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 }

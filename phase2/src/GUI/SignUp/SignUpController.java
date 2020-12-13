@@ -22,7 +22,6 @@ import java.io.IOException;
  * The scene for signing up accounts
  */
 public class SignUpController{
-    private WelcomeController welcomeController;
     private UserManager userManager;
 
     @FXML private TextField usernameField;
@@ -39,11 +38,6 @@ public class SignUpController{
      */
     public void initialize(){
         this.userManager = ManagersStorage.getInstance().getUserManager();
-    }
-
-
-    public void initData(WelcomeController welcomeController){
-        this.welcomeController = welcomeController;
     }
 
     /**

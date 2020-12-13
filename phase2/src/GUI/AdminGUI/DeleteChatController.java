@@ -31,26 +31,25 @@ public class DeleteChatController {
      * the chat between those 2 Users. Gives an error if usernames are invalid.
      */
     public void handleDeleteChatButtonAction(ActionEvent actionEvent) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(null);
 
         if (username1Field.getText().equals("") || username2Field.getText().equals("")){
-            alert.setContentText("Error: you must enter two usernames.");
-        }
-        else if (!userManager.isRegistered(username1Field.getText()) &&
+            alert.setContentText("You must enter two usernames.");
+        } else if (!userManager.isRegistered(username1Field.getText()) &&
                 !userManager.isRegistered(username2Field.getText())){
-            alert.setContentText("Error: both usernames do not exist.");
+            alert.setContentText("Both usernames do not exist.");
             username1Field.clear();
             username2Field.clear();
-        }
-        else if (!userManager.isRegistered(username1Field.getText())){
-            alert.setContentText("Error: username 1 does not exist.");
+        } else if (!userManager.isRegistered(username1Field.getText())){
+            alert.setContentText("Username 1 does not exist.");
             username1Field.clear();
-        }
-        else if (!userManager.isRegistered(username2Field.getText())){
-            alert.setContentText("Error: username 2 does not exist.");
+        } else if (!userManager.isRegistered(username2Field.getText())){
+            alert.setContentText("Username 2 does not exist.");
             username2Field.clear();
-        }
-        else {
+        } else {
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
             messageManager.deleteMutualThread(username1Field.getText(), username2Field.getText());
             alert.setContentText("Chat successfully deleted!");
             username1Field.clear();

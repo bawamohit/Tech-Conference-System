@@ -113,9 +113,6 @@ public class WelcomeController{
         Scene scene = new Scene(root);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 
-        SignUpController signUpController = loader.getController();
-        signUpController.initData(this);
-
         stage.setScene(scene);
     }
 

@@ -15,13 +15,15 @@ public class EventInfoDeleteController extends EventInfoController {
      */
     @FXML public void handleDeleteButton(ActionEvent event){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+
         if (!getEventManager().removeEvent(getEventID())){
             alert.setTitle("Deletion Error:");
             alert.setContentText("Sorry this event has already been deleted or modified");
         }
         else {
             getRoomManager().removeEventFromSchedule(getEventID());
-            alert.setTitle("Successfully Deleted!");
+            alert.setContentText("Successfully Deleted!");
         }
         alert.showAndWait();
         setChanged();
