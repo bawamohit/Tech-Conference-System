@@ -1,180 +1,112 @@
 package GUI.OrganizerGUI.CreateEvent;
 
-import GUI.DataHolders.EventHolder;
+import Entities.UserType;
 import GUI.DataHolders.ManagersStorage;
 import GUI.DataHolders.UserHolder;
 import UseCases.EventManager;
 import UseCases.RoomManager;
+import UseCases.UserManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
-//TODO delete?
 public class CreateEventController {
-
-    @FXML private TextField startTimeField;
-    @FXML private TextField endTimeField;
-    @FXML private TextField roomField;
-    @FXML private TextField eventCapacityField;
-    @FXML private TextField eventNameField;
+    private UserManager userManager;
     private RoomManager roomManager;
     private EventManager eventManager;
-    private String eventName ;
-    private String startTimeString;
-    private String endTimeString;
-    private String roomName;
-    private int eventCapacity;
     private String username;
 
+    @FXML private TextField eventNameField;
+    @FXML private TextField startTimeField;
+    @FXML private TextField endTimeField;
+    @FXML private TextField eventCapacityField;
+    @FXML private TextField roomNameField;
+    @FXML private TextField speakersField;
 
-    /**
-     * Initializes the Create Event scene.
-     */
-    @FXML public void initialize(){
-        EventHolder.getInstance().setRoomAvailabilityChecked(false);
-        roomManager  = ManagersStorage.getInstance().getRoomManager();
-        eventManager = ManagersStorage.getInstance().getEventManager();
-        username = UserHolder.getInstance().getUsername();
-        roomField.textProperty().addListener((obs, oldText, newText) -> {
-            EventHolder.getInstance().setRoomAvailabilityChecked(false);
-        });
-        eventCapacityField.textProperty().addListener((obs, oldText, newText) -> {
-            EventHolder.getInstance().setRoomAvailabilityChecked(false);
-        });
-        startTimeField.textProperty().addListener((obs, oldText, newText) -> {
-            EventHolder.getInstance().setRoomAvailabilityChecked(false);
-        });
-        endTimeField.textProperty().addListener((obs, oldText, newText) -> {
-            EventHolder.getInstance().setRoomAvailabilityChecked(false);
-        });
+    public void initialize(){
+        this.userManager = ManagersStorage.getInstance().getUserManager();
+        this.roomManager  = ManagersStorage.getInstance().getRoomManager();
+        this.eventManager = ManagersStorage.getInstance().getEventManager();
+        this.username = UserHolder.getInstance().getUsername();
     }
 
-    /**
-     * Handles action when the create button is clicked. Creates the event.
-     */
-    @FXML protected void handleCreateButtonAction() {
-        eventName = eventNameField.getText();
-        startTimeString = startTimeField.getText();
-        endTimeString = endTimeField.getText();
-        roomName = roomField.getText();
-        if(missingInput()){
-            createAlertMessage("Please fill in all boxes");
-            return;
-        }
-        if(!validTime(startTimeString) || !validTime(endTimeString)){
-            createAlertMessage("Invalid Time Input");
-            return;
-        }
-        LocalDateTime startTime = getTime(startTimeString);
-        LocalDateTime endTime = getTime(endTimeString);
-
-        eventCapacity = eventCapacityFieldToInteger(eventCapacityField.getText());
-        if(roomAvailabilityChecked()){
-            UUID eventID = eventManager.addEvent(eventName, username, startTime, endTime, roomName, eventCapacity);
-            roomManager.addEventToSchedule(eventID, roomName, startTime, endTime);
-            createAlertMessage("Event Created");
-        }
-        else{
-            createAlertMessage("Please check availability of the room first.");
-        }
-
-    }
-
-    /**
-     * Handles action when the check availability button is clicked. Checks if room is available for this event.
-     */
-    @FXML  protected void handleCheckAvailabilityButtonAction(ActionEvent event) {
-        roomName = roomField.getText();
+    @FXML  protected void handleCreateEventButtonAction(ActionEvent event) {
+        String eventName = eventNameField.getText();
+        String startTimeString = startTimeField.getText();
+        String endTimeString = endTimeField.getText();
         String eventCapacityString = eventCapacityField.getText();
-        startTimeString = startTimeField.getText();
-        endTimeString = endTimeField.getText();
+        String roomName = roomNameField.getText();
+        List<String> speakers = Arrays.asList(speakersField.getText().split(","));
 
-        if(!roomAvailabilityChecker(startTimeString, endTimeString, eventCapacityString,roomName)){
+        if(eventName.isEmpty() || startTimeString.isEmpty() || endTimeString.isEmpty() ||
+                eventCapacityString.isEmpty() || roomName.isEmpty()){
+            createErrorAlert("Incomplete fields.");
+            return;
+        }else if(!validTime(startTimeString) || !validTime(endTimeString)){
+            createErrorAlert("Invalid time format");
+            return;
+        }else if(!eventCapacityString.matches("\\d+")){
+            createErrorAlert("Event capacity must be a natural number.");
             return;
         }
-
+        for(String speaker: speakers){
+            if(userManager.isNotUserType(speaker, UserType.SPEAKER)){
+                createErrorAlert(speaker + " is not a speaker.");
+                return;
+            }
+        }
         LocalDateTime startTime = getTime(startTimeString);
         LocalDateTime endTime = getTime(endTimeString);
+        int eventCapacity = Integer.parseInt(eventCapacityString);
 
-        if(startTime.isBefore(LocalDateTime.now())){
-            createAlertMessage("The time you chose for this event has already passed. Please choose a future time.");
-            return;
-        }
-        if(!endTime.isAfter(startTime)){
-            createAlertMessage("Please choose an end time later than the start time.");
-            return;
-        }
-        if(roomManager.cannotAddEvent(roomName, startTime, endTime)){
-            createAlertMessage("This room is not available at this time");
-            return;
-        }
-        EventHolder.getInstance().setRoomAvailabilityChecked(true);
-        createAlertMessage("This room can host this event!");
+        if(startTime.isAfter(endTime)){
+            createErrorAlert("Start time is after end time");
+        }else if(startTime.isBefore(LocalDateTime.now())){
+            createErrorAlert("Cannot create event that starts before current time.");
+        }else if(!roomManager.roomExists(roomName)){
+            createErrorAlert("This room does not exist");
+        }else if(roomManager.cannotAddEvent(roomName, startTime, endTime)){
+            createErrorAlert("This room is hosting an event during this time period.");
+        }else if(roomManager.hasInsufficientSpace(roomName, speakers.size() + eventCapacity)){
+            createErrorAlert("This event capacity exceeds the room capacity. Please choose another room");
+        }else{
+            UUID eventID = eventManager.addEvent(eventName, username, startTime, endTime, roomName, eventCapacity);
+            eventManager.addSpeakers(eventID, speakers);
+            roomManager.addEventToSchedule(eventID, roomName, startTime, endTime);
 
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("Event created!");
+            alert.showAndWait();
+            eventNameField.clear();
+            startTimeField.clear();
+            endTimeField.clear();
+            eventCapacityField.clear();
+            roomNameField.clear();
+            speakersField.clear();
+        }
     }
 
-    private boolean missingInput(){
-        boolean eventNameEmpty = eventName.isEmpty();
-        boolean startTimeEmpty = startTimeString.isEmpty();
-        boolean endTimeEmpty = endTimeString.isEmpty();
-        boolean eventCapacityEmpty = eventCapacityField.getText().isEmpty();
-        boolean roomNameEmpty = roomField.getText().isEmpty();
-        return(eventNameEmpty || startTimeEmpty || endTimeEmpty || eventCapacityEmpty || roomNameEmpty);
-    }
-
-    private boolean roomAvailabilityChecker(String startTimeString, String endTimeString, String eventCapacityString, String roomName){
-        if(startTimeString.isEmpty()||endTimeString.isEmpty()){
-            createAlertMessage("Please enter time");
-            return false;
-        }
-        if(eventCapacityString.isEmpty()){
-            createAlertMessage("Please enter event capacity");
-            return false;
-        }
-        if(!roomManager.roomExists(roomName)){
-            createAlertMessage("This room does not exist");
-            return false;
-        }
-        eventCapacity = eventCapacityFieldToInteger(eventCapacityString);
-        if (roomManager.hasInsufficientSpace(roomName, eventCapacity)){
-            createAlertMessage("This event capacity exceeds the room capacity. Please choose another room");
-            return false;
-        }
-        if(!validTime(startTimeString) || !validTime(endTimeString)){
-            createAlertMessage("Invalid Time Input");
-            return false;
-        }
-        return true;
-    }
-
-    private boolean roomAvailabilityChecked(){
-        return EventHolder.getInstance().getRoomAvailabilityChecked();
-    }
-
-    private int eventCapacityFieldToInteger(String eventCapacityField){
-        return Integer.parseInt(eventCapacityField);
+    private LocalDateTime getTime(String time) {
+        String[] dateTimeString = time.split("[- :]");
+        int[] dateTime = new int[5];
+        for(int i = 0; i < dateTimeString.length; i++) dateTime[i] = Integer.parseInt(dateTimeString[i]);
+        return LocalDateTime.of(dateTime[0], dateTime[1], dateTime[2], dateTime[3], dateTime[4]);
     }
 
     private boolean validTime(String time){
         String pattern = "^([0-9][0-9][0-9][0-9])-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1]) (0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$";
-
         return time.matches(pattern);
     }
 
-    private LocalDateTime getTime(String time) {
-        int year = Integer.parseInt(time.substring(0, 4));
-        int month = Integer.parseInt(time.substring(5, 7));
-        int day = Integer.parseInt(time.substring(8, 10));
-        int hour = Integer.parseInt(time.substring(11, 13));
-        int minute = Integer.parseInt(time.substring(14, 16));
-        return LocalDateTime.of(year, month, day, hour, minute);
-    }
-
-    private void createAlertMessage(String message){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    private void createErrorAlert(String message){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
