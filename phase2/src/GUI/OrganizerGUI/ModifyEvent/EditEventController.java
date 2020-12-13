@@ -40,6 +40,10 @@ public class EditEventController extends Observable {
         this.eventManager = ManagersStorage.getInstance().getEventManager();
         this.roomManager = ManagersStorage.getInstance().getRoomManager();
         this.eventID = EventHolder.getInstance().getEventID();
+        List<String> eventInfo = eventManager.getEventsInfo(eventID);
+        label1.setText("Event Name: " + eventInfo.get(1));
+        label2.setText("Room: " + eventInfo.get(5));
+        label3.setText("Maximum Capacity: " + eventInfo.get(7));
     }
 
     @FXML public void handleChangeButtonAction(){

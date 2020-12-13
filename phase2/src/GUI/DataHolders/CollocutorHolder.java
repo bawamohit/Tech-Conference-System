@@ -1,6 +1,6 @@
 package GUI.DataHolders;
 
-public class CollocutorHolder {
+public final class CollocutorHolder {
     private String username;
     private final static CollocutorHolder INSTANCE = new CollocutorHolder();
 

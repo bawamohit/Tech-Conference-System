@@ -18,12 +18,7 @@ public class DisplayTalksController extends DisplayEventsController {
     private UserManager userManager;
 
     public void initialize(){
-        EventHolder.getInstance().setButtonClicked(false);
-        this.eventManager = ManagersStorage.getInstance().getEventManager();
-        this.userManager = ManagersStorage.getInstance().getUserManager();
-        this.username = UserHolder.getInstance().getUsername();
-        List<UUID> myEventIDs = userManager.getEventsAttending(username);
-        List<List<String>> eventsInfo = eventManager.getAllEventsInfo(myEventIDs); //duplicate
-        generateEventButtons("EventInfoMessage", eventsInfo);
+        super.initialize();
+        generateEventButtons("EventInfoMessage", getEventsInfo());
     }
 }

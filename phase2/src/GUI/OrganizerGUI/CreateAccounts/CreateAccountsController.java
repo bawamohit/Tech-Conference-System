@@ -14,7 +14,6 @@ import javafx.scene.control.TextField;
  * The subscene where organizers can create accounts
  */
 public class CreateAccountsController {
-    private WelcomeController welcomeController;
     private UserManager userManager;
 
     @FXML private TextField usernameField;
