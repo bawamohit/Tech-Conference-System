@@ -20,6 +20,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The subscene for message search scene
+ */
 public class MessageController {
     private WelcomeController welcomeController;
     protected MessageManager messageManager;
@@ -31,6 +34,9 @@ public class MessageController {
     @FXML protected VBox chatsContainer;
     @FXML protected TextField searchField;
 
+    /**
+     * Initializes the message scene.
+     */
     public void initialize(){
         searchField.textProperty().addListener((obj, oldVal, newVal) -> {
             handleSearchField();
@@ -50,8 +56,11 @@ public class MessageController {
         gridPane.add(subScene, 1, 0);
     }
 
+    /**
+     * Handles action when the new chat "+" button is clicked. Creates a new chat with a use.
+     */
     @FXML
-    protected void handleNewChatButtonAction(ActionEvent event) {
+    protected void handleNewChatButtonAction() {
         deleteEmptyChatButtons();
         String user = searchField.getText();
         List<String> allUsers = ManagersStorage.getInstance().getUserManager().getUsernameList();
@@ -76,7 +85,9 @@ public class MessageController {
         }
     }
 
-
+    /**
+     * Handles action when a user is searched in the search field.
+     */
     protected void handleSearchField(){
         String prefix = searchField.getText();
         List<String> allUsers = messageManager.getInboxes(username);
@@ -128,6 +139,10 @@ public class MessageController {
         }
     }
 
+    /**
+     * This function makes a button of the collocutor the user is trying to message.
+     * @param user collocutor the user is messaging
+     */
     protected void makeButton(String user){
         Button button = new Button();
         button.setPrefHeight(50);
@@ -143,12 +158,20 @@ public class MessageController {
         chatsContainer.getChildren().add(0, button);
     }
 
+    /**
+     * This function makes each button of the collocutors the user is trying to message.
+     * @param users collocutors the user is messaging
+     */
     protected void makeButtons(List<String> users){
         for (String user: users) {
             makeButton(user);
         }
     }
 
+    /**
+     * Loads the subscene when given its path
+     * @param path of subscene
+     */
     protected void loadSubScene(String path){
         FXMLLoader loader;
         loader = new FXMLLoader(getClass().getResource(path + ".fxml"));

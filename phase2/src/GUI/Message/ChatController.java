@@ -17,6 +17,9 @@ import javafx.scene.layout.VBox;
 
 import java.util.List;
 
+/**
+ * The subscene for message chats
+ */
 public class ChatController {
     private MessageManager messageManager;
     private UserManager userManager;
@@ -28,6 +31,9 @@ public class ChatController {
     @FXML private TextField textField;
     @FXML private VBox chatBox;
 
+    /**
+     * Initializes the chat scene.
+     */
     public void initialize(){
         this.messageManager = ManagersStorage.getInstance().getMessageManager();
         this.userManager = ManagersStorage.getInstance().getUserManager();
@@ -40,6 +46,9 @@ public class ChatController {
         }
     }
 
+    /**
+     * Handles action when the send button is clicked. Sends the message.
+     */
     @FXML private void handleSend(ActionEvent event){
         String content = textField.getText();
         if(!content.isEmpty()){
