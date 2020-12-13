@@ -309,11 +309,11 @@ public class EventManager {
         String formattedET = event.getEndTime().format(formatter);
         infoList.add(eventID.toString());
         infoList.add(getEventName(eventID));
-        infoList.add(event.convertSpeakerString());
         infoList.add(formattedST);
         infoList.add(formattedET);
-        infoList.add(event.getRoomName());
+        infoList.add(event.convertSpeakerString());
         infoList.add(getEventOrganizer(eventID));
+        infoList.add(event.getRoomName());
         int capacity = getEventMaxCapacity(eventID);
         infoList.add(Integer.toString(capacity));
         infoList.add(Integer.toString(capacity - getEventAttendees(eventID).size()));

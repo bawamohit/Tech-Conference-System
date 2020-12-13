@@ -29,7 +29,7 @@ public abstract class DisplayEventsController extends Observable implements GUIC
         EventHolder.getInstance().setButtonClicked(false);
         int i = 0, j = 0;
         for(List<String> eventInfo: eventsInfo) {
-            Button button = new Button(eventInfo.get(1) + "\nStarts: " + eventInfo.get(3) + "\nEnds:  " + eventInfo.get(4));
+            Button button = new Button(eventInfo.get(1) + "\nStarts: " + eventInfo.get(2) + "\nEnds:  " + eventInfo.get(3));
             button.setPrefHeight(75);
             button.setPrefWidth(200);
             button.setOnAction(new EventHandler<ActionEvent>(){

@@ -17,6 +17,10 @@ public class AdminDashboardController extends UserDashboardController {
         observeDisplayEvents();
     }
 
+    public void handleMessageButtonAction(ActionEvent actionEvent) {
+        loadSubScene("/GUI/Message/Message");
+    }
+
     public void handleDeleteChatButtonAction(ActionEvent actionEvent) {
         loadSubScene("/GUI/AdminGUI/DeleteChat");
     }
