@@ -34,6 +34,31 @@ public class MessageManager {
         }
     }
 
+    // Helper method, adds the message to the HashMap chats
+    private void addMessage(String sender, String receiver, Message message) {
+        addSenderChat(sender);
+        addReceiverChat(sender, receiver);
+        chats.get(sender).get(receiver).add(message);
+    }
+
+    // Helper method, adds a sender key to the HashMap chats if it's not already a key, and map that key to an empty
+    // HashMap
+    private void addSenderChat(String sender) {
+        if (!chats.containsKey(sender)) {
+            HashMap<String, List<Message>> receivers = new HashMap<>();
+            chats.put(sender, receivers);
+        }
+    }
+
+    // Helper method, adds a receiver key to the nested HashMap inside chats if it's not already a key, and map that
+    // key to an empty list of Messages
+    private void addReceiverChat(String sender, String receiver){
+        if (!chats.get(sender).containsKey(receiver)) {
+            List<Message> chat = new ArrayList<>();
+            chats.get(sender).put(receiver, chat);
+        }
+    }
+
     //TODO javadoc
     public void sendAnnouncement(String sender, List<String> receivers, String content){
         content = "Announcement:\n" + content;
@@ -66,68 +91,15 @@ public class MessageManager {
         addMessage(receiver, sender, message);
     }
 
-    // Helper method, adds the message to the HashMap chats
-    private void addMessage(String sender, String receiver, Message message) {
-        addSenderChat(sender);
-        addReceiverChat(sender, receiver);
-        chats.get(sender).get(receiver).add(message);
-    }
-
-    // Helper method, adds a sender key to the HashMap chats if it's not already a key, and map that key to an empty
-    // HashMap
-    private void addSenderChat(String sender) {
-        if (!chats.containsKey(sender)) {
-            HashMap<String, List<Message>> receivers = new HashMap<>();
-            chats.put(sender, receivers);
-        }
-    }
-
-    // Helper method, adds a receiver key to the nested HashMap inside chats if it's not already a key, and map that
-    // key to an empty list of Messages
-    private void addReceiverChat(String sender, String receiver){
-        if (!chats.get(sender).containsKey(receiver)) {
-            List<Message> chat = new ArrayList<>();
-            chats.get(sender).put(receiver, chat);
-        }
-    }
-
-    /** Deletes the Message chosen by the User
-     * Removes the Message from the HashMap chats
-     * @param message Message chosen by User
+    /** Sends a message from the User to everyone in the userList
+     *
+     * @param sender Sender of Message
+     * @param userList List of Receivers
+     * @param content Content of Message
      */
-    public void deleteMessage(Message message) {//TODO obsolete?, if so binary searches are useless
-        String sender = message.getSender();
-        String receiver = message.getReceiver();
-        List<Message> chat = chats.get(sender).get(receiver);
-        int messageIndex = binarySearchMessage(chat, message);
-        if(chat.get(messageIndex).getSender().equals(message.getSender())){
-            chat.remove(messageIndex);
-        } else {
-            chat.remove(message);
-        }
-    }
-
-    public void deleteMessage(String sender, String receiver, int index) {
-        List<Message> chat = chats.get(sender).get(receiver);
-        chat.remove(index);
-    }
-
-    // Helper method
-    private int binarySearchMessage(List<Message> chat, Message message) {
-        LocalDateTime time = message.getTime();
-        return binarySearchMessage(chat, 0, chat.size(), time);
-    }
-
-    // Helper method
-    private int binarySearchMessage(List<Message> chat, int startIndex, int endIndex, LocalDateTime time){
-        int midIndex = (startIndex + endIndex) / 2;
-        LocalDateTime midMessageTime = (chat.get(midIndex)).getTime();
-        if (midMessageTime.isEqual(time)) {
-            return midIndex;
-        } else if (time.isBefore(midMessageTime)){
-            return binarySearchMessage(chat, startIndex, midIndex, time);
-        } else {
-            return binarySearchMessage(chat, midIndex + 1, endIndex, time);
+    public void messageAll(String sender, List<String> userList, String content) {
+        for (String user : userList) {
+            sendMessage(sender, user, content);
         }
     }
 
@@ -148,69 +120,9 @@ public class MessageManager {
     public List<String> getInboxes(String user) {
         addSenderChat(user);
         return sortInbox(user, new ArrayList<>(chats.get(user).keySet()));
-        //return new ArrayList<>(chats.get(user).keySet());
     }
 
-    /** Implements Getter for getting the inbox between 2 users
-     *
-     * @param firstUser One user of the inbox
-     * @param secondUser Other user of the inbox
-     * @return List of Messages between the 2 users
-     */
-    public List<Message> getInbox(String firstUser, String secondUser) {//TODO obsolete?
-        return chats.get(firstUser).get(secondUser);
-    }
-
-    /** Implements Getter for getting the inbox between 2 users, but in String format
-     *
-     * @param firstUser One user of the inbox
-     * @param secondUser Other user of the inbox
-     * @return List of Messages' Contents between the 2 users
-     */
-    public List<String> getInboxString(String firstUser, String secondUser){
-        List<Message> messages = chats.get(firstUser).get(secondUser);
-        List<String> inbox = new ArrayList<>();
-        for(Message message : messages){
-            inbox.add("(" + message.getTime().truncatedTo(ChronoUnit.MINUTES).toString() +") "
-                    + message.getSender() + ": " +message.getContent());
-        }
-        return inbox;
-    }
-
-    //TODO javadoc
-    public List<List<String>> getInboxStringGUI(String firstUser, String secondUser){
-        List<Message> messages = chats.get(firstUser).get(secondUser);
-        List<List<String>> inbox = new ArrayList<>();
-        if(messages == null) return inbox;
-        for(Message message : messages){
-            List<String> messageInfo = new ArrayList<>();
-            messageInfo.add(message.getSender());
-            messageInfo.add(message.getTime().truncatedTo(ChronoUnit.MINUTES).toString());
-            messageInfo.add(message.getContent());
-            inbox.add(messageInfo);
-        }
-        return inbox;
-    }
-
-    /** Sends a message from the User to everyone in the userList
-     *
-     * @param sender Sender of Message
-     * @param userList List of Receivers
-     * @param content Content of Message
-     */
-    public void messageAll(String sender, List<String> userList, String content) {
-        for (String user : userList) {
-            sendMessage(sender, user, content);
-        }
-    }
-
-    //TODO javadoc
-    public void deleteMutualThread(String username1, String username2){
-        chats.get(username1).remove(username2);
-        chats.get(username2).remove(username1);
-    }
-
-    /**
+    /** Helper to sort inboxes by latest message time
      * @param user User of which we want to sort inbox
      * @param inboxList Inboxes of user
      * @return sorted inbox list of User
@@ -244,5 +156,85 @@ public class MessageManager {
             }
         }
         return inboxListSorted;
+    }
+
+    /** Implements Getter for getting the inbox between 2 users
+     *
+     * @param firstUser One user of the inbox
+     * @param secondUser Other user of the inbox
+     * @return List of Messages between the 2 users
+     */
+    public List<Message> getInbox(String firstUser, String secondUser) {
+        return chats.get(firstUser).get(secondUser);
+    }
+
+    /** Implements Getter for getting the inbox between 2 users, but in String format
+     *
+     * @param firstUser One user of the inbox
+     * @param secondUser Other user of the inbox
+     * @return List of Messages' Contents between the 2 users
+     */
+    public List<List<String>> getInboxStringGUI(String firstUser, String secondUser){
+        List<Message> messages = chats.get(firstUser).get(secondUser);
+        List<List<String>> inbox = new ArrayList<>();
+        if(messages == null) return inbox;
+        for(Message message : messages){
+            List<String> messageInfo = new ArrayList<>();
+            messageInfo.add(message.getSender());
+            messageInfo.add(message.getTime().truncatedTo(ChronoUnit.MINUTES).toString());
+            messageInfo.add(message.getContent());
+            inbox.add(messageInfo);
+        }
+        return inbox;
+    }
+
+    /** Deletes inbox between 2 Users
+     *
+     * @param username1 User 1
+     * @param username2 User 2
+     */
+    public void deleteMutualThread(String username1, String username2){
+        chats.get(username1).remove(username2);
+        chats.get(username2).remove(username1);
+    }
+
+    /** Deletes the Message chosen by the User
+     * Removes the Message from the HashMap chats
+     * @param message Message chosen by User
+     */
+    public void deleteMessage(Message message) { //TODO obsolete?, if so binary searches are useless
+        String sender = message.getSender();
+        String receiver = message.getReceiver();
+        List<Message> chat = chats.get(sender).get(receiver);
+        int messageIndex = binarySearchMessage(chat, message);
+        if(chat.get(messageIndex).getSender().equals(message.getSender())){
+            chat.remove(messageIndex);
+        } else {
+            chat.remove(message);
+        }
+    }
+
+    public void deleteMessage(String sender, String receiver, int index) {
+        List<Message> chat = chats.get(sender).get(receiver);
+        chat.remove(index);
+    }
+
+    // Helper method
+    private int binarySearchMessage(List<Message> chat, Message message) {
+        LocalDateTime time = message.getTime();
+        return binarySearchMessage(chat, 0, chat.size(), time);
+    }
+
+    // Helper method
+    private int binarySearchMessage(List<Message> chat, int startIndex, int endIndex, LocalDateTime time){
+        int midIndex = (startIndex + endIndex) / 2;
+        LocalDateTime midMessageTime = (chat.get(midIndex)).getTime();
+        if (midMessageTime.isEqual(time)) {
+            return midIndex;
+        } else if (time.isBefore(midMessageTime)){
+            return binarySearchMessage(chat, startIndex, midIndex, time);
+        } else {
+            return binarySearchMessage(chat, midIndex + 1, endIndex, time);
+        }
     }
 }
