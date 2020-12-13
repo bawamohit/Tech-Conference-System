@@ -143,7 +143,7 @@ public class RoomManager {
         return false;
     }
 
-    public void removeEventFromRoom(String roomName, UUID eventID){
+    public void removeEventFromRoom(UUID eventID, String roomName){
         Room room = rooms.get(roomName);
         HashMap<UUID, List<LocalDateTime>> schedule = room.getSchedule();
         schedule.remove(eventID);
