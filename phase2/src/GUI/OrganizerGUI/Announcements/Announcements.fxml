@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="GUI.OrganizerGUI.Announcements.AnnouncementsController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OrganizerGUI.Announcements.AnnouncementsController">
+   <center>
+      <TextArea fx:id="textArea" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+   <bottom>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <CheckBox fx:id="adminCheckBox" prefWidth="200" text="Admins" />
+                  <CheckBox fx:id="organizerCheckBox" prefWidth="200" text="Organizers" />
+                  <CheckBox fx:id="speakerCheckBox" prefWidth="200" text="Speakers" />
+                  <CheckBox fx:id="attendeeCheckBox" prefWidth="200" text="Attendees" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" alignment="BASELINE_RIGHT">
+               <children>
+                  <Button fx:id="sendButton" text="Send" onAction="#handleSendButtonAction"/>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </bottom>
+</BorderPane>

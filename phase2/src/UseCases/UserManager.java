@@ -40,52 +40,17 @@ public class UserManager {
         return nameList;
     }
 
-    /** Creates a list of usernames of all registered users that are attendees and returns it.
-     *
-     * @return List of attendee usernames
-     */
-    public List<String> getAttendeeList() {
-        ArrayList<String> attendeeList = new ArrayList<>();
+    //TODO javadoc
+    public List<String> getUserList(UserType userType){
+        ArrayList<String> userList = new ArrayList<>();
 
         for(String username : getUsernameList()){
-            if (getUserType(username) == UserType.ATTENDEE) {
-                attendeeList.add(username);
+            if (getUserType(username) == userType) {
+                userList.add(username);
             }
         }
 
-        return attendeeList;
-    }
-
-    /** Creates a list of usernames of all registered users that are speakers and returns it.
-     *
-     * @return List of speaker usernames
-     */
-    public List<String> getSpeakerList() {
-        ArrayList<String> speakerList = new ArrayList<>();
-
-        for(String username : getUsernameList()){
-            if (getUserType(username) == UserType.SPEAKER) {
-                speakerList.add(username);
-            }
-        }
-
-        return speakerList;
-    }
-
-    /** Creates a list of usernames of all registered users that are organizers and returns it.
-     *
-     * @return List of organizer usernames
-     */
-    public List<String> getOrganizerList() {
-        ArrayList<String> organizerList = new ArrayList<>();
-
-        for(String username : getUsernameList()){
-            if (getUserType(username) == UserType.ORGANIZER) {
-                organizerList.add(username);
-            }
-        }
-
-        return organizerList;
+        return userList;
     }
 
     /** Determines whether the given username is registered in this userManager
@@ -108,12 +73,8 @@ public class UserManager {
      *
      * @return true if the user was successfully registered, and false if the username was taken.
      */
-    public boolean registerUser(UserType userType, String name, String username, String password) {
-        if (isRegistered(username)){
-            return false;
-        }
+    public void registerUser(UserType userType, String name, String username, String password) {
         usernamesToUsers.put(username, new User(userType, name, username, password));
-        return true;
     }
 
     /** Checks if the given username and password match the login credentials of a registered user.
