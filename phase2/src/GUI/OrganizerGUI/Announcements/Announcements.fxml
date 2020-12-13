@@ -1,29 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.OrganizerGUI.Announcements.AnnouncementsController">
+<BorderPane prefHeight="700.0" prefWidth="900.0" stylesheets="@Announcements.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OrganizerGUI.Announcements.AnnouncementsController">
    <center>
-      <TextArea fx:id="textArea" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <TextArea fx:id="textArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" promptText="Enter a message you'd like to send to all members of the group(s) selected below." BorderPane.alignment="CENTER" />
    </center>
    <bottom>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="700.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="65.0">
                <children>
-                  <CheckBox fx:id="adminCheckBox" prefWidth="200" text="Admins" />
-                  <CheckBox fx:id="organizerCheckBox" prefWidth="200" text="Organizers" />
-                  <CheckBox fx:id="speakerCheckBox" prefWidth="200" text="Speakers" />
-                  <CheckBox fx:id="attendeeCheckBox" prefWidth="200" text="Attendees" />
+                  <CheckBox fx:id="adminCheckBox" prefWidth="200" stylesheets="@Announcements.css" text="Admins" />
+                  <CheckBox fx:id="organizerCheckBox" prefHeight="22.0" prefWidth="221.0" stylesheets="@Announcements.css" text="Organizers" />
+                  <CheckBox fx:id="speakerCheckBox" prefWidth="200" stylesheets="@Announcements.css" text="Speakers" />
+                  <CheckBox fx:id="attendeeCheckBox" prefHeight="22.0" prefWidth="216.0" stylesheets="@Announcements.css" text="Attendees" />
                </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" alignment="BASELINE_RIGHT">
+            <HBox alignment="BASELINE_RIGHT" prefHeight="160.0" prefWidth="700.0">
                <children>
-                  <Button fx:id="sendButton" text="Send" onAction="#handleSendButtonAction"/>
+                  <Button fx:id="sendButton" onAction="#handleSendButtonAction" text="Send" />
                </children>
             </HBox>
          </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </VBox>
    </bottom>
 </BorderPane>

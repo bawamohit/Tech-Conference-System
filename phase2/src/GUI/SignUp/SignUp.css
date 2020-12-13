@@ -49,9 +49,6 @@
     -fx-background-color: linear-gradient(#6d3684, #522863);
 }
 
-#signUp:hover{
-    -fx-underline: true;
-}
 
 /* CSS HEX */
 /*--dark-orchid: #af2bbfff;*/

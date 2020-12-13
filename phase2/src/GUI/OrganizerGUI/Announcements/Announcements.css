@@ -1,0 +1,63 @@
+.root {
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background: transparent;
+}
+.check-box{
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+    -fx-border-radius: 10px;
+}
+.check-box:selected{
+    -fx-font-weight: bold;
+}
+
+.button {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-color: rgba(94, 94, 94, 0.3);
+    -fx-border-radius: 10px;
+}
+
+.button:hover {
+    -fx-background-color: rgba(94, 94, 94, 0.6);
+    -fx-text-fill: #ffffff;
+    -fx-border-color: transparent;
+}
+
+.button:focused {
+    -fx-background-color: rgba(95, 176, 183, 0.8);
+    -fx-text-fill: #ffffff;
+    -fx-border-color: transparent;
+}
+
+.text-area{
+    -fx-border-color: transparent;
+    -fx-background-color: rgba(64, 64, 64, 0.3);
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 15px;
+    -fx-wrap-text: true;
+    -fx-outline: none;
+    -fx-border-radius: 10px;
+}
+
+.text-area *.content {
+    -fx-background-color: transparent;
+    -fx-wrap-text: true;
+    -fx-prompt-text-fill:rgba(247, 247, 247, 0.6);
+}
+
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+}
+
+
+/* CSS HEX */
+/*--dark-orchid: #af2bbfff;*/
+/*--purple-plum: #a14ebfff;*/
+/*--blue-gray: #6c91bfff;*/
+/*--verdigris: #5fb0b7ff;*/
+/*--ocean-green: #5bc8afff; */
