@@ -123,7 +123,11 @@ public class RoomManager {
         room.setRoomSchedule(updated_room);
     }
 
-    //TODO javadoc
+    /**
+     * Implements modifier, removeEventFromRoom, for removing the event from the room.
+     * @param eventID id of the event to be removed from a room's schedule
+     * @param roomName the room that the event will be removed from
+     */
     public void removeEventFromRoom(UUID eventID, String roomName){
         Room room = rooms.get(roomName);
         HashMap<UUID, List<LocalDateTime>> schedule = room.getSchedule();
