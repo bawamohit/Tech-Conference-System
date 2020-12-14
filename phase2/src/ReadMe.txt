@@ -26,7 +26,7 @@ Speakers:
 	Black Panther: panther, black
 
 Admins:
-	Jenny: admin, admin
+	Stan: stan, lee
 	Thanos: thanos, snap
 
 
