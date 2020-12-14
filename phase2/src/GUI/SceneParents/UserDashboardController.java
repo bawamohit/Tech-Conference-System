@@ -23,7 +23,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 public abstract class UserDashboardController implements Observer {
-    private WelcomeController welcomeController;
     private String username;
     private SubScene subScene;
     private UserManager userManager;
@@ -42,10 +41,6 @@ public abstract class UserDashboardController implements Observer {
         gridPane.add(subScene, 1, 0);
     }
 
-    public WelcomeController getMainController() {
-        return welcomeController;
-    }
-
     public String getUsername() {
         return username;
     }
@@ -60,18 +55,6 @@ public abstract class UserDashboardController implements Observer {
 
     public EventManager getEventManager() {
         return eventManager;
-    }
-
-    public Label getProfile() {
-        return profile;
-    }
-
-    public GridPane getGridPane() {
-        return gridPane;
-    }
-
-    public FXMLLoader getLoader() {
-        return loader;
     }
 
     /**
