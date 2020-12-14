@@ -1,6 +1,7 @@
 package UseCases;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -183,10 +184,11 @@ public class MessageManager {
         List<Message> messages = chats.get(firstUser).get(secondUser);
         List<List<String>> inbox = new ArrayList<>();
         if(messages == null) return inbox;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         for(Message message : messages){
             List<String> messageInfo = new ArrayList<>();
             messageInfo.add(message.getSender());
-            messageInfo.add(message.getTime().truncatedTo(ChronoUnit.MINUTES).toString());
+            messageInfo.add(message.getTime().format(formatter));
             messageInfo.add(message.getContent());
             inbox.add(messageInfo);
         }
