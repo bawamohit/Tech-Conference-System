@@ -11,7 +11,9 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -50,9 +52,11 @@ public class EventGateway {
             }
 
             JSONArray speakers = (JSONArray) info.get("speakers");
+            List<String> speakerList = new ArrayList<>();
             for (Object speaker : speakers) {
-                em.addSpeaker(id, (String) speaker);
+                speakerList.add(speaker.toString());
             }
+            em.addSpeakers(id, speakerList);
         }
 
         return em;

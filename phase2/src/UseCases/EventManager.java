@@ -216,19 +216,12 @@ public class EventManager {
     }
 
     /**
-     * Implements modifier, addSpeaker, for events.
+     * Implements modifier, addSpeakers, for events.
      *
      *
      * @param eventID id of the event
-     * @param newSpeaker username of the new speaker
+     * @param newSpeakers list of usernames of the new speakers
      */
-    public void addSpeaker(UUID eventID, String newSpeaker){
-        Event event = events.get(eventID);
-        List<String> speakers = event.getSpeakers();
-        speakers.add(newSpeaker);
-    }
-
-    //TODO replace addSpeaker with this if possible
     public void addSpeakers(UUID eventID, List<String> newSpeakers){
         Event event = events.get(eventID);
         List<String> speakers = event.getSpeakers();
