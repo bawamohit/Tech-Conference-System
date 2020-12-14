@@ -92,19 +92,34 @@ public abstract class UserDashboardController implements Observer {
         }
     }
 
+    /**
+     * This class is an observer. This method is an abstract update for its children.
+     *
+     * @param o the class that this class observes
+     * @param arg an arbitrary argument
+     */
     @Override
     public abstract void update(Observable o, Object arg);
 
+    /**
+     * Adds this class to the list of observers of the DisplayEventController currently associated with loader.
+     */
     public void observeDisplayEvents(){
         DisplayEventsController controller = loader.getController();
         controller.addObserver(this);
     }
 
+    /**
+     * Adds this class to the list of observers of the ModifySpeakerController currently associated with loader.
+     */
     public void observeModifySpeaker(){
         ModifySpeakerController controller = loader.getController();
         controller.addObserver(this);
     }
 
+    /**
+     * Adds this class to the list of observers of the EditEventController currently associated with loader.
+     */
     public void observeEditEvent(){
         EditEventController controller = loader.getController();
         controller.addObserver(this);

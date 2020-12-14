@@ -91,6 +91,11 @@ public class CreateEventController {
         }else{
             UUID eventID = eventManager.addEvent(eventName, username, startTime, endTime, roomName, eventCapacity);
             eventManager.addSpeakers(eventID, speakers);
+            if(!speakers.isEmpty()) {
+                for (String speaker : speakers) {
+                    userManager.addEventAttending(speaker, eventID);
+                }
+            }
             roomManager.addEventToSchedule(eventID, roomName, startTime, endTime);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
