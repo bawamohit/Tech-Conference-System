@@ -11,12 +11,12 @@
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="415.0" layoutX="115.0" layoutY="82.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="503.0" AnchorPane.bottomAnchor="58.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="116.0" AnchorPane.topAnchor="82.0" />
         <VBox alignment="TOP_RIGHT" layoutX="187.0" layoutY="213.0" prefHeight="130.0" prefWidth="391.0" spacing="10.0" AnchorPane.bottomAnchor="212.0" AnchorPane.leftAnchor="187.0" AnchorPane.rightAnchor="156.0" AnchorPane.topAnchor="213.0">
             <children>
-                <HBox prefHeight="26.0" prefWidth="208.0">
+                <HBox alignment="BOTTOM_CENTER" prefHeight="26.0" prefWidth="208.0">
                     <children>
 
-                        <Label graphicTextGap="3.0" lineSpacing="1.0" prefHeight="26.0" prefWidth="207.0" stylesheets="@DeleteChat.css" text="Username 1" />
+                        <Label alignment="BOTTOM_CENTER" graphicTextGap="3.0" lineSpacing="1.0" prefHeight="26.0" prefWidth="207.0" stylesheets="@DeleteChat.css" text="Username 1" />
 
-                        <TextField fx:id="username1Field" onAction="#handleDeleteChatButtonAction" prefWidth="197.0" styleClass="text-field1" stylesheets="@DeleteChat.css">
+                        <TextField fx:id="username1Field" alignment="BOTTOM_CENTER" onAction="#handleDeleteChatButtonAction" prefWidth="197.0" styleClass="text-field1" stylesheets="@DeleteChat.css">
                             <effect>
                                 <Blend />
                             </effect>
@@ -25,11 +25,11 @@
                 </HBox>
                 <HBox prefHeight="100.0" prefWidth="200.0" />
                 <HBox alignment="TOP_RIGHT" prefHeight="26.0" prefWidth="364.0" />
-                <HBox prefHeight="100.0" prefWidth="200.0">
+                <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
                     <children>
 
-                        <Label graphicTextGap="3.0" lineSpacing="1.0" prefHeight="26.0" prefWidth="206.0" stylesheets="@DeleteChat.css" text="Username 2" />
-                        <TextField fx:id="username2Field" layoutX="212.0" layoutY="10.0" onAction="#handleDeleteChatButtonAction" prefHeight="26.0" prefWidth="196.0" styleClass="text-field1" stylesheets="@DeleteChat.css">
+                        <Label alignment="BOTTOM_CENTER" graphicTextGap="3.0" lineSpacing="1.0" prefHeight="26.0" prefWidth="206.0" stylesheets="@DeleteChat.css" text="Username 2" />
+                        <TextField fx:id="username2Field" alignment="BOTTOM_CENTER" layoutX="212.0" layoutY="10.0" onAction="#handleDeleteChatButtonAction" prefHeight="26.0" prefWidth="196.0" styleClass="text-field1" stylesheets="@DeleteChat.css">
                             <effect>
                                 <Blend />
                             </effect>
@@ -48,7 +48,7 @@
                 </Text>
             </children>
         </VBox>
-          <Button id="DeleteChatButton" layoutX="306.0" layoutY="379.0" mnemonicParsing="false" onAction="#handleDeleteChatButtonAction" prefHeight="29.0" prefWidth="122.0" snapToPixel="false" stylesheets="@DeleteChat.css" text="Delete Chat" textAlignment="RIGHT" />
-      <Label layoutX="167.0" layoutY="97.0" prefWidth="400.0" styleClass="label2" stylesheets="@DeleteChat.css" text="Enter two usernames to delete their associated chat. This cannot be undone." textAlignment="CENTER" />
+          <Button id="DeleteChatButton" alignment="BOTTOM_CENTER" layoutX="306.0" layoutY="379.0" mnemonicParsing="false" onAction="#handleDeleteChatButtonAction" prefHeight="29.0" prefWidth="122.0" snapToPixel="false" stylesheets="@DeleteChat.css" text="Delete Chat" textAlignment="RIGHT" />
+      <Label alignment="BOTTOM_CENTER" layoutX="167.0" layoutY="97.0" prefWidth="400.0" styleClass="label2" stylesheets="@DeleteChat.css" text="Enter two usernames to delete their associated chat. This cannot be undone." textAlignment="CENTER" />
     </children>
 </AnchorPane>
