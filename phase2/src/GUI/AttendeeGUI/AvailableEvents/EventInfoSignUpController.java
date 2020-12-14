@@ -42,6 +42,9 @@ public class EventInfoSignUpController extends EventInfoController {
         }
     }
 
+    /**
+     * Displays a pop-up message
+     */
     private void alert(String message){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Sign Up Failed");
