@@ -72,7 +72,6 @@
     -fx-text-fill: #ffffff;
     -fx-font-size: 14px;
     -fx-background-color: rgba(108, 145, 191, 0.8);
-    /*-fx-white-space: normal; //TODO fix whitespace*/
     -fx-width: 134px;
     -fx-background-radius: 10px;
 }

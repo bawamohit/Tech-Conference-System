@@ -54,9 +54,9 @@
         "eventsAttending": ["99b5e204-d17c-43cf-ab5f-b5226182760a"],
         "friends": []
     },
-    "admin": {
-        "name": "Jenny",
-        "password": "admin",
+    "stan": {
+        "name": "Stan",
+        "password": "lee",
         "userType": "ADMIN",
         "eventsAttending": [],
         "friends": []

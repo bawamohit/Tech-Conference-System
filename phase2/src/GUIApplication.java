@@ -30,7 +30,7 @@ public class GUIApplication extends javafx.application.Application {
     }
 
     /**
-     * Stops the run and saves all information to json files
+     * Stops the run
      */
     @Override
     public void stop() throws Exception {
