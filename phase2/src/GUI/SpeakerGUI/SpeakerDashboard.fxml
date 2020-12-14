@@ -56,6 +56,6 @@
         <RowConstraints />
     </rowConstraints>
    <padding>
-      <Insets left="20.0" right="20.0" top="20.0" />
+      <Insets top="20.0" />
    </padding>
 </GridPane>
