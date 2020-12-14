@@ -24,12 +24,10 @@ import java.util.List;
  * The subscene for message search scene
  */
 public class MessageController {
-    private WelcomeController welcomeController;
     protected MessageManager messageManager;
     protected SubScene subScene;
     protected String username;
 
-    @FXML private SplitPane splitPane;
     @FXML protected GridPane gridPane;
     @FXML protected VBox chatsContainer;
     @FXML protected TextField searchField;

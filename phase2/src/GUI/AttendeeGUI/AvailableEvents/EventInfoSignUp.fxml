@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane fx:id="gridPane" alignment="CENTER" maxHeight="125.0" prefHeight="125.0" stylesheets="@../../SceneParents/EventInfo.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AttendeeGUI.AvailableEvents.EventInfoSignUpController">
+<GridPane fx:id="gridPane" alignment="CENTER" maxHeight="125.0" prefHeight="125.0" stylesheets="@../../SceneParents/EventInfo.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.AttendeeGUI.AvailableEvents.EventInfoSignUpController">
     <Label fx:id="label1" prefWidth="250" GridPane.rowIndex="0" />
     <Label fx:id="label2" prefWidth="250" GridPane.rowIndex="1" />
     <Label fx:id="label3" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1" />

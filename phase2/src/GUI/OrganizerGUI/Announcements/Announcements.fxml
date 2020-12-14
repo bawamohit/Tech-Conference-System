@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="680.0" prefWidth="900.0" stylesheets="@Announcements.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OrganizerGUI.Announcements.AnnouncementsController">
+<BorderPane prefHeight="680.0" prefWidth="900.0" stylesheets="@Announcements.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.OrganizerGUI.Announcements.AnnouncementsController">
    <center>
       <TextArea fx:id="textArea" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" promptText="Enter a message you'd like to send to all members of the group(s) selected below." BorderPane.alignment="CENTER" />
    </center>
