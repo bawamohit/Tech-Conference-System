@@ -66,7 +66,7 @@
     </stylesheets>
     <columnConstraints>
         <ColumnConstraints maxWidth="320" minWidth="150.0" prefWidth="150.0" />
-        <ColumnConstraints maxWidth="947.0" minWidth="570" prefWidth="947.0" />
+        <ColumnConstraints maxWidth="947.0" minWidth="570" prefWidth="900.0" />
     </columnConstraints>
     <rowConstraints>
         <RowConstraints maxHeight="690.0" prefHeight="680.0" />

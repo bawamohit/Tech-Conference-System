@@ -123,34 +123,12 @@ public class RoomManager {
         room.setRoomSchedule(updated_room);
     }
 
-    /**
-     * Implements modifier, removeEventFromSchedule, for a scheduled event.
-     *
-     * @return a boolean indicating if event was successfully removed
-     */
-    //TODO replace this method with methods below if it does what i think it does
-    public boolean removeEventFromSchedule(UUID eventID) {
-        for (String name : rooms.keySet()) {
-            Room r = rooms.get(name);
-            HashMap<UUID, List<LocalDateTime>> schedule = r.getSchedule();
-            if (r.getRoomEventIDs().contains(eventID)){
-                schedule.remove(eventID);
-                r.setRoomSchedule(schedule);
-                return true;
-            }
-        }
-        return false;
-    }
-
+    //TODO javadoc
     public void removeEventFromRoom(UUID eventID, String roomName){
         Room room = rooms.get(roomName);
         HashMap<UUID, List<LocalDateTime>> schedule = room.getSchedule();
         schedule.remove(eventID);
         room.setRoomSchedule(schedule);
-    }
-
-    public boolean doesNotContainEvent(String room, UUID eventID){
-        return !rooms.get(room).getRoomEventIDs().contains(eventID);
     }
 
     /**

@@ -11,7 +11,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.UUID;
@@ -74,31 +73,19 @@ public class ModifySpeakerController extends Observable {
         String speakerUsername = speakerNameField.getText();
         if (speakerUsername.isEmpty()){
             createAlertMessage("Missing speaker name input");
-            return;
-        }
-        if (!userManager.isRegistered(speakerUsername)){
+        }else if (!userManager.isRegistered(speakerUsername)){
             createAlertMessage("This username does not exist.");
-            return;
-        }
-        if (!userManager.getUserType(speakerUsername).equals(UserType.SPEAKER)){
+        }else if (!userManager.getUserType(speakerUsername).equals(UserType.SPEAKER)){
             createAlertMessage("This user is not a speaker.");
-            return;
-        }
-
-        if (!roomAllowsSpeaker(eventID)){
+        }else if (!roomAllowsSpeaker(eventID)){
             createAlertMessage("The room capacity is full and cannot add a speaker to the event");
-            return;
-        }
-
-        if(!speakerAvailable(speakerUsername, eventManager.getEventStartTime(eventID), eventManager.getEventEndTime(eventID))){
+        }else if(!speakerAvailable(speakerUsername, eventManager.getEventStartTime(eventID), eventManager.getEventEndTime(eventID))){
             createAlertMessage("This speaker is not available at the time of this event.");
-            return;
+        }else {
+            eventManager.addSpeaker(eventID, speakerUsername);
+            userManager.addEventAttending(speakerUsername, eventID);
+            createAlertMessage("Speaker Added!");
         }
-        List<String> speaker = new ArrayList<>();
-        speaker.add(speakerUsername);
-        eventManager.addSpeakers(eventID, speaker);
-        userManager.addEventAttending(speakerUsername, eventID);
-        createAlertMessage("Speaker Added!");
     }
 
     /**
