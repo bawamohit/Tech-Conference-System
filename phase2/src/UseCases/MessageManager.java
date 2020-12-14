@@ -59,19 +59,6 @@ public class MessageManager {
         }
     }
 
-    /** Sends a message from the sender to all the receivers as an announcement
-     *
-     * @param sender The sender of the announcement
-     * @param receivers The list of receivers of the announcements
-     * @param content The content of the announcements
-     */
-    public void sendAnnouncement(String sender, List<String> receivers, String content){
-        content = "Announcement:\n" + content;
-        for(String receiver: receivers) {
-            addMessage(receiver, sender, new Message(sender, receiver, content));
-        }
-    }
-
     /** Adds a Message from sender to receiver with the content, at the set time, and only records in sender's chat
      *
      * @param sender Sender of Message
@@ -202,45 +189,5 @@ public class MessageManager {
     public void deleteMutualThread(String username1, String username2){
         chats.get(username1).remove(username2);
         chats.get(username2).remove(username1);
-    }
-
-    /** Deletes the Message chosen by the User
-     * Removes the Message from the HashMap chats
-     * @param message Message chosen by User
-     */
-    public void deleteMessage(Message message) { //TODO obsolete?, if so binary searches are useless
-        String sender = message.getSender();
-        String receiver = message.getReceiver();
-        List<Message> chat = chats.get(sender).get(receiver);
-        int messageIndex = binarySearchMessage(chat, message);
-        if(chat.get(messageIndex).getSender().equals(message.getSender())){
-            chat.remove(messageIndex);
-        } else {
-            chat.remove(message);
-        }
-    }
-
-    public void deleteMessage(String sender, String receiver, int index) {
-        List<Message> chat = chats.get(sender).get(receiver);
-        chat.remove(index);
-    }
-
-    // Helper method
-    private int binarySearchMessage(List<Message> chat, Message message) {
-        LocalDateTime time = message.getTime();
-        return binarySearchMessage(chat, 0, chat.size(), time);
-    }
-
-    // Helper method
-    private int binarySearchMessage(List<Message> chat, int startIndex, int endIndex, LocalDateTime time){
-        int midIndex = (startIndex + endIndex) / 2;
-        LocalDateTime midMessageTime = (chat.get(midIndex)).getTime();
-        if (midMessageTime.isEqual(time)) {
-            return midIndex;
-        } else if (time.isBefore(midMessageTime)){
-            return binarySearchMessage(chat, startIndex, midIndex, time);
-        } else {
-            return binarySearchMessage(chat, midIndex + 1, endIndex, time);
-        }
     }
 }
