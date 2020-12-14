@@ -3,34 +3,32 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AdminGUI.DeleteChatController">
+<BorderPane prefHeight="680.0" prefWidth="900.0" styleClass="root" stylesheets="@DeleteChat.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AdminGUI.DeleteChatController">
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="280.0" prefWidth="597.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-                <Label prefWidth="400.0" styleClass="label2" stylesheets="@DeleteChat.css" text="Enter two usernames to delete their associated chat. This cannot be undone." />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                <Label prefHeight="70.0" prefWidth="570.0" styleClass="label2" stylesheets="@DeleteChat.css" text="Enter two usernames to delete their associated chat. This cannot be undone." textAlignment="CENTER" />
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="301.0">
+            <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="301.0">
                 <Label stylesheets="@DeleteChat.css" text="Username 1" />
                 <TextField fx:id="username1Field" alignment="BOTTOM_CENTER" onAction="#handleDeleteChatButtonAction" prefWidth="197.0" styleClass="text-field1" stylesheets="@DeleteChat.css" />
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
                 <Label stylesheets="@DeleteChat.css" text="Username 2" />
                 <TextField fx:id="username2Field" alignment="BOTTOM_CENTER" onAction="#handleDeleteChatButtonAction" prefWidth="197.0" styleClass="text-field1" stylesheets="@DeleteChat.css" />
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" >
-                <Region HBox.hgrow="ALWAYS" />
-                <Button id="DeleteChatButton" text="Delete Chat" onAction="#handleDeleteChatButtonAction"
-                        stylesheets="@DeleteChat.css"/>
+            <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
+                <Button id="DeleteChatButton" onAction="#handleDeleteChatButtonAction" stylesheets="@DeleteChat.css" text="Delete Chat" />
             </HBox>
          </children>
       </VBox>
    </center>
    <left>
-      <Region prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <Region prefHeight="200.0" prefWidth="180.0" BorderPane.alignment="CENTER" />
    </left>
    <right>
-      <Region prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <Region prefHeight="200.0" prefWidth="180.0" BorderPane.alignment="CENTER" />
    </right>
    <top>
       <Region prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
