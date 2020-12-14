@@ -11,11 +11,17 @@ import UseCases.UserManager;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * The subscene where my events are displayed
+ */
 public class DisplayMyEventsController extends DisplayEventsController {
     private String username;
     private EventManager eventManager;
     private UserManager userManager;
 
+    /**
+     * Initializes the My Events scene.
+     */
     public void initialize(){
         super.initialize();
         generateEventButtons("EventInfoCancel", getEventsInfo());

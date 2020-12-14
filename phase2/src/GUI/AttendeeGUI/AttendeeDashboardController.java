@@ -8,27 +8,37 @@ import javafx.scene.layout.AnchorPane;
 
 import java.util.Observable;
 
+/**
+ * The dashboard for attendees
+ */
 public class AttendeeDashboardController extends UserDashboardController {
-    @FXML private AnchorPane anchorPane;
-    @FXML private SplitPane splitPane;
-    @FXML private Button availEventButton;
-    @FXML private Button myEventButton;
-    @FXML private Button messageButton;
 
+    /**
+     * Initializes the Dashboard scene.
+     */
     public void initialize(){
         super.initData("/GUI/AttendeeGUI/AvailableEvents/DisplayAvailableEvents");
     }
 
+    /**
+     * Handles action when the message button is clicked. Loads Message subscene
+     */
     @FXML
-    protected void handleMessageButtonAction(ActionEvent event) {
+    protected void handleMessageButtonAction() {
         loadSubScene("/GUI/Message/Message");
     }
 
-    @FXML protected void handleAvailEventButtonAction(ActionEvent event) {
+    /**
+     * Handles action of when the available events button is clicked. Loads AvailableEvents subscene
+     */
+    @FXML protected void handleAvailEventButtonAction() {
         loadSubScene("/GUI/AttendeeGUI/AvailableEvents/DisplayAvailableEvents");
     }
 
-    @FXML protected void handleMyEventButtonAction(ActionEvent event) {
+    /**
+     * Handles action of when the My Events button is clicked. Loads MyEvents subscene
+     */
+    @FXML protected void handleMyEventButtonAction() {
         loadSubScene("/GUI/AttendeeGUI/MyEvents/DisplayMyEvents");
         observeDisplayEvents();
     }
