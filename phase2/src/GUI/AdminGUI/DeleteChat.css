@@ -6,18 +6,49 @@
 }
 
 .label {
-    -fx-font-size: 14px;
+    -fx-font-size: 16px;
     -fx-text-fill: white;
+    -fx-font-weight: bold;
 }
 
-.text-field {
-    -fx-background-color: #a9a9a9 , white , white;
-    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+.label2 {
+    -fx-font-size: 20px;
+    -fx-wrap-text: true;
+    -fx-text-fill: #5BC8AF;
+    -fx-font-weight: bold;
 }
 
-.text-field:focused {
-    -fx-background-color: #a9a9a9 , white , white;
-    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+.text-field1 {
+    -fx-border-color: #5BC8AF;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 ;
+    -fx-text-fill: #ffffff;
+}
+.text-field1:focused {
+    -fx-background-color: transparent ;
+    -fx-border-color: #5BC8AF;
+    -fx-border-width: 0 0 2 0;
+}
+
+.button {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-background-color: transparent;
+    -fx-width: 134px;
+    -fx-background-color: rgba(247, 247, 247, 0.3);
+    -fx-font-weight: bold;
+}
+
+.button:hover {
+    -fx-background-color: rgba(91, 200, 175, 0.6);
+    -fx-text-fill: #ffffff;
+}
+
+.button:focused {
+    -fx-background-color: rgba(91, 200, 175, 0.8);
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
 }
 
 .text-id {

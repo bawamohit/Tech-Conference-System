@@ -8,7 +8,10 @@
    <Label fx:id="label1" prefWidth="250" GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.rowIndex="0" />
    <Label fx:id="label2" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="1" />
    <Label fx:id="label3" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-   <Label fx:id="label4" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+   <HBox GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+      <Button fx:id="speakers" onAction="#handleDetailedSpeakersButtonAction" prefHeight="25.0" stylesheets="@../../SceneParents/EventInfo.css" />
+      <Label fx:id="label4" maxHeight="-Infinity" maxWidth="300.0" minHeight="-Infinity" prefHeight="25.0" text=" " />
+   </HBox>
    <Label fx:id="label5" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="2" />
    <Label fx:id="label6" prefWidth="250" GridPane.columnIndex="0" GridPane.rowIndex="3" />
    <Label fx:id="label7" prefWidth="250" GridPane.columnIndex="1" GridPane.rowIndex="3" />

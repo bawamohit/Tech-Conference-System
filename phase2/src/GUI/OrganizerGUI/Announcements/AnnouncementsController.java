@@ -7,13 +7,14 @@ import UseCases.MessageManager;
 import UseCases.UserManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
+/**+
  * The subscene where organizers can make announcements
  */
 public class AnnouncementsController {
@@ -51,6 +52,9 @@ public class AnnouncementsController {
 
         messageManager.messageAll(user, userList, content);
         textArea.clear();
-        //TODO prompts？
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setContentText("Announcement Sent!");
+        alert.showAndWait();
     }
 }
