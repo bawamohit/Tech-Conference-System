@@ -82,35 +82,6 @@ public class UserManager {
         return false;
     }
 
-    /** Updates the name of this user.
-     *
-     * @param username The username of the user whose name shall be updated
-     * @param newName The name that shall replace the user's old name.
-     *
-     * @return True if the update was performed successfully, and false otherwise.
-     */
-    public boolean updateName(String username, String newName) {
-        if (isRegistered(username)) {
-            usernamesToUsers.get(username).setName(newName);
-            return true;
-        }
-        return false;
-    }
-
-    /** Changes the password of the user
-     *
-     * @param username Username of the user whose password is to be changed
-     * @param newPassword The new password of the user
-     * @return true if the password is changed successfully
-     */
-    public boolean updatePassword(String username, String newPassword) {
-        if (isRegistered(username)) {
-            usernamesToUsers.get(username).setPassword(newPassword);
-            return true;
-        }
-        return false;
-    }
-
     /** Adds an event id to a desired user's list of events that they are signed up for.
      *
      * @param username The username of the user who is signing up for an event.
