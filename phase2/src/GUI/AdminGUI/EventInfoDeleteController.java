@@ -17,14 +17,15 @@ public class EventInfoDeleteController extends EventInfoController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
 
-        if (!getEventManager().removeEvent(getEventID())){
-            alert.setTitle("Deletion Error:");
-            alert.setContentText("Sorry this event has already been deleted or modified");
+        if(!getSpeakersList().isEmpty()){
+            for(String speaker: getSpeakersList().split(",")){
+                getUserManager().removeEventAttending(speaker, getEventID());
+            }
         }
-        else {
-            getRoomManager().removeEventFromSchedule(getEventID());
-            alert.setContentText("Successfully Deleted!");
-        }
+
+        getEventManager().removeEvent(getEventID());
+        getRoomManager().removeEventFromRoom(getEventID(), getRoom());
+        alert.setContentText("Successfully Deleted!");
         alert.showAndWait();
         setChanged();
         notifyObservers();

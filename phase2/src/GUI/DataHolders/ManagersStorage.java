@@ -12,6 +12,9 @@ import UseCases.UserManager;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * This class is used to save and read all the information of the program.
+ */
 public final class ManagersStorage {
     private UserGateway userGateway;
     private EventGateway eventGateway;
@@ -43,26 +46,54 @@ public final class ManagersStorage {
         }
     }
 
+    /**
+     * Gets the ManagerStorage instance that is initialized when program is run
+     *
+     * @return ManagerStorage
+     */
     public static ManagersStorage getInstance(){
         return INSTANCE;
     }
 
+    /**
+     * Implements getter for the UserManager
+     *
+     * @return UserManager
+     */
     public UserManager getUserManager(){
         return userManager;
     }
 
+    /**
+     * Implements getter for the EventManager
+     *
+     * @return EventManager
+     */
     public EventManager getEventManager(){
         return eventManager;
     }
 
+    /**
+     * Implements getter for the MessageManager
+     *
+     * @return MessageManager
+     */
     public MessageManager getMessageManager(){
         return messageManager;
     }
 
+    /**
+     * Implements getter for the RoomManager
+     *
+     * @return RoomManager
+     */
     public RoomManager getRoomManager(){
         return roomManager;
     }
 
+    /**
+     * Saves the use cases to the json files
+     */
     public void save(){
         try {
             userGateway.saveToFile(userInfo.getPath(), userManager);

@@ -64,11 +64,11 @@ public abstract class DisplayEventsController extends Observable implements Obse
                     EventHolder.getInstance().setEvent(UUID.fromString(eventInfo.get(0)));
                     loadSubScene(path);
                     if (path.equals("/GUI/AdminGUI/EventInfoDelete")){
-                        observeEventInfoDelete();
+                        observeEventInfoController();
                     }else if (path.equals("EventInfoCancel")){
-                        observeEventInfoCancel();
+                        observeEventInfoController();
                     }else if (path.equals("EventInfoModify")){
-                        observeEventInfoModify();
+                        observeEventInfoController();
                     }
                 }
             });
@@ -80,6 +80,11 @@ public abstract class DisplayEventsController extends Observable implements Obse
         gridPane.add(subScene, 0, 1);
     }
 
+    /**
+     * loads the subscene associated with the given path.
+     *
+     * @param path scene path
+     */
     private void loadSubScene(String path){
         loader = new FXMLLoader(getClass().getResource(path + ".fxml"));
         Parent root = null;
@@ -95,29 +100,25 @@ public abstract class DisplayEventsController extends Observable implements Obse
         }
     }
 
+    /**
+     * This class is both an observer and observable. This method updates this class by notifying its observers whenever
+     * the class that this class observes changes
+     *
+     * @param o the class that this class observes
+     * @param arg an arbitrary argument
+     */
     @Override
     public void update(Observable o, Object arg) {
         setChanged();
         notifyObservers(arg);
     }
 
-    public void observeEventInfoDelete(){
+    /**
+     * Adds this class to the list of observers of the EventInfoController currently associated with loader.
+     */
+    public void observeEventInfoController(){
         EventInfoController controller = loader.getController();
         controller.addObserver(this);
-    }
-
-    public void observeEventInfoCancel(){
-        EventInfoController controller = loader.getController();
-        controller.addObserver(this);
-    }
-
-    public void observeEventInfoModify(){
-        EventInfoController controller = loader.getController();
-        controller.addObserver(this);
-    }
-
-    public FXMLLoader getLoader() {
-        return loader;
     }
 
     /**

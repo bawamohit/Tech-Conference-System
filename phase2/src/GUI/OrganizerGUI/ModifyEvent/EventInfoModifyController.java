@@ -36,12 +36,17 @@ public class EventInfoModifyController extends EventInfoController {
         for (String username: getEventManager().getEventAttendees(eventID)){
             getUserManager().removeEventAttending(username, eventID);
         }
-        if (getEventManager().removeEvent(eventID) && getRoomManager().removeEventFromSchedule(eventID)){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Event Successfully Removed.");
-            alert.showAndWait();
-            setChanged();
-            notifyObservers("ModifyEvent");
+        if(!getSpeakersList().isEmpty()){
+            for(String speaker: getSpeakersList().split(",")){
+                getUserManager().removeEventAttending(speaker,eventID);
+            }
         }
+        getEventManager().removeEvent(eventID);
+        getRoomManager().removeEventFromRoom(eventID, getRoom());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText("Event Successfully Removed.");
+        alert.showAndWait();
+        setChanged();
+        notifyObservers("ModifyEvent");
     }
 }

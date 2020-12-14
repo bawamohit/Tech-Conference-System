@@ -49,7 +49,7 @@ public class WelcomeController{
     /**
      * Implements getter for the MessageManager
      *
-     * @return UserManager
+     * @return MessageManager
      */
     public MessageManager getMessageManager() { return messageManager; }
 

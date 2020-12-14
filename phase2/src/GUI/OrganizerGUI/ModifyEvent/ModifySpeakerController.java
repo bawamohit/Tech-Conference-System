@@ -47,7 +47,6 @@ public class ModifySpeakerController extends Observable {
      */
     @FXML protected void handleModifyButtonAction() {
         if (addRadioButton.isSelected()) {
-            //TODO check if adding speaker will exceed the room capacity
             addSpeakerInputChecksSuccess();
             setChanged();
             notifyObservers("ModifySpeaker");
@@ -74,29 +73,19 @@ public class ModifySpeakerController extends Observable {
         String speakerUsername = speakerNameField.getText();
         if (speakerUsername.isEmpty()){
             createAlertMessage("Missing speaker name input");
-            return;
-        }
-        if (!userManager.isRegistered(speakerUsername)){
+        }else if (!userManager.isRegistered(speakerUsername)){
             createAlertMessage("This username does not exist.");
-            return;
-        }
-        if (!userManager.getUserType(speakerUsername).equals(UserType.SPEAKER)){
+        }else if (!userManager.getUserType(speakerUsername).equals(UserType.SPEAKER)){
             createAlertMessage("This user is not a speaker.");
-            return;
-        }
-
-        if (!roomAllowsSpeaker(eventID)){
+        }else if (!roomAllowsSpeaker(eventID)){
             createAlertMessage("The room capacity is full and cannot add a speaker to the event");
-            return;
-        }
-
-        if(!speakerAvailable(speakerUsername, eventManager.getEventStartTime(eventID), eventManager.getEventEndTime(eventID))){
+        }else if(!speakerAvailable(speakerUsername, eventManager.getEventStartTime(eventID), eventManager.getEventEndTime(eventID))){
             createAlertMessage("This speaker is not available at the time of this event.");
-            return;
+        }else {
+            eventManager.addSpeaker(eventID, speakerUsername);
+            userManager.addEventAttending(speakerUsername, eventID);
+            createAlertMessage("Speaker Added!");
         }
-        eventManager.addSpeaker(eventID, speakerUsername);
-        userManager.addEventAttending(speakerUsername, eventID);
-        createAlertMessage("Speaker Added!");
     }
 
     /**

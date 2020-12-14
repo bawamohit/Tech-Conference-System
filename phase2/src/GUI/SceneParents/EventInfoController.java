@@ -31,6 +31,8 @@ public class EventInfoController extends Observable {
     private String username;
     private UUID eventID;
     private List<String> eventInfo;
+    private String speakersList;
+    private String room;
 
     @FXML Label label1;
     @FXML Label label2;
@@ -53,6 +55,8 @@ public class EventInfoController extends Observable {
         this.username = UserHolder.getInstance().getUsername();
         this.eventID = EventHolder.getInstance().getEventID();
         this.eventInfo = eventManager.getEventsInfo(eventID);
+        this.speakersList = eventInfo.get(4);
+        this.room = eventInfo.get(6);
 
         label1.setText("Event Name: " + eventInfo.get(1));
         label2.setText("Starts: " + eventInfo.get(2));
@@ -118,6 +122,11 @@ public class EventInfoController extends Observable {
      * @return messageManager
      */
     public MessageManager getMessageManager() { return messageManager; }
+
+    //TODO javadoc
+    public String getSpeakersList(){return speakersList;}
+    //TODO javadoc
+    public String getRoom(){return room;}
 
     /**
      * Handles action of when the detailed speakers button is clicked. Shows enlarged detailed speakers list
