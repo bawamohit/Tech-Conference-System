@@ -106,6 +106,9 @@ public class CreateEventController {
         }
     }
 
+    /**
+     * Converts time in String format to LocalDateTime format
+     */
     private LocalDateTime getTime(String time) {
         String[] dateTimeString = time.split("[- :]");
         int[] dateTime = new int[5];
@@ -113,11 +116,17 @@ public class CreateEventController {
         return LocalDateTime.of(dateTime[0], dateTime[1], dateTime[2], dateTime[3], dateTime[4]);
     }
 
+    /**
+     * Checks if the time in String format is valid
+     */
     private boolean validTime(String time){
         String pattern = "^([0-9][0-9][0-9][0-9])-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1]) (0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])$";
         return time.matches(pattern);
     }
 
+    /**
+     * Displays a pop-up message
+     */
     private void createErrorAlert(String message){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);

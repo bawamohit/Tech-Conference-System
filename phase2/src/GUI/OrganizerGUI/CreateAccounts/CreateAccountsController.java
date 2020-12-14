@@ -80,6 +80,9 @@ public class CreateAccountsController {
         }
     }
 
+    /**
+     * Displays a pop-up message.
+     */
     private void createAlert(String message){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);

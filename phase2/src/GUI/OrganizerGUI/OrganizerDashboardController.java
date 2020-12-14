@@ -65,6 +65,9 @@ public class OrganizerDashboardController extends UserDashboardController{
         loadSubScene("/GUI/OrganizerGUI/CreateRoom/CreateRoom");
     }
 
+    /**
+     * Updates the scene after an action is done
+     */
     @Override
     public void update(Observable o, Object arg) {
         if (arg.equals("ModifySpeaker")){

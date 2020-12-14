@@ -67,10 +67,13 @@ public class ModifySpeakerController extends Observable {
         notifyObservers("ModifyEvent");
     }
 
+    /**
+     * Adds the speaker to the event if the username entered is valid
+     */
     private void addSpeakerInputChecksSuccess(){
         String speakerUsername = speakerNameField.getText();
         if (speakerUsername.isEmpty()){
-            createAlertMessage("Missing room name input");
+            createAlertMessage("Missing speaker name input");
             return;
         }
         if (!userManager.isRegistered(speakerUsername)){
@@ -96,6 +99,9 @@ public class ModifySpeakerController extends Observable {
         createAlertMessage("Speaker Added!");
     }
 
+    /**
+     * Removes the speaker from the event if the username entered is valid
+     */
     private void removeSpeakerHelper(){
         String speakerUsername = speakerNameField.getText();
 
@@ -108,6 +114,9 @@ public class ModifySpeakerController extends Observable {
         createAlertMessage("Speaker Removed");
     }
 
+    /**
+     * Displays a pop-up message
+     */
     private void createAlertMessage(String message){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
@@ -115,6 +124,10 @@ public class ModifySpeakerController extends Observable {
         alert.showAndWait();
     }
 
+    /**
+     * Checks whether the room/event allows more speakers
+     * @param eventID the event that is checked
+     */
     private boolean roomAllowsSpeaker(UUID eventID){
         int roomCapacity = roomManager.getRoomCapacity(eventManager.getEventRoomName(eventID));
         int attendeeSize = eventManager.getEventAttendees(eventID).size();
@@ -122,6 +135,9 @@ public class ModifySpeakerController extends Observable {
         return roomCapacity > (attendeeSize + speakerSize);
     }
 
+    /**
+     * Checks whether speaker is available to be added to an event
+     */
     private boolean speakerAvailable(String speaker, LocalDateTime newST, LocalDateTime newET){
         List<UUID> speakers_events = userManager.getEventsAttending(speaker);
         for (UUID id: speakers_events){
@@ -133,6 +149,5 @@ public class ModifySpeakerController extends Observable {
         }
         return true;
     }
-
 }
 
