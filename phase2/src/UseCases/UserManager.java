@@ -25,7 +25,11 @@ public class UserManager {
         return new ArrayList<>(users);
     }
 
-    //TODO javadoc
+    /** Returns a list of usernames of all registered users of the specific user-type
+     *
+     * @param userType The type of the user
+     * @return A list of usernames
+     */
     public List<String> getUserList(UserType userType){
         ArrayList<String> userList = new ArrayList<>();
 
@@ -74,35 +78,6 @@ public class UserManager {
     public boolean verifyLogin(String username, String password) { //ask about returning null
         if (isRegistered(username)) {
             return usernamesToUsers.get(username).getPassword().equals(password);
-        }
-        return false;
-    }
-
-    /** Updates the name of this user.
-     *
-     * @param username The username of the user whose name shall be updated
-     * @param newName The name that shall replace the user's old name.
-     *
-     * @return True if the update was performed successfully, and false otherwise.
-     */
-    public boolean updateName(String username, String newName) {
-        if (isRegistered(username)) {
-            usernamesToUsers.get(username).setName(newName);
-            return true;
-        }
-        return false;
-    }
-
-    /** Changes the password of the user
-     *
-     * @param username Username of the user whose password is to be changed
-     * @param newPassword The new password of the user
-     * @return true if the password is changed successfully
-     */
-    public boolean updatePassword(String username, String newPassword) {
-        if (isRegistered(username)) {
-            usernamesToUsers.get(username).setPassword(newPassword);
-            return true;
         }
         return false;
     }

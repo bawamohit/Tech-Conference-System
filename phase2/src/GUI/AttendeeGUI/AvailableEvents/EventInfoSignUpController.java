@@ -9,9 +9,15 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Scene where the sign up event button is located
+ */
 public class EventInfoSignUpController extends EventInfoController {
-    
-    @FXML public void handleSignUpButton(ActionEvent event){
+
+    /**
+     * Handles action of when the signup button is clicked. Signs up attendee to the chosen event
+     */
+    @FXML public void handleSignUpButton(){
         List<UUID> schedule = getUserManager().getEventsAttending(getUsername());
 
         if(getEventManager().isAttending(getEventID(), getUsername())) {
@@ -36,6 +42,9 @@ public class EventInfoSignUpController extends EventInfoController {
         }
     }
 
+    /**
+     * Displays a pop-up message
+     */
     private void alert(String message){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Sign Up Failed");

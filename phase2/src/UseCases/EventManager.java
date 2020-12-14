@@ -98,21 +98,6 @@ public class EventManager {
     }
 
     /**
-     * Implements Getter, getEventsStrings, for event strings.
-     *
-     * @param IDs list of event IDs for which to get string representations for
-     *
-     * @return event strings for all scheduled events
-     */
-    public List<String> getEventsStrings(List<UUID> IDs) {
-        List<String> eventString = new ArrayList<>();
-        for (UUID id: IDs){
-            eventString.add(events.get(id).toString());
-        }
-        return eventString;
-    }
-
-    /**
      * Implements Getter, getAvailableEvents, for IDs of available events.
      *
      * @return event IDs for all events after currTime still open for signup
@@ -125,21 +110,6 @@ public class EventManager {
                 }
         }
         return sortEventByTime(availableEvents);
-    }
-
-    /**
-     * Implements getter for the list of events that have no attendees
-     *
-     * @return list of events with no attendees
-     */
-    public List<UUID> getEmptyEvents(){
-        ArrayList<UUID> emptyEvents = new ArrayList<>();
-        for (UUID id : events.keySet()){
-            if (events.get(id).getAttendees().size() == 0) {
-               emptyEvents.add(id);
-            }
-        }
-        return sortEventByTime(emptyEvents);
     }
 
     /**
