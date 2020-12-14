@@ -58,6 +58,9 @@ public class CreateRoomController {
         }
     }
 
+    /**
+     * Displays a pop-up message
+     */
     private void createInfoAlert(String message){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);

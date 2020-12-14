@@ -69,6 +69,9 @@ public class EditEventController extends Observable {
         notifyObservers("ModifyEvent");
     }
 
+    /**
+     * Changes the capacity of the room
+     */
     private void changeCapacity(){
         String capacityString = textField.getText();
         int newCapacity = Integer.parseInt(capacityString);
@@ -88,6 +91,9 @@ public class EditEventController extends Observable {
         notifyObservers("EditEvent");
     }
 
+    /**
+     * Changes the room of the event
+     */
     private void changeRoom(){
         String roomName = textField.getText();
 
@@ -113,11 +119,17 @@ public class EditEventController extends Observable {
         notifyObservers("EditEvent");
     }
 
+    /**
+     * Handles the action when the Change Capacity button is clicked. Displays a text field and a prompt for the new capacity.
+     */
     @FXML private void handleChangeCapacityButtonAction(){
         text.setText("New Capacity:  ");
         textField.setVisible(true);
     }
 
+    /**
+     * Displays a pop-up message
+     */
     @FXML private void createAlertMessage(String message){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
@@ -125,15 +137,22 @@ public class EditEventController extends Observable {
         alert.showAndWait();
     }
 
+    /**
+     * Handles the action when the Change Room button is clicked. Displays a text field and a prompt for the new room.
+     */
     @FXML private void handleChangeRoomButtonAction(){
         text.setText("New Room:  ");
         textField.setVisible(true);
     }
+
+    /**
+     * Check whether the room is valid for the event.
+     * @param eventID The event that is switching rooms
+     */
     private boolean roomAllowsEvent(UUID eventID){
         int roomCapacity = roomManager.getRoomCapacity(eventManager.getEventRoomName(eventID));
         int eventCapacity = eventManager.getEventMaxCapacity(eventID);
         int speakerSize = eventManager.getEventSpeaker(eventID).size();
         return roomCapacity > (eventCapacity + speakerSize);
     }
-
 }
