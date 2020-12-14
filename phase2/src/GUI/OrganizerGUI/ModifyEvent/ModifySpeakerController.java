@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.UUID;
@@ -82,7 +83,9 @@ public class ModifySpeakerController extends Observable {
         }else if(!speakerAvailable(speakerUsername, eventManager.getEventStartTime(eventID), eventManager.getEventEndTime(eventID))){
             createAlertMessage("This speaker is not available at the time of this event.");
         }else {
-            eventManager.addSpeaker(eventID, speakerUsername);
+            List<String> speaker = new ArrayList<>();
+            speaker.add(speakerUsername);
+            eventManager.addSpeakers(eventID, speaker);
             userManager.addEventAttending(speakerUsername, eventID);
             createAlertMessage("Speaker Added!");
         }
