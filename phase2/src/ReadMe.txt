@@ -23,14 +23,14 @@ Speakers:
 	Wolverine: wolverine, zing-zing
 	Gamora: gamora, dead
 	Doctor Strange: doctor, strange
-	Black Panther: pather, black
+	Black Panther: panther, black
 
 Admins:
 	Jenny: admin, admin
 	Thanos: thanos, snap
 
 
-There are also a bunch of premade events. All the users are have randomly been enrolled, are organizing, or are speaking at some event for testing purposes.
+There are also a bunch of pre-made events. All the users are have randomly been enrolled, are organizing, or are speaking at some event for testing purposes.
 
 Some event pairs that have overlapping times:
 	- Age of Ultron, Far from Home
