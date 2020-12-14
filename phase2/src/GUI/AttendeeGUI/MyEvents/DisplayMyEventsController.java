@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * My Events subscene for Attendee
+ * The subscene where my events are displayed
  */
 public class DisplayMyEventsController extends DisplayEventsController {
     private String username;
@@ -20,7 +20,7 @@ public class DisplayMyEventsController extends DisplayEventsController {
     private UserManager userManager;
 
     /**
-     * Initializes the My Events subscene. Displays the events the user signed up for.
+     * Initializes the My Events scene.
      */
     public void initialize(){
         super.initialize();

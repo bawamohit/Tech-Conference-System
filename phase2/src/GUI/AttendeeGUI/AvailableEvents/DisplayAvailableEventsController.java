@@ -8,14 +8,15 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
+
 /**
- * Available Events subscene for Attendee
+ * The subscene where available events are displayed
  */
 public class DisplayAvailableEventsController extends DisplayEventsController {
     private EventManager eventManager;
 
     /**
-     * Initializes the Available Events subscene. Display available events.
+     * Initializes the Available Events scene.
      */
     public void initialize(){
         this.eventManager = ManagersStorage.getInstance().getEventManager();

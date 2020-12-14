@@ -6,12 +6,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 
 /**
- * Event Info subscene for Attendee
+ * The subscene where event infomation is shown
  */
 public class EventInfoCancelController extends EventInfoController {
 
     /**
-     * Initializes the Event Info subscene. Displays the event info
+     * Initializes the EventInfo scene.
      */
     @Override
     public void initialize() {
@@ -19,7 +19,7 @@ public class EventInfoCancelController extends EventInfoController {
     }
 
     /**
-     * Handles the action when the Cancel button is clicked. Cancel the registration of the user in that event.
+     * Handles action of when the cancel button is clicked. Cancels the attendee from the event
      */
     @FXML public void handleCancelButton(ActionEvent event){
         getEventManager().removeAttendee(getUsername(), getEventID());
