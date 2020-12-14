@@ -47,7 +47,7 @@
             </children></HBox>
 
             <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="8">
-                <Button mnemonicParsing="false" onAction="#handleSignUpButtonAction" prefHeight="26.0" prefWidth="98.0" snapToPixel="false" styleClass="button2" stylesheets="@../CreateStuff.css" text="Create Account" textAlignment="RIGHT" />
+                <Button mnemonicParsing="false" onAction="#handleSignUpButtonAction" prefHeight="26.0" prefWidth="150.0" snapToPixel="false" styleClass="button2" stylesheets="@../CreateStuff.css" text="Create Account" textAlignment="RIGHT" />
             </HBox>
          <PasswordField  fx:id="passwordFieldRe" layoutX="255.0" layoutY="201.0" styleClass="text-field3" stylesheets="@../CreateStuff.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <columnConstraints>
