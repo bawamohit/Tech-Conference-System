@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="680.0" prefWidth="900.0" styleClass="root" stylesheets="@DeleteChat.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AdminGUI.DeleteChatController">
+<BorderPane prefHeight="680.0" prefWidth="900.0" styleClass="root" stylesheets="@DeleteChat.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.AdminGUI.DeleteChatController">
    <center>
       <VBox prefHeight="280.0" prefWidth="597.0" BorderPane.alignment="CENTER">
          <children>

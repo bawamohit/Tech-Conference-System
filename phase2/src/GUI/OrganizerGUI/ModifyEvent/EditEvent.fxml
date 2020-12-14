@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="center" hgap="10" prefHeight="680.0" prefWidth="900.0" styleClass="root" stylesheets="@ModifyStuff.css" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OrganizerGUI.ModifyEvent.EditEventController">
+<GridPane alignment="center" hgap="10" prefHeight="680.0" prefWidth="900.0" styleClass="root" stylesheets="@ModifyStuff.css" vgap="10" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="GUI.OrganizerGUI.ModifyEvent.EditEventController">
     <padding><Insets bottom="10" left="25" right="25" top="25" /></padding>
    <Label styleClass="label3" stylesheets="@ModifyStuff.css" text="Edit Event" />
 
