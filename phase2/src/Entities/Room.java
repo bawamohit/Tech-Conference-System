@@ -11,7 +11,7 @@ import java.util.UUID;
  *
  */
 public class Room {
-    private String roomName;
+    private final String roomName;
     private int capacity;
     private HashMap<UUID, List<LocalDateTime>> schedule;
 
