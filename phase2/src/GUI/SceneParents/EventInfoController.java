@@ -123,9 +123,14 @@ public class EventInfoController extends Observable {
      */
     public MessageManager getMessageManager() { return messageManager; }
 
-    //TODO javadoc
+    /**
+     * @return the speaker list of the event
+     */
     public String getSpeakersList(){return speakersList;}
-    //TODO javadoc
+
+    /**
+     * @return the room of the event
+     */
     public String getRoom(){return room;}
 
     /**

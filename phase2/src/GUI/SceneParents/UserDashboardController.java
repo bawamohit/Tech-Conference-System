@@ -86,7 +86,7 @@ public abstract class UserDashboardController implements Observer {
             e.printStackTrace();
         }
         if(subScene == null) {
-            subScene = new SubScene(root, 900, 700); //TODO initData maybe
+            subScene = new SubScene(root, 900, 700);
         }else{
             subScene.setRoot(root);
         }
