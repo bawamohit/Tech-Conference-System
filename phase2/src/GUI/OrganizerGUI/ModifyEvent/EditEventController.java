@@ -112,7 +112,7 @@ public class EditEventController extends Observable {
             return;
         }
         eventManager.setEventRoomName(eventID, roomName);
-        roomManager.removeEventFromSchedule(eventID);
+        roomManager.removeEventFromRoom(eventID, roomName);
         roomManager.addEventToSchedule(eventID, roomName, start, end);
         createAlertMessage("Room Changed!");
         setChanged();

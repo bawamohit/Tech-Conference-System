@@ -113,6 +113,22 @@ public class EventManager {
     }
 
     /**
+     * Implements getter for the list of events that have no attendees
+     *
+     * @return list of events with no attendees
+     */
+    public List<UUID> getEmptyEvents(){
+        ArrayList<UUID> emptyEvents = new ArrayList<>();
+        for (UUID id : events.keySet()){
+            if (events.get(id).getAttendees().size() == 0) {
+                emptyEvents.add(id);
+            }
+        }
+        return sortEventByTime(emptyEvents);
+    }
+
+
+    /**
      * Implements Getter, getEventAttendees, for an event in events.
      *
      * @param eventID ID of the event to retrieve attendee list for
