@@ -5,6 +5,7 @@ import GUI.WelcomeController;
 import GUI.DataHolders.ManagersStorage;
 import UseCases.UserManager;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
@@ -20,7 +21,6 @@ public class CreateAccountsController {
     @FXML private TextField passwordField;
     @FXML private TextField passwordFieldRe;
     @FXML private TextField nameField;
-    @FXML private Text prompt;
     @FXML private ToggleGroup group;
     @FXML private RadioButton radioButton;
     @FXML private RadioButton radioButton2;
@@ -43,26 +43,27 @@ public class CreateAccountsController {
         String passwordRe = passwordFieldRe.getText();
         String name = nameField.getText();
         if(username.isEmpty() || password.isEmpty() || passwordRe.isEmpty() || name.isEmpty()){
-            prompt.setText("Please complete the fields.");
+            createAlert("Please complete the fields.");
         } else if(userManager.isRegistered(username)){
-            prompt.setText("This username is already registered.");
+            createAlert("This username is already registered.");
         } else if(!password.equals(passwordRe)){
-            prompt.setText("Your passwords do not match.");
+            createAlert("Your passwords do not match.");
         } else{
             UserType userType = null;
             if(radioButton.isSelected()){
                 userType = UserType.ATTENDEE;
             }else if(radioButton2.isSelected()){
                 userType = UserType.ORGANIZER;
-            }
-            else if(radioButton3.isSelected()){
+            }else if(radioButton3.isSelected()){
                 userType = UserType.ADMIN;
-            }
-            else if(radioButton4.isSelected()){
+            }else if(radioButton4.isSelected()){
                 userType = UserType.SPEAKER;
             }
             userManager.registerUser(userType, name, username, password);
-            prompt.setText("Signed Up!");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("Account created!");
+            alert.showAndWait();
         }
     }
 
@@ -71,11 +72,18 @@ public class CreateAccountsController {
      */
     @FXML protected void handleCheckAvailableButtonAction() {
         if(userManager.isRegistered(usernameField.getText())) {
-            prompt.setText("This username is already registered.");
+            createAlert("This username is already registered.");
         }else if(usernameField.getText().isEmpty()){
-            prompt.setText("Please enter an username.");
+            createAlert("Please enter an username.");
         }else{
-            prompt.setText("This username is available!");
+            createAlert("This username is available!");
         }
+    }
+
+    private void createAlert(String message){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

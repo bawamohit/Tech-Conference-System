@@ -55,7 +55,7 @@ public class OrganizerDashboardController extends UserDashboardController{
      * Handles action when the create account button is clicked. Loads CreateEvent subscene
      */
     @FXML protected void handleCreateAccountsButtonAction(ActionEvent event){
-        loadSubScene("/GUI/OrganizerGUI/CreateAccounts/CreateAccounts2");
+        loadSubScene("/GUI/OrganizerGUI/CreateAccounts/CreateAccounts");
     }
 
     /**
