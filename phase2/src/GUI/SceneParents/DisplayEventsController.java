@@ -94,7 +94,7 @@ public abstract class DisplayEventsController extends Observable implements Obse
             e.printStackTrace();
         }
         if(subScene == null) {
-            subScene = new SubScene(root, 900, 125); //TODO initData maybe
+            subScene = new SubScene(root, 900, 125);
         }else{
             subScene.setRoot(root);
         }

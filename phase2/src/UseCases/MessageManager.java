@@ -136,7 +136,7 @@ public class MessageManager {
         for (String time : lastMessageTimeList) {
             for (Message message : lastMessageList) {
                 if (time.equals(message.getTime().toString())) {
-                    lastMessageListSorted.add(0, message);
+                    lastMessageListSorted.add(message);
                 }
             }
         }
