@@ -48,7 +48,7 @@ public class MessageController {
             for (String user: users){
                 makeButton(user);
             }
-            CollocutorHolder.getInstance().setUsername(users.get(0));
+            CollocutorHolder.getInstance().setUsername(users.get(users.size() - 1));
             loadSubScene("/GUI/Message/Chat");
         }else{
             loadSubScene("/GUI/Empty");
@@ -183,7 +183,7 @@ public class MessageController {
             e.printStackTrace();
         }
         if(subScene == null) {
-            subScene = new SubScene(root, 755, 675); //TODO initData maybe
+            subScene = new SubScene(root, 755, 675);
         }else{
             subScene.setRoot(root);
         }
