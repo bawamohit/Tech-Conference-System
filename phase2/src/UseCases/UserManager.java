@@ -25,7 +25,11 @@ public class UserManager {
         return new ArrayList<>(users);
     }
 
-    //TODO javadoc
+    /** Returns a list of usernames of all registered users of the specific user-type
+     *
+     * @param userType The type of the user
+     * @return A list of usernames
+     */
     public List<String> getUserList(UserType userType){
         ArrayList<String> userList = new ArrayList<>();
 
