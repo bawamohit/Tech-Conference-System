@@ -98,7 +98,6 @@ public class UserManager {
      * @param username The username of the user who is removing this event.
      * @param eventId The id of the event that is being removed.
      */
-    //TODO change javadoc accordingly
     public void removeEventAttending(String username, UUID eventId) {
         List<UUID> eventsAttending = usernamesToUsers.get(username).getEventsAttending();
         eventsAttending.remove(eventId);
