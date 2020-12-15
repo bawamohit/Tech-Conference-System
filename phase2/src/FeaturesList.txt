@@ -7,13 +7,18 @@ General features:
     - JSON files containing details about users, messages, rooms, and events
     - Clicking on the word "Speakers" in the event information section, the user is able to see the full list of
     speakers in a pop-up window.
+    - Sign up as attendee or organizer by clicking on ""Don't have an account?" on the welcome screen,
+    if the user doesn't have an account.
+    - All users can directly message any user if they know their username, conversation is initiated by entering
+      the username in the input field and clicking the "+" sign next to it. Past messages can be accessed by clicking
+      on the existing conversation.
 
 Organizer:
-    - Organizers modify a scheduled event's speakers (add or remove), maximum capacity, and room if they click on
+    - Organizers can modify a scheduled event's speakers (add or remove), maximum capacity, and room if they click on
     "Modify Speakers" and "Edit Event" respectively on the "Modify Events" tab of the menu. They can also remove the
-    event.
-    - By clicking on the "Announcements" tab, organizers can send an announcement to either admins, organizers, speakers,
-    attendees, or all of the aforementioned groups.
+    event entirely.
+    - By clicking on the "Announcements" tab, organizers can send an announcement to admins, organizers, speakers,
+    attendees, or any combination of the aforementioned groups.
     - Organizers can create admin, attendee, organizer, or speaker accounts under the "Create Accounts" page.
     - When creating an event under "Create Event", organizers can specify any time & duration in the future, maximum
     capacity of the event (with the restriction that it does not exceed the capacity of the room it occurs in), and
@@ -23,11 +28,17 @@ Organizer:
     They also need to specify which type of account it is, and it will successfully create the account if the username
     isn't taken.
 
+Attendee:
+    - View upcoming events by in the "Available Events" tab, click on any particular event to show its details, and
+      allows signing up for the selected event if conditions are met.
+    - View events signed up for in "My Events" tab, clicking on a particular event shows its details and allows
+      the user to cancel registration to that event.
+
 Speaker:
     - Clicking on "My Talks" on the speaker menu, speakers can view the events (and event details) that they are
     speaking at. By selecting "Message Attendees", a speaker can also send a message to all the attendees signed up for
     the event.
 
 Admin:
-    - Admins can delete any scheduled event by selecting it on the "Delete Events" page.
+    - Admins can delete events with no attendees by selecting it on the "Delete Events" page.
     - They can also delete the chat history between any two users under the "Delete Chats" section.
