@@ -1,0 +1,30 @@
+-- LIST OF FEATURES --
+Here is a list of all the additional features we have implemented for Phase 2. Please let us know if you have questions
+about any of them!
+
+General features:
+    - GUI
+    - JSON files containing details about users, messages, rooms, and events
+    - Clicking on the word "Speakers" in the event information section, the user is able to see the full list of
+    speakers in a pop-up window.
+
+Organizer:
+    - Organizers modify a scheduled event's speakers (add or remove), maximum capacity, and room if they click on
+    "Modify Speakers" and "Edit Event" respectively on the "Modify Events" tab of the menu. They can also remove the
+    event.
+    - By clicking on the "Announcements" tab, organizers can send an announcement to either admins, organizers, speakers,
+    attendees, or all of the aforementioned groups.
+    - Organizers can create admin, attendee, organizer, or speaker accounts under the "Create Accounts" page.
+    - When creating an event under "Create Event", organizers can specify any time & duration in the future, maximum
+    capacity of the event (with the restriction that it does not exceed the capacity of the room it occurs in), and
+    optionally speakers to participate in the event.
+    - For room and account creation, organizers can check name availability.
+
+Speaker:
+    - Clicking on "My Talks" on the speaker menu, speakers can view the events (and event details) that they are
+    speaking at. By selecting "Message Attendees", a speaker can also send a message to all the attendees signed up for
+    the event.
+
+Admin:
+    - Admins can delete any scheduled event by selecting it on the "Delete Events" page.
+    - They can also delete the chat history between any two users under the "Delete Chats" section.

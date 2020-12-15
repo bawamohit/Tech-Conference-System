@@ -2,7 +2,7 @@
 
 Welcome!
 
-Here are some pre-made attendees, organizers, speakers, and rooms that you can try out! Feel free to also make your own
+Here are some pre-made attendees, organizers, speakers, and rooms that you can try out! Feel free to also make your own.
 The format of the following user accounts below is Name: Username, Password
 
 Attendees:
@@ -30,17 +30,19 @@ Admins:
 	Thanos: thanos, snap
 
 
-There are also a bunch of pre-made events. All the users are have randomly been enrolled, are organizing, or are speaking at some event for testing purposes.
+There are also a bunch of pre-made events. All the users are have randomly been enrolled, are organizing, or are
+speaking at some event for testing purposes.
 
 Some event pairs that have overlapping times:
 	- Age of Ultron, Far from Home
 	- Infinity War, Captain Marvel
 
+Here is a list of pre-made rooms with their corresponding maximum capacity:
+	- New York City: 15
+	- Avengers Mansion: 11
+	- Stark Tower: 11
+	- Wakanda: 7
+	- Asgard (No events scheduled in this room yet): 4
 
-Here is a list of pre-made rooms:
-	- New York City
-	- Avengers Mansion
-	- Stark Tower
-	- Wakanda
-	- Asgard (No events scheduled in this room yet)
+For full details, you can check out the JSON files under the package named "Data". Enjoy!
 
