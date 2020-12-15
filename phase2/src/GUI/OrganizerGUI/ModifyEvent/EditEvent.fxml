@@ -37,11 +37,11 @@
      <Label fx:id="label1" prefWidth="250" styleClass="label2" stylesheets="@ModifyStuff.css" GridPane.rowIndex="2" />
    <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.rowSpan="2">
       <children>
-            <RadioButton fx:id="capacityRadioButton" graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleChangeCapacityButtonAction" text="Change Capacity">
-                <toggleGroup>
+            <RadioButton fx:id="roomRadioButton" graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleChangeRoomButtonAction" text="Change Room">
+            <toggleGroup>
                     <ToggleGroup fx:id="group" />
-                </toggleGroup></RadioButton>
-            <RadioButton fx:id="roomRadioButton" graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleChangeRoomButtonAction" text="Change Room" toggleGroup="$group" />
+            </toggleGroup></RadioButton>
+            <RadioButton fx:id="capacityRadioButton" graphicTextGap="0.0" mnemonicParsing="false" onAction="#handleChangeCapacityButtonAction" text="Change Capacity" toggleGroup="$group" />
       </children>
    </VBox>
 

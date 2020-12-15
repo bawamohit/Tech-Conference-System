@@ -76,7 +76,10 @@ public class CreateAccountsController {
         }else if(usernameField.getText().isEmpty()){
             createAlert("Please enter an username.");
         }else{
-            createAlert("This username is available!");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText("This username is available!");
+            alert.showAndWait();
         }
     }
 

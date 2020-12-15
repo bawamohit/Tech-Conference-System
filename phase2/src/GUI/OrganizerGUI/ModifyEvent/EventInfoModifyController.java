@@ -44,6 +44,7 @@ public class EventInfoModifyController extends EventInfoController {
         getEventManager().removeEvent(eventID);
         getRoomManager().removeEventFromRoom(eventID, getRoom());
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
         alert.setContentText("Event Successfully Removed.");
         alert.showAndWait();
         setChanged();
