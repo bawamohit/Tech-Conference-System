@@ -19,6 +19,9 @@ Organizer:
     capacity of the event (with the restriction that it does not exceed the capacity of the room it occurs in), and
     optionally speakers to participate in the event.
     - For room and account creation, organizers can check name availability.
+    - When creating an account under "Create Account", organizers can create a username, password, and preferred name.
+    They also need to specify which type of account it is, and it will successfully create the account if the username
+    isn't taken.
 
 Speaker:
     - Clicking on "My Talks" on the speaker menu, speakers can view the events (and event details) that they are
