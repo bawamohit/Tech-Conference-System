@@ -30,6 +30,16 @@ Observer:
         Depending on the choice, the EventInfoModifyController while notify its observers and pass a string argument
         that will determine which scene the dashboard will load next. So it's the same premise but more versatile.
 
-Singleton?
+Singleton:
 
-Dependency Injection?
+    It is difficult to pass data between controllers in the fxml framework, so we created singleton classes for the
+    various use cases and the logged-in username to provide a global point of access to it.
+        -/GUI/DataHolders/ManagerStorage stores the instances of the use cases
+        -/GUI/DataHolders/UserHolder     stores the logged-in username
+
+    Implementing singleton classes allowed ease of access to data, and ensured these classes are only instantiated
+    once, as we know for certain that though utilized and coordinated across the system, only a single instance of
+    these data is needed at any given time.
+
+    Although this particular design pattern was not covered in the course material, we felt that this was an apt
+    solution to circumventing some fxml restrictions and improves the code readability, during our research.
