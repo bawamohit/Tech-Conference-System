@@ -1,6 +1,6 @@
-##Tech Conference System
+## Tech Conference System
 
-####Welcome
+#### Welcome
 To start this program, go to src and run GUIApplication.java.
 
 Here are some pre-made attendees, organizers, speakers, and rooms that you can try out! Feel free to also make your own.
@@ -53,7 +53,7 @@ Here is a list of pre-made rooms with their corresponding maximum capacity:
 
 For full details, you can check out the JSON files under the package named "Data". Enjoy!
 
-##Demo
+## Demo
 ![HomeScreen](DemoPics/HomeScreen.jpg)
 ![OrganizerScreen](DemoPics/OrganizerScreen.jpg)
 ![MessageScreen](DemoPics/MessageScreen.jpg)
